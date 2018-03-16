@@ -1,0 +1,33 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Forms;
+using TypApplication.Controller;
+using TypApplication.Model;
+
+namespace TypApplication.View
+{
+    public partial class CourseEnvironment : UserControl
+    {
+        private readonly MainForm parentForm;
+        private CourseController courseController = new CourseController();
+
+        public CourseEnvironment(MainForm parentForm)
+        {
+            this.parentForm = parentForm;
+            InitializeComponent();
+            courseController.FillDataGridViewWithVisibleCourses(CourseGrid); // fill the datagridview with all the visible coourses
+        }
+
+        private void StartCourse_Click(object sender, EventArgs e)
+        {
+            CourseExercise courseExercise = new CourseExercise(courseController.db.ApplicationDatabase.Courses.Single(x => x.Title.Equals(CourseGrid.CurrentCell.Value.ToString()))); // check wich course was selected
+            parentForm.NewCourseExercise(courseExercise); // make a exercise with the selected course
+        }
+
+        private void Cancel_Click(object sender, EventArgs e)
+        {
+            parentForm.ShowMainMenu(); //show main menu
+        }
+    }
+}

@@ -1,0 +1,43 @@
+﻿using System;
+using System.Drawing;
+using System.Windows.Forms;
+using TypoTeacher.Model;
+
+namespace TypoTeacher.View
+{
+    public partial class MainMenu : UserControl
+    {
+        private readonly MainForm parentForm;
+
+        public MainMenu(MainForm parentForm)
+        {
+            this.parentForm = parentForm;
+            InitializeComponent();            
+        }
+
+        private void ButtonSettings_Click(object sender, EventArgs e)
+        {
+            parentForm.ShowSettings(); // go to the settings menu
+        }
+
+        private void QuitButton_Click(object sender, EventArgs e)
+        {
+            Application.Exit(); // exit the application
+        }
+
+        private void ChooseCourse_Click(object sender, EventArgs e)
+        {
+            parentForm.ShowCourses(); // go to the courses menu
+        }
+
+        private void btnCharacterExercise_Click(object sender, EventArgs e)
+        {
+            parentForm.ShowCharacterExercisePicker();   
+        }
+
+        private void btnOverview_Click(object sender, EventArgs e)
+        {
+            parentForm.ShowOverview();
+        }
+    }
+}

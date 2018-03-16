@@ -1,0 +1,37 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using TypoTeacher.Controller;
+using TypoTeacher.Model.Database;
+
+namespace TypoTeacher.View
+{
+    public partial class Overview : UserControl
+    {
+        private DatabaseController databaseController = new DatabaseController();
+        private List<string> classes;
+        private string selectedClass;
+        private IEnumerable<Student> students;
+        private MainForm parentForm;
+        public Overview(MainForm parent)
+        {
+            parentForm = parent;
+            classes = databaseController.GetClassCodes();
+            ClassComboBox.DataSource = classes;
+            selectedClass = ClassComboBox.SelectedText;
+            InitializeComponent();
+        }
+
+        private void ClassComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            selectedClass = ClassComboBox.SelectedText;
+            students = databaseController.GetStudents(selectedClass);
+        }
+    }
+}

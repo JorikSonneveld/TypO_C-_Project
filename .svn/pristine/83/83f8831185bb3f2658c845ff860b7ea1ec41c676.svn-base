@@ -1,0 +1,83 @@
+﻿using System;
+using System.Windows.Forms;
+using Microsoft.VisualBasic.Devices;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using TypApplication.Controller;
+using TypApplication.Model;
+using TypApplication.View;
+using System.Threading;
+
+namespace TypingApplicationTestEnvoirement.Model
+{
+    [TestClass]
+    public class KeyDataTest
+    {
+        [TestMethod]
+        public void KeyData_DelayShouldBePositive_WhenUpdateWordsPerMinuteIsCalled()
+        {
+            //Arrange
+            KeyData keydata = new KeyData();
+
+            //Act
+            keydata.UpdateWordsPerMinute();
+            long Actual = keydata.Delay;
+
+            //Assert
+            Assert.IsTrue(Actual > 0);
+        }
+
+        [TestMethod]
+        public void KeyData_KeystrokePerMinuteShouldBe300_WhenCalculateKeystrokesPerMinuteIsCalled()
+        {
+            //Arrange
+            KeyData keydata = new KeyData();
+            keydata.Delay = 2000;
+            KeyData.KeystrokeCounter = 10;
+
+            //Act
+            keydata.CalculateKeystrokesPerMinute();
+            int Actual = KeyData.KeystrokesPerMinute;
+            int Expected = 300;
+
+            //Assert
+            Assert.AreEqual(Expected, Actual);
+        }
+
+        [TestMethod]
+        public void KeyData_KeystrokePerMinuteShouldBeUpdated_WhenKeystrokeTimeIs60()
+        {
+            //Arrange
+            KeyData keydata = new KeyData();
+            KeyData.KeystrokeCounter = 10;
+            KeyData.KeystrokeTime = 59;
+            keydata.StartMillisec = Convert.ToInt64((DateTime.Now - DateTime.MinValue).TotalMilliseconds);
+            Thread.Sleep(1);
+
+            //Act
+            keydata.UpdateWordsPerMinute();
+            int ExpectedKeystrokesPerMinute = KeyData.KeystrokesPerMinute;
+            int ExpectedKeystrokeTime = KeyData.KeystrokeTime;
+
+            //Assert
+            Assert.AreEqual(ExpectedKeystrokeTime, 60);
+            Assert.IsTrue(ExpectedKeystrokesPerMinute > 0);
+        }
+
+        [TestMethod]
+        public void KeyData_DelayStaysTheSame_WhenStartMillisecIsLargerThenCurrentMillisec()
+        {
+            //Arrange
+            KeyData keydata = new KeyData();
+            KeyData.KeystrokeTime = 59;
+            keydata.StartMillisec = Convert.ToInt64((DateTime.Now - DateTime.MinValue).TotalMilliseconds) + 20000;
+            keydata.Delay = 1;
+
+            //Act
+            keydata.UpdateWordsPerMinute();
+            long Expected = keydata.Delay;
+            long Actual = 1;
+            //Assert
+            Assert.AreEqual(Expected, Actual);
+        }
+    }
+}

@@ -1,0 +1,10 @@
+﻿namespace TypApplication.Model
+{
+    public class KeyMistake
+    {
+        
+        public int KeyMistakeId { get; set; }
+        public string Character { get; set; }
+        public int Count { get; set; }
+    }
+}

@@ -1,0 +1,199 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using TypApplication.Model;
+
+namespace TypApplication.Controller
+{
+    public class DatabaseController
+    {
+        //Initialise a new DatabaseContext
+        private ApplicationDatabase ApplicationDatabase;
+
+        //Connect to the ApplicationDatabase
+        public void DbConnect() { ApplicationDatabase = new ApplicationDatabase(); }
+
+        private void SaveDb() { ApplicationDatabase.SaveChanges(); }
+
+        public void AddMistakesToDd(List<string> mistakes)
+        {
+            foreach (string letter in mistakes) //goes through every mistake made in the exercise 
+            {
+                var selection = ApplicationDatabase.KeyMistakes.FirstOrDefault<KeyMistake>(KeyMistake => KeyMistake.Character == letter); //gets the mistake with the same letter from the database
+                if (selection != null) //checks is the mistake is already 
+                    selection.Count++; //adds one to the count
+                else
+                    ApplicationDatabase.KeyMistakes.Add(new KeyMistake { Character = letter, Count = 1 }); //adds the new mistake to the database
+
+                SaveDb(); //saves the database after every letter
+            }
+
+        }
+
+        public bool AddCourse(string input)
+        {
+            DbConnect();
+            Course data = new Course() { Characters = input };
+
+            //If already excists
+            if (ApplicationDatabase.Courses.Any(c => c.Characters.Equals(input)))
+            {
+                return false;
+            }
+            // Add course
+            else
+            {
+                ApplicationDatabase.Courses.Add(data);
+                SaveDb();
+                return true;
+            }
+
+        }
+
+        public int GetCourseID(string text)
+        {
+            DbConnect();
+            int courseID = ApplicationDatabase.Courses.Single(c => c.Characters == text).CourseID;
+            return courseID;
+        }
+
+        //Delete course from Courses database table
+        public void DeleteCourse(int courseid)
+        {
+            DbConnect();
+            if (!ApplicationDatabase.Courses.Any(x => x.CourseID == courseid))
+                return;
+            var course = ApplicationDatabase.Courses.Single(x => x.CourseID == courseid);
+            ApplicationDatabase.Courses.Remove(course);
+            ApplicationDatabase.SaveChanges();
+        }
+
+        public void RetrieveCommonMistakes(List<string> chars, int mistakesAmount)
+        {
+            DbConnect();
+            //Check which char is often mistaken
+            var mistakes = from m in ApplicationDatabase.KeyMistakes
+                           orderby m.Count descending
+                           select m.Character;
+
+            //Add top 3 most mistaken chars to list
+            foreach (var mistake in mistakes.Take(3))
+                chars.Add(mistake);
+
+        }
+
+
+        public string GenerateWords(int wordsPerMistake, int mistakesAmount)
+        {
+            DbConnect();
+            var chars = new List<string>();
+
+            RetrieveCommonMistakes(chars, mistakesAmount);
+
+            //Get words that contain common mistaken char orderby random
+            var words = chars.SelectMany(character =>
+                (from w in ApplicationDatabase.Words
+                 where w.Characters.Contains(character)
+                 orderby Guid.NewGuid()
+                 select w.Characters).Take(wordsPerMistake)).ToList();
+
+            //Split list with spaces, first char upper and last char dotpoint
+            if (words.Count != 0)
+            {
+                var input = string.Join(" ", words);
+                input = input.First().ToString().ToUpper() + input.Substring(1) + ".";
+                return input;
+            }
+            return "";
+
+        }
+
+        //function to edit existing course
+        public bool EditCourse(int courseId, string newCharacters)
+        {
+            DbConnect();
+            var course = new Course();
+            if (ApplicationDatabase.Courses.Any(c => c.Characters.Equals(newCharacters)))
+                return false;
+            var selection = ApplicationDatabase.Courses.FirstOrDefault<Course>(c => c.CourseID == courseId);
+            if (selection != null)
+                selection.Characters = newCharacters;
+            SaveDb();
+            return true;
+        }
+
+        //function to retrieve random words from the database
+        public List<Word> RetrieveRandomDbWords()
+        {
+            //Select the ApplicationDatabase
+            DbConnect();
+
+            //Linq query to select all words from the database
+            var selection = (from w in ApplicationDatabase.Words select w);
+            //Selection.ToList<Word>();
+
+            //Generate a Random object, a List of Words and a few integers to make the loops work properly
+            Random rnd = new Random();
+            List<Word> words = new List<Word>();
+            int Size = selection.Count();
+            int randomCounter = SelectRandomNumber(rnd, 1, Size);
+
+            //The 'for' loop ensures that there is a random amount of words selected
+            for (int i = 0; i < 10; i++)
+            {
+                var randomSelect = SelectRandomNumber(rnd, 1, Size);
+                //The 'foreach' loop ensures that each word is random selected from the database
+                foreach (Word word in selection)
+                {
+                    if (word.WordID == randomSelect)
+                    {
+                        words.Add(word);
+                    }
+                }
+            }
+            return words;
+        }
+
+        //Function to retrieve all Courses from the database
+        public List<Course> RetrieveAllDbCourses()
+        {
+
+            //Select the ApplicationDatabase
+            DbConnect();
+
+            List<Course> courses = new List<Course>();
+
+            //Linq query to select all courses from the database
+            var selection = (from c in ApplicationDatabase.Courses select c);
+            selection.ToList<Course>();
+
+            foreach (Course course in selection)
+            {
+                courses.Add(course);
+            }
+
+            return courses;
+        }
+
+        //Function for generating a random number, given a MaxNumber
+        private int SelectRandomNumber(Random rnd, int MinNumber, int MaxNumber)
+        {
+            return rnd.Next(MinNumber, MaxNumber);
+        }
+
+        public bool HasMistakes()
+        {
+            DbConnect();
+            int test = (from w in ApplicationDatabase.KeyMistakes select w.KeyMistakeID).Count();
+            if (test > 2)
+
+                return true;
+            else
+                return false;
+        }
+    }
+}

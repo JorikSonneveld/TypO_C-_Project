@@ -1,0 +1,84 @@
+﻿namespace TypoTeacher
+{
+    partial class StudentOverview
+    {
+        /// <summary> 
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary> 
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Component Designer generated code
+
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.Return = new System.Windows.Forms.PictureBox();
+            this.StudentTable = new System.Windows.Forms.TableLayoutPanel();
+            ((System.ComponentModel.ISupportInitialize)(this.Return)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // Return
+            // 
+            this.Return.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Return.Image = global::TypoTeacher.Properties.Resources.TypOLogo;
+            this.Return.Location = new System.Drawing.Point(26, 98);
+            this.Return.Margin = new System.Windows.Forms.Padding(1);
+            this.Return.Name = "Return";
+            this.Return.Size = new System.Drawing.Size(148, 106);
+            this.Return.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.Return.TabIndex = 14;
+            this.Return.TabStop = false;
+            this.Return.Click += new System.EventHandler(this.Return_Click);
+            // 
+            // StudentTable
+            // 
+            this.StudentTable.AutoScroll = true;
+            this.StudentTable.BackColor = System.Drawing.SystemColors.Control;
+            this.StudentTable.ColumnCount = 4;
+            this.StudentTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.StudentTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.StudentTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.StudentTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.StudentTable.Location = new System.Drawing.Point(26, 217);
+            this.StudentTable.Name = "StudentTable";
+            this.StudentTable.RowCount = 2;
+            this.StudentTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.StudentTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.StudentTable.Size = new System.Drawing.Size(686, 334);
+            this.StudentTable.TabIndex = 15;
+            // 
+            // StudentOverview
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
+            this.Controls.Add(this.StudentTable);
+            this.Controls.Add(this.Return);
+            this.Name = "StudentOverview";
+            this.Size = new System.Drawing.Size(737, 631);
+            ((System.ComponentModel.ISupportInitialize)(this.Return)).EndInit();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+        private System.Windows.Forms.PictureBox Return;
+        private System.Windows.Forms.TableLayoutPanel StudentTable;
+    }
+}

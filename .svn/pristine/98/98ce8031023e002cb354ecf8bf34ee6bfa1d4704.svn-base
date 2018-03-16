@@ -1,0 +1,79 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace TypApplicatie
+{
+    public partial class Form1 : Form
+    {
+        private string currentkey;
+        private string goodkey = "T";
+        private int goodKeyPresses;
+        private int wrongKeyPresses;
+        public static int KeystrokeCounter = 0;
+        public static int KeystrokeTime = 0;
+        public static int KeystrokeCounter = 0;
+        public static int KeystrokeTime = 0;
+        private int KeystrokeCounter = 0;
+        private int KeystrokeTime = 0;
+        private int KeystrokesPerMinute = 0;
+
+        public Form1()
+        {
+            InitializeComponent();
+            KeystrokeTimer.Interval = 1;
+            KeystrokeTimer.Tick += new EventHandler(Update);
+            KeystrokeTimer.Start();
+        }
+
+        //Keylogger
+        private void RichTextBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            currentkey = e.KeyCode.ToString();
+            Console.WriteLine(currentkey);
+        }
+    
+        public void Update(object sender, EventArgs e)
+        {
+            KeystrokeTime++; //add one to the time difference
+            CalculateKeystrokesPerMinute();
+        }
+     
+        //TextBox changed
+        private void RichTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (currentkey.Equals(goodkey))
+            {
+                button1.BackColor = Color.Green;
+                goodKeyPresses++;
+
+            }
+            else
+            {
+                button1.BackColor = Color.Red;
+                wrongKeyPresses++;
+                Console.WriteLine(richTextBox1.Text.Length);
+            }
+            Invalidate();
+        }
+
+        public void CalculateKeystrokesPerMinute()
+        {
+            if (KeystrokeCounter != 0 && KeystrokeTime/60 != 0) // check if one of the values are 0 because you cant devide by zero
+                KeystrokesPerMinute = KeystrokeCounter / (KeystrokeTime / 60); // devide the keystrokes by the time in seconds to get the keystrokes per minute
+
+            KeystrokeTime = 0; // reset the times
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+    }
+}

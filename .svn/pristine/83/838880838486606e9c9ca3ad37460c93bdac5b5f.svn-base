@@ -1,0 +1,46 @@
+﻿using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+using Typo.Controller;
+using Typo.Model;
+
+namespace Typo.View
+{
+    /// <summary>
+    ///     Interaction logic for ExerciseView.xaml
+    /// </summary>
+    public partial class ExerciseView : UserControl
+    {
+        public ExerciseController ExerciseController { get; set; }
+
+        public ExerciseView(ExerciseType exerciseType)
+        {
+            InitializeComponent();
+            ExerciseController = new ExerciseController(this, exerciseType);
+        }
+
+        public ExerciseView(Exercise exercise)
+        {
+            InitializeComponent();
+            ExerciseController = new ExerciseController(this, exercise);
+        }
+
+        private void Add_KeyPress_Listener(object sender, RoutedEventArgs e)
+        {
+            var window = Window.GetWindow(this);
+            window.KeyDown += KeyDown;
+            window.KeyUp += KeyUp;
+        }
+
+        private new void KeyDown(object sender, KeyEventArgs e)
+        {
+            ExerciseController.Handle_Key(sender, e);
+        }
+
+        private new void KeyUp(object sender, KeyEventArgs e)
+        {
+            ExerciseController.Handle_Key_Up(sender, e);
+            ExerciseController.upperCaseLetter = false;
+        }
+    }
+}

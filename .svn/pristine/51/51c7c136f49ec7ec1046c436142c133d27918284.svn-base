@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<configuration>
+  <configSections>
+    <!-- For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468 -->
+    <section name="entityFramework"
+             type="System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection, EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+             requirePermission="false" />
+    <sectionGroup name="userSettings"
+                  type="System.Configuration.UserSettingsGroup, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+      <section name="TypApplication.Properties.Settings"
+               type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+               allowExeDefinition="MachineToLocalUser" requirePermission="false" />
+    </sectionGroup>
+  </configSections>
+  <startup>
+    <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.6.1" />
+  </startup>
+  <entityFramework>
+    <defaultConnectionFactory type="System.Data.Entity.Infrastructure.LocalDbConnectionFactory, EntityFramework">
+      <parameters>
+        <parameter value="mssqllocaldb" />
+      </parameters>
+    </defaultConnectionFactory>
+    <providers>
+      <provider invariantName="System.Data.SqlClient"
+                type="System.Data.Entity.SqlServer.SqlProviderServices, EntityFramework.SqlServer" />
+    </providers>
+  </entityFramework>
+  <userSettings>
+    <TypApplication.Properties.Settings>
+      <setting name="colorblind" serializeAs="String">
+        <value>True</value>
+      </setting>
+      <setting name="colorblindOffTrue" serializeAs="String">
+        <value>-16744448</value>
+      </setting>
+      <setting name="colorblindOffFalse" serializeAs="String">
+        <value>-65536</value>
+      </setting>
+      <setting name="colorblindOnTrue" serializeAs="String">
+        <value>-256</value>
+      </setting>
+      <setting name="colorblindOnFalse" serializeAs="String">
+        <value>-8388480</value>
+      </setting>
+      <setting name="TextColor" serializeAs="String">
+        <value>-16744448</value>
+      </setting>
+      <setting name="NUM" serializeAs="String">
+        <value>False</value>
+      </setting>
+    </TypApplication.Properties.Settings>
+  </userSettings>
+</configuration>

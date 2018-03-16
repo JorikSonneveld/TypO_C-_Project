@@ -1,0 +1,15 @@
+﻿namespace Typo.Model
+{
+    public class KeyData
+    {
+        public static int GoodKeyPresses = 0;
+        public static int KeystrokeTime = 0;
+        public static int KeystrokesPerMinute = 0;
+        public static int Accuracy = 100;
+        public static int KeystrokeCounter = 0;
+        public long CurrentMillisec;
+        public long Delay;
+        public long StartMillisec;
+        public int WrongKeyPresses = 0;
+    }
+}

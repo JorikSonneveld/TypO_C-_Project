@@ -1,0 +1,91 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
+using Typo.Controller;
+using Typo.Model;
+
+namespace Typo.View
+{
+    /// <summary>
+    /// Interaction logic for CourseEditor.xaml
+    /// </summary>
+    public partial class CourseEditor : Window
+    {
+        public DataGridCellInfo cell;
+        public bool update = false;
+        private string currentTitle;
+        private DatabaseController database;
+
+        public CourseEditor(DatabaseController database)
+        {
+            this.database = database;
+            InitializeComponent();
+        }
+
+        public CourseEditor(Course course, DatabaseController database)
+        {
+            InitializeComponent();
+
+            this.database = database;
+            if(course != null)
+            {
+                currentTitle = course.Title;
+                CourseTitle.Text = course.Title;
+                VisibleCheck.IsChecked = course.Official;
+                StartDate.SelectedDate = course.StartDate;
+                EndDate.SelectedDate = course.EndDate;
+                CourseContent.Text = course.Text;
+                update = true;
+            }
+        }
+
+        private void Update_Click(object sender, EventArgs e)
+        {
+            // Update course
+            if (update)
+            {
+                Console.WriteLine(database.EditCourse(
+                    database.GetCourseId(currentTitle),
+                    CourseTitle.Text,
+                    CourseContent.Text,
+                    VisibleCheck.IsChecked.Value
+                    ));
+            }
+            // New course
+            else
+            {
+                //TODO NEW CODE FOR ADDING COURSE
+
+                //if (database.AddCourse(CourseTitle.Text, CourseContent.Text, VisibleCheck.IsChecked.Value, StartDate.GetValue, EndDate.GetValue, combobox.GetValue))
+                //{
+                //    int courseID = courseController.db.GetCourseId(titleTextBox.Text);
+                //    Console.WriteLine("course " + courseID);
+                //    Console.WriteLine("klas is " + classChoice.SelectedItem);
+                //    courseController.db.AddCourse_Class(classChoice.SelectedItem.ToString(), courseID);
+                //    if (courseController.CreateMessage(true, false))
+                //        Close();
+                //}
+                //else
+                //{
+                //    courseController.CreateMessage(false, false);
+                //}
+            }
+            Close();
+        }
+
+        private void ButtonCancel_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+    }
+}

@@ -1,0 +1,51 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Typo.Model.Database;
+
+namespace Typo.Model
+{
+    public class WordExercise : Exercise
+    {
+        private readonly List<Word> wordlist;
+
+        public WordExercise(List<Word> wordlist)
+        {
+            this.wordlist = wordlist;
+            ExerciseString = CreateExerciseString();
+        }
+
+        public override string CreateExerciseString()
+        {
+            var totalstring = "";
+            var capitalletter = true;
+
+            if (wordlist == null || wordlist.Count == 0)
+                return "";
+
+            foreach (var word in wordlist)
+            {
+                if (capitalletter)
+                {
+                    word.Characters = FirstCharToUpper(word.Characters);
+                    capitalletter = false;
+                }
+
+                totalstring += word.Characters + " ";
+            }
+            totalstring = totalstring.TrimEnd(' ');
+            //totalstring += ".";
+            return totalstring;
+        }
+
+        private string FirstCharToUpper(string input)
+        {
+            switch (input)
+            {
+                case null: throw new ArgumentNullException(nameof(input));
+                case "": throw new ArgumentException($"{nameof(input)} cannot be empty", nameof(input));
+                default: return input.First().ToString().ToUpper() + input.Substring(1);
+            }
+        }
+    }
+}

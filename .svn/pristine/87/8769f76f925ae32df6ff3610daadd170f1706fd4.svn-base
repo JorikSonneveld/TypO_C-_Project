@@ -1,0 +1,32 @@
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using TypApplication;
+using TypApplication.View;
+
+namespace TypingApplicationTestEnvoirement
+{
+    [TestClass]
+    public class UnitTest1
+    {
+        [TestMethod]
+        public void Keyboard_ShouldAddAllKeys_WhenKeyboardIsInitialized()
+        {
+            //Arrange
+            //Form1 form = new Form1();
+            //form.
+            
+            //Act
+
+            //Assert
+            //Assert.IsNotNull(keyboard.Keys);
+        }
+
+        [TestMethod]
+        public void AddKey_ShouldAddAllKeys_WhenKeyboardIsInitialize()
+        {
+            //Arrange
+            //Act
+            //Assert
+        }
+    }
+}

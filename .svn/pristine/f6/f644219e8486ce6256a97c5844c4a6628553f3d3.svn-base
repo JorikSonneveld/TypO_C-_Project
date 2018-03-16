@@ -1,0 +1,198 @@
+﻿using System.Drawing;
+using System.Windows.Forms;
+
+namespace TypApplication.View
+{
+    partial class MainMenu
+    {
+        /// <summary> 
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary> 
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Component Designer generated code
+
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.newExerciseButton = new System.Windows.Forms.Button();
+            this.QuitButton = new System.Windows.Forms.Button();
+            this.buttonSettings = new System.Windows.Forms.Button();
+            this.buttonChooseCourse = new System.Windows.Forms.Button();
+            this.buttonGenExerciese = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.BeginCourse = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // newExerciseButton
+            // 
+            this.newExerciseButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(100)))), ((int)(((byte)(189)))));
+            this.newExerciseButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(237)))), ((int)(((byte)(225)))));
+            this.newExerciseButton.FlatAppearance.BorderSize = 2;
+            this.newExerciseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.newExerciseButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.newExerciseButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(236)))), ((int)(((byte)(64)))));
+            this.newExerciseButton.Location = new System.Drawing.Point(3, 1193);
+            this.newExerciseButton.Margin = new System.Windows.Forms.Padding(6);
+            this.newExerciseButton.Name = "newExerciseButton";
+            this.newExerciseButton.Size = new System.Drawing.Size(310, 115);
+            this.newExerciseButton.TabIndex = 0;
+            this.newExerciseButton.Text = "New exercise";
+            this.newExerciseButton.UseVisualStyleBackColor = false;
+            this.newExerciseButton.Click += new System.EventHandler(this.NewExerciseButton_Click);
+            // 
+            // QuitButton
+            // 
+            this.QuitButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(100)))), ((int)(((byte)(189)))));
+            this.QuitButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(237)))), ((int)(((byte)(225)))));
+            this.QuitButton.FlatAppearance.BorderSize = 2;
+            this.QuitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.QuitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.QuitButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(236)))), ((int)(((byte)(64)))));
+            this.QuitButton.Location = new System.Drawing.Point(1280, 1193);
+            this.QuitButton.Margin = new System.Windows.Forms.Padding(6);
+            this.QuitButton.Name = "QuitButton";
+            this.QuitButton.Size = new System.Drawing.Size(310, 115);
+            this.QuitButton.TabIndex = 5;
+            this.QuitButton.Text = "Exit";
+            this.QuitButton.UseVisualStyleBackColor = false;
+            this.QuitButton.Click += new System.EventHandler(this.QuitButton_Click);
+            // 
+            // buttonSettings
+            // 
+            this.buttonSettings.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(100)))), ((int)(((byte)(189)))));
+            this.buttonSettings.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(237)))), ((int)(((byte)(225)))));
+            this.buttonSettings.FlatAppearance.BorderSize = 2;
+            this.buttonSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSettings.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(236)))), ((int)(((byte)(64)))));
+            this.buttonSettings.Location = new System.Drawing.Point(958, 1193);
+            this.buttonSettings.Margin = new System.Windows.Forms.Padding(6);
+            this.buttonSettings.Name = "buttonSettings";
+            this.buttonSettings.Size = new System.Drawing.Size(310, 115);
+            this.buttonSettings.TabIndex = 3;
+            this.buttonSettings.Text = "Settings";
+            this.buttonSettings.UseVisualStyleBackColor = false;
+            this.buttonSettings.Click += new System.EventHandler(this.ButtonSettings_Click);
+            // 
+            // buttonChooseCourse
+            // 
+            this.buttonChooseCourse.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(100)))), ((int)(((byte)(189)))));
+            this.buttonChooseCourse.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(237)))), ((int)(((byte)(225)))));
+            this.buttonChooseCourse.FlatAppearance.BorderSize = 2;
+            this.buttonChooseCourse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonChooseCourse.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonChooseCourse.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(236)))), ((int)(((byte)(64)))));
+            this.buttonChooseCourse.Location = new System.Drawing.Point(660, 611);
+            this.buttonChooseCourse.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonChooseCourse.Name = "buttonChooseCourse";
+            this.buttonChooseCourse.Size = new System.Drawing.Size(310, 115);
+            this.buttonChooseCourse.TabIndex = 2;
+            this.buttonChooseCourse.Text = "Courses";
+            this.buttonChooseCourse.UseVisualStyleBackColor = false;
+            this.buttonChooseCourse.Click += new System.EventHandler(this.ButtonChooseCourse_Click);
+            // 
+            // buttonGenExerciese
+            // 
+            this.buttonGenExerciese.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(100)))), ((int)(((byte)(189)))));
+            this.buttonGenExerciese.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(237)))), ((int)(((byte)(225)))));
+            this.buttonGenExerciese.FlatAppearance.BorderSize = 2;
+            this.buttonGenExerciese.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonGenExerciese.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonGenExerciese.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(236)))), ((int)(((byte)(64)))));
+            this.buttonGenExerciese.Location = new System.Drawing.Point(320, 1193);
+            this.buttonGenExerciese.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonGenExerciese.Name = "buttonGenExerciese";
+            this.buttonGenExerciese.Size = new System.Drawing.Size(310, 115);
+            this.buttonGenExerciese.TabIndex = 1;
+            this.buttonGenExerciese.Text = "Generate exercise";
+            this.buttonGenExerciese.UseVisualStyleBackColor = false;
+            this.buttonGenExerciese.Click += new System.EventHandler(this.ButtonGenExerciese_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(100)))), ((int)(((byte)(189)))));
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(237)))), ((int)(((byte)(225)))));
+            this.button1.FlatAppearance.BorderSize = 2;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(236)))), ((int)(((byte)(64)))));
+            this.button1.Location = new System.Drawing.Point(637, 1193);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(310, 115);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // BeginCourse
+            // 
+            this.BeginCourse.Location = new System.Drawing.Point(1160, 398);
+            this.BeginCourse.Name = "BeginCourse";
+            this.BeginCourse.Size = new System.Drawing.Size(75, 23);
+            this.BeginCourse.TabIndex = 6;
+            this.BeginCourse.Text = "Begin Course";
+            this.BeginCourse.UseVisualStyleBackColor = true;
+            this.BeginCourse.Click += new System.EventHandler(this.BeginCourse_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Image = global::TypApplication.Properties.Resources.typo1_copy;
+            this.pictureBox1.Location = new System.Drawing.Point(3, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(400, 300);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 7;
+            this.pictureBox1.TabStop = false;
+            // 
+            // MainMenu
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Transparent;
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.buttonGenExerciese);
+            this.Controls.Add(this.buttonChooseCourse);
+            this.Controls.Add(this.buttonSettings);
+            this.Controls.Add(this.QuitButton);
+            this.Controls.Add(this.newExerciseButton);
+            this.Controls.Add(this.BeginCourse);
+            this.Margin = new System.Windows.Forms.Padding(6);
+            this.Name = "MainMenu";
+            this.Size = new System.Drawing.Size(1594, 1308);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Button newExerciseButton;
+        private System.Windows.Forms.Button QuitButton;
+        private System.Windows.Forms.Button buttonSettings;
+        private System.Windows.Forms.Button buttonChooseCourse;
+        private System.Windows.Forms.Button buttonGenExerciese;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button BeginCourse;
+        private System.Windows.Forms.PictureBox pictureBox1;
+    }
+}

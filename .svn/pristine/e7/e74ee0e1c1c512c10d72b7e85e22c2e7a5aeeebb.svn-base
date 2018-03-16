@@ -1,0 +1,68 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using TypoTeacher.Controller;
+using TypoTeacher.Model.Database;
+
+namespace TypoTeacher.View
+{
+    public partial class Overview : UserControl
+    {
+        private DatabaseController databaseController = new DatabaseController();
+        private string[] classes;
+        private string selectedClass;
+        private IEnumerable<Student> students;
+        private MainForm parentForm;
+        public Overview(MainForm parent)
+        {
+            parentForm = parent;
+            classes = databaseController.GetClassCodes();
+            InitializeComponent();
+        }
+
+        public void ShowOverview() {
+            ClearForm();
+            parentForm.ShowOverview();
+        }
+
+        public void ShowMainMenu() {
+            ClearForm();
+            parentForm.ShowMainMenu();
+        }
+
+        public void ShowStudentOverview() {
+            ClearForm();
+            StudentOverview studentOverview = new StudentOverview(this);
+            Controls.Add(studentOverview);
+            CenterView(studentOverview);
+        }
+
+        public void CenterView(Control control)
+        {
+            control.Left = (ClientSize.Width - control.Width) / 2;
+            control.Top = (ClientSize.Height - control.Height) / 2;
+            control.Anchor = AnchorStyles.None;
+        }
+
+        public void ClearForm()
+        {
+            Controls.Clear();
+        }
+
+        private void StudentOverview_Click(object sender, EventArgs e)
+        {
+            ShowStudentOverview();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            ShowMainMenu();
+        }
+    }
+}

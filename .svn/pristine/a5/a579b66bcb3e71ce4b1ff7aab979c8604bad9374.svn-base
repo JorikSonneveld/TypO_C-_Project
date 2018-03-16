@@ -1,0 +1,120 @@
+﻿<UserControl x:Class="Typo.View.Keyboard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Typo.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="170" Width="620">
+    <!-- Buttons -->
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="15*"/>
+            <ColumnDefinition Width="4.2*"/>
+        </Grid.ColumnDefinitions>
+        <WrapPanel x:Name="KeyBoardKeys">
+            <!-- row 1 -->
+            <local:MyButton x:Name="btn" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+            <local:MyButton x:Name="btn1" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+            <local:MyButton x:Name="btn2" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+            <local:MyButton x:Name="btn3" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+            <local:MyButton x:Name="btn4" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+            <local:MyButton x:Name="btn5" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+            <local:MyButton x:Name="btn6" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+            <local:MyButton x:Name="btn7" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+            <local:MyButton x:Name="btn8" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+            <local:MyButton x:Name="btn9" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+            <local:MyButton x:Name="btn0" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+            <local:MyButton x:Name="btnMinus" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+            <local:MyButton x:Name="btnEquals" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+            <local:MyButton x:Name="btnDelete" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="45" Height="30"  Margin="3,3,0,0"/>
+
+            <!-- row 2 -->
+            <local:MyButton x:Name="btnTab" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="45" Height="30"  Margin="3,3,0,0"/>
+            <local:MyButton x:Name="btnQ" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+            <local:MyButton x:Name="btnW" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+            <local:MyButton x:Name="btnE" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+            <local:MyButton x:Name="btnR" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+            <local:MyButton x:Name="btnT" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+            <local:MyButton x:Name="btnY" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+            <local:MyButton x:Name="btnU" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+            <local:MyButton x:Name="btnI" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+            <local:MyButton x:Name="btnO" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+            <local:MyButton x:Name="btnP" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+            <local:MyButton x:Name="btnBracketOpen" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+            <local:MyButton x:Name="btnBRacketClose" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+            <local:MyButton x:Name="btnSlashBackward" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+
+            <!-- row 3 -->
+            <local:MyButton x:Name="btnCapslock" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="54" Height="30"  Margin="3,3,0,0"/>
+            <local:MyButton x:Name="btnA"  Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+            <local:MyButton x:Name="btnS" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+            <local:MyButton x:Name="btnD" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+            <local:MyButton x:Name="btnF" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+            <local:MyButton x:Name="btnG" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+            <local:MyButton x:Name="btnH" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+            <local:MyButton x:Name="btnJ" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+            <local:MyButton x:Name="btnK" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+            <local:MyButton x:Name="btnL" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+            <local:MyButton x:Name="btnColon" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+            <local:MyButton x:Name="btnQuote" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+            <local:MyButton x:Name="btnEnter" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="54" Height="30"  Margin="3,3,0,0"/>
+
+            <!-- row 4 -->
+            <local:MyButton x:Name="shift" Content="shift" HorizontalAlignment="center" VerticalAlignment="center" Width="70" Height="30"  Margin="3,3,0,0"/>
+            <local:MyButton x:Name="btnZ" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+            <local:MyButton x:Name="btnX" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+            <local:MyButton x:Name="btnC" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+            <local:MyButton x:Name="btnV" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+            <local:MyButton x:Name="btnB" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+            <local:MyButton x:Name="btnN" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+            <local:MyButton x:Name="btnm" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+            <local:MyButton x:Name="btnComma" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+            <local:MyButton x:Name="btnPeriod" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+            <local:MyButton x:Name="btnSlash" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+            <local:MyButton x:Name="shift1" Content="shift" HorizontalAlignment="center" VerticalAlignment="center" Width="70" Height="30"  Margin="3,3,0,0"/>
+
+            <!-- row 5 -->
+            <local:MyButton x:Name="btnControl" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+            <local:MyButton x:Name="btnAlt" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="43,3,0,0"/>
+            <local:MyButton x:Name="btnSpace" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="162" Height="30"  Margin="36,3,0,0"/>
+        </WrapPanel>
+
+        <!-- NUM pad -->
+        <WrapPanel x:Name="NUMpad" Grid.Column="1">
+            <local:MyButton x:Name="btnNumLock" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+            <local:MyButton x:Name="btnSlash1" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+            <local:MyButton x:Name="btnTimes" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+            <local:MyButton x:Name="btnMinus1" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,3,0"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <WrapPanel Grid.Column="0">
+                    <local:MyButton x:Name="btn7N" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+                    <local:MyButton x:Name="btn8N" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+                    <local:MyButton x:Name="btn9N" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+                    <local:MyButton x:Name="btn4N" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+                    <local:MyButton x:Name="btn5n" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+                    <local:MyButton x:Name="btn6N" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+                </WrapPanel>
+                <local:MyButton x:Name="btnPlus1" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="63"  Margin="3,3,0,0" Grid.Column="1"/>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <WrapPanel Grid.Column="0">
+                    <local:MyButton x:Name="btn1N" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+                    <local:MyButton x:Name="btn2N" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+                    <local:MyButton x:Name="btn3N" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+                    <local:MyButton x:Name="btn0N" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="63" Height="30"  Margin="3,3,0,0"/>
+                    <local:MyButton x:Name="btnPeriodN" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="30"  Margin="3,3,0,0"/>
+                </WrapPanel>
+                <local:MyButton x:Name="btnEnter1" Content="Button" HorizontalAlignment="center" VerticalAlignment="center" Width="30" Height="63"  Margin="3,3,0,0" Grid.Column="1"/>
+            </Grid>
+        </WrapPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,50 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using TypApplication.Model;
+
+namespace TypApplication.Controller
+{
+    class ExerciseController
+    {
+        private RichTextBox exerciseTestBox;
+
+        public ExerciseController(RichTextBox exerciseTestBox)
+        {
+            this.exerciseTestBox = exerciseTestBox;
+        }
+
+        public void ChangeExerciseTestBox(List<Word> list)
+        {
+            string totalstring = "";
+            bool capitalletter = true;
+
+            foreach (Word word in list)
+            {
+                if (capitalletter)
+                {
+                    word.Characters = FirstCharToUpper(word.Characters);
+                    capitalletter = false;
+                }
+
+                totalstring += word.Characters + " ";
+            }
+            totalstring = totalstring.TrimEnd(' ');
+            totalstring += ".";
+            exerciseTestBox.Text = totalstring;
+        }
+
+        private string FirstCharToUpper(string input)
+        {
+            switch (input)
+            {
+                case null: throw new ArgumentNullException(nameof(input));
+                case "": throw new ArgumentException($"{nameof(input)} cannot be empty", nameof(input));
+                default: return input.First().ToString().ToUpper() + input.Substring(1);
+            }
+        }
+    }
+}

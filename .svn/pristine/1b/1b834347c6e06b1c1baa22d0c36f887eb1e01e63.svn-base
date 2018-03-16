@@ -1,0 +1,121 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using TypApplication.Model;
+using TypApplication.View;
+
+namespace TypApplication.Controller
+{
+    public class ExerciseController
+    {
+        private KeyData keydata = new KeyData();
+        private RichTextBox exerciseTextBox;
+        public List<string> Mistakes = new List<string>();
+        public Exercise exercise;
+        private ExerciseView exerciseView;
+
+        public ExerciseController(RichTextBox exerciseTestBox, Exercise exercise, ExerciseView exerciseView)
+        {
+            Console.WriteLine(1);
+            this.exerciseTextBox = exerciseTestBox;
+            this.exercise = exercise;
+            this.exercise.InputString = "";
+            this.exerciseView = exerciseView;
+            Console.WriteLine(2);
+            ResetValues();
+        }
+
+        //Keylogger
+        public void Log(KeyEventArgs e)
+        {
+            if (e.KeyCode != Keys.ShiftKey)
+                KeyData.KeystrokeCounter++;
+        }
+
+        private void ResetValues()
+        {
+            KeyData.GoodKeyPresses = 0;
+            KeyData.KeystrokeTime = 0;
+            KeyData.KeystrokesPerMinute = 0;
+            KeyData.Accuracy = 100;
+            KeyData.KeystrokeCounter = 0;
+        }
+
+        public void UpdateKeystrokesPerMinute()
+        {
+            KeyData.KeystrokeTime++; //add one to the timer per tick
+            if (KeyData.KeystrokeTime == 1) //if its the first time
+                keydata.StartMillisec = Convert.ToInt64((DateTime.Now - DateTime.MinValue).TotalMilliseconds); //a benchmark time in milliseconds where every time is calculated from
+            
+            keydata.CurrentMillisec = Convert.ToInt64((DateTime.Now - DateTime.MinValue).TotalMilliseconds); //the current time in milliseconds
+
+            if (keydata.CurrentMillisec - keydata.StartMillisec >= 0) //check if the current time is higher then the benchmarktime
+                keydata.Delay = keydata.CurrentMillisec - keydata.StartMillisec; //calculate the time difference in milliseconds
+
+            if (KeyData.KeystrokeTime % 60 == 0) //check if the count of ticks will be 0 if divided by zero
+                CalculateKeystrokesPerMinute();
+        }
+
+        public void CalculateKeystrokesPerMinute()
+        {
+            decimal temp = KeyData.KeystrokeCounter / (keydata.Delay / 60000m); // first make a time in minutes from the delay then calculate the stokes per minute
+            KeyData.KeystrokesPerMinute = Convert.ToInt32(temp);
+        }
+
+        public void CalculateAccuracy()
+        {
+            if (KeyData.KeystrokeCounter > 0 && KeyData.KeystrokeCounter >= KeyData.GoodKeyPresses)
+            {
+                decimal temp = KeyData.GoodKeyPresses / (KeyData.KeystrokeCounter * 1m) * 100;
+                KeyData.Accuracy = Convert.ToInt32(temp);
+            }
+        }
+
+        public void UpdateExerciseToNextChar(Exercise exercise)
+        {
+            KeyData.GoodKeyPresses++;
+            exercise.InputString += exercise.ExerciseString[0];
+            exercise.ExerciseString = exercise.ExerciseString.Substring(1, (exercise.ExerciseString.Count()-1));
+            exerciseView.UpdateColorsRichTextbox(exercise);
+        }
+
+        //Check if pressed key is good, wrong or max reached
+        public void Check(KeyEventArgs e)
+        {
+            if(e.KeyData == Keys.Shift || e.KeyData == Keys.Tab || e.KeyData == Keys.Back || e.KeyData == Keys.Capital || e.KeyData == Keys.Alt || e.KeyData == Keys.Control)
+            {
+                e.Handled = false;
+            }
+
+            KeyData.KeystrokeCounter++;
+            char ExpectedKey = exercise.ExerciseString[0];
+
+            if (char.IsUpper(ExpectedKey))
+            {
+                Console.WriteLine(e.KeyData.ToString());
+                if((e.KeyData.ToString().Contains("Shift") || e.KeyData.ToString().Contains("Capital")) && ExpectedKey == (char)e.KeyValue)
+                {
+                    UpdateExerciseToNextChar(exercise);
+                }
+            }
+            else
+            {
+                if ((char.ToUpper(ExpectedKey) == (char)e.KeyValue))
+                {
+                    UpdateExerciseToNextChar(exercise);
+                }
+                    
+                else if ((int)e.KeyData == 190)
+                    exerciseView.parentForm.ShowCourseFinished(KeyData.KeystrokesPerMinute, KeyData.Accuracy);
+
+            }
+            UpdateKeystrokesPerMinute();
+            CalculateAccuracy();
+            exerciseView.keyBoard.ActKey(e.KeyValue, char.ToUpper(ExpectedKey));
+        }
+    }
+}

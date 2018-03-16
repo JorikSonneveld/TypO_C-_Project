@@ -1,0 +1,43 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using Typo.Controller;
+
+namespace Typo.View
+{
+    /// <summary>
+    /// Interaction logic for CourseFinished.xaml
+    /// </summary>
+    public partial class CourseFinished : UserControl
+    {
+        private readonly MainWindow parentForm;
+
+        private readonly DatabaseController dbController;
+
+        public CourseFinished(MainWindow parentForm, int keyScore, int accScore, string title)
+        {
+            dbController = parentForm.Database;
+            dbController.SaveResult(1, keyScore, accScore, title);
+            InitializeComponent();
+            this.parentForm = parentForm;
+            labelKeyScore.Text = keyScore.ToString();
+            labelAccScore.Text = accScore + "%";
+        }
+
+        private void ButtonToMain_Click(object sender, EventArgs e)
+        {
+            parentForm.ShowMainMenu();
+        }
+    }
+}

@@ -1,0 +1,49 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using TypApplication.Controller;
+using TypApplication.Model;
+
+namespace TypApplication.View
+{
+    public partial class CourseEnvironment : UserControl
+    {
+        private readonly DatabaseController db = new DatabaseController();
+        private readonly MainForm parentForm;
+
+        public CourseEnvironment(MainForm parentForm)
+        {
+            this.parentForm = parentForm;
+            InitializeComponent();
+            FillDataGridView();
+        }
+
+        public void FillDataGridView()
+        {
+            var courses = db.RetrieveAllDbCourses();
+            if (courses != null)
+            {
+                CourseGrid.Rows.Clear();
+                foreach (var course in courses)
+                    if (course.Visible)
+                        CourseGrid.Rows.Add(course.Title);
+            }
+        }
+
+        private void StartCourse_Click(object sender, EventArgs e)
+        {
+            parentForm.NewExercise();
+        }
+
+        private void Cancel_Click(object sender, EventArgs e)
+        {
+            parentForm.ShowMainMenu();
+        }
+    }
+}

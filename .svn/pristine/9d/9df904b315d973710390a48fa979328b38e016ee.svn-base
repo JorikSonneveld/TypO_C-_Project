@@ -1,0 +1,81 @@
+﻿using System;
+using System.Activities;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Forms;
+using System.Windows.Input;
+using System.Windows.Interop;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using Typo.Controller;
+using Typo.Controller.RawInput;
+using KeyEventArgs = System.Windows.Input.KeyEventArgs;
+using UserControl = System.Windows.Controls.UserControl;
+using Typo.Model;
+
+namespace Typo.View
+{
+    /// <summary>
+    /// Interaction logic for Multiplayer.xaml
+    /// </summary>
+    public partial class Multiplayer : UserControl
+    {
+        private MainWindow mainWindow;
+        private IntPtr keyHandle;
+        private RawInput rawInput;
+        private DatabaseController DatabaseController = new DatabaseController();
+        private bool externKeyboard;
+
+        public Multiplayer(MainWindow mainWindow)
+        {
+            var w = new WordExercise(DatabaseController.RetrieveRandomDbWords());
+            this.mainWindow = mainWindow;
+            InitializeComponent();
+            Player1.ExerciseController = new ExerciseController(Player1, w);
+            Player2.ExerciseController = new ExerciseController(Player2, w);
+            Player2.SwapSlider();
+            keyHandle = new WindowInteropHelper(this.mainWindow).Handle; //KeyEvent handler
+            rawInput = new RawInput(keyHandle, true); //RawInput reader
+            rawInput.KeyPressed += OnKeyPressed; //Void OnKeyPress when KeyPress
+            Focus();
+        }
+
+        private void OnKeyPressed(object sender, RawInputEventArg e)
+        {
+            externKeyboard = !e.KeyPressEvent.Name.Equals("Standard PS/2 Keyboard");
+        }
+
+        private void KeyEventDown(object sender, KeyEventArgs e, bool externKeyboard)
+        {
+            if (externKeyboard)
+                Player2.ExerciseController.Handle_Key(sender, e);
+            else
+                Player1.ExerciseController.Handle_Key(sender, e);
+        }
+
+        private void Multiplayer_OnKeyDown(object sender, KeyEventArgs e)
+        {
+            KeyEventDown(sender, e, externKeyboard);
+        }
+
+        private void Multiplayer_OnKeyUp(object sender, KeyEventArgs e)
+        {
+            KeyEventUp(sender, e, externKeyboard);
+        }
+
+        private void KeyEventUp(object sender, KeyEventArgs e, bool b)
+        {
+            if (externKeyboard)
+                Player2.ExerciseController.upperCaseLetter = false;
+            else
+                Player1.ExerciseController.upperCaseLetter = false;
+        }
+    }
+}

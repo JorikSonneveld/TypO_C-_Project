@@ -1,0 +1,74 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
+using TypApplication.Controller;
+using TypApplication.Model;
+
+namespace TypApplication.View
+{
+    public partial class MainForm : Form
+    {
+        private MainMenu mainMenu;
+        private Courses courses;
+        public DatabaseController database = new DatabaseController();
+
+        public MainForm()
+        {
+            InitializeComponent();
+            ShowMainMenu(); 
+        }
+
+        public void ShowMainMenu()
+        {
+            ClearForm();
+            mainMenu = new MainMenu(this);
+            this.Controls.Add(mainMenu);
+            CenterView(mainMenu);
+        }
+
+        public void NewExercise()
+        {
+            ClearForm();
+            ExerciseView exerciseView = new ExerciseView(this, false);
+            this.Controls.Add(exerciseView);
+            CenterView(exerciseView);
+        }
+
+        public void NewGeneratedExcercise()
+        {
+            ClearForm();
+            ExerciseView exerciseView = new ExerciseView(this, true);
+            this.Controls.Add(exerciseView);
+            CenterView(exerciseView);
+        }
+
+        public void ShowCourseFinished(int keyscore, int accscore)
+        {
+            ClearForm();
+            CourseFinished completedview = new CourseFinished(this, keyscore, accscore);
+            this.Controls.Add(completedview);
+            CenterView(completedview);
+        }
+
+        public void ShowCourses()
+        {
+            ClearForm();
+            courses = new Courses(this);
+            this.Controls.Add(courses);
+            CenterView(courses);
+        }
+
+        private void ClearForm()
+        {
+            this.Controls.Clear();
+            mainMenu = null;
+            courses = null;
+        }
+
+        private void CenterView(Control control)
+        {
+            control.Left = (this.ClientSize.Width - control.Width) / 2;
+            control.Top = (this.ClientSize.Height - control.Height) / 2;
+        }
+    }
+}

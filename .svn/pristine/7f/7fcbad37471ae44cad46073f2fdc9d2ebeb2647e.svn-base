@@ -1,0 +1,174 @@
+﻿namespace TypoTeacher.View
+{
+    partial class CourseEditor
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.buttonSave = new System.Windows.Forms.Button();
+            this.buttonCancel = new System.Windows.Forms.Button();
+            this.isVisible = new System.Windows.Forms.CheckBox();
+            this.titleTextBox = new System.Windows.Forms.TextBox();
+            this.startDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.endDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.startLabel = new System.Windows.Forms.Label();
+            this.endLabel = new System.Windows.Forms.Label();
+            this.classChoice = new System.Windows.Forms.ComboBox();
+            this.SuspendLayout();
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(12, 61);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(603, 286);
+            this.richTextBox1.TabIndex = 0;
+            this.richTextBox1.Text = "";
+            // 
+            // buttonSave
+            // 
+            this.buttonSave.Location = new System.Drawing.Point(513, 395);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(102, 48);
+            this.buttonSave.TabIndex = 1;
+            this.buttonSave.Text = "Save";
+            this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.Button1_Click);
+            // 
+            // buttonCancel
+            // 
+            this.buttonCancel.Location = new System.Drawing.Point(382, 395);
+            this.buttonCancel.Name = "buttonCancel";
+            this.buttonCancel.Size = new System.Drawing.Size(109, 48);
+            this.buttonCancel.TabIndex = 2;
+            this.buttonCancel.Text = "Cancel";
+            this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
+            // 
+            // isVisible
+            // 
+            this.isVisible.AutoSize = true;
+            this.isVisible.Location = new System.Drawing.Point(544, 33);
+            this.isVisible.Name = "isVisible";
+            this.isVisible.Size = new System.Drawing.Size(73, 21);
+            this.isVisible.TabIndex = 3;
+            this.isVisible.Text = "Official";
+            this.isVisible.UseVisualStyleBackColor = true;
+            // 
+            // titleTextBox
+            // 
+            this.titleTextBox.Location = new System.Drawing.Point(12, 12);
+            this.titleTextBox.MaxLength = 20;
+            this.titleTextBox.Name = "titleTextBox";
+            this.titleTextBox.Size = new System.Drawing.Size(281, 22);
+            this.titleTextBox.TabIndex = 4;
+            // 
+            // startDateTimePicker
+            // 
+            this.startDateTimePicker.CustomFormat = "MM/dd/yyyy HH:mm:ss";
+            this.startDateTimePicker.Location = new System.Drawing.Point(341, 7);
+            this.startDateTimePicker.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
+            this.startDateTimePicker.MinDate = new System.DateTime(2000, 12, 5, 0, 0, 0, 0);
+            this.startDateTimePicker.Name = "startDateTimePicker";
+            this.startDateTimePicker.Size = new System.Drawing.Size(189, 22);
+            this.startDateTimePicker.TabIndex = 5;
+            this.startDateTimePicker.Value = new System.DateTime(2017, 12, 5, 16, 0, 0, 0);
+            // 
+            // endDateTimePicker
+            // 
+            this.endDateTimePicker.CustomFormat = "MM/dd/yyyy HH:mm:ss";
+            this.endDateTimePicker.Location = new System.Drawing.Point(341, 33);
+            this.endDateTimePicker.MaxDate = new System.DateTime(2100, 12, 4, 0, 0, 0, 0);
+            this.endDateTimePicker.MinDate = new System.DateTime(2017, 12, 5, 0, 0, 0, 0);
+            this.endDateTimePicker.Name = "endDateTimePicker";
+            this.endDateTimePicker.Size = new System.Drawing.Size(189, 22);
+            this.endDateTimePicker.TabIndex = 6;
+            this.endDateTimePicker.Value = new System.DateTime(2017, 12, 5, 0, 0, 0, 0);
+            // 
+            // startLabel
+            // 
+            this.startLabel.AutoSize = true;
+            this.startLabel.Location = new System.Drawing.Point(299, 7);
+            this.startLabel.Name = "startLabel";
+            this.startLabel.Size = new System.Drawing.Size(36, 17);
+            this.startLabel.TabIndex = 7;
+            this.startLabel.Text = "start";
+            // 
+            // endLabel
+            // 
+            this.endLabel.AutoSize = true;
+            this.endLabel.Location = new System.Drawing.Point(299, 30);
+            this.endLabel.Name = "endLabel";
+            this.endLabel.Size = new System.Drawing.Size(32, 17);
+            this.endLabel.TabIndex = 8;
+            this.endLabel.Text = "end";
+            // 
+            // classChoice
+            // 
+            this.classChoice.FormattingEnabled = true;
+            this.classChoice.Location = new System.Drawing.Point(544, 7);
+            this.classChoice.Name = "classChoice";
+            this.classChoice.Size = new System.Drawing.Size(62, 24);
+            this.classChoice.TabIndex = 9;
+            // 
+            // CourseEditor
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.ClientSize = new System.Drawing.Size(627, 455);
+            this.Controls.Add(this.classChoice);
+            this.Controls.Add(this.endLabel);
+            this.Controls.Add(this.startLabel);
+            this.Controls.Add(this.endDateTimePicker);
+            this.Controls.Add(this.startDateTimePicker);
+            this.Controls.Add(this.titleTextBox);
+            this.Controls.Add(this.isVisible);
+            this.Controls.Add(this.buttonCancel);
+            this.Controls.Add(this.buttonSave);
+            this.Controls.Add(this.richTextBox1);
+            this.Name = "CourseEditor";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "CourseEditor";
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Button buttonSave;
+        private System.Windows.Forms.Button buttonCancel;
+        private System.Windows.Forms.CheckBox isVisible;
+        private System.Windows.Forms.TextBox titleTextBox;
+        private System.Windows.Forms.DateTimePicker startDateTimePicker;
+        private System.Windows.Forms.DateTimePicker endDateTimePicker;
+        private System.Windows.Forms.Label startLabel;
+        private System.Windows.Forms.Label endLabel;
+        private System.Windows.Forms.ComboBox classChoice;
+    }
+}

@@ -1,0 +1,132 @@
+﻿namespace TypoTeacher.View
+{
+    partial class CharacterPicker
+    {
+        /// <summary> 
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary> 
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Component Designer generated code
+
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.label1 = new System.Windows.Forms.Label();
+            this.LabelExerciseCharacters = new System.Windows.Forms.Label();
+            this.LabelWordLength = new System.Windows.Forms.Label();
+            this.StartExerciseButton = new System.Windows.Forms.Button();
+            this.WordLengthUpDown = new System.Windows.Forms.NumericUpDown();
+            this.keyBoard = new TypoTeacher.View.KeyBoard();
+            ((System.ComponentModel.ISupportInitialize)(this.WordLengthUpDown)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(140, 11);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(342, 29);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Pick characters to practice with";
+            // 
+            // LabelExerciseCharacters
+            // 
+            this.LabelExerciseCharacters.AutoSize = true;
+            this.LabelExerciseCharacters.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelExerciseCharacters.Location = new System.Drawing.Point(32, 89);
+            this.LabelExerciseCharacters.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LabelExerciseCharacters.Name = "LabelExerciseCharacters";
+            this.LabelExerciseCharacters.Size = new System.Drawing.Size(105, 20);
+            this.LabelExerciseCharacters.TabIndex = 2;
+            this.LabelExerciseCharacters.Text = "Exercise with:";
+            // 
+            // LabelWordLength
+            // 
+            this.LabelWordLength.AutoSize = true;
+            this.LabelWordLength.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelWordLength.Location = new System.Drawing.Point(32, 136);
+            this.LabelWordLength.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LabelWordLength.Name = "LabelWordLength";
+            this.LabelWordLength.Size = new System.Drawing.Size(128, 20);
+            this.LabelWordLength.TabIndex = 3;
+            this.LabelWordLength.Text = "Max word length:";
+            // 
+            // StartExerciseButton
+            // 
+            this.StartExerciseButton.Location = new System.Drawing.Point(512, 102);
+            this.StartExerciseButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.StartExerciseButton.Name = "StartExerciseButton";
+            this.StartExerciseButton.Size = new System.Drawing.Size(84, 54);
+            this.StartExerciseButton.TabIndex = 4;
+            this.StartExerciseButton.Text = "Start Exercise";
+            this.StartExerciseButton.UseVisualStyleBackColor = true;
+            this.StartExerciseButton.Click += new System.EventHandler(this.StartExerciseButton_Click);
+            // 
+            // WordLengthUpDown
+            // 
+            this.WordLengthUpDown.Location = new System.Drawing.Point(165, 139);
+            this.WordLengthUpDown.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.WordLengthUpDown.Name = "WordLengthUpDown";
+            this.WordLengthUpDown.ReadOnly = true;
+            this.WordLengthUpDown.Size = new System.Drawing.Size(60, 20);
+            this.WordLengthUpDown.TabIndex = 5;
+            this.WordLengthUpDown.ValueChanged += new System.EventHandler(this.WordLengthUpDown_ValueChanged);
+            // 
+            // keyBoard
+            // 
+            this.keyBoard.AutoSize = true;
+            this.keyBoard.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.keyBoard.Location = new System.Drawing.Point(2, 199);
+            this.keyBoard.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.keyBoard.Name = "keyBoard";
+            this.keyBoard.Size = new System.Drawing.Size(622, 224);
+            this.keyBoard.TabIndex = 0;
+            // 
+            // CharacterPicker
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.WordLengthUpDown);
+            this.Controls.Add(this.StartExerciseButton);
+            this.Controls.Add(this.LabelWordLength);
+            this.Controls.Add(this.LabelExerciseCharacters);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.keyBoard);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Name = "CharacterPicker";
+            this.Size = new System.Drawing.Size(624, 424);
+            ((System.ComponentModel.ISupportInitialize)(this.WordLengthUpDown)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private KeyBoard keyBoard;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label LabelExerciseCharacters;
+        private System.Windows.Forms.Label LabelWordLength;
+        private System.Windows.Forms.Button StartExerciseButton;
+        private System.Windows.Forms.NumericUpDown WordLengthUpDown;
+    }
+}

@@ -1,0 +1,41 @@
+﻿using System;
+using System.Windows.Forms;
+
+namespace TypApplication.View
+{
+    public partial class MainMenu : UserControl
+    {
+        private readonly MainForm parentForm;
+
+        public MainMenu(MainForm parentForm)
+        {
+            this.parentForm = parentForm;
+            InitializeComponent();
+        }
+
+        private void NewExerciseButton_Click(object sender, EventArgs e)
+        {
+            parentForm.NewExercise();
+        }
+
+        private void ButtonSettings_Click(object sender, EventArgs e)
+        {
+            parentForm.ShowSettings();
+        }
+
+        private void QuitButton_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void ButtonChooseCourse_Click(object sender, EventArgs e)
+        {
+            parentForm.ShowCourses();
+        }
+
+        private void ButtonGenExerciese_Click(object sender, EventArgs e)
+        {
+            parentForm.NewGeneratedExcercise();
+        }
+    }
+}

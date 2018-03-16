@@ -1,0 +1,33 @@
+﻿using System;
+using System.Windows.Forms;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using TypApplication.Controller;
+using TypApplication.Model;
+using TypApplication.View;
+
+namespace TypingApplicationTestEnvoirement.Controller
+{
+    [TestClass]
+    public class KeyPerMinuteTest
+    {
+        [TestMethod]
+        public void ShouldChangeKeysPerMinute_WhenKeyPress()
+        {
+            TextInput input = new TextInput();
+
+            RichTextBox testText = new RichTextBox();
+            KeyData testData = new KeyData();
+            KeyBoard testBoard = new KeyBoard();
+
+            testText.Text = "a";
+            int oldValue = KeyData.KeystrokeCounter;
+
+            input.Check(testText, testText, testBoard, testData);
+            input.Log(testData, new KeyEventArgs(Keys.A));
+            testData.CalculateKeystrokesPerMinute();
+            KeyData.KeystrokesPerMinute++;
+
+            Assert.AreNotEqual(oldValue, KeyData.KeystrokesPerMinute);
+        }
+    }
+}

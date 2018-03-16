@@ -1,0 +1,83 @@
+﻿using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Windows.Forms;
+using TypoTeacher.Controller;
+using TypoTeacher.Model;
+
+namespace TypoTeacher.View
+{
+    public partial class MainForm : Form
+    {
+        public char lastKeyPress;
+        public DatabaseController Database = new DatabaseController();
+        CharacterPicker characterPicker;
+        private MainMenu mainMenu;
+
+        public MainForm()
+        {
+            InitializeComponent();
+            ShowMainMenu();
+        }
+
+        public void ShowMainMenu()
+        {
+            ClearForm();
+            mainMenu = new MainMenu(this);
+            Controls.Add(mainMenu);
+            CenterView(mainMenu);
+        }
+
+        public void ShowCourses()
+        {
+            ClearForm();
+            var courses = new LoadingScreen(this, "ShowCourses", 2);
+            Controls.Add(courses);
+            CenterView(courses);
+        }
+
+        public void ShowSettings()
+        {
+            ClearForm();
+            var settingsView = new SettingsView(this);
+            Controls.Add(settingsView);
+            CenterView(settingsView);
+        }
+
+        public void BeginCourse()
+        {
+            ClearForm();
+            var courseEnvironment = new LoadingScreen(this, "CourseEnvironment", 2);
+            Controls.Add(courseEnvironment);
+            CenterView(courseEnvironment);
+        }
+
+        public void ClearForm()
+        {
+            Controls.Clear();
+            mainMenu = null;
+        }
+
+        public void CenterView(Control control)
+        {
+            control.Left = (ClientSize.Width - control.Width) / 2;
+            control.Top = (ClientSize.Height - control.Height) / 2;
+            control.Anchor = AnchorStyles.None;
+        }
+
+        public void ShowCharacterExercisePicker()
+        {
+            ClearForm();
+            characterPicker = new CharacterPicker(this);
+            Controls.Add(characterPicker);
+            CenterView(characterPicker);
+            KeyPreview = true;
+        }
+
+        private void MainForm_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            lastKeyPress = e.KeyChar;
+            characterPicker.CharacterPicker_KeyPress(sender, e);
+        }
+    }
+}

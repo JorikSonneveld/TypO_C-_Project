@@ -1,0 +1,104 @@
+﻿namespace TypApplication.View
+{
+    partial class CourseEnvironment
+    {
+        /// <summary> 
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary> 
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Component Designer generated code
+
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.StartCourse = new System.Windows.Forms.Button();
+            this.CourseGrid = new System.Windows.Forms.DataGridView();
+            this.Cancel = new System.Windows.Forms.Button();
+            this.Characters = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.CourseGrid)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // StartCourse
+            // 
+            this.StartCourse.Location = new System.Drawing.Point(35, 43);
+            this.StartCourse.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.StartCourse.Name = "StartCourse";
+            this.StartCourse.Size = new System.Drawing.Size(100, 28);
+            this.StartCourse.TabIndex = 0;
+            this.StartCourse.Text = "Start Course";
+            this.StartCourse.UseVisualStyleBackColor = true;
+            this.StartCourse.Click += new System.EventHandler(this.StartCourse_Click);
+            // 
+            // CourseGrid
+            // 
+            this.CourseGrid.AllowUserToAddRows = false;
+            this.CourseGrid.AllowUserToDeleteRows = false;
+            this.CourseGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.CourseGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Characters});
+            this.CourseGrid.Location = new System.Drawing.Point(284, 43);
+            this.CourseGrid.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CourseGrid.Name = "CourseGrid";
+            this.CourseGrid.Size = new System.Drawing.Size(377, 471);
+            this.CourseGrid.TabIndex = 1;
+            // 
+            // Cancel
+            // 
+            this.Cancel.Location = new System.Drawing.Point(35, 129);
+            this.Cancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Cancel.Name = "Cancel";
+            this.Cancel.Size = new System.Drawing.Size(100, 28);
+            this.Cancel.TabIndex = 2;
+            this.Cancel.Text = "Cancel";
+            this.Cancel.UseVisualStyleBackColor = true;
+            this.Cancel.Click += new System.EventHandler(this.Cancel_Click);
+            // 
+            // Characters
+            // 
+            this.Characters.HeaderText = "Title";
+            this.Characters.Name = "Characters";
+            this.Characters.ReadOnly = true;
+            this.Characters.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Characters.Width = 240;
+            // 
+            // CourseEnvironment
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Transparent;
+            this.Controls.Add(this.Cancel);
+            this.Controls.Add(this.CourseGrid);
+            this.Controls.Add(this.StartCourse);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Name = "CourseEnvironment";
+            this.Size = new System.Drawing.Size(843, 677);
+            ((System.ComponentModel.ISupportInitialize)(this.CourseGrid)).EndInit();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Button StartCourse;
+        private System.Windows.Forms.DataGridView CourseGrid;
+        private System.Windows.Forms.Button Cancel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Characters;
+    }
+}

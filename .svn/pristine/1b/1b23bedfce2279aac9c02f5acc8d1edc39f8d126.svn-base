@@ -1,0 +1,140 @@
+﻿using System.Drawing;
+using TypApplication.View;
+
+namespace TypApplication.View
+{
+    partial class ExerciseView
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.components = new System.ComponentModel.Container();
+            this.KeystrokeTimer = new System.Windows.Forms.Timer(this.components);
+            this.KeystrokesPerMinute = new System.Windows.Forms.Label();
+            this.Accuracy = new System.Windows.Forms.Label();
+            this.ExerciseBox = new System.Windows.Forms.RichTextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.keyBoard = new TypApplication.View.KeyBoard();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // KeystrokesPerMinute
+            // 
+            this.KeystrokesPerMinute.AutoSize = true;
+            this.KeystrokesPerMinute.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.KeystrokesPerMinute.ForeColor = System.Drawing.Color.Silver;
+            this.KeystrokesPerMinute.Location = new System.Drawing.Point(-7, 541);
+            this.KeystrokesPerMinute.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.KeystrokesPerMinute.Name = "KeystrokesPerMinute";
+            this.KeystrokesPerMinute.Size = new System.Drawing.Size(443, 42);
+            this.KeystrokesPerMinute.TabIndex = 9;
+            this.KeystrokesPerMinute.Text = "Keystrokes per minute 0";
+            // 
+            // Accuracy
+            // 
+            this.Accuracy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Accuracy.AutoSize = true;
+            this.Accuracy.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Accuracy.ForeColor = System.Drawing.Color.Silver;
+            this.Accuracy.Location = new System.Drawing.Point(1396, 541);
+            this.Accuracy.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.Accuracy.Name = "Accuracy";
+            this.Accuracy.Size = new System.Drawing.Size(292, 42);
+            this.Accuracy.TabIndex = 14;
+            this.Accuracy.Text = "Accuracy 100%";
+            // 
+            // ExerciseBox
+            // 
+            this.ExerciseBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.ExerciseBox.BackColor = System.Drawing.SystemColors.Control;
+            this.ExerciseBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ExerciseBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ExerciseBox.ForeColor = System.Drawing.Color.Black;
+            this.ExerciseBox.Location = new System.Drawing.Point(9, 331);
+            this.ExerciseBox.Margin = new System.Windows.Forms.Padding(0);
+            this.ExerciseBox.Name = "ExerciseBox";
+            this.ExerciseBox.ReadOnly = true;
+            this.ExerciseBox.Size = new System.Drawing.Size(1679, 198);
+            this.ExerciseBox.TabIndex = 16;
+            this.ExerciseBox.TabStop = false;
+            this.ExerciseBox.Text = "";
+            this.ExerciseBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ExerciseBox_KeyDown);
+            this.ExerciseBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ExerciseBox_KeyUp);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Image = global::TypApplication.Properties.Resources.typo1_copy;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(400, 300);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 17;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // keyBoard
+            // 
+            this.keyBoard.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.keyBoard.AutoSize = true;
+            this.keyBoard.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.keyBoard.Location = new System.Drawing.Point(225, 640);
+            this.keyBoard.Margin = new System.Windows.Forms.Padding(4);
+            this.keyBoard.Name = "keyBoard";
+            this.keyBoard.Size = new System.Drawing.Size(1244, 430);
+            this.keyBoard.TabIndex = 10;
+            // 
+            // ExerciseView
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
+            this.BackColor = System.Drawing.Color.Transparent;
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.ExerciseBox);
+            this.Controls.Add(this.Accuracy);
+            this.Controls.Add(this.keyBoard);
+            this.Controls.Add(this.KeystrokesPerMinute);
+            this.DoubleBuffered = true;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Name = "ExerciseView";
+            this.Size = new System.Drawing.Size(1720, 1152);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+        private System.Windows.Forms.Timer KeystrokeTimer;
+        private System.Windows.Forms.Label KeystrokesPerMinute;
+        private System.Windows.Forms.Label Accuracy;
+        private System.Windows.Forms.RichTextBox ExerciseBox;
+        public KeyBoard keyBoard;
+        private System.Windows.Forms.PictureBox pictureBox1;
+    }
+}
+

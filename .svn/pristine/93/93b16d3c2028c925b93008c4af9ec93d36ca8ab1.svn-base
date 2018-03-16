@@ -1,0 +1,28 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using TypoTeacher.View;
+
+namespace TypoTeacher
+{
+    public partial class StudentOverview : UserControl
+    {
+        public readonly Overview ParentForm;
+        public StudentOverview(Overview ParentForm)
+        {
+            InitializeComponent();
+            this.ParentForm = ParentForm;
+        }
+
+        private void Return_Click(object sender, EventArgs e)
+        {
+            ParentForm.ShowOverview();
+        }
+    }
+}

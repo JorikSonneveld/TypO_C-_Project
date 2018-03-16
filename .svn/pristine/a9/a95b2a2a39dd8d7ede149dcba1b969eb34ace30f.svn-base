@@ -1,0 +1,24 @@
+﻿using System.Linq;
+using System.Windows;
+using Typo.Controller;
+using Typo.View;
+
+namespace Typo
+{
+    /// <summary>
+    ///     Interaction logic for MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : Window
+    {
+        public MainWindow()
+        {
+            //DatabaseFill
+            var database = new DatabaseController();
+            if (!database.ApplicationDatabase.Teachers.Any())
+                database.FillDatabase();
+
+            InitializeComponent();
+            MainFrame.Content = new Login();
+        }
+    }
+}

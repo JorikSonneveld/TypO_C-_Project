@@ -1,0 +1,193 @@
+﻿<UserControl x:Class="Typo.View.Keyboard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Typo.View"
+             mc:Ignorable="d"
+             d:DesignHeight="170" Width="620">
+    <!-- Buttons -->
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="15*" />
+            <ColumnDefinition Width="4.2*" />
+        </Grid.ColumnDefinitions>
+        <WrapPanel x:Name="KeyBoardKeys">
+            <!-- row 1 -->
+            <Button x:Name="btn" Content="`" Tag="" HorizontalAlignment="center" VerticalAlignment="center" Width="30"
+                    Height="30" Margin="3,3,0,0" />
+            <Button x:Name="btn1" Content="1" Tag="1 !" HorizontalAlignment="center" VerticalAlignment="center"
+                    Width="30" Height="30" Margin="3,3,0,0" />
+            <Button x:Name="btn2" Content="2" Tag="2 @" HorizontalAlignment="center" VerticalAlignment="center"
+                    Width="30" Height="30" Margin="3,3,0,0" />
+            <Button x:Name="btn3" Content="3" Tag="3 #" HorizontalAlignment="center" VerticalAlignment="center"
+                    Width="30" Height="30" Margin="3,3,0,0" />
+            <Button x:Name="btn4" Content="4" Tag="4 $" HorizontalAlignment="center" VerticalAlignment="center"
+                    Width="30" Height="30" Margin="3,3,0,0" />
+            <Button x:Name="btn5" Content="5" Tag="5 %" HorizontalAlignment="center" VerticalAlignment="center"
+                    Width="30" Height="30" Margin="3,3,0,0" />
+            <Button x:Name="btn6" Content="6" Tag="6 ^" HorizontalAlignment="center" VerticalAlignment="center"
+                    Width="30" Height="30" Margin="3,3,0,0" />
+            <Button x:Name="btn7" Content="7" Tag="7" HorizontalAlignment="center" VerticalAlignment="center"
+                    Width="30" Height="30" Margin="3,3,0,0" />
+            <Button x:Name="btn8" Content="8" Tag="8 *" HorizontalAlignment="center" VerticalAlignment="center"
+                    Width="30" Height="30" Margin="3,3,0,0" />
+            <Button x:Name="btn9" Content="9" Tag="9 (" HorizontalAlignment="center" VerticalAlignment="center"
+                    Width="30" Height="30" Margin="3,3,0,0" />
+            <Button x:Name="btn0" Content="0" Tag="0 )" HorizontalAlignment="center" VerticalAlignment="center"
+                    Width="30" Height="30" Margin="3,3,0,0" />
+            <Button x:Name="btnMinus" Content="-" Tag="- _" HorizontalAlignment="center" VerticalAlignment="center"
+                    Width="30" Height="30" Margin="3,3,0,0" />
+            <Button x:Name="btnEquals" Content="=" Tag="= +" HorizontalAlignment="center" VerticalAlignment="center"
+                    Width="30" Height="30" Margin="3,3,0,0" />
+            <Button x:Name="btnDelete" Content="delete" HorizontalAlignment="center" VerticalAlignment="center"
+                    Width="45" Height="30" Margin="3,3,0,0" />
+
+            <!-- row 2 -->
+            <Button x:Name="btnTab" Content="tab" HorizontalAlignment="center" VerticalAlignment="center" Width="45"
+                    Height="30" Margin="3,3,0,0" />
+            <Button x:Name="btnQ" Content="Q" Tag="q Q" HorizontalAlignment="center" VerticalAlignment="center"
+                    Width="30" Height="30" Margin="3,3,0,0" />
+            <Button x:Name="btnW" Content="W" Tag="w W" HorizontalAlignment="center" VerticalAlignment="center"
+                    Width="30" Height="30" Margin="3,3,0,0" />
+            <Button x:Name="btnE" Content="E" Tag="e E" HorizontalAlignment="center" VerticalAlignment="center"
+                    Width="30" Height="30" Margin="3,3,0,0" />
+            <Button x:Name="btnR" Content="R" Tag="r R" HorizontalAlignment="center" VerticalAlignment="center"
+                    Width="30" Height="30" Margin="3,3,0,0" />
+            <Button x:Name="btnT" Content="T" Tag="t T" HorizontalAlignment="center" VerticalAlignment="center"
+                    Width="30" Height="30" Margin="3,3,0,0" />
+            <Button x:Name="btnY" Content="Y" Tag="y Y" HorizontalAlignment="center" VerticalAlignment="center"
+                    Width="30" Height="30" Margin="3,3,0,0" />
+            <Button x:Name="btnU" Content="U" Tag="u U" HorizontalAlignment="center" VerticalAlignment="center"
+                    Width="30" Height="30" Margin="3,3,0,0" />
+            <Button x:Name="btnI" Content="I" Tag="i I" HorizontalAlignment="center" VerticalAlignment="center"
+                    Width="30" Height="30" Margin="3,3,0,0" />
+            <Button x:Name="btnO" Content="O" Tag="o O" HorizontalAlignment="center" VerticalAlignment="center"
+                    Width="30" Height="30" Margin="3,3,0,0" />
+            <Button x:Name="btnP" Content="P" Tag="p P" HorizontalAlignment="center" VerticalAlignment="center"
+                    Width="30" Height="30" Margin="3,3,0,0" />
+            <Button x:Name="btnBracketOpen" Content="[" Tag="[ {" HorizontalAlignment="center"
+                    VerticalAlignment="center" Width="30" Height="30" Margin="3,3,0,0" />
+            <Button x:Name="btnBRacketClose" Content="]" Tag="] }" HorizontalAlignment="center"
+                    VerticalAlignment="center" Width="30" Height="30" Margin="3,3,0,0" />
+            <Button x:Name="btnSlashBackward" Content="\" Tag="\ |" HorizontalAlignment="center"
+                    VerticalAlignment="center" Width="30" Height="30" Margin="3,3,0,0" />
+
+            <!-- row 3 -->
+            <Button x:Name="btnCapslock" Content="caps" HorizontalAlignment="center" VerticalAlignment="center"
+                    Width="54" Height="30" Margin="3,3,0,0" />
+            <Button x:Name="btnA" Content="A" Tag="a A" HorizontalAlignment="center" VerticalAlignment="center"
+                    Width="30" Height="30" Margin="3,3,0,0" />
+            <Button x:Name="btnS" Content="S" Tag="s S" HorizontalAlignment="center" VerticalAlignment="center"
+                    Width="30" Height="30" Margin="3,3,0,0" />
+            <Button x:Name="btnD" Content="D" Tag="d D" HorizontalAlignment="center" VerticalAlignment="center"
+                    Width="30" Height="30" Margin="3,3,0,0" />
+            <Button x:Name="btnF" Content="F" Tag="f F" HorizontalAlignment="center" VerticalAlignment="center"
+                    Width="30" Height="30" Margin="3,3,0,0" />
+            <Button x:Name="btnG" Content="G" Tag="g G" HorizontalAlignment="center" VerticalAlignment="center"
+                    Width="30" Height="30" Margin="3,3,0,0" />
+            <Button x:Name="btnH" Content="H" Tag="h H" HorizontalAlignment="center" VerticalAlignment="center"
+                    Width="30" Height="30" Margin="3,3,0,0" />
+            <Button x:Name="btnJ" Content="J" Tag="j J" HorizontalAlignment="center" VerticalAlignment="center"
+                    Width="30" Height="30" Margin="3,3,0,0" />
+            <Button x:Name="btnK" Content="K" Tag="k K" HorizontalAlignment="center" VerticalAlignment="center"
+                    Width="30" Height="30" Margin="3,3,0,0" />
+            <Button x:Name="btnL" Content="L" Tag="l L" HorizontalAlignment="center" VerticalAlignment="center"
+                    Width="30" Height="30" Margin="3,3,0,0" />
+            <Button x:Name="btnColon" Content=";" Tag="; :" HorizontalAlignment="center" VerticalAlignment="center"
+                    Width="30" Height="30" Margin="3,3,0,0" />
+            <Button x:Name="btnQuote" Content="'" HorizontalAlignment="center" VerticalAlignment="center" Width="30"
+                    Height="30" Margin="3,3,0,0" />
+            <Button x:Name="btnEnter" Content="enter" HorizontalAlignment="center" VerticalAlignment="center"
+                    Width="54" Height="30" Margin="3,3,0,0" />
+
+            <!-- row 4 -->
+            <Button x:Name="shift" Content="shift" HorizontalAlignment="center" VerticalAlignment="center" Width="70"
+                    Height="30" Margin="3,3,0,0" />
+            <Button x:Name="btnZ" Content="Z" Tag="z Z" HorizontalAlignment="center" VerticalAlignment="center"
+                    Width="30" Height="30" Margin="3,3,0,0" />
+            <Button x:Name="btnX" Content="X" Tag="x X" HorizontalAlignment="center" VerticalAlignment="center"
+                    Width="30" Height="30" Margin="3,3,0,0" />
+            <Button x:Name="btnC" Content="C" Tag="c C" HorizontalAlignment="center" VerticalAlignment="center"
+                    Width="30" Height="30" Margin="3,3,0,0" />
+            <Button x:Name="btnV" Content="V" Tag="v V" HorizontalAlignment="center" VerticalAlignment="center"
+                    Width="30" Height="30" Margin="3,3,0,0" />
+            <Button x:Name="btnB" Content="B" Tag="b B" HorizontalAlignment="center" VerticalAlignment="center"
+                    Width="30" Height="30" Margin="3,3,0,0" />
+            <Button x:Name="btnN" Content="N" Tag="n N" HorizontalAlignment="center" VerticalAlignment="center"
+                    Width="30" Height="30" Margin="3,3,0,0" />
+            <Button x:Name="btnM" Content="M" Tag="m M" HorizontalAlignment="center" VerticalAlignment="center"
+                    Width="30" Height="30" Margin="3,3,0,0" />
+            <Button x:Name="btnComma" Content="," HorizontalAlignment="center" VerticalAlignment="center" Width="30"
+                    Height="30" Margin="3,3,0,0" />
+            <Button x:Name="btnPeriod" Content="." HorizontalAlignment="center" VerticalAlignment="center" Width="30"
+                    Height="30" Margin="3,3,0,0" />
+            <Button x:Name="btnSlash" Content="/" Tag="/ ?" HorizontalAlignment="center" VerticalAlignment="center"
+                    Width="30" Height="30" Margin="3,3,0,0" />
+            <Button x:Name="shift1" Content="shift" HorizontalAlignment="center" VerticalAlignment="center" Width="70"
+                    Height="30" Margin="3,3,0,0" />
+
+            <!-- row 5 -->
+            <Button x:Name="btnControl" Content="ctrl" HorizontalAlignment="center" VerticalAlignment="center"
+                    Width="30" Height="30" Margin="3,3,0,0" />
+            <Button x:Name="btnAlt" Content="alt" HorizontalAlignment="center" VerticalAlignment="center" Width="30"
+                    Height="30" Margin="43,3,0,0" />
+            <Button x:Name="btnSpace" Content="space" HorizontalAlignment="center" VerticalAlignment="center"
+                    Width="162" Height="30" Margin="36,3,0,0" />
+        </WrapPanel>
+
+        <!-- NUM pad -->
+        <WrapPanel x:Name="NUMpad" Grid.Column="1">
+            <Button x:Name="btnNumLock" Content="num" HorizontalAlignment="center" VerticalAlignment="center"
+                    Width="30" Height="30" Margin="3,3,0,0" />
+            <Button x:Name="btnSlash1" Content="/" Tag="/" HorizontalAlignment="center" VerticalAlignment="center"
+                    Width="30" Height="30" Margin="3,3,0,0" />
+            <Button x:Name="btnTimes" Content="*" Tag="*" HorizontalAlignment="center" VerticalAlignment="center"
+                    Width="30" Height="30" Margin="3,3,0,0" />
+            <Button x:Name="btnMinus1" Content="-" Tag="-" HorizontalAlignment="center" VerticalAlignment="center"
+                    Width="30" Height="30" Margin="3,3,3,0" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <WrapPanel Grid.Column="0">
+                    <Button x:Name="btn7N" Content="7" Tag="7" HorizontalAlignment="center" VerticalAlignment="center"
+                            Width="30" Height="30" Margin="3,3,0,0" />
+                    <Button x:Name="btn8N" Content="8" Tag="8" HorizontalAlignment="center" VerticalAlignment="center"
+                            Width="30" Height="30" Margin="3,3,0,0" />
+                    <Button x:Name="btn9N" Content="9" Tag="9" HorizontalAlignment="center" VerticalAlignment="center"
+                            Width="30" Height="30" Margin="3,3,0,0" />
+                    <Button x:Name="btn4N" Content="4" Tag="4" HorizontalAlignment="center" VerticalAlignment="center"
+                            Width="30" Height="30" Margin="3,3,0,0" />
+                    <Button x:Name="btn5n" Content="5" Tag="5" HorizontalAlignment="center" VerticalAlignment="center"
+                            Width="30" Height="30" Margin="3,3,0,0" />
+                    <Button x:Name="btn6N" Content="6" Tag="6" HorizontalAlignment="center" VerticalAlignment="center"
+                            Width="30" Height="30" Margin="3,3,0,0" />
+                </WrapPanel>
+                <Button x:Name="btnPlus1" Content="+" Tag="+" HorizontalAlignment="center" VerticalAlignment="center"
+                        Width="30" Height="63" Margin="3,3,0,0" Grid.Column="1" />
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <WrapPanel Grid.Column="0">
+                    <Button x:Name="btn1N" Content="1" Tag="1" HorizontalAlignment="center" VerticalAlignment="center"
+                            Width="30" Height="30" Margin="3,3,0,0" />
+                    <Button x:Name="btn2N" Content="2" Tag="2" HorizontalAlignment="center" VerticalAlignment="center"
+                            Width="30" Height="30" Margin="3,3,0,0" />
+                    <Button x:Name="btn3N" Content="3" Tag="3" HorizontalAlignment="center" VerticalAlignment="center"
+                            Width="30" Height="30" Margin="3,3,0,0" />
+                    <Button x:Name="btn0N" Content="0" Tag="0" HorizontalAlignment="center" VerticalAlignment="center"
+                            Width="63" Height="30" Margin="3,3,0,0" />
+                    <Button x:Name="btnPeriodN" Content="." Tag="." HorizontalAlignment="center"
+                            VerticalAlignment="center" Width="30" Height="30" Margin="3,3,0,0" />
+                </WrapPanel>
+                <Button x:Name="btnEnter1" Content="enter" HorizontalAlignment="center" VerticalAlignment="center"
+                        Width="30" Height="63" Margin="3,3,0,0" Grid.Column="1" />
+            </Grid>
+        </WrapPanel>
+    </Grid>
+</UserControl>

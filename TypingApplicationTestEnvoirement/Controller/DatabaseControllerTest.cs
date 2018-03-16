@@ -1,0 +1,940 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
+using Typo.Controller;
+using Typo.Model;
+using Typo.Model.Database;
+
+namespace TypingApplicationTestEnvironment.Controller
+{
+    [TestClass]
+    public class DatabaseControllerTest
+    {
+        private readonly DatabaseController dbController = new DatabaseController();
+
+        [TestMethod]
+        public void RetrieveRandomDbWords_ShouldRetrieveRandomWordsFromDatabase_WhenCalled()
+        {
+            //Arrange
+            var count = 0;
+
+            //Act
+            count = dbController.RetrieveAllWords().Count;
+
+            //Assert
+            Assert.IsTrue(count > 100);
+        }
+
+        [TestMethod]
+        public void ShouldAddCourseIfNotExist()
+        {
+            //Arrange
+            var course = new Course {Title = "Title", Text = "Text"};
+            var data = new List<Course>().AsQueryable();
+
+            var mockSet = new Mock<DbSet<Course>>();
+            mockSet.As<IQueryable<Course>>().Setup(m => m.Provider).Returns(data.Provider);
+            mockSet.As<IQueryable<Course>>().Setup(m => m.Expression).Returns(data.Expression);
+
+            var mockApplicationDatabase = new Mock<ApplicationDatabase>();
+            var databaseController = new DatabaseController {ApplicationDatabase = mockApplicationDatabase.Object};
+            mockApplicationDatabase.Setup(c => c.Courses).Returns(mockSet.Object);
+
+            //Act
+            var addCourse = databaseController.AddCourse(course);
+
+            //Assert
+            Assert.IsTrue(addCourse);
+        }
+
+        [TestMethod]
+        public void DeleteCourse_ShouldDeleteCourse_WhenGivenCourseID()
+        {
+            //Arrange
+            var course = new Course {CourseID = 1, Title = "Title", Text = "Text"};
+
+            var data = new List<Course>().AsQueryable();
+            var mockSet = new Mock<DbSet<Course>>();
+            mockSet.As<IQueryable<Course>>().Setup(m => m.Provider).Returns(data.Provider);
+            mockSet.As<IQueryable<Course>>().Setup(m => m.Expression).Returns(data.Expression);
+
+            var mockApplicationDatabase = new Mock<ApplicationDatabase>();
+            mockApplicationDatabase.Setup(c => c.Courses).Returns(mockSet.Object);
+
+            var databaseController = new DatabaseController {ApplicationDatabase = mockApplicationDatabase.Object};
+
+            //Act
+            databaseController.AddCourse(course);
+            databaseController.DeleteCourse(course.CourseID);
+
+            //Assert
+            Assert.IsFalse(mockApplicationDatabase.Object.Courses.Any());
+        }
+
+        [TestMethod]
+        public void RetrieveRandomDbWords_ShouldNotRetrieveEmptyListFromDatabase_WhenCalled()
+        {
+            //Arrange
+            var count = 0;
+
+            //Act
+            var randomWords = dbController.RetrieveRandomDbWords();
+            count = randomWords.Count;
+
+            //Assert
+            Assert.IsTrue(count > 1);
+        }
+
+        [TestMethod]
+        public void ShouldRecognizeMistakesWhenThereAreMistakes()
+        {
+            //Arrange
+            var mistake = new KeyMistake {Character = "A"};
+            var mistake2 = new KeyMistake {Character = "B"};
+            var mistake3 = new KeyMistake {Character = "C"};
+            var data = new List<KeyMistake> {mistake, mistake2, mistake3}.AsQueryable();
+
+            var mockSet = new Mock<DbSet<KeyMistake>>();
+            mockSet.As<IQueryable<KeyMistake>>().Setup(m => m.Provider).Returns(data.Provider);
+            mockSet.As<IQueryable<KeyMistake>>().Setup(m => m.Expression).Returns(data.Expression);
+
+            var mockApplicationDatabase = new Mock<ApplicationDatabase>();
+            var databaseController = new DatabaseController {ApplicationDatabase = mockApplicationDatabase.Object};
+            mockApplicationDatabase.Setup(c => c.KeyMistakes).Returns(mockSet.Object);
+
+            //Act
+            var hasMistakes = databaseController.ApplicationDatabase.KeyMistakes.Any();
+
+            //Assert
+            Assert.IsTrue(hasMistakes);
+        }
+
+
+        [TestMethod]
+        public void ShouldAddCourse_WhenNotExcisted()
+        {
+            //Arrange
+            var data = new List<Course>
+            {
+                new Course {Title = "Title", Text = "Text"}
+            }.AsQueryable();
+            var mockSet = new Mock<DbSet<Course>>();
+            mockSet.As<IQueryable<Course>>().Setup(m => m.Provider).Returns(data.Provider);
+            mockSet.As<IQueryable<Course>>().Setup(m => m.Expression).Returns(data.Expression);
+
+            var mockApplicationDatabase = new Mock<ApplicationDatabase>();
+            mockApplicationDatabase.Setup(c => c.Courses).Returns(mockSet.Object);
+
+            var databaseController = new DatabaseController {ApplicationDatabase = mockApplicationDatabase.Object};
+
+            //Act
+            //var result = databaseController.AddCourse(data.ElementAt(0));
+            var result = databaseController.AddCourse(new Course {Title = "Title2", Text = "Text"});
+
+            //Assert
+            Assert.AreEqual(true, result);
+        }
+
+        [TestMethod]
+        public void GetResultsPerStudentCount()
+        {
+            //Arrange
+            var keyScore = 200;
+            var accScore = 95;
+            var userNameId = 2;
+
+            var result = new Result {AccScore = accScore, KeyScore = keyScore, StudentID = userNameId};
+            var result2 = new Result {AccScore = accScore, KeyScore = keyScore, StudentID = userNameId};
+            var data = new List<Result> {result, result2}.AsQueryable();
+
+            var mockApplicationDatabase = new Mock<ApplicationDatabase>();
+            var databaseController = new DatabaseController {ApplicationDatabase = mockApplicationDatabase.Object};
+            var mockSet = new Mock<DbSet<Result>>();
+
+            mockSet.As<IQueryable<Result>>().Setup(m => m.Provider).Returns(data.Provider);
+            mockSet.As<IQueryable<Result>>().Setup(m => m.Expression).Returns(data.Expression);
+            mockApplicationDatabase.Setup(c => c.Results).Returns(mockSet.Object);
+
+
+            //Act
+            var resultCount = databaseController.GetResultsPerStudent(userNameId).Count();
+
+            //Assert
+            Assert.AreEqual(2, resultCount);
+        }
+
+        [TestMethod]
+        public void
+            RetrieveCoursesCurrentlyAvailable_ShouldReturnNULL_WhenCurrentTimeIsNotBetweenCourseStartAndEndTime()
+        {
+            //Arrange
+            var data = new List<Course>
+            {
+                new Course
+                {
+                    Title = "Titel",
+                    Text = "Deze toets is nog bezig",
+                    StartDate = new DateTime(2221, 1, 1, 1, 1, 1),
+                    EndDate = new DateTime(2222, 1, 1, 1, 1, 1),
+                    Official = true
+                },
+                new Course
+                {
+                    Title = "Titel",
+                    Text = "Deze toets is nog bezig",
+                    StartDate = new DateTime(2026, 1, 1, 1, 1, 1),
+                    EndDate = new DateTime(2017, 1, 1, 1, 1, 1),
+                    Official = true
+                },
+                new Course
+                {
+                    Title = "Titel",
+                    Text = "Deze toets is nog bezig",
+                    StartDate = new DateTime(2017, 1, 1, 1, 1, 1),
+                    EndDate = new DateTime(2016, 1, 1, 1, 1, 1),
+                    Official = true
+                }
+            }.AsQueryable();
+
+            var results = new List<Result>
+            {
+                new Result {ResultId = 1, StudentID = 1, CourseID = 1, KeyScore = 100, AccScore = 100}
+            }.AsQueryable();
+
+            var resultMockSet = new Mock<DbSet<Result>>();
+            resultMockSet.As<IQueryable<Result>>().Setup(m => m.Provider).Returns(results.Provider);
+            resultMockSet.As<IQueryable<Result>>().Setup(m => m.Expression).Returns(results.Expression);
+
+            var courseMockset = new Mock<DbSet<Course>>();
+            courseMockset.As<IQueryable<Course>>().Setup(m => m.Provider).Returns(data.Provider);
+            courseMockset.As<IQueryable<Course>>().Setup(m => m.Expression).Returns(data.Expression);
+
+            var mockApplicationDatabase = new Mock<ApplicationDatabase>();
+            mockApplicationDatabase.Setup(c => c.Courses).Returns(courseMockset.Object);
+            mockApplicationDatabase.Setup(c => c.Results).Returns(resultMockSet.Object);
+
+            var DatabaseController = new DatabaseController {ApplicationDatabase = mockApplicationDatabase.Object};
+
+            //Act
+            var courses = DatabaseController.RetrieveCourseCurrentlyAvailable(1);
+
+            //Assert
+            Assert.IsNull(courses);
+        }
+
+        [TestMethod]
+        public void RetrieveCoursesCurrentlyAvailable_ShouldReturnCourse_WhenCurrentTimeIsBetweenCourseStartAndEndTime()
+        {
+            //Arrange
+            var data = new List<Course>
+            {
+                new Course
+                {
+                    Title = "Titel",
+                    Text = "Deze toets is nog bezig",
+                    StartDate = new DateTime(2017, 1, 1, 1, 1, 1),
+                    EndDate = new DateTime(2222, 1, 1, 1, 1, 1),
+                    Official = true
+                }
+            }.AsQueryable();
+
+            var results = new List<Result>
+            {
+                new Result {ResultId = 1, StudentID = 1, CourseID = 1, KeyScore = 100, AccScore = 100}
+            }.AsQueryable();
+
+            var resultMockSet = new Mock<DbSet<Result>>();
+            resultMockSet.As<IQueryable<Result>>().Setup(m => m.Provider).Returns(results.Provider);
+            resultMockSet.As<IQueryable<Result>>().Setup(m => m.Expression).Returns(results.Expression);
+
+            var courseMockset = new Mock<DbSet<Course>>();
+            courseMockset.As<IQueryable<Course>>().Setup(m => m.Provider).Returns(data.Provider);
+            courseMockset.As<IQueryable<Course>>().Setup(m => m.Expression).Returns(data.Expression);
+
+            var mockApplicationDatabase = new Mock<ApplicationDatabase>();
+            mockApplicationDatabase.Setup(c => c.Courses).Returns(courseMockset.Object);
+            mockApplicationDatabase.Setup(c => c.Results).Returns(resultMockSet.Object);
+
+            var DatabaseController = new DatabaseController {ApplicationDatabase = mockApplicationDatabase.Object};
+
+            //Act
+            var courses = DatabaseController.RetrieveCourseCurrentlyAvailable(1);
+
+            //Assert
+            Assert.AreEqual("Deze toets is nog bezig", courses.Text);
+        }
+
+        [TestMethod]
+        public void RetrieveNonOfficialCourses_ShouldOnlyReturnNonOfficialCourses()
+        {
+            //Arrange
+            var data = new List<Course>
+            {
+                new Course
+                {
+                    Title = "Titel",
+                    Text = "Deze toets is nog bezig",
+                    StartDate = new DateTime(2221, 1, 1, 1, 1, 1),
+                    EndDate = new DateTime(2222, 1, 1, 1, 1, 1),
+                    Official = false
+                },
+                new Course
+                {
+                    Title = "Titel",
+                    Text = "Deze toets is nog bezig",
+                    StartDate = new DateTime(2026, 1, 1, 1, 1, 1),
+                    EndDate = new DateTime(2017, 1, 1, 1, 1, 1),
+                    Official = false
+                },
+                new Course
+                {
+                    Title = "Titel",
+                    Text = "Deze toets is nog bezig",
+                    StartDate = new DateTime(2017, 1, 1, 1, 1, 1),
+                    EndDate = new DateTime(2016, 1, 1, 1, 1, 1),
+                    Official = true
+                }
+            }.AsQueryable();
+
+            var results = new List<Result>
+            {
+                new Result {ResultId = 1, StudentID = 1, CourseID = 1, KeyScore = 100, AccScore = 100}
+            }.AsQueryable();
+
+            var resultMockSet = new Mock<DbSet<Result>>();
+            resultMockSet.As<IQueryable<Result>>().Setup(m => m.Provider).Returns(results.Provider);
+            resultMockSet.As<IQueryable<Result>>().Setup(m => m.Expression).Returns(results.Expression);
+
+            var courseMockset = new Mock<DbSet<Course>>();
+            courseMockset.As<IQueryable<Course>>().Setup(m => m.Provider).Returns(data.Provider);
+            courseMockset.As<IQueryable<Course>>().Setup(m => m.Expression).Returns(data.Expression);
+
+            var mockApplicationDatabase = new Mock<ApplicationDatabase>();
+            mockApplicationDatabase.Setup(c => c.Courses).Returns(courseMockset.Object);
+            mockApplicationDatabase.Setup(c => c.Results).Returns(resultMockSet.Object);
+
+            var DatabaseController = new DatabaseController {ApplicationDatabase = mockApplicationDatabase.Object};
+
+            //Act
+            var courses = DatabaseController.RetrieveNonOfficialCourses();
+
+            //Assert
+            foreach (var course in courses)
+                Assert.IsFalse(course.Official);
+        }
+
+        [TestMethod]
+        public void
+            RetrieveCourseCurrentlyAvailable_ShouldReturnACourse_WhenThereIsNoResultForThatCourseFromThatStudent()
+        {
+            //Arrange
+
+            var courses = new List<Course>
+            {
+                new Course
+                {
+                    CourseID = 1,
+                    Title = "Titel",
+                    Text = "Deze toets is nog bezig",
+                    StartDate = new DateTime(2017, 1, 1, 1, 1, 1),
+                    EndDate = new DateTime(2222, 1, 1, 1, 1, 1),
+                    Official = true
+                },
+                new Course
+                {
+                    CourseID = 2,
+                    Title = "Titel",
+                    Text = "Deze toets is nog bezig",
+                    StartDate = new DateTime(2017, 1, 1, 1, 1, 1),
+                    EndDate = new DateTime(2222, 1, 1, 1, 1, 1),
+                    Official = true
+                }
+            }.AsQueryable();
+
+            var results = new List<Result>
+            {
+                new Result {ResultId = 1, StudentID = 1, CourseID = 1, KeyScore = 100, AccScore = 100}
+            }.AsQueryable();
+
+            var resultMockSet = new Mock<DbSet<Result>>();
+            resultMockSet.As<IQueryable<Result>>().Setup(m => m.Provider).Returns(results.Provider);
+            resultMockSet.As<IQueryable<Result>>().Setup(m => m.Expression).Returns(results.Expression);
+
+            var courseMockSet = new Mock<DbSet<Course>>();
+            courseMockSet.As<IQueryable<Course>>().Setup(m => m.Provider).Returns(courses.Provider);
+            courseMockSet.As<IQueryable<Course>>().Setup(m => m.Expression).Returns(courses.Expression);
+
+            var mockApplicationDatabase = new Mock<ApplicationDatabase>();
+            mockApplicationDatabase.Setup(c => c.Results).Returns(resultMockSet.Object);
+            mockApplicationDatabase.Setup(c => c.Courses).Returns(courseMockSet.Object);
+
+            var DatabaseController = new DatabaseController {ApplicationDatabase = mockApplicationDatabase.Object};
+
+            //Act
+            var result = DatabaseController.RetrieveCourseCurrentlyAvailable(1);
+            var expected = courses.Where(c => c.CourseID == 2);
+
+            //Assert
+            Assert.AreEqual(expected.First(), result);
+        }
+
+        [TestMethod]
+        public void
+            RetrieveCourseCurrentlyAvailable_ShouldReturnNull_WhenThereAlreadyIsAResultForThatCourseFromThatStudent()
+        {
+            //Arrange
+            var courses = new List<Course>
+            {
+                new Course
+                {
+                    CourseID = 1,
+                    Title = "Titel",
+                    Text = "Deze toets is nog bezig",
+                    StartDate = new DateTime(2017, 1, 1, 1, 1, 1),
+                    EndDate = new DateTime(2222, 1, 1, 1, 1, 1),
+                    Official = true
+                },
+                new Course
+                {
+                    CourseID = 2,
+                    Title = "Titel",
+                    Text = "Deze toets is nog bezig",
+                    StartDate = new DateTime(2017, 1, 1, 1, 1, 1),
+                    EndDate = new DateTime(2222, 1, 1, 1, 1, 1),
+                    Official = true
+                }
+            }.AsQueryable();
+
+            var results = new List<Result>
+            {
+                new Result {ResultId = 1, StudentID = 1, CourseID = 1, KeyScore = 100, AccScore = 100},
+                new Result {ResultId = 1, StudentID = 1, CourseID = 2, KeyScore = 100, AccScore = 100}
+            }.AsQueryable();
+
+            var courseMockSet = new Mock<DbSet<Course>>();
+            courseMockSet.As<IQueryable<Course>>().Setup(m => m.Provider).Returns(courses.Provider);
+            courseMockSet.As<IQueryable<Course>>().Setup(m => m.Expression).Returns(courses.Expression);
+
+            var resultMockSet = new Mock<DbSet<Result>>();
+            resultMockSet.As<IQueryable<Result>>().Setup(m => m.Provider).Returns(results.Provider);
+            resultMockSet.As<IQueryable<Result>>().Setup(m => m.Expression).Returns(results.Expression);
+
+            var mockApplicationDatabase = new Mock<ApplicationDatabase>();
+            mockApplicationDatabase.Setup(c => c.Results).Returns(resultMockSet.Object);
+            mockApplicationDatabase.Setup(c => c.Courses).Returns(courseMockSet.Object);
+
+            var DatabaseController = new DatabaseController {ApplicationDatabase = mockApplicationDatabase.Object};
+
+            //Act
+            var result = DatabaseController.RetrieveCourseCurrentlyAvailable(1);
+
+            //Assert
+            Assert.IsNull(result);
+        }
+
+        [TestMethod]
+        public void CheckCourseWithStudent_ShouldReturnTrue_WhenTheIDsAreTheSame()
+        {
+            //Arrage
+            var FakeCourse = new Course
+            {
+                Title = "Titel",
+                Text = "Deze toets is nog bezig",
+                StartDate = new DateTime(2221, 1, 1, 1, 1, 1),
+                EndDate = new DateTime(2222, 1, 1, 1, 1, 1),
+                Official = false
+            };
+            var FakeResult = new Result
+            {
+                ResultId = 1,
+                StudentID = 1,
+                CourseID = FakeCourse.CourseID,
+                KeyScore = 100,
+                AccScore = 100
+            };
+
+            //Act
+            var result = dbController.CheckCourseWithStudent(FakeCourse, FakeResult);
+
+            //Assert
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void CheckCourseWithStudent_ShouldReturnFalse_WhenTheIDsAreNotTheSame()
+        {
+            //Arrage
+            var FakeCourse = new Course
+            {
+                Title = "Titel",
+                Text = "Deze toets is nog bezig",
+                StartDate = new DateTime(2221, 1, 1, 1, 1, 1),
+                EndDate = new DateTime(2222, 1, 1, 1, 1, 1),
+                Official = false
+            };
+            var FakeResult = new Result
+            {
+                ResultId = 1,
+                StudentID = 1,
+                CourseID = FakeCourse.CourseID - 1,
+                KeyScore = 100,
+                AccScore = 100
+            };
+
+            //Act
+            var result = dbController.CheckCourseWithStudent(FakeCourse, FakeResult);
+
+            //Assert
+            Assert.IsFalse(result);
+        }
+
+        [TestMethod]
+        public void GetAvarageAccuracy_ShoudReturnAvarageAccuracy_WhenThereAreResultsFromThatStudent()
+        {
+            //Arrange
+            var courses = new List<Course>
+            {
+                new Course
+                {
+                    CourseID = 1,
+                    Title = "Titel",
+                    Text = "Deze toets is nog bezig",
+                    StartDate = new DateTime(2017, 1, 1, 1, 1, 1),
+                    EndDate = new DateTime(2222, 1, 1, 1, 1, 1),
+                    Official = true
+                },
+                new Course
+                {
+                    CourseID = 2,
+                    Title = "Titel",
+                    Text = "Deze toets is nog bezig",
+                    StartDate = new DateTime(2017, 1, 1, 1, 1, 1),
+                    EndDate = new DateTime(2222, 1, 1, 1, 1, 1),
+                    Official = true
+                }
+            }.AsQueryable();
+
+            var results = new List<Result>
+            {
+                new Result {ResultId = 1, StudentID = 1, CourseID = 1, KeyScore = 0, AccScore = 0},
+                new Result {ResultId = 1, StudentID = 1, CourseID = 2, KeyScore = 100, AccScore = 100}
+            }.AsQueryable();
+
+            var courseMockSet = new Mock<DbSet<Course>>();
+            courseMockSet.As<IQueryable<Course>>().Setup(m => m.Provider).Returns(courses.Provider);
+            courseMockSet.As<IQueryable<Course>>().Setup(m => m.Expression).Returns(courses.Expression);
+
+            var resultMockSet = new Mock<DbSet<Result>>();
+            resultMockSet.As<IQueryable<Result>>().Setup(m => m.Provider).Returns(results.Provider);
+            resultMockSet.As<IQueryable<Result>>().Setup(m => m.Expression).Returns(results.Expression);
+
+            var mockApplicationDatabase = new Mock<ApplicationDatabase>();
+            mockApplicationDatabase.Setup(c => c.Results).Returns(resultMockSet.Object);
+            mockApplicationDatabase.Setup(c => c.Courses).Returns(courseMockSet.Object);
+
+            var DatabaseController = new DatabaseController {ApplicationDatabase = mockApplicationDatabase.Object};
+
+            //Act
+            var actual = DatabaseController.GetAverageAccuracy(1);
+
+            //Assert
+            Assert.IsTrue(actual == 50);
+        }
+
+        [TestMethod]
+        public void GetAvarageAccuracy_ShoudReturn0_WhenThereAreNoResultsFromThatStudent()
+        {
+            //Arrange
+            var courses = new List<Course>().AsQueryable();
+
+            var results = new List<Result>().AsQueryable();
+
+            var courseMockSet = new Mock<DbSet<Course>>();
+            courseMockSet.As<IQueryable<Course>>().Setup(m => m.Provider).Returns(courses.Provider);
+            courseMockSet.As<IQueryable<Course>>().Setup(m => m.Expression).Returns(courses.Expression);
+
+            var resultMockSet = new Mock<DbSet<Result>>();
+            resultMockSet.As<IQueryable<Result>>().Setup(m => m.Provider).Returns(results.Provider);
+            resultMockSet.As<IQueryable<Result>>().Setup(m => m.Expression).Returns(results.Expression);
+
+            var mockApplicationDatabase = new Mock<ApplicationDatabase>();
+            mockApplicationDatabase.Setup(c => c.Results).Returns(resultMockSet.Object);
+            mockApplicationDatabase.Setup(c => c.Courses).Returns(courseMockSet.Object);
+
+            var DatabaseController = new DatabaseController {ApplicationDatabase = mockApplicationDatabase.Object};
+
+            //Act
+            var actual = DatabaseController.GetAverageAccuracy(1);
+
+            //Assert
+            Assert.IsTrue(actual == 0);
+        }
+
+        [TestMethod]
+        public void GetAvarageKeysPerMinute_ShoudReturnAvarageAccuracy_WhenThereAreResultsFromThatStudent()
+        {
+            //Arrange
+            var courses = new List<Course>().AsQueryable();
+
+            var results = new List<Result>
+            {
+                new Result {ResultId = 1, StudentID = 1, CourseID = 1, KeyScore = 0, AccScore = 0},
+                new Result {ResultId = 1, StudentID = 1, CourseID = 2, KeyScore = 100, AccScore = 100}
+            }.AsQueryable();
+
+            var courseMockSet = new Mock<DbSet<Course>>();
+            courseMockSet.As<IQueryable<Course>>().Setup(m => m.Provider).Returns(courses.Provider);
+            courseMockSet.As<IQueryable<Course>>().Setup(m => m.Expression).Returns(courses.Expression);
+
+            var resultMockSet = new Mock<DbSet<Result>>();
+            resultMockSet.As<IQueryable<Result>>().Setup(m => m.Provider).Returns(results.Provider);
+            resultMockSet.As<IQueryable<Result>>().Setup(m => m.Expression).Returns(results.Expression);
+
+            var mockApplicationDatabase = new Mock<ApplicationDatabase>();
+            mockApplicationDatabase.Setup(c => c.Results).Returns(resultMockSet.Object);
+            mockApplicationDatabase.Setup(c => c.Courses).Returns(courseMockSet.Object);
+
+            var DatabaseController = new DatabaseController {ApplicationDatabase = mockApplicationDatabase.Object};
+
+            //Act
+            var actual = DatabaseController.GetAverageKeysPerMinute(1);
+
+            //Assert
+            Assert.IsTrue(actual == 50);
+        }
+
+        [TestMethod]
+        public void GetAvarageKeysPerMinute_ShoudReturn0_WhenThereAreNoResultsFromThatStudent()
+        {
+            //Arrange
+            var courses = new List<Course>().AsQueryable();
+
+            var results = new List<Result>().AsQueryable();
+
+            var courseMockSet = new Mock<DbSet<Course>>();
+            courseMockSet.As<IQueryable<Course>>().Setup(m => m.Provider).Returns(courses.Provider);
+            courseMockSet.As<IQueryable<Course>>().Setup(m => m.Expression).Returns(courses.Expression);
+
+            var resultMockSet = new Mock<DbSet<Result>>();
+            resultMockSet.As<IQueryable<Result>>().Setup(m => m.Provider).Returns(results.Provider);
+            resultMockSet.As<IQueryable<Result>>().Setup(m => m.Expression).Returns(results.Expression);
+
+            var mockApplicationDatabase = new Mock<ApplicationDatabase>();
+            mockApplicationDatabase.Setup(c => c.Results).Returns(resultMockSet.Object);
+            mockApplicationDatabase.Setup(c => c.Courses).Returns(courseMockSet.Object);
+
+            var DatabaseController = new DatabaseController {ApplicationDatabase = mockApplicationDatabase.Object};
+
+            //Act
+            var actual = DatabaseController.GetAverageKeysPerMinute(1);
+
+            //Assert
+            Assert.IsTrue(actual == 0);
+        }
+
+        [TestMethod]
+        public void GetResultCount_ShouldOnlyCountCourseResults_WhenFalseIsGiven()
+        {
+            //Arrange
+            var results = new List<Result>
+            {
+                new Result {ResultId = 1, StudentID = 1, CourseID = 0, KeyScore = 0, AccScore = 0},
+                new Result {ResultId = 1, StudentID = 1, CourseID = 2, KeyScore = 100, AccScore = 100},
+                new Result {ResultId = 1, StudentID = 1, CourseID = 2, KeyScore = 100, AccScore = 100},
+                new Result {ResultId = 1, StudentID = 1, CourseID = 2, KeyScore = 100, AccScore = 100}
+            }.AsQueryable();
+
+            var resultMockSet = new Mock<DbSet<Result>>();
+            resultMockSet.As<IQueryable<Result>>().Setup(m => m.Provider).Returns(results.Provider);
+            resultMockSet.As<IQueryable<Result>>().Setup(m => m.Expression).Returns(results.Expression);
+
+            var mockApplicationDatabase = new Mock<ApplicationDatabase>();
+            mockApplicationDatabase.Setup(c => c.Results).Returns(resultMockSet.Object);
+
+            var DatabaseController = new DatabaseController {ApplicationDatabase = mockApplicationDatabase.Object};
+
+            //Act
+            var actual = DatabaseController.GetResultCount(1, false);
+
+            //Assert
+            Assert.IsTrue(actual == 3);
+        }
+
+        [TestMethod]
+        public void GetResultCount_ShouldOnlyCountExerciseResults_WhenTrueIsGiven()
+        {
+            //Arrange
+            var results = new List<Result>
+            {
+                new Result {ResultId = 1, StudentID = 1, CourseID = 0, KeyScore = 0, AccScore = 0},
+                new Result {ResultId = 1, StudentID = 1, CourseID = 0, KeyScore = 100, AccScore = 100},
+                new Result {ResultId = 1, StudentID = 1, CourseID = 0, KeyScore = 100, AccScore = 100},
+                new Result {ResultId = 1, StudentID = 1, CourseID = 2, KeyScore = 100, AccScore = 100}
+            }.AsQueryable();
+
+            var resultMockSet = new Mock<DbSet<Result>>();
+            resultMockSet.As<IQueryable<Result>>().Setup(m => m.Provider).Returns(results.Provider);
+            resultMockSet.As<IQueryable<Result>>().Setup(m => m.Expression).Returns(results.Expression);
+
+            var mockApplicationDatabase = new Mock<ApplicationDatabase>();
+            mockApplicationDatabase.Setup(c => c.Results).Returns(resultMockSet.Object);
+
+            var DatabaseController = new DatabaseController {ApplicationDatabase = mockApplicationDatabase.Object};
+
+            //Act
+            var actual = DatabaseController.GetResultCount(1, true);
+
+            //Assert
+            Assert.IsTrue(actual == 3);
+        }
+
+        [TestMethod]
+        public void CheckLogin_ShouldReturnUser_WhenPasswordAndUsernameAreCorrect()
+        {
+            //Arrange
+            var Users = new List<User>
+            {
+                new User {ID = 1, Password = "Test", Username = "TestUser"}
+            }.AsQueryable();
+
+            var userMockSet = new Mock<DbSet<User>>();
+            userMockSet.As<IQueryable<User>>().Setup(m => m.Provider).Returns(Users.Provider);
+            userMockSet.As<IQueryable<User>>().Setup(m => m.Expression).Returns(Users.Expression);
+
+            var mockApplicationDatabase = new Mock<ApplicationDatabase>();
+            mockApplicationDatabase.Setup(c => c.Users).Returns(userMockSet.Object);
+
+            var DatabaseController = new DatabaseController {ApplicationDatabase = mockApplicationDatabase.Object};
+
+            //Act
+            var actual = DatabaseController.CheckLogin("TestUser", "Test");
+
+            //Assert
+            Assert.AreEqual(Users.First(), actual);
+        }
+
+        [TestMethod]
+        public void CheckLogin_ShouldReturnNull_WhenUsernameIsNotCorrect()
+        {
+            //Arrange
+            var Users = new List<User>
+            {
+                new User {ID = 1, Password = "Test", Username = "TestUser"}
+            }.AsQueryable();
+
+            var userMockSet = new Mock<DbSet<User>>();
+            userMockSet.As<IQueryable<User>>().Setup(m => m.Provider).Returns(Users.Provider);
+            userMockSet.As<IQueryable<User>>().Setup(m => m.Expression).Returns(Users.Expression);
+
+            var mockApplicationDatabase = new Mock<ApplicationDatabase>();
+            mockApplicationDatabase.Setup(c => c.Users).Returns(userMockSet.Object);
+
+            var DatabaseController = new DatabaseController {ApplicationDatabase = mockApplicationDatabase.Object};
+
+            //Act
+            var actual = DatabaseController.CheckLogin("nope", "Test");
+
+            //Assert
+            Assert.AreEqual(null, actual);
+        }
+
+        [TestMethod]
+        public void CheckLogin_ShouldReturnNull_WhenPasswordIsNotCorrect()
+        {
+            //Arrange
+            var Users = new List<User>
+            {
+                new User {ID = 1, Password = "Test", Username = "TestUser"}
+            }.AsQueryable();
+
+            var userMockSet = new Mock<DbSet<User>>();
+            userMockSet.As<IQueryable<User>>().Setup(m => m.Provider).Returns(Users.Provider);
+            userMockSet.As<IQueryable<User>>().Setup(m => m.Expression).Returns(Users.Expression);
+
+            var mockApplicationDatabase = new Mock<ApplicationDatabase>();
+            mockApplicationDatabase.Setup(c => c.Users).Returns(userMockSet.Object);
+
+            var DatabaseController = new DatabaseController {ApplicationDatabase = mockApplicationDatabase.Object};
+
+            //Act
+            var actual = DatabaseController.CheckLogin("TestUser", "Test123");
+
+            //Assert
+            Assert.AreEqual(null, actual);
+        }
+
+        //[TestMethod]
+        //public void CreateStudent_ShouldAddStudentToDatabase_WhenCalled()
+        //{
+        //    //Arrange
+        //    var users = new List<User>().AsQueryable();
+        //    var students = new List<Student>().AsQueryable();
+        //    var expectedUser = new User
+        //    {
+        //        Username = "Henkie",
+        //        Password = "VeiligWachtwoord",
+        //        Type = "Student",
+        //        Student = new Student
+        //        {
+        //            TeacherID = 2,
+        //            Surname = "Hankson"
+        //        }
+        //    };
+
+        //    var userMockSet = new Mock<DbSet<User>>();
+        //    userMockSet.As<IQueryable<User>>().Setup(m => m.Provider).Returns(users.Provider);
+        //    userMockSet.As<IQueryable<User>>().Setup(m => m.Expression).Returns(users.Expression);
+
+        //    var studentMockSet = new Mock<DbSet<Student>>();
+        //    studentMockSet.As<IQueryable<Student>>().Setup(m => m.Provider).Returns(students.Provider);
+        //    studentMockSet.As<IQueryable<Student>>().Setup(m => m.Expression).Returns(students.Expression);
+
+        //    var teacherMockSet = new Mock<DbSet<Teacher>>();
+        //    studentMockSet.As<IQueryable<Teacher>>().Setup(m => m.Provider).Returns(teachers.Provider);
+
+        //    var mockApplicationDatabase = new Mock<ApplicationDatabase>();
+        //    mockApplicationDatabase.Setup(u => u.Users).Returns(userMockSet.Object);
+        //    mockApplicationDatabase.Setup(s => s.Students).Returns(studentMockSet.Object);
+
+        //    var databaseController = new DatabaseController { ApplicationDatabase = mockApplicationDatabase.Object };
+
+
+        //    //Act
+        //    databaseController.CreateStudent(expectedUser.Username, expectedUser.Student.Surname, expectedUser.Password, expectedUser.Type, expectedUser.Student.TeacherID);
+
+        //    var actual = mockApplicationDatabase.Object.Users.Any();
+
+        //    //Assert
+        //    Assert.AreEqual(expectedUser, actual);
+        //}
+
+        [TestMethod]
+        public void EditStudent_ShouldEditStudentWithGivenParameters_WhenCalled()
+        {
+            //Arrange
+            var expected = new Student
+            {
+                ID = 1,
+                Name = "Henk",
+                Surname = "Hankson",
+                TeacherID = 2,
+                User = new User {ID = 1, Password = "Kurk", Type = "Student"}
+            };
+
+            var Users = new List<Student>
+            {
+                new Student
+                {
+                    ID = 1,
+                    Name = "Henk",
+                    Surname = "Hankson",
+                    TeacherID = 2,
+                    User = new User {ID = 1, Password = "Kurk", Type = "Student"}
+                }
+            }.AsQueryable();
+
+            var userMockSet = new Mock<DbSet<Student>>();
+            userMockSet.As<IQueryable<Student>>().Setup(m => m.Provider).Returns(Users.Provider);
+            userMockSet.As<IQueryable<Student>>().Setup(m => m.Expression).Returns(Users.Expression);
+
+            var mockApplicationDatabase = new Mock<ApplicationDatabase>();
+            mockApplicationDatabase.Setup(s => s.Students).Returns(userMockSet.Object);
+
+            var DatabaseController = new DatabaseController {ApplicationDatabase = mockApplicationDatabase.Object};
+
+            //Act            
+            DatabaseController.EditStudent("Dirk", "Dirksen", "1234", 1);
+            var actual = DatabaseController.GetStudentByID(1);
+
+            //Assert
+            Assert.AreNotEqual(expected, actual);
+        }
+
+        //[TestMethod]
+        //public void DeleteStudent_ShouldDeleteStudentWithGivenID_WhenCalled()
+        //{
+        //    //Arrange
+        //    var Users = new List<User> {
+        //        new User {
+        //            ID = 1,
+        //            Password = "1234",
+        //            Type = "Student",
+        //            Username = "test",
+        //            Student = new Student
+        //            {
+        //                ID = 1,
+        //                Name = "Henk",
+        //                Surname = "Hankson",
+        //                TeacherID = 2,
+        //            }
+        //        }
+        //    }.AsQueryable();
+
+        //    var Students = new List<Student> {
+        //        Users.FirstOrDefault().Student
+        //    }.AsQueryable();
+
+
+        //    var studentMockSet = new Mock<DbSet<Student>>();
+        //    studentMockSet.As<IQueryable<Student>>().Setup(m => m.Provider).Returns(Students.Provider);
+        //    studentMockSet.As<IQueryable<Student>>().Setup(m => m.Expression).Returns(Students.Expression);
+
+        //    var userMockSet = new Mock<DbSet<User>>();
+        //    userMockSet.As<IQueryable<User>>().Setup(m => m.Provider).Returns(Users.Provider);
+        //    userMockSet.As<IQueryable<User>>().Setup(m => m.Expression).Returns(Users.Expression);
+
+        //    var mockApplicationDatabase = new Mock<ApplicationDatabase>();
+        //    mockApplicationDatabase.Setup(s => s.Students).Returns(studentMockSet.Object);
+        //    mockApplicationDatabase.Setup(u => u.Users).Returns(userMockSet.Object);
+
+        //    var DatabaseController = new DatabaseController { ApplicationDatabase = mockApplicationDatabase.Object };
+
+        //    //Act
+        //    DatabaseController.DeleteStudent(1);
+        //    //var actual = mockApplicationDatabase.Object.Students.Where(s => s.ID == 1).ToList();
+        //    //var actual = mockApplicationDatabase.Object.Students.Select(s => s).ToList();
+        //    bool actual = mockApplicationDatabase.Object.Students.Any();
+        //    //var lol = 876543;
+
+        //    //Assert
+        //    Assert.IsFalse(actual);
+        //}
+
+        [TestMethod]
+        public void GetUserByID_ShouldReturnUserWithGivenId_WhenCalled()
+        {
+            //Arrange
+            var Users = new List<User>
+            {
+                new User
+                {
+                    ID = 1,
+                    Username = "Henk",
+                    Password = "Hankson",
+                    Type = "Student",
+                    Student = new Student {ID = 1, Name = "Henk", Surname = "1234", TeacherID = 2}
+                }
+            }.AsQueryable();
+
+            var userMockSet = new Mock<DbSet<User>>();
+            userMockSet.As<IQueryable<User>>().Setup(m => m.Provider).Returns(Users.Provider);
+            userMockSet.As<IQueryable<User>>().Setup(m => m.Expression).Returns(Users.Expression);
+
+            var mockApplicationDatabase = new Mock<ApplicationDatabase>();
+            mockApplicationDatabase.Setup(u => u.Users).Returns(userMockSet.Object);
+
+            var DatabaseController = new DatabaseController {ApplicationDatabase = mockApplicationDatabase.Object};
+
+            //Act            
+            var expected = mockApplicationDatabase.Object.Users.FirstOrDefault();
+            var actual = DatabaseController.GetUserByID(1);
+
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+    }
+}

@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="TypApplication.Controller.CourseController" Collapsed="true">
+    <Position X="11.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAAAIAAAAAACAAAAAAAAIAAA=</HashCode>
+      <FileName>Controller\CourseController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TypApplication.Controller.DatabaseController" Collapsed="true">
+    <Position X="11.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gCACACAgEAAAAAAACEAAhggAAAAIAhAAAAAAIQAAAAA=</HashCode>
+      <FileName>Controller\DatabaseController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TypApplication.Controller.ExerciseController" Collapsed="true">
+    <Position X="13" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAgQAQAAAAAAAIEIQAYAAAAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>Controller\ExerciseController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TypApplication.Model.ApplicationDatabase" Collapsed="true">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAACAAAAAAAAAAAABAgAAA=</HashCode>
+      <FileName>Model\ApplicationDatabase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TypApplication.Model.Course" Collapsed="true">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAEAAAAAAAAAAAAAAAAAIAQAAAAAAAAA=</HashCode>
+      <FileName>Model\Course.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TypApplication.Model.CourseExercise">
+    <Position X="5.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAEAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\CourseExercise.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TypApplication.Model.Exercise">
+    <Position X="2.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAIAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Exercise.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TypApplication.Model.Key" Collapsed="true">
+    <Position X="7.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Model\Key.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TypApplication.Model.KeyData" Collapsed="true">
+    <Position X="11.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAQAAAgAAAAAAAIAAICAgAICAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\KeyData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TypApplication.Model.KeyMistake" Collapsed="true">
+    <Position X="13" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAIAAAAACAA=</HashCode>
+      <FileName>Model\KeyMistake.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TypApplication.Model.NumberExercise">
+    <Position X="3" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAIAAAAAEAAAAAAAAAAAAAAAAAAIAAAAAACAA=</HashCode>
+      <FileName>Model\NumberExercise.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TypApplication.Model.Result" Collapsed="true">
+    <Position X="13" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAgAAEAAAQAAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Model\Result.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TypApplication.Model.Word" Collapsed="true">
+    <Position X="13" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIQAAAAAAAAA=</HashCode>
+      <FileName>Model\Word.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TypApplication.Model.WordExercise">
+    <Position X="0.5" Y="3" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAAgAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\WordExercise.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TypApplication.Program" Collapsed="true">
+    <Position X="9.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TypApplication.Properties.Resources" Collapsed="true">
+    <Position X="11.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAAAgABEAAAAYAIAAAAAAAAAAAAgIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TypApplication.Properties.Settings" Collapsed="true">
+    <Position X="7.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAIAAAAIAAAAAgJBAAAAAAAAAAAEEA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TypApplication.View.CourseEditor" Collapsed="true">
+    <Position X="13" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAECgAAAAAABDBBAACAAAAQAAAIAAQAAAEAAA=</HashCode>
+      <FileName>View\CourseEditor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TypApplication.View.CourseEnvironment" Collapsed="true">
+    <Position X="14.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAARCAQQAAAAACAAAASAAAAAAAAAQAAAAIIAAA=</HashCode>
+      <FileName>View\CourseEnvironment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TypApplication.View.CourseFinished" Collapsed="true">
+    <Position X="7.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgACAAABAAAgCAQAwSAAAAAAAAAAAACAgAAAA=</HashCode>
+      <FileName>View\CourseFinished.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TypApplication.View.Courses" Collapsed="true">
+    <Position X="9.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQBAQAAQCgAACAAAACAAACSAAkAAAAIAQAAAAAQAAA=</HashCode>
+      <FileName>View\Courses.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TypApplication.View.ExerciseView" Collapsed="true">
+    <Position X="14.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEyAAAAAAGAAAAEQAACKAAIKAAAACAAgAAAAAABQAAA=</HashCode>
+      <FileName>View\ExerciseView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TypApplication.View.KeyBoard" Collapsed="true">
+    <Position X="9.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgFACABAoSgAhAAhWAqA5EB2+f/vDyFoKAABAAg18C8=</HashCode>
+      <FileName>View\KeyBoard.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TypApplication.View.MainForm" Collapsed="true">
+    <Position X="14.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AICAAAAAAGAAAAAAIACAAAACABAAEAAAEDAgAQAAIAg=</HashCode>
+      <FileName>View\MainForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TypApplication.View.MainMenu" Collapsed="true">
+    <Position X="7.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAQAAASAAIIAAEACABAASAAAJAAAAAEAAAQBESAA=</HashCode>
+      <FileName>View\MainMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TypApplication.View.RichTextBoxExtensions" Collapsed="true">
+    <Position X="14.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\RichTextBoxExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TypApplication.View.SettingsView" Collapsed="true">
+    <Position X="9.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BABAkAiAAGAiABEAAEChAAACAAAAAAAAAAAACGAQAAA=</HashCode>
+      <FileName>View\SettingsView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TypApplication.View.TypingExplanation" Collapsed="true">
+    <Position X="11.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAABAAACAAAAAAAACAAAACAAAAAAAAAAAQAABQAAA=</HashCode>
+      <FileName>View\TypingExplanation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

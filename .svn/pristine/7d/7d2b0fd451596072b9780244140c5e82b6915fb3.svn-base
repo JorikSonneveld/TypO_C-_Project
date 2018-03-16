@@ -1,0 +1,123 @@
+﻿namespace TypApplication.View
+{
+    partial class CourseFinished
+    {
+        /// <summary> 
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary> 
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Component Designer generated code
+
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.label1 = new System.Windows.Forms.Label();
+            this.labelKeyTitle = new System.Windows.Forms.Label();
+            this.labelKeyScore = new System.Windows.Forms.Label();
+            this.labelAccScore = new System.Windows.Forms.Label();
+            this.labelAccTitle = new System.Windows.Forms.Label();
+            this.buttonToMain = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 26F);
+            this.label1.Location = new System.Drawing.Point(63, 83);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(195, 39);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Completed!";
+            // 
+            // labelKeyTitle
+            // 
+            this.labelKeyTitle.AutoSize = true;
+            this.labelKeyTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.labelKeyTitle.Location = new System.Drawing.Point(54, 147);
+            this.labelKeyTitle.Name = "labelKeyTitle";
+            this.labelKeyTitle.Size = new System.Drawing.Size(209, 31);
+            this.labelKeyTitle.TabIndex = 1;
+            this.labelKeyTitle.Text = "Keys per minute";
+            // 
+            // labelKeyScore
+            // 
+            this.labelKeyScore.AutoSize = true;
+            this.labelKeyScore.Location = new System.Drawing.Point(146, 200);
+            this.labelKeyScore.Name = "labelKeyScore";
+            this.labelKeyScore.Size = new System.Drawing.Size(75, 13);
+            this.labelKeyScore.TabIndex = 2;
+            this.labelKeyScore.Text = "labelKeyScore";
+            // 
+            // labelAccScore
+            // 
+            this.labelAccScore.AutoSize = true;
+            this.labelAccScore.Location = new System.Drawing.Point(146, 290);
+            this.labelAccScore.Name = "labelAccScore";
+            this.labelAccScore.Size = new System.Drawing.Size(76, 13);
+            this.labelAccScore.TabIndex = 3;
+            this.labelAccScore.Text = "labelAccScore";
+            // 
+            // labelAccTitle
+            // 
+            this.labelAccTitle.AutoSize = true;
+            this.labelAccTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.labelAccTitle.Location = new System.Drawing.Point(95, 240);
+            this.labelAccTitle.Name = "labelAccTitle";
+            this.labelAccTitle.Size = new System.Drawing.Size(127, 31);
+            this.labelAccTitle.TabIndex = 4;
+            this.labelAccTitle.Text = "Accuracy";
+            // 
+            // buttonToMain
+            // 
+            this.buttonToMain.Location = new System.Drawing.Point(119, 329);
+            this.buttonToMain.Name = "buttonToMain";
+            this.buttonToMain.Size = new System.Drawing.Size(75, 23);
+            this.buttonToMain.TabIndex = 5;
+            this.buttonToMain.Text = "MainMenu";
+            this.buttonToMain.UseVisualStyleBackColor = true;
+            this.buttonToMain.Click += new System.EventHandler(this.buttonToMain_Click);
+            // 
+            // CourseFinished
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.buttonToMain);
+            this.Controls.Add(this.labelAccTitle);
+            this.Controls.Add(this.labelAccScore);
+            this.Controls.Add(this.labelKeyScore);
+            this.Controls.Add(this.labelKeyTitle);
+            this.Controls.Add(this.label1);
+            this.Name = "CourseFinished";
+            this.Size = new System.Drawing.Size(318, 426);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelKeyTitle;
+        private System.Windows.Forms.Label labelKeyScore;
+        private System.Windows.Forms.Label labelAccScore;
+        private System.Windows.Forms.Label labelAccTitle;
+        private System.Windows.Forms.Button buttonToMain;
+    }
+}

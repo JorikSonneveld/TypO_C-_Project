@@ -1,0 +1,66 @@
+﻿using System;
+using System.Windows.Forms;
+using TypApplication.Controller;
+
+namespace TypApplication.View
+{
+    public partial class CourseEditor : Form
+    {
+        public DataGridViewCell Cell;
+        private readonly CourseController courseController = new CourseController();
+        public bool update = false;
+
+        public CourseEditor() : this(null)
+        {
+        }
+
+        public CourseEditor(DataGridViewCell cell)
+        {
+            InitializeComponent();
+            Cell = cell;
+            if (cell == null) return;
+            
+            richTextBox1.Text = courseController.db.GetTextFromTitle(cell.Value.ToString());
+            titleTextBox.Text = cell.Value.ToString();
+            
+            if (courseController.db.GetCourseVisibility(cell.Value.ToString()))
+                isVisible.Checked = true;
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            // Update course
+            if (update)
+            {
+                if (courseController.db.EditCourse(courseController.db.GetCourseId(Cell.Value.ToString()),
+                    titleTextBox.Text, richTextBox1.Text, isVisible.Checked))
+                {
+                    if (courseController.CreateMessage(true))
+                        Close();
+                }
+                else
+                {
+                    courseController.CreateMessage(false);
+                }
+            }
+            // New course
+            else
+            {
+                if (courseController.db.AddCourse(richTextBox1.Text, titleTextBox.Text, isVisible.Checked))
+                {
+                    if (courseController.CreateMessage(true))
+                        Close();
+                }
+                else
+                {
+                    courseController.CreateMessage(false);
+                }
+            }
+        }
+
+        private void ButtonCancel_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+    }
+}

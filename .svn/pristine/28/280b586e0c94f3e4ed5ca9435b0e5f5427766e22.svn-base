@@ -1,0 +1,21 @@
+﻿using System.Collections.Generic;
+using System.Windows.Controls;
+using System.Windows.Input;
+using static System.String;
+
+namespace Typo.Model
+{
+    public class Key
+    {
+        public System.Windows.Input.Key[] keys { get; set; }
+        public Button[] buttons { get; set; }
+
+        public Key(System.Windows.Input.Key[] keys, Button[] buttons)
+        {
+            this.buttons = buttons;
+            this.keys = keys;
+        }
+
+        public int KeyCode { get; set; }     
+    }
+}

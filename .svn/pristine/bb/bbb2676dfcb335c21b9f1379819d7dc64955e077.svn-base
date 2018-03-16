@@ -1,0 +1,50 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
+using TypApplication.Controller;
+using TypApplication.Model;
+
+namespace TypApplication.View
+{
+    public partial class MainForm : Form
+    {
+        private MainMenu mainMenu;
+        private ExerciseView exerciseView;
+        public DatabaseController database = new DatabaseController();
+
+        public MainForm()
+        {
+            InitializeComponent();
+            ShowMainMenu();
+        }
+
+        public void ShowMainMenu()
+        {
+            ClearForm();
+            mainMenu = new MainMenu(this);
+            this.Controls.Add(mainMenu);
+            CenterView(mainMenu);
+        }
+
+        public void NewExercise()
+        {
+            ClearForm();
+            exerciseView = new ExerciseView(this);
+            this.Controls.Add(exerciseView);
+            CenterView(exerciseView);
+        }
+        
+        private void ClearForm()
+        {
+            this.Controls.Clear();
+            mainMenu = null;
+            exerciseView = null;
+        }
+
+        private void CenterView(Control control)
+        {
+            control.Left = (this.ClientSize.Width - control.Width) / 2;
+            control.Top = (this.ClientSize.Height - control.Height) / 2;
+        }
+    }
+}

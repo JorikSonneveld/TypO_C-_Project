@@ -1,0 +1,75 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using Typo.Controller;
+using Typo.Model;
+using Typo.View;
+
+namespace Typo.View
+{
+    /// <summary>
+    /// Interaction logic for Keyboard.xaml
+    /// </summary>
+    public partial class Keyboard : UserControl
+    {
+        public Keyboard()
+        {
+            InitializeComponent();
+        }
+
+        //make a list where key values are linked to a button on the keyboard
+        public List<KeyboardKey> MakeKeyList()
+        {
+            return new List<KeyboardKey>
+            {
+                new KeyboardKey(new Key[]{Key.Q }, new Button[]{btnQ }),
+                new KeyboardKey(new Key[]{Key.W }, new Button[]{btnW }),
+                new KeyboardKey(new Key[]{Key.E }, new Button[]{btnE }),
+                new KeyboardKey(new Key[]{Key.R }, new Button[]{btnR }),
+                new KeyboardKey(new Key[]{Key.T }, new Button[]{btnT }),
+                new KeyboardKey(new Key[]{Key.Y }, new Button[]{btnY }),
+                new KeyboardKey(new Key[]{Key.U }, new Button[]{btnU }),
+                new KeyboardKey(new Key[]{Key.I }, new Button[]{btnI }),
+                new KeyboardKey(new Key[]{Key.O }, new Button[]{btnO }),
+                new KeyboardKey(new Key[]{Key.P }, new Button[]{btnP }),
+                new KeyboardKey(new Key[]{Key.A }, new Button[]{btnA }),
+                new KeyboardKey(new Key[]{Key.S }, new Button[]{btnS }),
+                new KeyboardKey(new Key[]{Key.D }, new Button[]{btnD }),
+                new KeyboardKey(new Key[]{Key.F }, new Button[]{btnF }),
+                new KeyboardKey(new Key[]{Key.G }, new Button[]{btnG }),
+                new KeyboardKey(new Key[]{Key.H }, new Button[]{btnH }),
+                new KeyboardKey(new Key[]{Key.J }, new Button[]{btnJ }),
+                new KeyboardKey(new Key[]{Key.K }, new Button[]{btnK }),
+                new KeyboardKey(new Key[]{Key.L }, new Button[]{btnL }),
+                new KeyboardKey(new Key[]{Key.Z }, new Button[]{btnZ }),
+                new KeyboardKey(new Key[]{Key.X }, new Button[]{btnX }),
+                new KeyboardKey(new Key[]{Key.C }, new Button[]{btnC }),
+                new KeyboardKey(new Key[]{Key.V }, new Button[]{btnV }),
+                new KeyboardKey(new Key[]{Key.B }, new Button[]{btnB }),
+                new KeyboardKey(new Key[]{Key.N }, new Button[]{btnN }),
+                new KeyboardKey(new Key[]{Key.M }, new Button[]{btnM }),
+                new KeyboardKey(new Key[]{Key.D1 }, new Button[]{btn1 }),
+                new KeyboardKey(new Key[]{Key.D2 }, new Button[]{btn2 }),
+                new KeyboardKey(new Key[]{Key.D3 }, new Button[]{btn3 }),
+                new KeyboardKey(new Key[]{Key.D4 }, new Button[]{btn4 }),
+                new KeyboardKey(new Key[]{Key.D5 }, new Button[]{btn5 }),
+                new KeyboardKey(new Key[]{Key.D6 }, new Button[]{btn6 }),
+                new KeyboardKey(new Key[]{Key.D7 }, new Button[]{btn7 }),
+                new KeyboardKey(new Key[]{Key.D8 }, new Button[]{btn8 }),
+                new KeyboardKey(new Key[]{Key.D9 }, new Button[]{btn9 }),
+                new KeyboardKey(new Key[]{Key.D0 }, new Button[]{btn0 }),
+            };
+        }
+    }
+}

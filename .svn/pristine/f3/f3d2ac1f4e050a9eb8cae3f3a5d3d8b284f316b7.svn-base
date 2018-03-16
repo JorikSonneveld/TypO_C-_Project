@@ -1,0 +1,78 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using Typo.Controller;
+using Typo.Model.Database;
+
+namespace Typo.View
+{
+    /// <summary>
+    /// Interaction logic for StudentAccount.xaml
+    /// </summary>
+    public partial class StudentAccount : UserControl
+    {
+        private MainWindow mainWindow;
+        private DatabaseController databaseController;
+        private bool Edit;
+        private int StudentID;
+
+        public StudentAccount(MainWindow mainWindow) : this(mainWindow, false, 0) {
+
+        }
+
+        public StudentAccount(MainWindow mainWindow, bool Edit, int StudentID)
+        {
+            InitializeComponent();
+            this.databaseController = new DatabaseController();
+            this.mainWindow = mainWindow;
+            this.Edit = Edit;
+            this.StudentID = StudentID;
+            if (Edit == true)
+                FillTextBoxes();
+        }
+
+        private void FillTextBoxes() {
+            Student student = databaseController.GetStudentByID(StudentID);
+            Name.Text = student.Name;
+            Surname.Text = student.Surname;
+        }
+
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+            if (Name.Text != String.Empty && Surname.Text != String.Empty && Password.Text != String.Empty)
+            {
+                if (Edit != true)
+                {
+                    databaseController.CreateStudent(Name.Text, Surname.Text, Password.Text, "Student", 2);
+                }
+                else {
+                    databaseController.EditStudent(Name.Text, Surname.Text, Password.Text, StudentID);
+                }
+                MessageBox.Show("Student account succesvol opgeslagen!");
+                mainWindow.ClearMainFrameContent();
+                mainWindow.MainFrame.Content = new StudentOverview(mainWindow);
+            }
+            else
+            {
+                MessageBox.Show("Niet alle veplichte velden zijn ingevuld!");
+            }
+        }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            mainWindow.ClearMainFrameContent();
+            mainWindow.MainFrame.Content = new StudentOverview(mainWindow);
+        }
+    }
+}

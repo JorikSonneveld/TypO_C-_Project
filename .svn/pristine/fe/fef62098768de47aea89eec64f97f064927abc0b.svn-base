@@ -1,0 +1,37 @@
+﻿using System;
+
+namespace Typo.Model
+{
+    public class NumberExercise : Exercise
+    {
+        //declare values for random function
+        private readonly int maximalNumber;
+        private readonly int minimalNumber;
+        private readonly int quantNumbers;
+        //declare and initialise random function
+        private readonly Random rnd = new Random();
+
+        //constructor to initialise values for random functions
+        public NumberExercise(int minimalNumber, int maximalNumber, int quantNumbers)
+        {
+            this.minimalNumber = minimalNumber;
+            this.maximalNumber = maximalNumber;
+            this.quantNumbers = quantNumbers;
+            //initialise ExerciseString with the result of the PrintExercise method
+            ExerciseString = PrintExercise();
+        }
+
+        //PrintExercise method generates a string of numbers which are randomly selected
+        public override string PrintExercise()
+        {
+            var totalstring = "";
+            for (var i = 0; i < quantNumbers; i++)
+            {
+                var number = rnd.Next(minimalNumber, maximalNumber);
+                totalstring += number + " ";
+            }
+            totalstring = totalstring.TrimEnd(' ');
+            return totalstring;
+        }
+    }
+}

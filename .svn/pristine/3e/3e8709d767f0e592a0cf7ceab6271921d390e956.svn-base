@@ -1,0 +1,39 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Controls;
+using Typo.Model.Database;
+using Typo.View;
+
+namespace Typo.Controller
+{
+    class OverviewController
+    {
+        private List<Student> List;
+        private DatabaseController DataBaseController;
+
+        //The contstructor initialises the DataBaseController
+        public OverviewController()
+        {
+            DataBaseController = new DatabaseController();
+            List = (List<Student>)DataBaseController.GetAllStudents();
+        }
+
+        public void FillStudentGrid(WrapPanel StudentPanel)
+        {
+            foreach (Student student in List) {
+                StudentInformation studentInformation = new StudentInformation(student.Name, student.Surname, student.ID.ToString());
+                StudentPanel.Children.Add(studentInformation);
+            }
+        }
+
+        public void Container_Click(object sender, EventArgs e)
+        {
+            //TODO:
+            //get student id
+            //call function to show popup results student
+        }
+    }
+}

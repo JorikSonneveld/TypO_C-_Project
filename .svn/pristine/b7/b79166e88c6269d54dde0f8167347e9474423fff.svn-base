@@ -1,0 +1,27 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using TypApplication.Controller;
+
+namespace TypApplication.Model
+{
+    class CharacterExercise : Exercise
+    {
+        ExerciseController ExerciseController = new ExerciseController();
+        private readonly List<char> charList;
+        private readonly int maxWordLength;
+
+        public CharacterExercise(List<char> charList, int maxWordLength)
+        {
+            this.charList = charList;
+            this.maxWordLength = maxWordLength;
+            ExerciseString = PrintExercise();
+        }
+        public override string PrintExercise()
+        {
+            return ExerciseController.MakeWordsFromChars(charList, maxWordLength);
+        }
+    }
+}

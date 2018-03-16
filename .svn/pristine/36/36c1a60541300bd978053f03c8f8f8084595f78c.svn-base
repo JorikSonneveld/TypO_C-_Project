@@ -1,0 +1,38 @@
+﻿using System.Windows;
+using System.Windows.Controls;
+
+namespace Typo.View
+{
+    /// <summary>
+    ///     Interaction logic for StudentInformation.xaml
+    /// </summary>
+    public partial class StudentInformation : UserControl
+    {
+        private readonly int ConnectStudentID;
+
+        private readonly MainWindow mainWindow;
+
+        //attributes to for navigation
+        private WrapPanel StudentOverview;
+
+        //constructor for initialising private attributes and 
+        public StudentInformation(MainWindow mainWindow, string FirstName, string Surname, int StudentID,
+            WrapPanel StudentOverview)
+        {
+            InitializeComponent();
+            //initialising content of student information panel
+            this.mainWindow = mainWindow;
+            this.FirstName.Content = FirstName;
+            this.Surname.Content = Surname;
+            this.StudentID.Content = StudentID.ToString();
+            this.StudentOverview = StudentOverview;
+            ConnectStudentID = StudentID;
+        }
+
+        //method for showing the student statistics view
+        private void BtnStudent_Click(object sender, RoutedEventArgs e)
+        {
+            mainWindow.NewView(new StudentStatistics(mainWindow, ConnectStudentID));
+        }
+    }
+}

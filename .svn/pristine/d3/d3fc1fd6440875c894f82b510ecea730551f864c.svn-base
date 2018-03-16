@@ -1,0 +1,116 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
+using TypoTeacher.Model;
+
+namespace TypoTeacher.Controller
+{
+    public class CourseController
+    {
+        public DatabaseController db = new DatabaseController();
+
+        public bool CreateMessage(bool succes, bool update)
+        {
+            if (succes == true && update == false)
+            {
+                var result = MessageBox.Show("Course successfully added", "Succes", MessageBoxButtons.OK);
+                if (result == DialogResult.OK) return true;
+            }
+            if (succes == false && update == false)
+            {
+                MessageBox.Show("This course does already excist, Please change the text", "Error", MessageBoxButtons.OK);
+            }
+            if (succes == true && update == true)
+            {
+                var result = MessageBox.Show("Course successfully updated", "Succes", MessageBoxButtons.OK);
+                if (result == DialogResult.OK) return true;
+            }
+            if (succes == false && update == true)
+            {
+                MessageBox.Show("A course with this title already exists", "Error", MessageBoxButtons.OK);
+            }
+            return false;
+        }
+
+        //this method actually fills the datagrid with all existing courses in the database.
+        public void FillDataGridView(DataGridView CoursesGrid)
+        {
+            var courses = new List<Course>();
+            courses = db.RetrieveAllDbCourses();
+            if (courses != null)
+            {
+                CoursesGrid.Rows.Clear();
+                foreach (var course in courses)
+                {
+                    var visible = "No";
+                    if (course.Official)
+                        visible = "Yes";
+                    CoursesGrid.Rows.Add(course.Title, db.GetCourseClass(course.CourseID), visible);
+                }
+            }
+        }
+
+        public void FillDataGridViewWithVisibleCourses(DataGridView CourseGrid)
+        {
+            var courses = new List<Course>();
+            courses = db.RetrieveAllDbCourses(); //get all the courses
+            if (courses != null) // check if any courses are returned
+            {
+                foreach (var c in courses)
+                    if (c.Official) // if the course may be visible 
+                        CourseGrid.Rows.Add(c.Title); // it will be added in the datagridview
+            }
+        }
+
+        public void CreateDeleteMessage(string title)
+        {
+            var result = MessageBox.Show("Are you sure you want to delete this course?", "Delete",
+                MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+                db.DeleteCourse(db.GetCourseId(title));
+        }
+
+        public void FillClassChoice(ComboBox classChoice, DatabaseController db)
+        {
+            classChoice.Items.Clear();
+            var list = new List<string>();
+
+            foreach (var clas in db.ApplicationDatabase.Classes)
+            {
+                list.Add(clas.code);
+                
+            }
+            classChoice.Items.AddRange(list.ToArray());
+            classChoice.SelectedIndex = 0;
+        }
+
+        public void UpdateDatePicker(DateTimePicker startDateTimePicker, DateTimePicker endDateTimePicker)
+        {
+            startDateTimePicker.Format = DateTimePickerFormat.Custom;
+            endDateTimePicker.Format = DateTimePickerFormat.Custom;
+            startDateTimePicker.Value = DateTime.Now;
+            startDateTimePicker.MinDate = DateTime.Now.AddMonths(-5);
+            startDateTimePicker.MaxDate = DateTime.Now.AddYears(1);
+            endDateTimePicker.Value = DateTime.Now.AddHours(2);
+            endDateTimePicker.MinDate = startDateTimePicker.MinDate;
+            endDateTimePicker.MaxDate = DateTime.Now.AddYears(1);
+        }
+
+        public void UpdateValues(DataGridViewCell cell, RichTextBox richTextBox1, TextBox titleTextBox, CheckBox isVisible, ComboBox classChoice, DateTimePicker startPicker, DateTimePicker endPicker)
+        {
+            //Cell = cell;
+            if (cell == null) return;
+            Console.WriteLine("tekst is " + cell.Value.ToString());
+            richTextBox1.Text = db.GetTextFromTitle(cell.Value.ToString());
+            titleTextBox.Text = cell.Value.ToString();
+
+            if (db.GetCourseVisibility(cell.Value.ToString()))
+                isVisible.Checked = true;
+            startPicker.Value = db.GetDateTime(titleTextBox.Text, true);
+            endPicker.Value = db.GetDateTime(titleTextBox.Text, false);
+            classChoice.SelectedIndex = db.GetClassIndex(db.GetCourseClass(db.GetCourseId(titleTextBox.Text)));
+
+
+        }
+    }
+}

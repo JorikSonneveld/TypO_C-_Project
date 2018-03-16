@@ -1,0 +1,12 @@
+﻿using Typo.Controller;
+
+namespace Typo.Model
+{
+    public abstract class Exercise
+    {
+        public string ExerciseString { get; set; }
+        public string InputString { get; set; }
+        public abstract string PrintExercise();
+        public ExerciseController exerciseController = new ExerciseController();
+    }
+}

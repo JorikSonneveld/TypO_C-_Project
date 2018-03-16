@@ -1,0 +1,140 @@
+﻿using System.Drawing;
+
+namespace TypApplication.View
+{
+    partial class MainMenu
+    {
+        /// <summary> 
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary> 
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Component Designer generated code
+
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.newExerciseButton = new System.Windows.Forms.Button();
+            this.QuitButton = new System.Windows.Forms.Button();
+            this.buttonSettings = new System.Windows.Forms.Button();
+            this.buttonChooseCourse = new System.Windows.Forms.Button();
+            this.buttonGenExerciese = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // newExerciseButton
+            // 
+            this.newExerciseButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(163)))), ((int)(((byte)(233)))));
+            this.newExerciseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.newExerciseButton.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.newExerciseButton.ForeColor = System.Drawing.Color.White;
+            this.newExerciseButton.Location = new System.Drawing.Point(20, 5);
+            this.newExerciseButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.newExerciseButton.Name = "newExerciseButton";
+            this.newExerciseButton.Size = new System.Drawing.Size(207, 74);
+            this.newExerciseButton.TabIndex = 0;
+            this.newExerciseButton.Text = "New excercise";
+            this.newExerciseButton.UseVisualStyleBackColor = false;
+            this.newExerciseButton.Click += new System.EventHandler(this.NewExerciseButton_Click);
+            // 
+            // QuitButton
+            // 
+            this.QuitButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(163)))), ((int)(((byte)(233)))));
+            this.QuitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.QuitButton.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.QuitButton.ForeColor = System.Drawing.Color.White;
+            this.QuitButton.Location = new System.Drawing.Point(19, 393);
+            this.QuitButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.QuitButton.Name = "QuitButton";
+            this.QuitButton.Size = new System.Drawing.Size(207, 74);
+            this.QuitButton.TabIndex = 1;
+            this.QuitButton.Text = "Exit";
+            this.QuitButton.UseVisualStyleBackColor = true;
+            this.QuitButton.Click += new System.EventHandler(this.QuitButton_Click);
+            // 
+            // buttonSettings
+            // 
+            this.buttonSettings.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(163)))), ((int)(((byte)(233)))));
+            this.buttonSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSettings.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.buttonSettings.ForeColor = System.Drawing.Color.White;
+            this.buttonSettings.Location = new System.Drawing.Point(20, 290);
+            this.buttonSettings.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonSettings.Name = "buttonSettings";
+            this.buttonSettings.Size = new System.Drawing.Size(207, 74);
+            this.buttonSettings.TabIndex = 3;
+            this.buttonSettings.Text = "Settings";
+            this.buttonSettings.UseVisualStyleBackColor = true;
+            this.buttonSettings.Click += new System.EventHandler(this.ButtonSettings_Click);
+            // 
+            // buttonChooseCourse
+            // 
+            this.buttonChooseCourse.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(163)))), ((int)(((byte)(233)))));
+            this.buttonChooseCourse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonChooseCourse.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.buttonChooseCourse.ForeColor = System.Drawing.Color.White;
+            this.buttonChooseCourse.Location = new System.Drawing.Point(19, 196);
+            this.buttonChooseCourse.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonChooseCourse.Name = "buttonChooseCourse";
+            this.buttonChooseCourse.Size = new System.Drawing.Size(207, 74);
+            this.buttonChooseCourse.TabIndex = 6;
+            this.buttonChooseCourse.Text = "Courses";
+            this.buttonChooseCourse.UseVisualStyleBackColor = true;
+            this.buttonChooseCourse.Click += new System.EventHandler(this.ButtonChooseCourse_Click);
+            // 
+            // buttonGenExerciese
+            // 
+            this.buttonGenExerciese.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(163)))), ((int)(((byte)(233)))));
+            this.buttonGenExerciese.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonGenExerciese.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.buttonGenExerciese.ForeColor = System.Drawing.Color.White;
+            this.buttonGenExerciese.Location = new System.Drawing.Point(20, 100);
+            this.buttonGenExerciese.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonGenExerciese.Name = "buttonGenExerciese";
+            this.buttonGenExerciese.Size = new System.Drawing.Size(207, 74);
+            this.buttonGenExerciese.TabIndex = 7;
+            this.buttonGenExerciese.Text = "Generate exercise";
+            this.buttonGenExerciese.UseVisualStyleBackColor = true;
+            this.buttonGenExerciese.Click += new System.EventHandler(this.ButtonGenExerciese_Click);
+            // 
+            // MainMenu
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Transparent;
+            this.Controls.Add(this.buttonGenExerciese);
+            this.Controls.Add(this.buttonChooseCourse);
+            this.Controls.Add(this.buttonSettings);
+            this.Controls.Add(this.QuitButton);
+            this.Controls.Add(this.newExerciseButton);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Name = "MainMenu";
+            this.Size = new System.Drawing.Size(251, 511);
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Button newExerciseButton;
+        private System.Windows.Forms.Button QuitButton;
+        private System.Windows.Forms.Button buttonSettings;
+        private System.Windows.Forms.Button buttonChooseCourse;
+        private System.Windows.Forms.Button buttonGenExerciese;
+    }
+}

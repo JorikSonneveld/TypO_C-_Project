@@ -1,0 +1,94 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using TypApplication.Model;
+
+namespace TypApplication.Controller
+{
+    public class DatabaseController
+    {
+        //Initialise a new DatabaseContext
+        private ApplicationDatabase ApplicationDatabase;
+
+        //Connect to the ApplicationDatabase
+        private void DbConnect() { ApplicationDatabase = new ApplicationDatabase(); }
+
+        private void SaveDb() { ApplicationDatabase.SaveChanges(); }
+
+        public void AddMistakeToDd(string keycode)
+        {
+            DbConnect();
+            KeyMistake mistake = new KeyMistake { Character = keycode, Count = 1 };
+            if (!ApplicationDatabase.KeyMistakes.Where(c => c.Character == mistake.Character).Any())
+                ApplicationDatabase.KeyMistakes.Add(mistake);
+            else if (ApplicationDatabase.KeyMistakes.Where(c => c.Character == mistake.Character).Any())
+            {
+                var selection = ApplicationDatabase.KeyMistakes.Where(c => c.Character == keycode).Single();
+                selection.Count++;
+            }
+            SaveDb();
+        }
+
+        public bool AddCourse(string input)
+        {
+            DbConnect();
+            Course data = new Course() { Characters = input };
+
+            //If already excists
+            if (ApplicationDatabase.Courses.Any(c => c.Characters.Equals(input)))
+            {
+                return false;
+            }
+            // Add course
+            else
+            {
+                ApplicationDatabase.Courses.Add(data);
+                SaveDb();
+                return true;
+            }
+
+        }
+
+        //function to retrieve random words from the database
+        public List<Word> RetrieveRandomDbWords()
+        {
+            //Select the ApplicationDatabase
+            DbConnect();
+
+            //Make a linq query to select all words from the database
+            var Selection = (from s in ApplicationDatabase.Words select s);
+            //Selection.ToList<Word>();
+
+            //Generate a Random object, a List of Words and a few integers to make the loops work properly
+            Random rnd = new Random();
+            List<Word> words = new List<Word>();
+            int Size = Selection.Count();
+            int RandomSelect;
+            int RandomCounter = SelectRandomNumber(rnd, 1, Size);
+
+            //The 'for' loop ensures that there is a random amount of words selected
+            for (int i = 0; i < RandomCounter; i++)
+            {
+                RandomSelect = SelectRandomNumber(rnd, 1, Size);
+                //The 'foreach' loop ensures that each word is random selected from the database
+                foreach (Word w in Selection)
+                {
+                    if (w.WordID == RandomSelect)
+                    {
+                        words.Add(w);
+                    }
+                }
+            }
+            return words;
+        }
+
+        //Function for generating a random number, given a MaxNumber
+        private int SelectRandomNumber(Random rnd, int MinNumber, int MaxNumber)
+        {
+            return rnd.Next(MinNumber, MaxNumber);
+        }
+    }
+}

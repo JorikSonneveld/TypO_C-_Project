@@ -1,0 +1,77 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using Typo.Controller;
+using Typo.Model.Database;
+using MessageBox = System.Windows.Forms.MessageBox;
+
+namespace Typo.View
+{
+    /// <summary>
+    /// Interaction logic for StudentStatistics.xaml
+    /// </summary>
+    public partial class StudentStatistics : UserControl
+    {
+        private MainWindow mainWindow;
+        private Student student;
+        private DatabaseController databaseController = new DatabaseController();
+        int lol = 2456;
+        
+        public StudentStatistics(MainWindow mainWindow, int ID)
+        {
+            this.mainWindow = mainWindow;
+            student = databaseController.GetStudentByID(ID);
+            InitializeComponent();
+            var Bindings = CreateBindings(student, lol);
+            Results.ItemsSource = databaseController.GetResultsPerStudent(ID).ToList();    
+            DataContext = Bindings;
+        }
+
+        private List<object> CreateBindings(Student student, int test)
+        {
+            var Bindings = new List<object>();
+            Bindings.Add(student);
+            Bindings.Add(databaseController.GetAverageAccuracy(student.ID));
+            Bindings.Add(databaseController.GetAverageKeysPerMinute(student.ID));
+            Bindings.Add(databaseController.GetResultCount(student.ID, false));
+            Bindings.Add(databaseController.GetResultCount(student.ID, true));
+            return Bindings;
+        }
+
+        private void Return_Click(object sender, RoutedEventArgs e)
+        {
+            mainWindow.ClearMainFrameContent();
+            mainWindow.MainFrame.Content = new StudentOverview(mainWindow);
+        }
+
+        private void Edit_Click(object sender, RoutedEventArgs e)
+        {
+            bool Edit = true;
+            mainWindow.ClearMainFrameContent();
+            mainWindow.MainFrame.Content = new StudentAccount(mainWindow, Edit, student.ID);
+            Edit = false;
+        }
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            var result = MessageBox.Show("Are you sure you want to delete \"" + student.Name+ "\"", "Delete",
+                System.Windows.Forms.MessageBoxButtons.YesNo);
+            if (result == System.Windows.Forms.DialogResult.Yes) {
+                mainWindow.ClearMainFrameContent();
+                databaseController.DeleteStudent(student.ID);
+                mainWindow.MainFrame.Content = new StudentOverview(mainWindow);
+            }
+        }
+    }
+}

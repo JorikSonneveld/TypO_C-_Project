@@ -1,0 +1,29 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)"
+              GeneratedClassNamespace="TypoTeacher.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="colorblind" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="colorblindOffTrue" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">-16744448</Value>
+    </Setting>
+    <Setting Name="colorblindOffFalse" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">-65536</Value>
+    </Setting>
+    <Setting Name="colorblindOnTrue" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">-256</Value>
+    </Setting>
+    <Setting Name="colorblindOnFalse" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">-8388480</Value>
+    </Setting>
+    <Setting Name="TextColor" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">-16744448</Value>
+    </Setting>
+    <Setting Name="NUM" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -1,0 +1,28 @@
+﻿using System;
+using System.Windows.Forms;
+using TypApplication.Controller;
+
+namespace TypApplication.View
+{
+    public partial class CourseFinished : UserControl
+    {
+        private readonly MainForm parentForm;
+
+        private readonly DatabaseController dbController;
+
+        public CourseFinished(MainForm parentForm, int keyScore, int accScore, string title)
+        {
+            dbController = parentForm.Database;
+            dbController.SaveResult(2, keyScore, accScore, title);
+            InitializeComponent();
+            this.parentForm = parentForm;
+            labelKeyScore.Text = keyScore.ToString();
+            labelAccScore.Text = accScore + "%";
+        }
+
+        private void ButtonToMain_Click(object sender, EventArgs e)
+        {
+            parentForm.ShowMainMenu();
+        }
+    }
+}

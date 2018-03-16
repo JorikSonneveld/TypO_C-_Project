@@ -1,0 +1,8 @@
+﻿namespace TypApplication.Model
+{
+    public class Course
+    {
+        public int CourseID { get; set; }
+        public string Characters { get; set; }
+    }
+}

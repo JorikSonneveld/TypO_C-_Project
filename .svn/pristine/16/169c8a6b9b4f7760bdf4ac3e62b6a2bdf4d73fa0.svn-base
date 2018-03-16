@@ -1,0 +1,184 @@
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
+using System.Linq;
+using Typo.Controller;
+using Typo.Model;
+using Moq;
+
+namespace TypingApplicationTestEnvoirement.Controller
+{
+    using System.Data.Entity;
+    using System.Security.Cryptography.X509Certificates;
+
+    [TestClass]
+    public class DatabaseControllerTest
+    {
+        DatabaseController dbController = new DatabaseController();
+
+
+        [TestMethod]
+        public void RetrieveRandomDbWords_ShouldRetrieveAtLeastOneRandomWordFromDatabase_WhenCalled()
+        {
+            //Arrange
+            //int expected = 15;
+            //Act
+            //var countWords = dbController.RetrieveRandomDbWords().Split().Length;
+
+            //Assert
+            //Assert.AreEqual(expected, countWords);
+        }
+
+        [TestMethod]
+        public void DeleteCourse_ShouldDeleteCourse_WhenGivenCourseID()
+        {
+            //Arrange
+            var data = new List<Course>
+            {
+                new Course{CourseID = 1, Title = "Test", Text = "esht"},
+                new Course{CourseID = 2, Title = "Testasdf", Text = "sdfh"}
+            }.AsQueryable();
+
+            //Act
+            var mockSet = new Mock<DbSet<Course>>();
+            mockSet.As<IQueryable<Course>>().Setup(m => m.Provider).Returns(data.Provider);
+            mockSet.As<IQueryable<Course>>().Setup(m => m.Expression).Returns(data.Expression);
+            mockSet.As<IQueryable<Course>>().Setup(m => m.ElementType).Returns(data.ElementType);
+            mockSet.As<IQueryable<Course>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
+            var mockApplicationDatabase = new Mock<ApplicationDatabase>();
+            mockApplicationDatabase.Setup(c => c.Courses).Returns(mockSet.Object);
+            var databaseController = new DatabaseController();
+            databaseController.ApplicationDatabase = mockApplicationDatabase.Object;
+
+            var courseList = databaseController.RetrieveAllDbCourses();
+            //Assert.AreEqual("Test", courseList[0].Title);
+            databaseController.DeleteCourse(2);
+            var courseListNew = databaseController.RetrieveAllDbCourses();
+            //Assert.AreEqual("niks", courseListNew[1].Title);
+
+
+            //dbController.AddCourse();
+            //dbController.DeleteCourse(course.CourseID);
+            //Assert.IsNull(mockApplicationDatabase.Object.GetCourseId(course.Title));
+            //Assert
+            //Assert.AreEqual(dbController.ApplicationDatabase.Courses.Any(c => c.Title == "TITLE"), false);
+        }
+
+        [TestMethod]
+        public void RetrieveRandomDbWords_ShouldNotRetrieveEmptyListFromDatabase_WhenCalled()
+        {
+            //arrange
+            int expected = 1;
+            //Act
+            var randomWords = dbController.RetrieveRandomDbWords().ToString();
+            var newCount = randomWords.Split().Length;
+            //Assert
+            Assert.AreEqual(expected, newCount);
+        }
+
+        [TestMethod]
+        public void ShouldRegisterMistake_WhenMistakeMade()
+        {
+            //Arrange
+            var mistake = "A";
+            var testList = new List<string> { mistake };
+
+            //Act
+            //dbController.AddMistakesToDb(testList);
+            var hasMistakes = dbController.HasMistakes();
+
+            //Assert
+            Assert.AreEqual(true, hasMistakes);
+        }
+
+
+        //[TestMethod]
+        //public void ShouldAddCourse_WhenNotExcisted()
+        //{
+        //    //Arrange
+        //    var title = "Unittest";
+        //    var text = "Heel mooi";
+        //    var visible = true;
+        //    var testCourse = "UnitTest";
+
+        //    //Act
+        //    var result = dbController.AddCourse(text, title, visible);
+
+        //    //Assert
+        //    Assert.AreEqual(true, result);
+        //    dbController.DeleteCourse(dbController.GetCourseId(testCourse));
+        //}
+
+        //[TestMethod]
+        //public void ShouldAddResultWhenCourseFinished()
+        //{
+        //    //Arrange
+        //    var title = "UnitTestResult";
+        //    var keyScore = 200;
+        //    var accScore = 95;
+        //    var userNameId = 2;
+
+        //    //Act
+        //    dbController.AddCourse("text", title, true);
+        //    this.dbController.SaveResult(keyScore, accScore, userNameId, title);
+
+        //    //Assert
+        //    Assert.AreEqual(true, this.dbController.GetCourseVisibility(title));
+        //    dbController.DeleteCourse(dbController.GetCourseId(title));
+        //    //this.dbController.ApplicationDatabase.Results.Remove(this.dbController.ApplicationDatabase.Results.Single(x => x.Title.Equals(title)));
+        //}
+
+        [TestMethod]
+        public void RetrieveCoursesCurrentlyAvailable_ShouldReturnNULL_WhenCurrentTimeIsNotBetweenCourseStartAndEndTime()
+        {
+            //Arrange
+            var data = new List<Course>
+            {
+                new Course { Title = "Titel", Text = "Deze toets is nog bezig", StartDate = new DateTime(2221,1,1,1,1,1), EndDate = new DateTime(2222,1,1,1,1,1) , Official = true },
+                new Course { Title = "Titel", Text = "Deze toets is nog bezig", StartDate = new DateTime(2026,1,1,1,1,1), EndDate = new DateTime(2017,1,1,1,1,1) , Official = true },
+                new Course { Title = "Titel", Text = "Deze toets is nog bezig", StartDate = new DateTime(2017,1,1,1,1,1), EndDate = new DateTime(2016,1,1,1,1,1) , Official = true }
+            }.AsQueryable();
+
+            //Act
+            var mockSet = new Mock<DbSet<Course>>();
+            mockSet.As<IQueryable<Course>>().Setup(m => m.Provider).Returns(data.Provider);
+            mockSet.As<IQueryable<Course>>().Setup(m => m.Expression).Returns(data.Expression);
+            mockSet.As<IQueryable<Course>>().Setup(m => m.ElementType).Returns(data.ElementType);
+
+            var mockApplicationDatabase = new Mock<ApplicationDatabase>();
+            mockApplicationDatabase.Setup(c => c.Courses).Returns(mockSet.Object);
+            var DatabaseController = new DatabaseController();
+            DatabaseController.ApplicationDatabase = mockApplicationDatabase.Object;
+            Course courses = DatabaseController.RetrieveCourseCurrentlyAvailable();
+
+            //Assert
+            Assert.IsNull(courses);
+        }
+
+        [TestMethod]
+        public void RetrieveCoursesCurrentlyAvailable_ShouldReturnCourse_WhenCurrentTimeIsBetweenCourseStartAndEndTime()
+        {
+            //Arrange
+            var data = new List<Course>
+            {
+                new Course { Title = "Titel", Text = "Deze toets is nog bezig", StartDate = new DateTime(2017,1,1,1,1,1), EndDate = new DateTime(2222,1,1,1,1,1) , Official = true },
+
+            }.AsQueryable();
+
+            //Act
+            var mockSet = new Mock<DbSet<Course>>();
+            mockSet.As<IQueryable<Course>>().Setup(m => m.Provider).Returns(data.Provider);
+            mockSet.As<IQueryable<Course>>().Setup(m => m.Expression).Returns(data.Expression);
+            mockSet.As<IQueryable<Course>>().Setup(m => m.ElementType).Returns(data.ElementType);
+
+            var mockApplicationDatabase = new Mock<ApplicationDatabase>();
+            mockApplicationDatabase.Setup(c => c.Courses).Returns(mockSet.Object);
+            var DatabaseController = new DatabaseController();
+            DatabaseController.ApplicationDatabase = mockApplicationDatabase.Object;
+            Course courses = DatabaseController.RetrieveCourseCurrentlyAvailable();
+
+            //Assert
+            Assert.AreEqual("Deze toets is nog bezig", courses.Text);
+        }
+    }
+}

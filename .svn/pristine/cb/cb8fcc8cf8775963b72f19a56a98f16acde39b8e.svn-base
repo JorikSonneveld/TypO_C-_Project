@@ -1,0 +1,335 @@
+﻿namespace TypApplication.View
+{
+    partial class NumPad
+    {
+        /// <summary> 
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary> 
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Component Designer generated code
+
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.btnNumLock = new System.Windows.Forms.Button();
+            this.btnSlash = new System.Windows.Forms.Button();
+            this.btnStar = new System.Windows.Forms.Button();
+            this.btnMinus = new System.Windows.Forms.Button();
+            this.btn7 = new System.Windows.Forms.Button();
+            this.btn8 = new System.Windows.Forms.Button();
+            this.btn9 = new System.Windows.Forms.Button();
+            this.btnPlus = new System.Windows.Forms.Button();
+            this.btn4 = new System.Windows.Forms.Button();
+            this.btn5 = new System.Windows.Forms.Button();
+            this.btn6 = new System.Windows.Forms.Button();
+            this.btn1 = new System.Windows.Forms.Button();
+            this.btn2 = new System.Windows.Forms.Button();
+            this.btn3 = new System.Windows.Forms.Button();
+            this.btnEnter = new System.Windows.Forms.Button();
+            this.btnPeriod = new System.Windows.Forms.Button();
+            this.btn0 = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // btnNumLock
+            // 
+            this.btnNumLock.BackColor = System.Drawing.Color.White;
+            this.btnNumLock.FlatAppearance.BorderSize = 0;
+            this.btnNumLock.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnNumLock.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNumLock.Location = new System.Drawing.Point(4, 4);
+            this.btnNumLock.Margin = new System.Windows.Forms.Padding(4);
+            this.btnNumLock.Name = "btnNumLock";
+            this.btnNumLock.Size = new System.Drawing.Size(80, 80);
+            this.btnNumLock.TabIndex = 73;
+            this.btnNumLock.Text = "NumLock";
+            this.btnNumLock.UseVisualStyleBackColor = false;
+            // 
+            // btnSlash
+            // 
+            this.btnSlash.BackColor = System.Drawing.Color.White;
+            this.btnSlash.FlatAppearance.BorderSize = 0;
+            this.btnSlash.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnSlash.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSlash.Location = new System.Drawing.Point(92, 4);
+            this.btnSlash.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSlash.Name = "btnSlash";
+            this.btnSlash.Size = new System.Drawing.Size(80, 80);
+            this.btnSlash.TabIndex = 74;
+            this.btnSlash.Text = "/";
+            this.btnSlash.UseVisualStyleBackColor = false;
+            // 
+            // btnStar
+            // 
+            this.btnStar.BackColor = System.Drawing.Color.White;
+            this.btnStar.FlatAppearance.BorderSize = 0;
+            this.btnStar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnStar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStar.Location = new System.Drawing.Point(180, 4);
+            this.btnStar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnStar.Name = "btnStar";
+            this.btnStar.Size = new System.Drawing.Size(80, 80);
+            this.btnStar.TabIndex = 75;
+            this.btnStar.Text = "*";
+            this.btnStar.UseVisualStyleBackColor = false;
+            // 
+            // btnMinus
+            // 
+            this.btnMinus.BackColor = System.Drawing.Color.White;
+            this.btnMinus.FlatAppearance.BorderSize = 0;
+            this.btnMinus.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnMinus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMinus.Location = new System.Drawing.Point(268, 4);
+            this.btnMinus.Margin = new System.Windows.Forms.Padding(4);
+            this.btnMinus.Name = "btnMinus";
+            this.btnMinus.Size = new System.Drawing.Size(80, 80);
+            this.btnMinus.TabIndex = 76;
+            this.btnMinus.Text = "-";
+            this.btnMinus.UseVisualStyleBackColor = false;
+            // 
+            // btn7
+            // 
+            this.btn7.BackColor = System.Drawing.Color.White;
+            this.btn7.FlatAppearance.BorderSize = 0;
+            this.btn7.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btn7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn7.Location = new System.Drawing.Point(4, 92);
+            this.btn7.Margin = new System.Windows.Forms.Padding(4);
+            this.btn7.Name = "btn7";
+            this.btn7.Size = new System.Drawing.Size(80, 80);
+            this.btn7.TabIndex = 77;
+            this.btn7.Text = "7";
+            this.btn7.UseVisualStyleBackColor = false;
+            // 
+            // btn8
+            // 
+            this.btn8.BackColor = System.Drawing.Color.White;
+            this.btn8.FlatAppearance.BorderSize = 0;
+            this.btn8.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btn8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn8.Location = new System.Drawing.Point(92, 92);
+            this.btn8.Margin = new System.Windows.Forms.Padding(4);
+            this.btn8.Name = "btn8";
+            this.btn8.Size = new System.Drawing.Size(80, 80);
+            this.btn8.TabIndex = 78;
+            this.btn8.Text = "8";
+            this.btn8.UseVisualStyleBackColor = false;
+            // 
+            // btn9
+            // 
+            this.btn9.BackColor = System.Drawing.Color.White;
+            this.btn9.FlatAppearance.BorderSize = 0;
+            this.btn9.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btn9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn9.Location = new System.Drawing.Point(180, 92);
+            this.btn9.Margin = new System.Windows.Forms.Padding(4);
+            this.btn9.Name = "btn9";
+            this.btn9.Size = new System.Drawing.Size(80, 80);
+            this.btn9.TabIndex = 79;
+            this.btn9.Text = "9";
+            this.btn9.UseVisualStyleBackColor = false;
+            // 
+            // btnPlus
+            // 
+            this.btnPlus.BackColor = System.Drawing.Color.White;
+            this.btnPlus.FlatAppearance.BorderSize = 0;
+            this.btnPlus.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnPlus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPlus.Location = new System.Drawing.Point(268, 92);
+            this.btnPlus.Margin = new System.Windows.Forms.Padding(4);
+            this.btnPlus.Name = "btnPlus";
+            this.btnPlus.Size = new System.Drawing.Size(80, 168);
+            this.btnPlus.TabIndex = 80;
+            this.btnPlus.Text = "+";
+            this.btnPlus.UseVisualStyleBackColor = false;
+            // 
+            // btn4
+            // 
+            this.btn4.BackColor = System.Drawing.Color.White;
+            this.btn4.FlatAppearance.BorderSize = 0;
+            this.btn4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btn4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn4.Location = new System.Drawing.Point(4, 180);
+            this.btn4.Margin = new System.Windows.Forms.Padding(4);
+            this.btn4.Name = "btn4";
+            this.btn4.Size = new System.Drawing.Size(80, 80);
+            this.btn4.TabIndex = 81;
+            this.btn4.Text = "4";
+            this.btn4.UseVisualStyleBackColor = false;
+            // 
+            // btn5
+            // 
+            this.btn5.BackColor = System.Drawing.Color.White;
+            this.btn5.FlatAppearance.BorderSize = 0;
+            this.btn5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btn5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn5.Location = new System.Drawing.Point(92, 180);
+            this.btn5.Margin = new System.Windows.Forms.Padding(4);
+            this.btn5.Name = "btn5";
+            this.btn5.Size = new System.Drawing.Size(80, 80);
+            this.btn5.TabIndex = 82;
+            this.btn5.Text = "5";
+            this.btn5.UseVisualStyleBackColor = false;
+            // 
+            // btn6
+            // 
+            this.btn6.BackColor = System.Drawing.Color.White;
+            this.btn6.FlatAppearance.BorderSize = 0;
+            this.btn6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btn6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn6.Location = new System.Drawing.Point(180, 180);
+            this.btn6.Margin = new System.Windows.Forms.Padding(4);
+            this.btn6.Name = "btn6";
+            this.btn6.Size = new System.Drawing.Size(80, 80);
+            this.btn6.TabIndex = 83;
+            this.btn6.Text = "6";
+            this.btn6.UseVisualStyleBackColor = false;
+            // 
+            // btn1
+            // 
+            this.btn1.BackColor = System.Drawing.Color.White;
+            this.btn1.FlatAppearance.BorderSize = 0;
+            this.btn1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btn1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn1.Location = new System.Drawing.Point(4, 268);
+            this.btn1.Margin = new System.Windows.Forms.Padding(4);
+            this.btn1.Name = "btn1";
+            this.btn1.Size = new System.Drawing.Size(80, 80);
+            this.btn1.TabIndex = 84;
+            this.btn1.Text = "1";
+            this.btn1.UseVisualStyleBackColor = false;
+            // 
+            // btn2
+            // 
+            this.btn2.BackColor = System.Drawing.Color.White;
+            this.btn2.FlatAppearance.BorderSize = 0;
+            this.btn2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btn2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn2.Location = new System.Drawing.Point(92, 268);
+            this.btn2.Margin = new System.Windows.Forms.Padding(4);
+            this.btn2.Name = "btn2";
+            this.btn2.Size = new System.Drawing.Size(80, 80);
+            this.btn2.TabIndex = 85;
+            this.btn2.Text = "2";
+            this.btn2.UseVisualStyleBackColor = false;
+            // 
+            // btn3
+            // 
+            this.btn3.BackColor = System.Drawing.Color.White;
+            this.btn3.FlatAppearance.BorderSize = 0;
+            this.btn3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btn3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn3.Location = new System.Drawing.Point(180, 268);
+            this.btn3.Margin = new System.Windows.Forms.Padding(4);
+            this.btn3.Name = "btn3";
+            this.btn3.Size = new System.Drawing.Size(80, 80);
+            this.btn3.TabIndex = 86;
+            this.btn3.Text = "3";
+            this.btn3.UseVisualStyleBackColor = false;
+            // 
+            // btnEnter
+            // 
+            this.btnEnter.BackColor = System.Drawing.Color.White;
+            this.btnEnter.FlatAppearance.BorderSize = 0;
+            this.btnEnter.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnEnter.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEnter.Location = new System.Drawing.Point(268, 268);
+            this.btnEnter.Margin = new System.Windows.Forms.Padding(4);
+            this.btnEnter.Name = "btnEnter";
+            this.btnEnter.Size = new System.Drawing.Size(80, 168);
+            this.btnEnter.TabIndex = 87;
+            this.btnEnter.Text = "Enter";
+            this.btnEnter.UseVisualStyleBackColor = false;
+            // 
+            // btnPeriod
+            // 
+            this.btnPeriod.BackColor = System.Drawing.Color.White;
+            this.btnPeriod.FlatAppearance.BorderSize = 0;
+            this.btnPeriod.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnPeriod.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPeriod.Location = new System.Drawing.Point(180, 356);
+            this.btnPeriod.Margin = new System.Windows.Forms.Padding(4);
+            this.btnPeriod.Name = "btnPeriod";
+            this.btnPeriod.Size = new System.Drawing.Size(80, 80);
+            this.btnPeriod.TabIndex = 88;
+            this.btnPeriod.Text = ".";
+            this.btnPeriod.UseVisualStyleBackColor = false;
+            // 
+            // btn0
+            // 
+            this.btn0.BackColor = System.Drawing.Color.White;
+            this.btn0.FlatAppearance.BorderSize = 0;
+            this.btn0.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btn0.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn0.Location = new System.Drawing.Point(4, 356);
+            this.btn0.Margin = new System.Windows.Forms.Padding(4);
+            this.btn0.Name = "btn0";
+            this.btn0.Size = new System.Drawing.Size(168, 80);
+            this.btn0.TabIndex = 89;
+            this.btn0.Text = "0";
+            this.btn0.UseVisualStyleBackColor = false;
+            // 
+            // NumPad
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btn0);
+            this.Controls.Add(this.btnPeriod);
+            this.Controls.Add(this.btnEnter);
+            this.Controls.Add(this.btn3);
+            this.Controls.Add(this.btn2);
+            this.Controls.Add(this.btn1);
+            this.Controls.Add(this.btn6);
+            this.Controls.Add(this.btn5);
+            this.Controls.Add(this.btn4);
+            this.Controls.Add(this.btnPlus);
+            this.Controls.Add(this.btn9);
+            this.Controls.Add(this.btn8);
+            this.Controls.Add(this.btn7);
+            this.Controls.Add(this.btnMinus);
+            this.Controls.Add(this.btnStar);
+            this.Controls.Add(this.btnSlash);
+            this.Controls.Add(this.btnNumLock);
+            this.Name = "NumPad";
+            this.Size = new System.Drawing.Size(350, 440);
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        public System.Windows.Forms.Button btnNumLock;
+        public System.Windows.Forms.Button btnSlash;
+        public System.Windows.Forms.Button btnStar;
+        public System.Windows.Forms.Button btnMinus;
+        public System.Windows.Forms.Button btn7;
+        public System.Windows.Forms.Button btn8;
+        public System.Windows.Forms.Button btn9;
+        public System.Windows.Forms.Button btnPlus;
+        public System.Windows.Forms.Button btn4;
+        public System.Windows.Forms.Button btn5;
+        public System.Windows.Forms.Button btn6;
+        public System.Windows.Forms.Button btn1;
+        public System.Windows.Forms.Button btn2;
+        public System.Windows.Forms.Button btn3;
+        public System.Windows.Forms.Button btnEnter;
+        public System.Windows.Forms.Button btnPeriod;
+        public System.Windows.Forms.Button btn0;
+    }
+}

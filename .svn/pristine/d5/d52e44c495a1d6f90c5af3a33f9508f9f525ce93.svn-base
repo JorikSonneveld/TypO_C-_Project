@@ -1,0 +1,35 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using TypApplication.Model;
+
+namespace TypApplication.Controller
+{
+    public class ExerciseController
+    {
+        private RichTextBox exerciseTestBox;
+
+        public ExerciseController(RichTextBox exerciseTestBox)
+        {
+            this.exerciseTestBox = exerciseTestBox;
+        }
+
+        public void ChangeExerciseTestBox(Exercise exercise)
+        {
+            exerciseTestBox.Text = exercise.PrintExercise();
+        }
+
+        public void CaluculateAccuracy()
+        {
+
+            if (KeyData.KeystrokeCounter > 0 && KeyData.KeystrokeCounter >= KeyData.GoodKeyPresses)
+            {
+                decimal temp = KeyData.GoodKeyPresses / (KeyData.KeystrokeCounter * 1m) * 100;
+                KeyData.Accuracy = Convert.ToInt32(temp);
+            }
+        }
+    }
+}

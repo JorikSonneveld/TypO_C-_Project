@@ -1,0 +1,46 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
+namespace Typo.View
+{
+    /// <summary>
+    /// Interaction logic for TeacherMenu.xaml
+    /// </summary>
+    public partial class TeacherMenu : UserControl
+    {
+        private MainWindow mainWindow;
+
+        public TeacherMenu(MainWindow mainWindow)
+        {
+            InitializeComponent();
+            this.mainWindow = mainWindow;
+        }
+
+        private void Manage_Courses_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Not implemented yet.");
+        }
+
+        private void Student_Overview_Click(object sender, RoutedEventArgs e)
+        {
+            mainWindow.Content = new StudentOverview(mainWindow);
+        }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            mainWindow.Content = new MainMenu(mainWindow);
+        }
+    }
+}

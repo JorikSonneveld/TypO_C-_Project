@@ -1,0 +1,54 @@
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
+using TypApplication.Controller;
+using TypApplication.Model;
+
+
+
+namespace TypingApplicationTestEnvoirement.Controller
+{
+    [TestClass]
+    public class DatabaseControllerTest
+    {
+        [TestMethod]
+        public void retrieverandomdbwords_shouldretrieveatleastonerandomwordfromdatabase_whencalled()
+        {
+            //arrange
+            DatabaseController databasecontroller = new DatabaseController();
+            var words = new List<string>();
+
+            //act
+            databasecontroller.RetrieveRandomDbWords();
+            int actual = databasecontroller.GetWordListCount();
+
+            //assert
+            Assert.AreEqual(15, actual);
+
+        }
+
+        //[TestMethod]
+        //public void RetrieveRandomDbWords_ShouldNotRetrieveEmptyListFromDatabase_WhenCalled()
+        //{
+        //    //arrange
+        //    DatabaseController databaseController = new DatabaseController();
+
+        //    //act
+        //    databaseController.RetrieveRandomDbWords();
+        //    //assert
+        //}
+
+
+        //[TestMethod]
+        //public void ShouldAddCourse_WhenNotExcisted()
+        //{
+        //    //arrange
+        //    DatabaseController databaseController = new DatabaseController();
+
+
+        //    //act and assert
+        //    Assert.IsTrue(databaseController.AddCourse("test"));
+
+        //}
+    }
+}

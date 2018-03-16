@@ -1,0 +1,12 @@
+﻿using System.Data.Entity;
+
+namespace TypApplication.Model
+{
+    public class ApplicationDatabase : DbContext
+    {
+        //Initializing database
+        public ApplicationDatabase() : base("TypApplicationDB") { }
+        public DbSet<Word> Words { get; set; }
+
+    }
+}

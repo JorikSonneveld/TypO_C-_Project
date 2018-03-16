@@ -1,0 +1,77 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using TypoTeacher.Controller;
+using TypoTeacher.Model.Database;
+
+namespace TypoTeacher.View
+{
+    public partial class Overview : UserControl
+    {
+        private DatabaseController databaseController = new DatabaseController();
+        private string[] classes;
+        private string selectedClass;
+        private MainForm parentForm;
+
+        //Constructor for initialising the Parentform and the classes data needed to show the right students
+        public Overview(MainForm parent)
+        {
+            parentForm = parent;
+            classes = databaseController.GetClassCodes();
+            InitializeComponent();
+        }
+
+        //This method can be called from the child controls so that only the parent form will be shown
+        public void ShowOverview() {
+            ClearForm();
+            parentForm.ShowOverview();
+        }
+
+        //This method let the application show the main menu
+        public void ShowMainMenu() {
+            ClearForm();
+            parentForm.ShowMainMenu();
+        }
+
+        //This method causes the StudentOverview control is shown
+        public void ShowStudentOverview() {
+            ClearForm();
+            StudentOverview studentOverview = new StudentOverview(this);
+            Controls.Add(studentOverview);
+            CenterView(studentOverview);
+        }
+
+        //This method will cause every child controls will appear in the middle of the parent control
+        public void CenterView(Control control)
+        {
+            control.Left = (ClientSize.Width - control.Width) / 2;
+            control.Top = (ClientSize.Height - control.Height) / 2;
+            control.Anchor = AnchorStyles.None;
+        }
+
+        //ClearForm clears the overviewform from all controls that are currently active
+        public void ClearForm()
+        {
+            Controls.Clear();
+        }
+
+        //The methods below are eventhandlers for the buttons in the overview control
+        //StudentOverview_Click will cause the studentoverview will be shown when the Student overview button is clicked
+        private void StudentOverview_Click(object sender, EventArgs e)
+        {
+            ShowStudentOverview();
+        }
+
+        //This method makes the application returns to the main manu when the 'typo' logo is clicked
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            ShowMainMenu();
+        }
+    }
+}

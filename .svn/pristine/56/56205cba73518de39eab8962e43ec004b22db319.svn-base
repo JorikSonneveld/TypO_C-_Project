@@ -1,0 +1,107 @@
+﻿namespace TypingApplicationTestEnvoirement.Controller
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Windows.Forms;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using TypApplication.Controller;
+
+    [TestClass]
+    public class CourseControllerTest
+    {
+        CourseController courseController = new CourseController();
+
+        [TestMethod]
+        public void RetrieveRandomDbWords_ShouldRetrieveAtLeastOneRandomWordFromDatabase_WhenCalled()
+        {
+            //Arrange
+            var keyScore = 300;
+            var accScore = 95;
+            var userNameId = 2;
+            var title = "Title";
+
+            //Act
+            courseController.db.SaveResult(keyScore, accScore, userNameId, title);
+            //var test = ;
+
+        //    //Assert
+        //    Assert.IsNotNull(courseController.db.GetCourseId(title));
+        }
+
+        [TestMethod]
+        public void FillDataGridViewWithVisibleCourses_ShouldFillDataGridViewWithACell_WhenVisibleIsTrue()
+        {
+            //Arrange
+            var characters = "Test Text";
+            var title = "Test title";
+            var visible = true;
+            DataGridView dgv = new DataGridView { ColumnCount = 1 };
+            DataGridViewColumn Title = new DataGridViewColumn
+            {
+                CellTemplate = new DataGridViewTextBoxCell(),
+                ValueType = typeof(string),
+                Name = "Title"
+            };
+            dgv.Columns.Insert(1, Title);
+
+            //Act
+            courseController.db.AddCourse(characters, title, visible);
+            courseController.FillDataGridViewWithVisibleCourses(dgv);
+            var result = "";
+            foreach (DataGridViewRow row in dgv.Rows)
+            {
+                for (int i = 0; i < row.Cells.Count; i++)
+                {
+                    if (row.Cells[i].Value != null)
+                    {
+                        if (row.Cells[i].Value.ToString().Equals("Test title"))
+                        {
+                            result = row.Cells[i].Value.ToString();
+                            break;
+                        }
+                    }
+                }
+            }
+            courseController.db.DeleteCourse(courseController.db.GetCourseId(result));
+            //Assert
+            Assert.AreEqual(result, title);
+        }
+
+        [TestMethod]
+        public void FillDataGridViewWithVisibleCourses_ShouldFillDataGridViewWithACell_WhenVisibleIsFalse()
+        {
+            //Arrange
+            var characters = "Test Text";
+            var title = "Test title";
+            var visible = false;
+            DataGridView dgv = new DataGridView { ColumnCount = 1 };
+            DataGridViewColumn Title = new DataGridViewColumn
+            {
+                CellTemplate = new DataGridViewTextBoxCell(),
+                ValueType = typeof(string),
+                Name = "Title"
+            };
+            dgv.Columns.Insert(1, Title);
+
+            //Act
+            courseController.db.AddCourse(characters, title, visible);
+            courseController.FillDataGridViewWithVisibleCourses(dgv);
+            var result = "";
+            foreach (DataGridViewRow row in dgv.Rows)
+            {
+                for (int i = 0; i < row.Cells.Count; i++)
+                {
+                    if (row.Cells[i].Value != null)
+                    {
+                        if (row.Cells[i].Value.ToString().Equals("Test title"))
+                            result = row.Cells[i].Value.ToString();
+                    }
+                }
+            }
+            courseController.db.DeleteCourse(courseController.db.GetCourseId(result));
+            //Assert
+            Assert.AreEqual(result, "");
+        }
+    }
+}

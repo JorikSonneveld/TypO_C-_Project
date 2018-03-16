@@ -1,0 +1,64 @@
+﻿using System;
+using System.Drawing;
+using System.Windows.Forms;
+using TypApplication.Controller;
+using TypApplication.Model;
+
+namespace TypApplication.View
+{
+    public partial class MainMenu : UserControl
+    {
+        private readonly MainForm parentForm;
+
+        public MainMenu(MainForm parentForm)
+        {
+            this.parentForm = parentForm;
+            InitializeComponent();            
+        }
+
+        private void NewExerciseButton_Click(object sender, EventArgs e)
+        {
+            parentForm.NewWordExercise();
+        }
+
+        private void ButtonSettings_Click(object sender, EventArgs e)
+        {
+            parentForm.ShowSettings(); // go to the settings menu
+        }
+
+        private void QuitButton_Click(object sender, EventArgs e)
+        {
+            Application.Exit(); // exit the application
+        }
+
+        private void ChooseCourse_Click(object sender, EventArgs e)
+        {
+            parentForm.ShowCourses(); // go to the courses menu
+        }
+
+        private void ButtonGenExerciese_Click(object sender, EventArgs e)
+        {
+            parentForm.NewGeneratedExcercise(); // make a exercise that is generated with you common mistakes
+        }
+
+        private void TypingExplanation_Click(object sender, EventArgs e)
+        {
+            parentForm.ShowTypingExplanation(); // go to the typing explpanation menu
+        }
+
+        private void BeginCourse_Click(object sender, EventArgs e)
+        {
+            parentForm.BeginCourse(); // go to the available courses
+        }
+
+        private void NumberExercise_Click(object sender, EventArgs e)
+        {
+            parentForm.NewNumberExercise(new NumberExercise(0, 100, 1)); // make a exercise that contains only numbers
+        }
+
+        private void btnCharacterExercise_Click(object sender, EventArgs e)
+        {
+            parentForm.ShowCharacterExercisePicker();   
+        }
+    }
+}

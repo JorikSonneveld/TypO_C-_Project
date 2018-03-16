@@ -1,0 +1,311 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Threading;
+using Typo.Model;
+using Typo.Properties;
+using Typo.View;
+
+namespace Typo.Controller
+{
+    public class ExerciseController
+    {
+        private readonly DatabaseController databaseController = new DatabaseController();
+        private readonly ExerciseView exerciseView;
+        private readonly KeyData keydata = new KeyData();
+        public KeyboardController keyboardController { get; set; }
+        public Exercise Exercise { get; set; }
+        public bool upperCaseLetter;
+
+        private DispatcherTimer dispatcherTimer;
+        private bool exerciseStarted = false;
+
+        /// <summary>
+        /// Adding a new ExerciseController based on a specific Exersise, Needs a ExerciseView and Exercise
+        /// </summary>
+        public ExerciseController(ExerciseView exerciseView, Exercise exercise)
+        {
+            this.exerciseView = exerciseView;
+            Exercise = exercise;
+            keyboardController = new KeyboardController(exerciseView, this);
+            exerciseView.ExerciseTextBox.DataContext = Exercise;
+            InitializeTimer();
+        }
+
+        /// <summary>
+        /// Adding a new ExerciseController based on an ExerciseType, Needs a ExerciseView and Exercise
+        /// </summary>
+        public ExerciseController(ExerciseView exerciseView, ExerciseType exerciseType)
+        {
+            switch (exerciseType)
+            {
+                case ExerciseType.Word:
+                    CreateWordExercise();
+                    break;
+                case ExerciseType.Number:
+                    CreateNumberExercise();
+                    break;
+                case ExerciseType.Generated:
+                    CreateWordExercise();
+                    break;
+            }
+            this.exerciseView = exerciseView;
+            keyboardController = new KeyboardController(exerciseView, this);
+            exerciseView.ExerciseTextBoxParagraph.Inlines.Add(new Run(Exercise.ExerciseString));
+            InitializeTimer();
+        }
+
+        /// <summary>
+        /// When Constructor with ExerciseType.Number is called, generate a random NumberExersice
+        /// </summary>
+        public void CreateNumberExercise()
+        {
+            //Hardcoded - TOOD Selectionmenu for Min/Max numbers
+            Exercise = new NumberExercise(-100, 100, 15);
+        }
+
+        /// <summary>
+        /// When Constructor with ExerciseType.Word is called, generate a random WordExersice
+        /// </summary>
+        public void CreateWordExercise()
+        {
+            Exercise = new WordExercise(databaseController.RetrieveRandomDbWords());
+        }
+
+        /// <summary>
+        /// Handle the incoming key, send from ExerciseView.
+        /// Checks if InputKey == ExpectedKey
+        /// </summary>
+        public void Handle_Key(object sender, KeyEventArgs e)
+        {
+            KeyData.KeystrokeCounter++;
+            if (!exerciseStarted)
+            {
+                dispatcherTimer.Start();
+                exerciseStarted = true;
+            }
+            var inputKey = KeyEventConverter(e);
+
+            Console.WriteLine("Invoer = " + inputKey);
+            Console.WriteLine("Epected = " + GetExpectedChar());
+            if (inputKey == GetExpectedChar().ToString())
+            {
+                KeyData.GoodKeyPresses++;
+                SetNextExpectedKey();
+                keyboardController.HandleKey_Down(e, Brushes.Gray);
+                keyboardController.HighlightCorrectButton(GetExpectedChar(), Brushes.Gold);
+            }
+            else
+            {
+                keyboardController.HandleKey_Down(e, SettingsView.ReturnBrushColorFromInt(Settings.Default.FalseColor));
+                keyboardController.HighlightCorrectButton(GetExpectedChar(), Brushes.Green);
+            }
+            CalculateAccuracy();
+        }
+
+        /// <summary>
+        /// Actions when Key is Up, send from ExerciseView.
+        /// </summary>
+        public void Handle_Key_Up(object sender, KeyEventArgs e)
+        {
+            keyboardController.HandleKey_Up(e, Brushes.LightGray);
+        }
+
+        /// <summary>
+        /// Converts a KeyEventArgs to a single letter returns a string,
+        /// Also checks if letter is Uppercase Or Lowercase
+        /// </summary>
+        private string KeyEventConverter(KeyEventArgs e)
+        {
+            var inputString = e.Key.ToString().ToLower();
+
+            //Check if inputKey is not a letter
+            if (inputString.Length > 1)
+                if (inputString == "leftshift" || inputString == "rightshift")
+                    upperCaseLetter = true;
+                else if (inputString == "space" || inputString == "deadcharprocessed")
+                    inputString = " ";
+                else
+                    inputString = OemCodeConvert(e, upperCaseLetter);
+
+            if (Console.CapsLock)
+                upperCaseLetter = true;
+            if (upperCaseLetter)
+                inputString = inputString.ToUpper();
+            return inputString;
+        }
+
+        /// <summary>
+        /// If InputKey is an OemKey, returns a string of the Oem key/
+        /// If Shift is pressed, return other character.
+        /// Example; @ instead of 2 OR ? instead of /
+        /// </summary>
+        private string OemCodeConvert(KeyEventArgs e, bool upperCaseLetter)
+        {
+            string returnString;
+            var stringKey = KeyData.keysList.FirstOrDefault(k => k.key == e.Key);
+            if (stringKey != null)
+                returnString = stringKey.String;
+            else
+                return "";
+
+            if (upperCaseLetter)
+                returnString = returnString[returnString.Length - 1] + "";
+            else
+                returnString = returnString[0] + "";
+            return returnString;
+        }
+
+        /// <summary>
+        /// Checks if User is at the end of the Exercise
+        /// </summary>
+        public bool CheckDone()
+        {
+            if (Exercise.ExerciseString.Length == 1)
+            {
+                //TODO FIX naar volgend scherm
+                var cf = new CourseFisnished(7, 654);
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Returns exepected character from exercise, in Char format
+        /// </summary>
+        public char GetExpectedChar()
+        {
+            return Exercise.ExerciseString[0];
+        }
+
+        /// <summary>
+        /// Sets the next expected key in the exercise.
+        /// </summary>
+        public void SetNextExpectedKey()
+        {
+            if (CheckDone())
+                return;
+            Exercise.InputString += Exercise.ExerciseString[0];
+            Exercise.ExerciseString = Exercise.ExerciseString.Substring(1, Exercise.ExerciseString.Count() - 1);
+            exerciseView.ExerciseTextBoxParagraph.Inlines.Clear();
+            exerciseView.ExerciseTextBoxParagraph.Inlines.Add(new Run(Exercise.InputString) {Foreground = SettingsView.ReturnBrushColorFromInt(Settings.Default.TextColor)});
+            exerciseView.ExerciseTextBoxParagraph.Inlines.Add(new Run(Exercise.ExerciseString));
+        }
+
+        /// <summary>
+        /// Resets the values, called when new exercise starts
+        /// </summary>
+        public void InitializeTimer()
+        {
+            KeyData.GoodKeyPresses = 0;
+            KeyData.KeystrokeTime = 0;
+            KeyData.KeystrokesPerMinute = 0;
+            KeyData.Accuracy = 100;
+            KeyData.KeystrokeCounter = 0;
+            dispatcherTimer.Tick -= null;
+            dispatcherTimer.Stop();
+            dispatcherTimer = null;
+            dispatcherTimer = new DispatcherTimer();
+            dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 50);
+
+        }
+
+        private void dispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            KeyData.KeystrokeTime++; //add one to the timer per tick
+            if (KeyData.KeystrokeTime == 1) //if its the first time
+                keydata.StartMillisec =
+                    Convert.ToInt64((DateTime.Now - DateTime.MinValue)
+                        .TotalMilliseconds); //a benchmark time in milliseconds where every time is calculated from
+
+
+            keydata.CurrentMillisec =
+                Convert.ToInt64((DateTime.Now - DateTime.MinValue)
+                    .TotalMilliseconds); //the current time in milliseconds
+
+            if (keydata.CurrentMillisec - keydata.StartMillisec >= 0
+            ) //check if the current time is higher then the benchmarktime
+                keydata.Delay =
+                    keydata.CurrentMillisec - keydata.StartMillisec; //calculate the time difference in milliseconds
+            if (KeyData.KeystrokeTime % 5 == 0) //check if the count of ticks will be 0 if divided by zero
+                CalculateKeystrokesPerMinute();
+
+            exerciseView.KeyStrokesLabel.Content = "Keystrokes per minute:" + KeyData.KeystrokesPerMinute;
+        }
+
+        public void CalculateKeystrokesPerMinute()
+        {
+            var temp = KeyData.KeystrokeCounter /
+                       (keydata.Delay /
+                        60000m); // first make a time in minutes from the delay then calculate the stokes per minute
+            KeyData.KeystrokesPerMinute = Convert.ToInt32(temp);
+        }
+
+        public void CalculateAccuracy()
+        {
+            var temp = KeyData.GoodKeyPresses / (KeyData.KeystrokeCounter * 1m) * 100;
+            KeyData.Accuracy = Convert.ToInt32(temp);
+            exerciseView.AccuracyLabel.Content = "Accuracy: " + KeyData.Accuracy + "%";
+        }
+
+        public void UpdateExerciseToNextChar()
+        {
+            KeyData.GoodKeyPresses++;
+            Exercise.InputString += Exercise.ExerciseString[0];
+            Exercise.ExerciseString = Exercise.ExerciseString.Substring(1, Exercise.ExerciseString.Count() - 1);
+        }
+
+        public string MakeWordsFromChars(List<char> charlist, int maxWordLength)
+        {
+            if (!charlist.Any() || maxWordLength < 3) // check if the list is empty 
+                return "";
+
+            var dbWords = databaseController.RetrieveAllWords(); // get all the words from the db
+            var ExerciseWords = new List<string>();
+            var ExerciseLength = 5; // this is how long the exercise will be
+            var rnd = new Random();
+            for (var i = 0; i < dbWords.Count; i++) // go through every word from the db
+                if (ExerciseWords.Count >= ExerciseLength) // check if the exercise is long enough
+                    break;
+                else
+                {
+                    var word = dbWords[i].ToString(); // set the word to a string
+                    var Chars = word.ToCharArray(); // set the string to a char array
+                    if (!Chars.Except(charlist).Any() && word.Length <= maxWordLength
+                    ) // check if all the letters in the char array are in the given list of chars
+                        ExerciseWords.Add(word);
+                }
+            if (ExerciseWords.Count < ExerciseLength) // check if any more words are needed
+            {
+                var CountRandomChars =
+                    ExerciseLength -
+                    ExerciseWords.Count; // calculate how many words are needed to get the good exercise length
+                for (var i = 0; i < CountRandomChars; i++) // loop as many times as words are needed
+                {
+                    var CharLength = rnd.Next(3, maxWordLength + 1); // get a random number for the length of the word
+                    var RandomWord = "";
+                    for (var c = 0; c < CharLength; c++) // loop as many times as letters are needed in the word
+                    {
+                        var charNumber = rnd.Next(0, charlist.Count); // get a random number for what char it will be
+                        RandomWord += charlist[charNumber]; // add the letter to the existing word
+                    }
+                    ExerciseWords.Add(RandomWord); // add the word to the word list
+                }
+            }
+            var OrderedExerciseWords = ExerciseWords.OrderBy(item => rnd.Next()); // shuffle the words in the list
+            var EndExerciseWords = "";
+
+            foreach (var word in OrderedExerciseWords)
+            {
+                EndExerciseWords += word; // set all the words in a string
+                EndExerciseWords += " ";
+            }
+            EndExerciseWords = EndExerciseWords.TrimEnd(' '); // trim the last space
+            return EndExerciseWords;
+        }
+    }
+}

@@ -1,0 +1,142 @@
+﻿namespace TypApplication.View
+{
+    partial class CourseFinished
+    {
+        /// <summary> 
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary> 
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Component Designer generated code
+
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.label1 = new System.Windows.Forms.Label();
+            this.labelKeyTitle = new System.Windows.Forms.Label();
+            this.labelKeyScore = new System.Windows.Forms.Label();
+            this.labelAccScore = new System.Windows.Forms.Label();
+            this.labelAccTitle = new System.Windows.Forms.Label();
+            this.buttonToMain = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 26F, System.Drawing.FontStyle.Bold);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(106, 27);
+            this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(402, 79);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Completed!";
+            // 
+            // labelKeyTitle
+            // 
+            this.labelKeyTitle.AutoSize = true;
+            this.labelKeyTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold);
+            this.labelKeyTitle.ForeColor = System.Drawing.Color.White;
+            this.labelKeyTitle.Location = new System.Drawing.Point(142, 150);
+            this.labelKeyTitle.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.labelKeyTitle.Name = "labelKeyTitle";
+            this.labelKeyTitle.Size = new System.Drawing.Size(348, 51);
+            this.labelKeyTitle.TabIndex = 1;
+            this.labelKeyTitle.Text = "Keys per minute";
+            // 
+            // labelKeyScore
+            // 
+            this.labelKeyScore.AutoSize = true;
+            this.labelKeyScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+            this.labelKeyScore.ForeColor = System.Drawing.Color.White;
+            this.labelKeyScore.Location = new System.Drawing.Point(284, 254);
+            this.labelKeyScore.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.labelKeyScore.Name = "labelKeyScore";
+            this.labelKeyScore.Size = new System.Drawing.Size(202, 31);
+            this.labelKeyScore.TabIndex = 2;
+            this.labelKeyScore.Text = "labelKeyScore";
+            // 
+            // labelAccScore
+            // 
+            this.labelAccScore.AutoSize = true;
+            this.labelAccScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+            this.labelAccScore.ForeColor = System.Drawing.Color.White;
+            this.labelAccScore.Location = new System.Drawing.Point(284, 423);
+            this.labelAccScore.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.labelAccScore.Name = "labelAccScore";
+            this.labelAccScore.Size = new System.Drawing.Size(201, 31);
+            this.labelAccScore.TabIndex = 3;
+            this.labelAccScore.Text = "labelAccScore";
+            // 
+            // labelAccTitle
+            // 
+            this.labelAccTitle.AutoSize = true;
+            this.labelAccTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold);
+            this.labelAccTitle.ForeColor = System.Drawing.Color.White;
+            this.labelAccTitle.Location = new System.Drawing.Point(196, 329);
+            this.labelAccTitle.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.labelAccTitle.Name = "labelAccTitle";
+            this.labelAccTitle.Size = new System.Drawing.Size(209, 51);
+            this.labelAccTitle.TabIndex = 4;
+            this.labelAccTitle.Text = "Accuracy";
+            // 
+            // buttonToMain
+            // 
+            this.buttonToMain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(163)))), ((int)(((byte)(233)))));
+            this.buttonToMain.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonToMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.buttonToMain.ForeColor = System.Drawing.Color.White;
+            this.buttonToMain.Location = new System.Drawing.Point(162, 504);
+            this.buttonToMain.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.buttonToMain.Name = "buttonToMain";
+            this.buttonToMain.Size = new System.Drawing.Size(310, 115);
+            this.buttonToMain.TabIndex = 5;
+            this.buttonToMain.Text = "MainMenu";
+            this.buttonToMain.UseVisualStyleBackColor = false;
+            this.buttonToMain.Click += new System.EventHandler(this.ButtonToMain_Click);
+            // 
+            // CourseFinished
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Transparent;
+            this.Controls.Add(this.buttonToMain);
+            this.Controls.Add(this.labelAccTitle);
+            this.Controls.Add(this.labelAccScore);
+            this.Controls.Add(this.labelKeyScore);
+            this.Controls.Add(this.labelKeyTitle);
+            this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Name = "CourseFinished";
+            this.Size = new System.Drawing.Size(636, 819);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelKeyTitle;
+        private System.Windows.Forms.Label labelKeyScore;
+        private System.Windows.Forms.Label labelAccScore;
+        private System.Windows.Forms.Label labelAccTitle;
+        private System.Windows.Forms.Button buttonToMain;
+    }
+}

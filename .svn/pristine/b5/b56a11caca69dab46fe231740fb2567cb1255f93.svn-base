@@ -1,0 +1,27 @@
+﻿using System;
+using System.Windows.Forms;
+using Microsoft.VisualBasic.Devices;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using TypApplication.Controller;
+using TypApplication.Model;
+using TypApplication.View;
+
+namespace TypingApplicationTestEnvoirement.Controller
+{
+    [TestClass]
+    public class KeyInputTest
+    {
+        [TestMethod]
+        public void ShouldLogKeysWhenKeysPressed()
+        {
+            TextInput test = new TextInput();
+            KeyData testData = new KeyData();
+            KeyBoard testBoard = new KeyBoard();
+            KeyEventArgs aanslag = new KeyEventArgs(Keys.A);
+
+
+            test.Log(testData, aanslag);
+            Assert.AreEqual(1, 1);
+        }
+    }
+}

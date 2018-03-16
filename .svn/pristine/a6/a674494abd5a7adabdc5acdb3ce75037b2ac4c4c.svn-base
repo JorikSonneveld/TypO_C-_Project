@@ -1,0 +1,18 @@
+﻿namespace TypApplication.Model
+{
+    public class CourseExercise : Exercise
+    {
+        private readonly Course course;
+
+        public CourseExercise(Course course)
+        {
+            this.course = course;
+            ExerciseString = PrintExercise();
+        }
+
+        public override string PrintExercise()
+        {
+            return course.Characters;
+        }
+    }
+}

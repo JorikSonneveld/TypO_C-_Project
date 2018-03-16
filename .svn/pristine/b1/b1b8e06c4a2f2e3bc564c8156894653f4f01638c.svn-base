@@ -1,0 +1,148 @@
+﻿using System.Drawing;
+using TypApplication.View;
+
+namespace TypApplication.View
+{
+    partial class ExerciseView
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.Label KeystrokesPerMinuteText;
+            this.KeystrokeTimer = new System.Windows.Forms.Timer(this.components);
+            this.KeystrokesPerMinute = new System.Windows.Forms.Label();
+            this.ReturnMainmenuButton = new System.Windows.Forms.Button();
+            this.AccuracyText = new System.Windows.Forms.Label();
+            this.Accuracy = new System.Windows.Forms.Label();
+            this.ExerciseBox = new System.Windows.Forms.RichTextBox();
+            this.keyBoard = new TypApplication.View.KeyBoard();
+            KeystrokesPerMinuteText = new System.Windows.Forms.Label();
+            this.SuspendLayout();
+            // 
+            // KeystrokesPerMinuteText
+            // 
+            KeystrokesPerMinuteText.AutoSize = true;
+            KeystrokesPerMinuteText.Location = new System.Drawing.Point(1338, 156);
+            KeystrokesPerMinuteText.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            KeystrokesPerMinuteText.Name = "KeystrokesPerMinuteText";
+            KeystrokesPerMinuteText.Size = new System.Drawing.Size(232, 25);
+            KeystrokesPerMinuteText.TabIndex = 8;
+            KeystrokesPerMinuteText.Text = "Keystrokes per minute:";
+            // 
+            // KeystrokesPerMinute
+            // 
+            this.KeystrokesPerMinute.AutoSize = true;
+            this.KeystrokesPerMinute.Location = new System.Drawing.Point(1582, 156);
+            this.KeystrokesPerMinute.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.KeystrokesPerMinute.Name = "KeystrokesPerMinute";
+            this.KeystrokesPerMinute.Size = new System.Drawing.Size(24, 25);
+            this.KeystrokesPerMinute.TabIndex = 9;
+            this.KeystrokesPerMinute.Text = "0";
+            // 
+            // ReturnMainmenuButton
+            // 
+            this.ReturnMainmenuButton.Location = new System.Drawing.Point(68, 60);
+            this.ReturnMainmenuButton.Margin = new System.Windows.Forms.Padding(6);
+            this.ReturnMainmenuButton.Name = "ReturnMainmenuButton";
+            this.ReturnMainmenuButton.Size = new System.Drawing.Size(150, 44);
+            this.ReturnMainmenuButton.TabIndex = 11;
+            this.ReturnMainmenuButton.Text = "Hoofdmenu";
+            this.ReturnMainmenuButton.UseVisualStyleBackColor = true;
+            this.ReturnMainmenuButton.Click += new System.EventHandler(this.ReturnMainmenuButton_Click);
+            // 
+            // AccuracyText
+            // 
+            this.AccuracyText.AutoSize = true;
+            this.AccuracyText.Location = new System.Drawing.Point(1338, 215);
+            this.AccuracyText.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.AccuracyText.Name = "AccuracyText";
+            this.AccuracyText.Size = new System.Drawing.Size(101, 25);
+            this.AccuracyText.TabIndex = 13;
+            this.AccuracyText.Text = "Accuracy";
+            // 
+            // Accuracy
+            // 
+            this.Accuracy.AutoSize = true;
+            this.Accuracy.Location = new System.Drawing.Point(1566, 215);
+            this.Accuracy.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.Accuracy.Name = "Accuracy";
+            this.Accuracy.Size = new System.Drawing.Size(48, 25);
+            this.Accuracy.TabIndex = 14;
+            this.Accuracy.Text = "100";
+            // 
+            // ExerciseBox
+            // 
+            this.ExerciseBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ExerciseBox.ForeColor = System.Drawing.Color.Black;
+            this.ExerciseBox.Location = new System.Drawing.Point(68, 166);
+            this.ExerciseBox.Name = "ExerciseBox";
+            this.ExerciseBox.ReadOnly = true;
+            this.ExerciseBox.Size = new System.Drawing.Size(1227, 195);
+            this.ExerciseBox.TabIndex = 16;
+            this.ExerciseBox.Text = "";
+            this.ExerciseBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ExerciseBox_KeyDown);
+            this.ExerciseBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ExerciseBox_KeyUp);
+            // 
+            // keyBoard
+            // 
+            this.keyBoard.Location = new System.Drawing.Point(14, 465);
+            this.keyBoard.Margin = new System.Windows.Forms.Padding(2);
+            this.keyBoard.Name = "keyBoard";
+            this.keyBoard.Size = new System.Drawing.Size(1600, 431);
+            this.keyBoard.TabIndex = 10;
+            // 
+            // ExerciseView
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.ExerciseBox);
+            this.Controls.Add(this.Accuracy);
+            this.Controls.Add(this.AccuracyText);
+            this.Controls.Add(this.ReturnMainmenuButton);
+            this.Controls.Add(this.keyBoard);
+            this.Controls.Add(this.KeystrokesPerMinute);
+            this.Controls.Add(KeystrokesPerMinuteText);
+            this.DoubleBuffered = true;
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Name = "ExerciseView";
+            this.Size = new System.Drawing.Size(1630, 920);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+        private System.Windows.Forms.Timer KeystrokeTimer;
+        private System.Windows.Forms.Label KeystrokesPerMinute;
+        private System.Windows.Forms.Button ReturnMainmenuButton;
+        private System.Windows.Forms.Label AccuracyText;
+        private System.Windows.Forms.Label Accuracy;
+        private System.Windows.Forms.RichTextBox ExerciseBox;
+        public KeyBoard keyBoard;
+    }
+}
+

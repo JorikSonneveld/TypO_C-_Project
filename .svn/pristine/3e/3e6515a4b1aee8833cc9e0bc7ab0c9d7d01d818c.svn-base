@@ -1,0 +1,81 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Forms;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using Typo.Properties;
+using Xceed.Wpf.Toolkit;
+using GiveFeedbackEventArgs = System.Windows.GiveFeedbackEventArgs;
+using UserControl = System.Windows.Controls.UserControl;
+
+namespace Typo.View
+{
+    /// <summary>
+    /// Interaction logic for SettingsView.xaml
+    /// </summary>
+    public partial class SettingsView : UserControl
+    {
+        private MainWindow mainWindow;
+        public SettingsView(MainWindow mainWindow)
+        {
+            this.mainWindow = mainWindow;
+            InitializeComponent();
+            SetColors();
+        }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            mainWindow.NewView(new MainMenu(mainWindow));
+        }
+
+        private void ChangeColor(object sender, RoutedEventArgs e)
+        {
+            ColorPicker picker = (sender as ColorPicker);
+
+            int newColor = ReturnIntFromColor((Color)picker.SelectedColor);
+            Console.WriteLine(newColor);
+            switch (picker.Name.ToString())
+            {
+                case "TextColor":
+                    Settings.Default.TextColor = newColor;
+                    break;
+                case "CorrectColor":
+                    Settings.Default.CorrectColor = newColor;
+                    break;
+                case "FalseColor":
+                    Settings.Default.FalseColor = newColor;
+                    break;
+            }
+            Settings.Default.Save();
+        }
+
+        private void SetColors()
+        {
+            //Properties.Settings.Default.
+            TextColor.Background = ReturnBrushColorFromInt(Settings.Default.TextColor);
+            CorrectColor.Background = ReturnBrushColorFromInt(Settings.Default.CorrectColor);
+            FalseColor.Background = ReturnBrushColorFromInt(Settings.Default.FalseColor);
+        }
+
+        public static SolidColorBrush ReturnBrushColorFromInt(int inputInt)
+        {
+            //Properties.Settings.Default.
+            byte[] bytes = BitConverter.GetBytes(inputInt);
+            return new SolidColorBrush(Color.FromArgb(bytes[3], bytes[2], bytes[1], bytes[0]));
+        }
+
+        public static int ReturnIntFromColor(Color color)
+        {
+            return BitConverter.ToInt32(new byte[] { color.B, color.G, color.R, color.A }, 0);
+        }
+    }
+}

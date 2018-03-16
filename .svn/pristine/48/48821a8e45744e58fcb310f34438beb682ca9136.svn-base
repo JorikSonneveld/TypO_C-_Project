@@ -1,0 +1,157 @@
+﻿namespace TypoTeacher.View
+{
+    partial class Courses
+    {
+        /// <summary> 
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary> 
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Component Designer generated code
+
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.CoursesGrid = new System.Windows.Forms.DataGridView();
+            this.Characters = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Visible = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CreateCourse = new System.Windows.Forms.Button();
+            this.Cancel = new System.Windows.Forms.Button();
+            this.Update = new System.Windows.Forms.Button();
+            this.Delete = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.CoursesGrid)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // CoursesGrid
+            // 
+            this.CoursesGrid.AllowUserToAddRows = false;
+            this.CoursesGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.CoursesGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Characters,
+            this.Visible});
+            this.CoursesGrid.Location = new System.Drawing.Point(304, 29);
+            this.CoursesGrid.Margin = new System.Windows.Forms.Padding(4);
+            this.CoursesGrid.MultiSelect = false;
+            this.CoursesGrid.Name = "CoursesGrid";
+            this.CoursesGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.CoursesGrid.Size = new System.Drawing.Size(931, 477);
+            this.CoursesGrid.TabIndex = 4;
+            this.CoursesGrid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CoursesGrid_CellDoubleClick);
+            // 
+            // Characters
+            // 
+            this.Characters.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Characters.HeaderText = "Title";
+            this.Characters.Name = "Characters";
+            this.Characters.ReadOnly = true;
+            // 
+            // Visible
+            // 
+            this.Visible.HeaderText = "Is Visible";
+            this.Visible.Name = "Visible";
+            this.Visible.ReadOnly = true;
+            // 
+            // CreateCourse
+            // 
+            this.CreateCourse.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(163)))), ((int)(((byte)(233)))));
+            this.CreateCourse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CreateCourse.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.CreateCourse.ForeColor = System.Drawing.Color.White;
+            this.CreateCourse.Location = new System.Drawing.Point(17, 29);
+            this.CreateCourse.Margin = new System.Windows.Forms.Padding(4);
+            this.CreateCourse.Name = "CreateCourse";
+            this.CreateCourse.Size = new System.Drawing.Size(207, 74);
+            this.CreateCourse.TabIndex = 3;
+            this.CreateCourse.Text = "Create course";
+            this.CreateCourse.UseVisualStyleBackColor = true;
+            this.CreateCourse.Click += new System.EventHandler(this.CreateCourse_Click);
+            // 
+            // Cancel
+            // 
+            this.Cancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(163)))), ((int)(((byte)(233)))));
+            this.Cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Cancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.Cancel.ForeColor = System.Drawing.Color.White;
+            this.Cancel.Location = new System.Drawing.Point(17, 433);
+            this.Cancel.Margin = new System.Windows.Forms.Padding(4);
+            this.Cancel.Name = "Cancel";
+            this.Cancel.Size = new System.Drawing.Size(207, 74);
+            this.Cancel.TabIndex = 5;
+            this.Cancel.Text = "Return";
+            this.Cancel.UseVisualStyleBackColor = true;
+            this.Cancel.Click += new System.EventHandler(this.Cancel_Click);
+            // 
+            // Update
+            // 
+            this.Update.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(163)))), ((int)(((byte)(233)))));
+            this.Update.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Update.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.Update.ForeColor = System.Drawing.Color.White;
+            this.Update.Location = new System.Drawing.Point(17, 111);
+            this.Update.Margin = new System.Windows.Forms.Padding(4);
+            this.Update.Name = "Update";
+            this.Update.Size = new System.Drawing.Size(207, 74);
+            this.Update.TabIndex = 6;
+            this.Update.Text = "Edit course";
+            this.Update.UseVisualStyleBackColor = true;
+            this.Update.Click += new System.EventHandler(this.Update_Click);
+            // 
+            // Delete
+            // 
+            this.Delete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(163)))), ((int)(((byte)(233)))));
+            this.Delete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Delete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.Delete.ForeColor = System.Drawing.Color.White;
+            this.Delete.Location = new System.Drawing.Point(17, 192);
+            this.Delete.Margin = new System.Windows.Forms.Padding(4);
+            this.Delete.Name = "Delete";
+            this.Delete.Size = new System.Drawing.Size(207, 74);
+            this.Delete.TabIndex = 7;
+            this.Delete.Text = "Delete course";
+            this.Delete.UseVisualStyleBackColor = true;
+            this.Delete.Click += new System.EventHandler(this.Delete_Click);
+            // 
+            // Courses
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Transparent;
+            this.Controls.Add(this.Delete);
+            this.Controls.Add(this.Update);
+            this.Controls.Add(this.Cancel);
+            this.Controls.Add(this.CoursesGrid);
+            this.Controls.Add(this.CreateCourse);
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Name = "Courses";
+            this.Size = new System.Drawing.Size(1251, 532);
+            ((System.ComponentModel.ISupportInitialize)(this.CoursesGrid)).EndInit();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+        private System.Windows.Forms.DataGridView CoursesGrid;
+        private System.Windows.Forms.Button CreateCourse;
+        private System.Windows.Forms.Button Cancel;
+        private new System.Windows.Forms.Button Update;
+        private System.Windows.Forms.Button Delete;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Characters;
+        private new System.Windows.Forms.DataGridViewTextBoxColumn Visible;
+    }
+}

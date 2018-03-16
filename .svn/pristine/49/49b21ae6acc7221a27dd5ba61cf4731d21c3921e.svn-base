@@ -1,0 +1,20 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
+
+namespace TypApplication.Model
+{
+    public abstract class Exercise
+    {
+        public enum ExerciseType { Course, Numbers, Words, Letters, Mix }
+
+        private ExerciseType exerciseType { get; set; }
+
+        public Exercise(ExerciseType type)
+        {
+            exerciseType = type;
+        }
+        public abstract string PrintExercise();
+
+    }
+}

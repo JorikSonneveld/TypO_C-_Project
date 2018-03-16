@@ -1,0 +1,62 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using TypApplication.Model;
+using TypApplication.Controller;
+
+namespace TypApplication.View
+{
+    public partial class Courses : UserControl
+    {
+        private MainForm parentForm;
+        private DatabaseController db = new DatabaseController();
+
+        public Courses(MainForm parentForm)
+        {
+            this.parentForm = parentForm;
+            InitializeComponent();
+            FillDataGridView();
+        }
+
+        private void FillDataGridView()
+        {
+
+            //DataGridViewRow row = (DataGridViewRow)CoursesGrid.Rows[1].Clone();
+
+            List<Course> Courses = new List<Course>();
+            Courses = db.RetrieveAllDbCourses();
+            if (Courses != null)
+            {
+                foreach (Course course in Courses)
+                {
+                    CoursesGrid.Rows.Add(course.Characters);
+                    //row.Cells[course.CourseID].Value = course.Characters.ToString();
+
+                }
+            }
+        }
+
+        private void Cancel_Click(object sender, EventArgs e)
+        {
+            parentForm.ShowMainMenu();
+        }
+
+        private void CreateCourse_Click(object sender, EventArgs e)
+        {
+            CourseEditor courseEditor = new CourseEditor();
+            courseEditor.Show();
+        }
+
+        //Delete selected item
+        private void Delete_Click(object sender, EventArgs e)
+        {
+            db.DeleteCourse(db.GetCourseId(CoursesGrid.CurrentCell.Value.ToString()));
+        }
+    }
+}

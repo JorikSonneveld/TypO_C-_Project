@@ -1,0 +1,343 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Typo.Model;
+using Typo.Model.Database;
+
+namespace Typo.Controller
+{
+    public class DatabaseController
+    {
+        //Initialize a new DatabaseContext
+        public ApplicationDatabase ApplicationDatabase = new ApplicationDatabase();
+
+        private void SaveDb()
+        {
+            ApplicationDatabase.SaveChanges();
+        }
+
+        public void AddMistakesToDb(List<string> mistakes)
+        {
+            foreach (var letter in mistakes) //goes through every mistake made in the exercise 
+            {
+                var selection =
+                    ApplicationDatabase.KeyMistakes.FirstOrDefault(keyMistake =>
+                        keyMistake.Character == letter); //gets the mistake with the same letter from the database
+                if (selection != null) //checks is the mistake is already 
+                    selection.Count++; //adds one to the count
+                else
+                    ApplicationDatabase.KeyMistakes.Add(new KeyMistake
+                    {
+                        Character = letter,
+                        Count = 1
+                    }); //adds the new mistake to the database
+
+                SaveDb(); //saves the database after every letter
+            }
+        }
+
+        public bool AddCourse(Course course)
+        {
+            if (ApplicationDatabase.Courses.Any(c => c.Title.Equals(course.Title)) || course.Text == string.Empty)
+                return false;
+
+            ApplicationDatabase.Courses.Add(course);
+            SaveDb();
+            return true;
+        }
+
+        public int GetCourseId(string title)
+        {
+            var courseId =
+                ApplicationDatabase.Courses.FirstOrDefault(c => c.Title == title)
+                    .CourseID; // get the courseId by searching the db on the title
+            return courseId;
+        }
+
+        //Delete course from Courses database table
+        public void DeleteCourse(int courseid)
+        {
+            if (!ApplicationDatabase.Courses.Any(x => x.CourseID == courseid)) // check if it is in the db
+                return;
+            var course = ApplicationDatabase.Courses.Single(x => x.CourseID == courseid); // get the courses from the db
+            ApplicationDatabase.Courses.Remove(course); // remove the course with the given id
+            SaveDb();
+        }
+
+        public List<string> RetrieveCommonMistakes(int mistakesAmount)
+        {
+            var mistakeList = new List<string>();
+            //Check which char is often mistaken
+            var mistakes = from m in ApplicationDatabase.KeyMistakes
+                orderby m.Count descending
+                select m.Character;
+            //Add top 3 most mistaken chars to list
+            foreach (var mistake in mistakes.Take(mistakesAmount))
+                mistakeList.Add(mistake);
+
+            return mistakeList;
+        }
+
+        public List<Word> GenerateWords(int wordsPerMistake, int mistakesAmount)
+        {
+            var mistakeList = RetrieveCommonMistakes(mistakesAmount); // gets the most common mistakes
+
+            //Get words that contain common mistaken char orderby random
+            var wordlist = RetrieveRandomDbWords();
+
+            var words = mistakeList.SelectMany(character =>
+                    from w in wordlist
+                    where w.Characters.Contains(character)
+                    select w)
+                .Take(wordsPerMistake).ToList(); // select all the words wich have the most common mistakes in them
+
+            return words.ToList();
+        }
+
+        //function to edit existing course
+        public bool EditCourse(Course course)
+        {
+            // check if the given title is the same and the Id does not or if the given text is empty
+            if (ApplicationDatabase.Courses.Any(c => c.Title.Equals(course.Title) && c.CourseID != course.CourseID) ||
+                course.Text == string.Empty)
+                return false;
+
+            var selection =
+                ApplicationDatabase.Courses.FirstOrDefault(c =>
+                    c.CourseID == course.CourseID); // get the course with the given Id
+            if (selection == null) return true;
+            selection.Title = course.Title;
+            selection.Text = course.Text;
+            selection.Official = course.Official;
+            selection.StartDate = course.StartDate;
+            selection.EndDate = course.EndDate;
+            SaveDb();
+            return true;
+        }
+
+        //function to retrieve random words from the database
+
+        public List<Word> RetrieveRandomDbWords()
+        {
+            var wordsList = new List<Word>();
+
+            // Get words and add to db
+            var words = ApplicationDatabase.Words.OrderBy(w => Guid.NewGuid()).Take(15);
+
+            foreach (var word in words)
+                wordsList.Add(word);
+            return wordsList;
+        }
+
+        public List<Word> RetrieveRandomDbWords(int numWords)
+        {
+            var wordsList = new List<Word>();
+
+            // Get words and add to db
+            var words = ApplicationDatabase.Words.OrderBy(w => Guid.NewGuid()).Take(numWords);
+
+            foreach (var word in words)
+                wordsList.Add(word);
+            return wordsList;
+        }
+
+
+        //Function to retrieve all Courses from the database
+        public List<Course> RetrieveAllDbCourses()
+        {
+            var courses = new List<Course>();
+
+            //Linq query to select all courses from the database
+            var selection = from c in ApplicationDatabase.Courses select c;
+            selection.ToList();
+
+            foreach (var course in selection)
+                courses.Add(course); // add all of the courses in the db to the list
+
+            return courses;
+        }
+
+        public bool CheckCourseWithStudent(Course course, Result result)
+        {
+            return course.CourseID == result.CourseID;
+        }
+
+        public Course RetrieveCourseCurrentlyAvailable(int userID)
+        {
+            List<Course> courses;
+            List<Result> resultsPerStudent;
+            courses = RetrieveAllDbCourses(); // add all the courses to a list
+            resultsPerStudent = GetResultsPerStudent(userID).ToList();
+            var currentTime = DateTime.Now; // get the current time
+            var IsSameCourse = false;
+
+            foreach (var course in courses)
+            {
+                foreach (var result in resultsPerStudent)
+                    if (CheckCourseWithStudent(course, result))
+                        IsSameCourse = true;
+                if (course.StartDate <= currentTime && course.EndDate >= currentTime && course.Official &&
+                    IsSameCourse == false
+                ) // check for every course if the current time is in between the start and endtime of the course
+                    return course;
+                IsSameCourse = false;
+            }
+            return null; // if there are no courses in the timespan return null so that there will be no dialog
+        }
+
+        public List<Word> RetrieveAllWords()
+        {
+            return ApplicationDatabase.Words.ToList();
+        }
+
+        public int GetWordListCount()
+        {
+            return ApplicationDatabase.Words.Count();
+        }
+
+        public void FillDatabase()
+        {
+            const string wordsString = "aan, aanbod, aanraken, aanval, aap, aardappel, aarde, aardig, acht, achter, actief, activiteit, ademen, af, afgelopen, afhangen, afmaken, afname, afspraak, afval, al, algemeen, alleen, alles, als, alsjeblieft, altijd, ander, andere, anders, angst, antwoord, antwoorden, appel, arm, auto, avond, avondeten, baan, baby, bad, bal, bang, bank, basis, bed, bedekken, bedreiging, bedreven, been, beer, beest, beetje, begin, begrijpen, begrip, behalve, beide, beker, bel, belangrijk, bellen, belofte, beneden, benzine, berg, beroemd, beroep, bescherm, beslissen, best, betalen, beter, bevatten, bewegen, bewolkt, bezoek, bibliotheek, bieden, bij, bijna, bijten, bijvoorbeeld, bijzonder, binnen, binnenkort, blad, blauw, blazen, blij, blijven, bloed, bloem, bodem, boek, boerderij, boete, boom, boon, boord, boos, bord, borstelen, bos, bot, bouwen, boven, branden, brandstof, breed, breken, brengen, brief, broer, broek, brood, brug, bruikbaar, bruiloft, bruin, bui, buiten, bureau, buren, bus, buurman, buurvrouw, cadeau, chocolade, cirkel, comfortabel, compleet, computer, conditie, controle, cool, correct, daar, daarom, dag, dak, dan, dansen, dapper, dat, de, deel, deken, deksel, delen, derde, deze, dichtbij, dienen, diep, dier, dik, ding, dit, dochter, doen, dom, donker, dood, door, doorzichtig, doos, dorp, draad, draaien, dragen, drie, drijven, drinken, drogen, dromen, droog, druk, dubbel, dun, dus, duur, duwen, echt, een, één, eend, eenheid, eenzaam, eerste, eeuw, effect, ei, eigen, eiland, einde, eis, elektrisch, elk, en, enkele, enthousiast, erg, eten, even, examen, extreem, falen, familie, feest, feit, fel, fijn, film, fit, fles, foto, fout, fris, fruit, gaan, gat, gebeuren, gebeurtenis, gebied, geboorte, geboren, gebruik, gebruikelijk, gebruiken, gedrag, gedragen, geel, geen, gehoorzamen, geit, geld, geliefde, gelijk, geloof, geluid, geluk, gemak, gemakkelijk, gemeen, genieten, genoeg, genot, gerecht, gereedschap, geschikt, gespannen, geur, gevaar, gevaarlijk, gevangenis, geven, gevolg, gewicht, gewoon, gezicht, gezond, gif, gisteren, glad, glas, glimlach, god, goed, goedkoop, goud, graf, grap, grappig, gras, grens, grijs, groeien, groen, groente, groep, grof, grond, groot, grootmoeder, grootvader, haan, haar, haast, hal, halen, half, hallo, hamer, hand, hard, hart, haten, hebben, heel, heet, helder, helft, help, hem, hemel, hen, herfst, herinneren, hert, het, heuvel, hier, hij, hobby, hoe, hoed, hoek, hoeveel, hoeveelheid, hoewel, hond, honderd, honger, hoofd, hoog, hoogte, hoop, horen, hotel, houden, huilen, huis, hun, huren, hut, huur, idee, ieder, iedereen, iemand, iets, ijs, ijzer, ik, instrument, ja, jaar, jagen, jas, jij, jong, jongen, jouw, jullie, kaars, kaart, kaas, kamer, kans, kant, kantoor, kap, kast, kasteel, kat, kennen, kennis, keuken, keus, kiezen, kijken, kind, kip, kist, klaar, klas, klasse, kleden, klein, kleren, kleur, klimmen, klok, kloppen, klopt, knie, knippen, koers, koffer, koffie, kok, koken, kom, komen, koning, koningin, koorts, kop, kopen, kort, kost, kosten, koud, kraam, kracht, krant, krijgen, kruis, kuil, kunnen, kunst, kurk, laag, laat, laatst, lach, lachen, ladder, laken, lamp, land, lang, langs, langzaam, laten, leeftijd, leeg, leerling, leeuw, leger, leiden, lenen, lengte, lepel, leren, les, leuk, leven, lezen, lichaam, licht, liefde, liegen, liggen, lijk, lijken, liniaal, links, lip, list, lomp, lood, lopen, los, lot, lucht, lui, luisteren, lunch, maag, maal, maaltijd, maan, maand, maar, maat, machine, maken, makkelijk, mama, man, mand, manier, map, markeren, markt, me, medicijn, meel, meer, meerdere, meest, meisje, melk, meneer, mengsel, mensen, mes, met, meubel, mevrouw, middel, midden, mij, mijn, miljoen, min, minder, minuut, mis, missen, mits, model, modern, moeder, moeilijk, moeten, mogelijk, mogen, moment, mond, mooi, moord, moorden, morgen, munt, muziek, na, naald, naam, naar, naast, nacht, nat, natuur, natuurlijk, nee, neer, negen, nek, nemen, net, netjes, neus, niet, niets, nieuw, nieuws, nobel, noch, nodig, noemen, nog, nood, nooit, noord, noot, normaal, nu, nul, nummer, oceaan, ochtend, oefening, of, offer, olie, olifant, om, oma, onder, onderwerp, onderzoek, oneven, ongeluk, ons, ontsnappen, ontbijt, ontdekken, ontmoeten, ontvangen, ontwikkelen, onze, oog, ooit, ook, oom, oor, oorlog, oorzaak, oost, op, opa, opeens, open, openlijk, opleiding, opnemen, oranje, orde, oud, ouder, over, overal, overeenkomen, overleden, overvallen, paar, paard, pad, pagina, pan, papa, papier, park, partner, pas, passeren, pen, peper, per, perfect, periode, persoon, piano, pijn, pistool, plaat, plaatje, plaats, plafond, plank, plant, plastic, plat, plattegrond, plein, plus, poes, politie, poort, populair, positie, postzegel, potlood, praten, presenteren, prijs, prins, prinses, privé, proberen, probleem, product, provincie, publiek, punt, raak, raam, radio, raken, rapport, recht, rechtdoor, rechts, rechtvaardig, redden, reeds, regen, reiken, reizen, rekenmachine, rennen, repareren, rest, restaurant, resultaat, richting, rijk, rijst, rijzen, ring, rok, rond, rood, rook, rots, roze, rubber, ruiken, ruimte, samen, sap, schaap, schaar, schaduw, scheiden, scherp, schetsen, schieten, schijnen, schip, school, schoon, schouder, schreeuw, schreeuwen, schrijven, schudden, seconde, signaal, simpel, sinds, slaapkamer, slapen, slecht, sleutel, slim, slot, sluiten, smaak, smal, sneeuw, snel, snelheid, snijden, soep, sok, soms, soort, sorry, speciaal, spel, spelen, sport, spreken, springen, staal, stad, stap, start, station, steen, stelen, stem, stempel, ster, sterk, steun, stil, stilte, stoel, stof, stoffig, stom, stop, storm, straat, straffen, structuur, student, studie, stuk, succes, suiker, taal, taart, tafel, tak, tamelijk, tand, tante, tas, taxi, te, team, teen, tegen, teken, tekenen, telefoon, televisie, tellen, tennis, terug, terugkomst, terwijl, test, tevreden, thee, thuis, tien, tijd, titel, toekomst, toen, toename, totaal, traan, tram, trein, trekken, trouwen, trui, tuin, tussen, tweede, uit, uitleggen, uitnodigen, uitvinden, uitzoeken, uur, vaak, vaarwel, vader, vak, vakantie, vallen, vals, van, vandaag, vangen, vanmorgen, vannacht, varken, vast, vechten, veel, veer, veilig, ver, veranderen, verandering, verder, verdienen, verdrietig, verenigen, verf, vergelijkbaar, vergelijken, vergelijking, vergeten, vergeven, vergissen, verhaal, verhoging, verjaardag, verkeerd, verkopen, verlaten, verleden, verliezen, vernietigen, veroveren, verrassen, vers, verschil, verschrikkelijk, verspreiden, verstand, verstoppen, versturen, vertellen, vertrekken, vertrouwen, verwachten, verwijderen, verzamelen, verzameling, vet, vier, vierkant, vies, vijand, vijf, vijver, vinden, vinger, vis, vlag, vlees, vlieg, vliegtuig, vloer, voeden, voedsel, voelen, voet, voetbal, vogel, vol, volgende, volgorde, voor, voorbeeld, voorkomen, voorzichtig, voorzien, vork, vorm, vos, vouwen, vraag, vragen, vrede, vreemd, vreemde, vriend, vriendelijk, vriezen, vrij, vrijheid, vroeg, vroeger, vrouw, vullen, vuur, waar, waarom, waarschijnlijk, wachten, wakker, wanneer, want, wapen, warm, wassen, wat, water, we, week, weer, weg, welke, welkom, wens, wereld, werelddeel, werk, west, wetenschap, wie, wiel, wij, wijn, wijs, wild, willen, wind, winkel, winnen, winter, wissen, wit, wolf, wolk, wonder, woord, woud, wreed, zaak, zacht, zak, zand, zee, zeep, zeer, zeggen, zeil, zeker, zelfde, zes, zetten, zeven, ziek, ziekenhuis, ziel, zien, zij, zijn, zilver, zingen, zinken, zitten, zo, zoals, zoeken, zoet, zomer, zon, zonder, zonnig, zoon, zorg, zorgen, zou, zout, zuid, zulke, zullen, zus, zwaar, zwak, zwembad, zwemmen";
+            var words = wordsString.Split(new[] {", "}, StringSplitOptions.None).ToArray();
+            var wordList = words.Select(word => new Word {Characters = word}).ToList();
+
+            foreach (var word in wordList)
+                if (!ApplicationDatabase.Words.Any(w => w.Characters == word.Characters))
+                    ApplicationDatabase.Words.Add(word);
+
+            ApplicationDatabase.Users.Add(new User
+            {
+                Username = "Frens",
+                Password = LoginController.Hash("Buning"),
+                Type = "Student",
+                Student = new Student
+                {
+                    Name = "Frens",
+                    Surname = "Buning"
+                }
+            });
+
+            ApplicationDatabase.Users.Add(new User
+            {
+                Username = "Admin",
+                Password = LoginController.Hash("Admin"),
+                Type = "Teacher",
+                Teacher = new Teacher
+                {
+                    Name = "Thomas",
+                    Surname = "Boose"
+                }
+            });
+
+            ApplicationDatabase.Courses.Add(new Course
+            {
+                CourseID = 1,
+                Title = "Titel",
+                Text = "Dit is tekst",
+                StartDate = new DateTime(2010, 8, 18),
+                EndDate = new DateTime(2017, 12, 20),
+                Official = true
+            });
+
+            SaveDb();
+        }
+
+        public void FillDatabaseWords()
+        {
+            //Initialize a list of words to insert into the database
+            Console.WriteLine("Check if first run of database, this can take a while...");
+            var wordsString =
+                "aan, aanbod, aanraken, aanval, aap, aardappel, aarde, aardig, acht, achter, actief, activiteit, ademen, af, afgelopen, afhangen, afmaken, afname, afspraak, afval, al, algemeen, alleen, alles, als, alsjeblieft, altijd, ander, andere, anders, angst, antwoord, antwoorden, appel, arm, auto, avond, avondeten, baan, baby, bad, bal, bang, bank, basis, bed, bedekken, bedreiging, bedreven, been, beer, beest, beetje, begin, begrijpen, begrip, behalve, beide, beker, bel, belangrijk, bellen, belofte, beneden, benzine, berg, beroemd, beroep, bescherm, beslissen, best, betalen, beter, bevatten, bewegen, bewolkt, bezoek, bibliotheek, bieden, bij, bijna, bijten, bijvoorbeeld, bijzonder, binnen, binnenkort, blad, blauw, blazen, blij, blijven, bloed, bloem, bodem, boek, boerderij, boete, boom, boon, boord, boos, bord, borstelen, bos, bot, bouwen, boven, branden, brandstof, breed, breken, brengen, brief, broer, broek, brood, brug, bruikbaar, bruiloft, bruin, bui, buiten, bureau, buren, bus, buurman, buurvrouw, cadeau, chocolade, cirkel, comfortabel, compleet, computer, conditie, controle, cool, correct, daar, daarom, dag, dak, dan, dansen, dapper, dat, de, deel, deken, deksel, delen, derde, deze, dichtbij, dienen, diep, dier, dik, ding, dit, dochter, doen, dom, donker, dood, door, doorzichtig, doos, dorp, draad, draaien, dragen, drie, drijven, drinken, drogen, dromen, droog, druk, dubbel, dun, dus, duur, duwen, echt, een, eend, eenheid, eenzaam, eerste, eeuw, effect, ei, eigen, eiland, einde, eis, elektrisch, elk, en, enkele, enthousiast, erg, eten, even, examen, extreem, falen, familie, feest, feit, fel, fijn, film, fit, fles, foto, fout, fris, fruit, gaan, gat, gebeuren, gebeurtenis, gebied, geboorte, geboren, gebruik, gebruikelijk, gebruiken, gedrag, gedragen, geel, geen, gehoorzamen, geit, geld, geliefde, gelijk, geloof, geluid, geluk, gemak, gemakkelijk, gemeen, genieten, genoeg, genot, gerecht, gereedschap, geschikt, gespannen, geur, gevaar, gevaarlijk, gevangenis, geven, gevolg, gewicht, gewoon, gezicht, gezond, gif, gisteren, glad, glas, glimlach, god, goed, goedkoop, goud, graf, grap, grappig, gras, grens, grijs, groeien, groen, groente, groep, grof, grond, groot, grootmoeder, grootvader, haan, haar, haast, hal, halen, half, hallo, hamer, hand, hard, hart, haten, hebben, heel, heet, helder, helft, help, hem, hemel, hen, herfst, herinneren, hert, het, heuvel, hier, hij, hobby, hoe, hoed, hoek, hoeveel, hoeveelheid, hoewel, hond, honderd, honger, hoofd, hoog, hoogte, hoop, horen, hotel, houden, huilen, huis, hun, huren, hut, huur, idee, ieder, iedereen, iemand, iets, ijs, ijzer, ik, instrument, ja, jaar, jagen, jas, jij, jong, jongen, jouw, jullie, kaars, kaart, kaas, kamer, kans, kant, kantoor, kap, kast, kasteel, kat, kennen, kennis, keuken, keus, kiezen, kijken, kind, kip, kist, klaar, klas, klasse, kleden, klein, kleren, kleur, klimmen, klok, kloppen, klopt, knie, knippen, koers, koffer, koffie, kok, koken, kom, komen, koning, koningin, koorts, kop, kopen, kort, kost, kosten, koud, kraam, kracht, krant, krijgen, kruis, kuil, kunnen, kunst, kurk, laag, laat, laatst, lach, lachen, ladder, laken, lamp, land, lang, langs, langzaam, laten, leeftijd, leeg, leerling, leeuw, leger, leiden, lenen, lengte, lepel, leren, les, leuk, leven, lezen, lichaam, licht, liefde, liegen, liggen, lijk, lijken, liniaal, links, lip, list, lomp, lood, lopen, los, lot, lucht, lui, luisteren, lunch, maag, maal, maaltijd, maan, maand, maar, maat, machine, maken, makkelijk, mama, man, mand, manier, map, markeren, markt, me, medicijn, meel, meer, meerdere, meest, meisje, melk, meneer, mengsel, mensen, mes, met, meubel, mevrouw, middel, midden, mij, mijn, miljoen, min, minder, minuut, mis, missen, mits, model, modern, moeder, moeilijk, moeten, mogelijk, mogen, moment, mond, mooi, moord, moorden, morgen, munt, muziek, na, naald, naam, naar, naast, nacht, nat, natuur, natuurlijk, nee, neer, negen, nek, nemen, net, netjes, neus, niet, niets, nieuw, nieuws, nobel, noch, nodig, noemen, nog, nood, nooit, noord, noot, normaal, nu, nul, nummer, oceaan, ochtend, oefening, of, offer, olie, olifant, om, oma, onder, onderwerp, onderzoek, oneven, ongeluk, ons, ontsnappen, ontbijt, ontdekken, ontmoeten, ontvangen, ontwikkelen, onze, oog, ooit, ook, oom, oor, oorlog, oorzaak, oost, op, opa, opeens, open, openlijk, opleiding, opnemen, oranje, orde, oud, ouder, over, overal, overeenkomen, overleden, overvallen, paar, paard, pad, pagina, pan, papa, papier, park, partner, pas, passeren, pen, peper, per, perfect, periode, persoon, piano, pijn, pistool, plaat, plaatje, plaats, plafond, plank, plant, plastic, plat, plattegrond, plein, plus, poes, politie, poort, populair, positie, postzegel, potlood, praten, presenteren, prijs, prins, prinses, proberen, probleem, product, provincie, publiek, punt, raak, raam, radio, raken, rapport, recht, rechtdoor, rechts, rechtvaardig, redden, reeds, regen, reiken, reizen, rekenmachine, rennen, repareren, rest, restaurant, resultaat, richting, rijk, rijst, rijzen, ring, rok, rond, rood, rook, rots, roze, rubber, ruiken, ruimte, samen, sap, schaap, schaar, schaduw, scheiden, scherp, schetsen, schieten, schijnen, schip, school, schoon, schouder, schreeuw, schreeuwen, schrijven, schudden, seconde, signaal, simpel, sinds, slaapkamer, slapen, slecht, sleutel, slim, slot, sluiten, smaak, smal, sneeuw, snel, snelheid, snijden, soep, sok, soms, soort, sorry, speciaal, spel, spelen, sport, spreken, springen, staal, stad, stap, start, station, steen, stelen, stem, stempel, ster, sterk, steun, stil, stilte, stoel, stof, stoffig, stom, stop, storm, straat, straffen, structuur, student, studie, stuk, succes, suiker, taal, taart, tafel, tak, tamelijk, tand, tante, tas, taxi, te, team, teen, tegen, teken, tekenen, telefoon, televisie, tellen, tennis, terug, terugkomst, terwijl, test, tevreden, thee, thuis, tien, tijd, titel, toekomst, toen, toename, totaal, traan, tram, trein, trekken, trouwen, trui, tuin, tussen, tweede, uit, uitleggen, uitnodigen, uitvinden, uitzoeken, uur, vaak, vaarwel, vader, vak, vakantie, vallen, vals, van, vandaag, vangen, vanmorgen, vannacht, varken, vast, vechten, veel, veer, veilig, ver, veranderen, verandering, verder, verdienen, verdrietig, verenigen, verf, vergelijkbaar, vergelijken, vergelijking, vergeten, vergeven, vergissen, verhaal, verhoging, verjaardag, verkeerd, verkopen, verlaten, verleden, verliezen, vernietigen, veroveren, verrassen, vers, verschil, verschrikkelijk, verspreiden, verstand, verstoppen, versturen, vertellen, vertrekken, vertrouwen, verwachten, verwijderen, verzamelen, verzameling, vet, vier, vierkant, vies, vijand, vijf, vijver, vinden, vinger, vis, vlag, vlees, vlieg, vliegtuig, vloer, voeden, voedsel, voelen, voet, voetbal, vogel, vol, volgende, volgorde, voor, voorbeeld, voorkomen, voorzichtig, voorzien, vork, vorm, vos, vouwen, vraag, vragen, vrede, vreemd, vreemde, vriend, vriendelijk, vriezen, vrij, vrijheid, vroeg, vroeger, vrouw, vullen, vuur, waar, waarom, waarschijnlijk, wachten, wakker, wanneer, want, wapen, warm, wassen, wat, water, we, week, weer, weg, welke, welkom, wens, wereld, werelddeel, werk, west, wetenschap, wie, wiel, wij, wijn, wijs, wild, willen, wind, winkel, winnen, winter, wissen, wit, wolf, wolk, wonder, woord, woud, wreed, zaak, zacht, zak, zand, zee, zeep, zeer, zeggen, zeil, zeker, zelfde, zes, zetten, zeven, ziek, ziekenhuis, ziel, zien, zij, zijn, zilver, zingen, zinken, zitten, zo, zoals, zoeken, zoet, zomer, zon, zonder, zonnig, zoon, zorg, zorgen, zou, zout, zuid, zulke, zullen, zus, zwaar, zwak, zwembad, zwemmen";
+            var words = wordsString.Split(new[] {", "}, StringSplitOptions.None).ToArray();
+            var wordList = words.Select(word => new Word {Characters = word}).ToList();
+
+            //Loop over each word in the wordlist to check if the word already exsists in the database
+            foreach (var word in wordList)
+                if (!ApplicationDatabase.Words.Any(w => w.Characters == word.Characters))
+                    ApplicationDatabase.Words.Add(word);
+
+            //Save the changes
+            SaveDb();
+            Console.WriteLine("Database Saved");
+        }
+
+        public bool HasMistakes()
+        {
+            try
+            {
+                var test = (from w in ApplicationDatabase.KeyMistakes select w.KeyMistakeId).Count();
+                return test > 2;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+
+
+            return false;
+        }
+
+        public void SaveResult(int studentID, int keyScore, int accScore, string title)
+        {
+            //if (!ApplicationDatabase.Results.Any(w => w.Title == title))
+            ApplicationDatabase.Results.Add(new Result {StudentID = studentID, KeyScore = keyScore, AccScore = accScore});
+            SaveDb();
+        }
+
+        public string GetTextFromTitle(string title)
+        {
+            return ApplicationDatabase.Courses.Single(x => x.Title.Equals(title)).Text;
+        }
+
+        public bool GetCourseVisibility(string title)
+        {
+            return ApplicationDatabase.Courses.Single(x => x.Title.Equals(title)).Official;
+        }
+
+        public List<Student> GetAllStudents()
+        {
+            return ApplicationDatabase.Students.ToList();
+        }
+
+        public IEnumerable<Result> GetResultsPerStudent(int StudentID)
+        {
+            return ApplicationDatabase.Results.Where(x => x.StudentID == StudentID);
+        }
+
+        //Get the datetimes of saved start and endtime of saved course
+        public DateTime GetDateTime(string text, bool start)
+        {
+            if (start)
+            {
+                var startTime = ApplicationDatabase.Courses.Where(
+                    x => x.Title.Equals(text)).Select(x => x.StartDate).Single();
+                if (startTime != null) return (DateTime) startTime;
+            }
+            else
+            {
+                var endTime = ApplicationDatabase.Courses.Where(
+                    x => x.Title.Equals(text)).Select(x => x.EndDate).Single();
+                if (endTime != null) return (DateTime) endTime;
+            }
+            return DateTime.Now;
+        }
+
+        public User CheckLogin(string Username, string Password)
+        {
+            //Check if credentials are in database
+            if (ApplicationDatabase.Users.Any(x => x.Username == Username && x.Password == Password))
+            {
+                //create logged in user
+                var user = ApplicationDatabase.Users.Single(x => x.Username == Username && x.Password == Password);
+                return user;
+            }
+            return null;
+        }
+
+        public List<Course> RetrieveNonOfficialCourses()
+        {
+            return RetrieveAllDbCourses().Where(c => c.Official == false).Select(c => c)
+                .ToList(); // select only the non-official courses
+        }
+    }
+}

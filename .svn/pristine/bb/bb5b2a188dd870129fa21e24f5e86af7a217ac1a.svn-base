@@ -1,0 +1,168 @@
+﻿using TypApplication.View;
+
+namespace TypApplication.View
+{
+    partial class MainForm
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.components = new System.ComponentModel.Container();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.KeystrokeTimer = new System.Windows.Forms.Timer(this.components);
+            this.menuStrip2 = new System.Windows.Forms.MenuStrip();
+            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.colorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.changeColorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exerciseTestBox = new System.Windows.Forms.RichTextBox();
+            this.KeystrokesPerMinuteText = new System.Windows.Forms.Label();
+            this.KeystrokesPerMinute = new System.Windows.Forms.Label();
+            this.keyBoard = new TypApplication.View.KeyBoard();
+            this.menuStrip2.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(93, 162);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(643, 80);
+            this.richTextBox1.TabIndex = 3;
+            this.richTextBox1.Text = "";
+            this.richTextBox1.TextChanged += new System.EventHandler(this.RichTextBox1_TextChanged);
+            this.richTextBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RichTextBox1_KeyDown);
+            this.richTextBox1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.RichTextBox1_KeyUp);
+            // 
+            // menuStrip2
+            // 
+            this.menuStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.settingsToolStripMenuItem});
+            this.menuStrip2.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip2.Name = "menuStrip2";
+            this.menuStrip2.Padding = new System.Windows.Forms.Padding(8, 3, 0, 3);
+            this.menuStrip2.Size = new System.Drawing.Size(992, 30);
+            this.menuStrip2.TabIndex = 6;
+            this.menuStrip2.Text = "menuStrip2";
+            // 
+            // settingsToolStripMenuItem
+            // 
+            this.settingsToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.colorToolStripMenuItem,
+            this.changeColorsToolStripMenuItem});
+            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(74, 24);
+            this.settingsToolStripMenuItem.Text = "Settings";
+            // 
+            // colorToolStripMenuItem
+            // 
+            this.colorToolStripMenuItem.Name = "colorToolStripMenuItem";
+            this.colorToolStripMenuItem.Size = new System.Drawing.Size(176, 26);
+            this.colorToolStripMenuItem.Text = "Colorblind";
+            // 
+            // changeColorsToolStripMenuItem
+            // 
+            this.changeColorsToolStripMenuItem.Name = "changeColorsToolStripMenuItem";
+            this.changeColorsToolStripMenuItem.Size = new System.Drawing.Size(176, 26);
+            this.changeColorsToolStripMenuItem.Text = "ChangeColors";
+            this.changeColorsToolStripMenuItem.Click += new System.EventHandler(this.ChangeColorsToolStripMenuItem_Click);
+            // 
+            // exerciseTestBox
+            // 
+            this.exerciseTestBox.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.exerciseTestBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.exerciseTestBox.Cursor = System.Windows.Forms.Cursors.No;
+            this.exerciseTestBox.Enabled = false;
+            this.exerciseTestBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.exerciseTestBox.Location = new System.Drawing.Point(93, 99);
+            this.exerciseTestBox.Margin = new System.Windows.Forms.Padding(4);
+            this.exerciseTestBox.Name = "exerciseTestBox";
+            this.exerciseTestBox.Size = new System.Drawing.Size(587, 56);
+            this.exerciseTestBox.TabIndex = 7;
+            this.exerciseTestBox.Text = "";
+            // 
+            // KeystrokesPerMinuteText
+            // 
+            this.KeystrokesPerMinuteText.AutoSize = true;
+            this.KeystrokesPerMinuteText.Location = new System.Drawing.Point(781, 56);
+            this.KeystrokesPerMinuteText.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.KeystrokesPerMinuteText.Name = "KeystrokesPerMinuteText";
+            this.KeystrokesPerMinuteText.Size = new System.Drawing.Size(153, 17);
+            this.KeystrokesPerMinuteText.TabIndex = 8;
+            this.KeystrokesPerMinuteText.Text = "Keystrokes per minute:";
+            // 
+            // KeystrokesPerMinute
+            // 
+            this.KeystrokesPerMinute.AutoSize = true;
+            this.KeystrokesPerMinute.Location = new System.Drawing.Point(942, 56);
+            this.KeystrokesPerMinute.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.KeystrokesPerMinute.Name = "KeystrokesPerMinute";
+            this.KeystrokesPerMinute.Size = new System.Drawing.Size(16, 17);
+            this.KeystrokesPerMinute.TabIndex = 9;
+            this.KeystrokesPerMinute.Text = "0";
+            // 
+            // keyBoard
+            // 
+            this.keyBoard.Location = new System.Drawing.Point(37, 313);
+            this.keyBoard.Margin = new System.Windows.Forms.Padding(1);
+            this.keyBoard.Name = "keyBoard";
+            this.keyBoard.Size = new System.Drawing.Size(831, 278);
+            this.keyBoard.TabIndex = 10;
+            // 
+            // MainForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(992, 640);
+            this.Controls.Add(this.keyBoard);
+            this.Controls.Add(this.KeystrokesPerMinute);
+            this.Controls.Add(this.KeystrokesPerMinuteText);
+            this.Controls.Add(this.exerciseTestBox);
+            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.menuStrip2);
+            this.Name = "MainForm";
+            this.Text = "TypApplication";
+            this.menuStrip2.ResumeLayout(false);
+            this.menuStrip2.PerformLayout();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Timer KeystrokeTimer;
+        private System.Windows.Forms.MenuStrip menuStrip2;
+        private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem colorToolStripMenuItem;
+        private System.Windows.Forms.RichTextBox exerciseTestBox;
+        private System.Windows.Forms.ToolStripMenuItem changeColorsToolStripMenuItem;
+        private System.Windows.Forms.Label KeystrokesPerMinuteText;
+        private System.Windows.Forms.Label KeystrokesPerMinute;
+        private KeyBoard keyBoard;
+    }
+}
+

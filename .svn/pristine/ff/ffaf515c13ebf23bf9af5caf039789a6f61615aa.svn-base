@@ -1,0 +1,48 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using TypoTeacher.Model.Database;
+
+namespace TypoTeacher.Controller
+{
+    class ResultsController
+    {
+        private Student student;
+        private DatabaseController databaseController;
+        private IEnumerable<Result> results;
+        public delegate int CalculateAverage();
+        public CalculateAverage calculate;
+
+        public ResultsController(Student student)
+        {
+            this.student = student;
+            databaseController = new DatabaseController();
+            results = databaseController.GetResultsPerStudent(student.studentID);
+        }
+
+        public int Speed()
+        {
+            IEnumerable<int> list = results.Select(x => x.KeyScore);
+            int total = 0;
+            foreach (int i in list)
+                total += i;
+            return total / list.Count();
+        }
+
+        public int Accuracy()
+        {
+            IEnumerable<int> list = results.Select(x => x.AccScore);
+            int total = 0;
+            foreach (int i in list)
+                total += i;
+            return total / list.Count();
+        }
+
+        //public int CalculateAmount(string type)
+        //{
+        //    return results.Count(x => x.type == type);
+        //}
+    }
+}

@@ -1,0 +1,48 @@
+﻿using System.Linq;
+using System.Windows;
+using Typo.Controller;
+using Typo.View;
+
+namespace Typo
+{
+    /// <summary>
+    ///     Interaction logic for MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : Window
+    {
+        public MainWindow()
+        {
+            //DatabaseFill
+            var database = new DatabaseController();
+            if (!database.ApplicationDatabase.Teachers.Any())
+                database.FillDatabase();
+
+            InitializeComponent();
+            MainFrame.Content = new Login();
+        }
+
+        public void ClearMainFrameContent()
+        {
+            MainFrame.Content = null;
+            MainFrame.NavigationService.RemoveBackEntry();
+        }
+
+        private void Home_Click(object sender, RoutedEventArgs e)
+        {
+            var Usertype = Application.Current.Properties["UserType"];
+            if(Usertype != null)
+            {
+                if (Application.Current.Properties["UserType"].ToString() == "Teacher")
+                {
+                    ClearMainFrameContent();
+                    MainFrame.Content = new TeacherMenu(this);
+                }
+                else if (Application.Current.Properties["UserType"].ToString() == "Student")
+                {
+                    ClearMainFrameContent();
+                    MainFrame.Content = new MainMenu(this);
+                }
+            }
+        }
+    }
+}

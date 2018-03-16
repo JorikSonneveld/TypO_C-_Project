@@ -1,0 +1,55 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using Typo.Controller;
+using Typo.Model.Database;
+
+namespace Typo.View
+{
+    /// <summary>
+    /// Interaction logic for MenuStudentStatistics.xaml
+    /// </summary>
+    public partial class MenuStudentStatistics : UserControl
+    {
+        private MainWindow mainWindow;
+        private Student student;
+        private DatabaseController databaseController = new DatabaseController();
+
+        public MenuStudentStatistics(MainWindow mainWindow, int ID)
+        {
+            this.mainWindow = mainWindow;
+            student = databaseController.GetStudentByID(ID);
+            InitializeComponent();
+            var Bindings = CreateBindings(student);
+            Results.ItemsSource = databaseController.GetResultsPerStudent(ID).ToList();
+            DataContext = Bindings;
+        }
+
+        private List<object> CreateBindings(Student student)
+        {
+            var Bindings = new List<object>();
+            Bindings.Add(student);
+            Bindings.Add(databaseController.GetAverageAccuracy(student.ID));
+            Bindings.Add(databaseController.GetAverageKeysPerMinute(student.ID));
+            Bindings.Add(databaseController.GetResultCount(student.ID, false));
+            Bindings.Add(databaseController.GetResultCount(student.ID, true));
+            return Bindings;
+        }
+
+        private void Return_Click(object sender, RoutedEventArgs e)
+        {
+            mainWindow.Content = new MainMenu(mainWindow);
+        }
+    }
+}

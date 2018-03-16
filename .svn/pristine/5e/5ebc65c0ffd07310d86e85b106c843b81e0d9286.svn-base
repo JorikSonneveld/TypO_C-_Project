@@ -1,0 +1,92 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using TypApplication.Model;
+using TypApplication.View;
+
+namespace TypApplication.Controller
+{
+    public class TextInput
+    {
+        private DatabaseController databaseController = new DatabaseController();
+        private List<string> Mistakes = new List<string>();
+
+        public TextInput() { }
+
+        public TextInput(DatabaseController databaseController)
+        {
+            this.databaseController = databaseController;
+        }
+        //Keylogger
+        public void Log(KeyData data, KeyEventArgs e)
+        {
+            data.CurrentKeyCode = e.KeyValue.ToString();
+            if (e.KeyCode != Keys.ShiftKey)
+                KeyData.KeystrokeCounter++;
+        }
+
+        //Calculate next key in string
+        public void CalculateNextKey(String Text, KeyData data)
+        {
+            if (Text.Length - KeyData.GoodKeyPresses > 1)
+            {
+                data.NextKeyValueUpper = Text.ToUpper()[KeyData.GoodKeyPresses];
+            }
+        }
+
+        public void Done(KeyBoard keyboard, KeyData keyData)
+        {
+            keyboard.ResetKeyColor(keyData.NextKeyValueUpper);
+        }
+
+        //Check if pressed key is good, wrong or max reached
+        public void Check(RichTextBox InputBox, RichTextBox TestBox, KeyBoard keyboard, KeyData keyData)
+        {
+            // max reached
+            if (TestBox.TextLength - KeyData.GoodKeyPresses <= 1)
+            {
+                Console.WriteLine("je bent klaar");
+                InputBox.ReadOnly = true;
+                keyboard.Hide();
+                Done(keyboard, keyData);
+                databaseController.AddMistakeToDd(Mistakes);
+            }
+            
+            else
+            {
+                // GoodKey is current position of string, position is defined by numbers of good presses
+                keyData.GoodKey = TestBox.Text[KeyData.GoodKeyPresses].ToString();
+
+                // Set currentkey to last entered char in textbox
+                keyData.CurrentKeyValue = InputBox.Text.Substring(InputBox.Text.Length - 1);
+
+
+                {
+                    // if CurrentKey equals GoodKey, count up number of GoodKeyPresses
+                    if (keyData.CurrentKeyValue.Equals(keyData.GoodKey))
+                    {
+                        KeyData.GoodKeyPresses++;
+                    }
+
+                    // If entered key is wrong
+                    else if (!keyData.CurrentKeyValue.Equals(keyData.GoodKey))
+                    {
+                        // Remove wrong char
+                        InputBox.Text = InputBox.Text.Substring(0, InputBox.TextLength - 1);
+                        // Move input position to end
+                        InputBox.SelectionStart = InputBox.Text.Length;
+
+                        // Count up wrong key presses
+                        keyData.WrongKeyPresses++;
+                        Mistakes.Add(keyData.GoodKey.ToString().ToLower());  //adds the letter of the mistake in a list to be saved later                    
+                    }
+                }
+            }
+        }
+    }
+
+}

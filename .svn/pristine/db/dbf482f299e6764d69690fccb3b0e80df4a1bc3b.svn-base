@@ -1,0 +1,12 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
+
+namespace TypApplication.Model
+{
+    public class Course
+    {
+        public int CourseID { get; set; }
+        public string Characters { get; set; }
+    }
+}

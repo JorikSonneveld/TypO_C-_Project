@@ -1,0 +1,45 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using TypApplication.View;
+
+namespace TypApplication.Model
+{
+    public class KeyData
+    {
+        public string CurrentKeyCode;
+        public string CurrentKeyValue;
+        public string GoodKey;
+        public static int GoodKeyPresses = 0;
+        public int WrongKeyPresses = 0;
+        public char NextKeyValueUpper;
+        public static int KeystrokeTime = 0;
+        public static int KeystrokesPerMinute = 0;
+        public static int KeystrokeCounter = 0;
+        public long CurrentMillisec;
+        public long StartMillisec;
+        private long Delay;
+
+        public void CalculateKeystrokesPerMinute()
+        {
+            KeystrokeTime++; //add one to the timer per tick
+            if (KeystrokeTime == 1) //if its the first time
+                StartMillisec = Convert.ToInt64(Convert.ToInt64((DateTime.Now - DateTime.MinValue).TotalMilliseconds)); //a benchmark time in milliseconds where every time is calculated from
+
+            CurrentMillisec = Convert.ToInt64(Convert.ToInt64((DateTime.Now - DateTime.MinValue).TotalMilliseconds)); //the current time in milliseconds
+
+            if (CurrentMillisec - StartMillisec >= 0) //check if the current time is higher then the benchmarktime
+                Delay = CurrentMillisec - StartMillisec; //calculate the time difference in milliseconds
+
+            if (KeystrokeTime % 60 == 0) //check if the count of ticks will be 0 if divided by zero
+            {
+                decimal temp = KeystrokeCounter / (Delay / 60000m); // first make a time in minutes from the delay then calculate the stokes per minute
+                KeystrokesPerMinute = Convert.ToInt32(temp);
+            }
+        }
+    }
+}

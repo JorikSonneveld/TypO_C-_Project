@@ -1,0 +1,15 @@
+﻿using System.Collections.Generic;
+using static System.String;
+
+namespace Typo.Model
+{
+    public class Key
+    {
+        public Key(int keyCode)
+        {
+            KeyCode = keyCode;
+        }
+
+        public int KeyCode { get; set; }     
+    }
+}

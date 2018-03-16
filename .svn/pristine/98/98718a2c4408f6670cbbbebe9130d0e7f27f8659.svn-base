@@ -1,0 +1,99 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media;
+using Typo.Controller;
+using Typo.Model;
+
+namespace Typo.View
+{
+    /// <summary>
+    /// Interaction logic for ExerciseView.xaml
+    /// </summary>
+    public partial class ExerciseView : UserControl
+    {
+        private readonly DatabaseController DbController = new DatabaseController();
+        private ExerciseController ExController;
+        public new MainWindow ParentForm;
+
+
+        public ExerciseView(MainWindow parentForm, Exercise exercise)
+        {
+            this.ParentForm = parentForm;
+            InitializeComponent();
+            keyBoard.Refresh();
+            StopTimer();
+            KeystrokeTimer.Interval = 1; //runs every millisecond
+            //KeystrokeTimer.Tick += Update; //every tick it will Update()
+            //Fill wordlist if empty, else start exercise
+            if (DbController.GetWordListCount() == 0)
+                DbController.FillDatabaseWords();
+
+            ExController = new ExerciseController(ExerciseBox, exercise, this, DbController);
+            ExController.AddExerciseToView();
+        }
+
+        public void PrintExercise()
+        {
+            var wordList = new List<Word>();
+
+            if (ParentForm.Database.HasMistakes())
+                wordList = DbController.GenerateWords(5, 3);
+            else
+                wordList = ParentForm.Database.RetrieveRandomDbWords();
+
+            Exercise wordExercise = new WordExercise(wordList);
+            ExController = new ExerciseController(ExerciseBox, wordExercise, this, DbController);
+            UpdateColorsRichTextbox(wordExercise);
+        }
+
+        public void Update(object sender, EventArgs e)
+        {
+            ExController.UpdateKeystrokesPerMinute();
+            KeystrokesPerMinute.Text = $"Keystrokes per minute {KeyData.KeystrokesPerMinute}"; //update the label
+            ExController.UpdateKeystrokesPerMinute();
+            ExController.CalculateAccuracy();
+            Accuracy.Text = $"Accuracy {KeyData.Accuracy}%";
+            Refresh();
+        }
+
+        public void UpdateColorsRichTextbox(Exercise exercise)
+        {
+            //Goede Richtextbox hier zetten
+            ExerciseBox.Clear();
+            ExerciseBox.AppendText(exercise.InputString, Color.FromArgb(Settings.Default.TextColor));
+            ExerciseBox.AppendText(exercise.ExerciseString, Color.Black);
+            ExerciseBox.Select(exercise.InputString.Length, 0);
+        }
+
+        private void ExerciseBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (KeyData.KeystrokeCounter == 0)
+                KeystrokeTimer.Start(); //start the timer
+            if (e.KeyCode == Keys.Back || e.KeyCode == Keys.Tab)
+                e.Handled = true;
+            ExController.Check(e);
+        }
+
+        private void ExerciseBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            keyBoard.ResetKeyColor(e.KeyValue);
+        }
+
+        public void StopTimer()
+        {
+            KeystrokeTimer.Stop(); //stop the timer  
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            ParentForm.ShowMainMenu();
+
+            // Reset values
+            StopTimer();
+            DbController.AddMistakesToDb(ExController.Mistakes);
+        }
+    }
+}

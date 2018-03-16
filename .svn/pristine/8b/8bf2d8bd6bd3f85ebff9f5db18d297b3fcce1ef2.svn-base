@@ -1,0 +1,62 @@
+﻿using System;
+using System.Windows;
+using System.Windows.Controls;
+using Typo.Controller;
+using Typo.Model;
+
+namespace Typo.View
+{
+    /// <summary>
+    /// Interaction logic for CourseEditor.xaml
+    /// </summary>
+    public partial class CourseEditor : Window
+    {
+        public DataGridCellInfo cell;
+        public bool update = false;
+        private int courseId;
+
+        private CourseController courseController = new CourseController();
+
+        public CourseEditor(DatabaseController database)
+        {
+            this.courseController.db = database;
+            InitializeComponent();
+        }
+
+        public CourseEditor(Course course, DatabaseController database)
+        {
+            this.courseController.db = database;
+            InitializeComponent();
+            if (course == null) return;
+            //Set View Values
+            courseId = course.CourseID;
+            CourseTitle.Text = course.Title;
+            VisibleCheck.IsChecked = course.Official;
+            StartDate.Value = course.StartDate;
+            EndDate.Value = course.EndDate;
+            CourseContent.Text = course.Text;
+            update = true;
+        }
+
+        private void Update_Click(object sender, EventArgs e)
+        {
+            if (update)
+            {
+                var course = new Course { CourseID = courseId, Title = CourseTitle.Text, Text = CourseContent.Text, StartDate = StartDate.Value, EndDate = EndDate.Value, Official = VisibleCheck.IsChecked.Value };
+                courseController.CreateMessage(courseController.db.EditCourse(course), true);
+            }
+            else
+            {
+                var course = new Course { Title = CourseTitle.Text, Text = CourseContent.Text, StartDate = StartDate.Value, EndDate = EndDate.Value, Official = VisibleCheck.IsChecked.Value };
+                if (!courseController.db.AddCourse(course))
+                {
+                    //If title already excists, add (1) to title
+                    course.Title += "(1)";
+                    courseController.db.AddCourse(course);
+                }
+                courseController.CreateMessage(true, false);
+            }
+            Close();
+        }
+    }
+}

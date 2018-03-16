@@ -1,0 +1,85 @@
+﻿using System;
+using System.Windows;
+using System.Windows.Controls;
+using Typo.Controller;
+using Typo.Model;
+
+namespace Typo.View
+{
+    /// <summary>
+    /// Interaction logic for CourseEditor.xaml
+    /// </summary>
+    public partial class CourseEditor : Window
+    {
+        public DataGridCellInfo cell;
+        public bool update = false;
+        private string oldTitle;
+        private string oldClasscode;
+        
+        private DatabaseController database;
+
+        public CourseEditor(DatabaseController database)
+        {
+            this.database = database;
+            InitializeComponent();
+            ClassName.ItemsSource = database.GetClasses();
+        }
+
+        public CourseEditor(Course course, DatabaseController database)
+        {
+            InitializeComponent();
+            this.database = database;
+            ClassName.ItemsSource = database.GetClasses();
+
+            if (course != null)
+            {
+                //Old title
+                oldTitle = course.Title;
+                //OldClasscode
+                oldClasscode = database.GetCourseClass(course.CourseID);
+                CourseTitle.Text = course.Title;
+                VisibleCheck.IsChecked = course.Official;
+                StartDate.SelectedDate = course.StartDate;
+                EndDate.SelectedDate = course.EndDate;
+                CourseContent.Text = course.Text;
+                update = true;
+            }
+        }
+
+        private void Update_Click(object sender, EventArgs e)
+        {
+            // Update course
+            if (update)
+            {
+                database.EditCourse(
+                    database.GetCourseId(oldTitle),
+                    CourseTitle.Text,
+                    CourseContent.Text,
+                    VisibleCheck.IsChecked.Value,
+                    StartDate.SelectedDate.Value,
+                    EndDate.SelectedDate.Value,
+                    ClassName.SelectedValue.ToString(),
+                    oldClasscode,
+                    true
+                );
+            }
+            // New course
+            else
+            {
+                database.AddCourse(
+                    CourseContent.Text,
+                    CourseTitle.Text,
+                    VisibleCheck.IsChecked.Value,
+                    StartDate.SelectedDate.Value,
+                    EndDate.SelectedDate.Value
+                );
+            }
+            Close();
+        }
+
+        private void ButtonCancel_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+    }
+}

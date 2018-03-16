@@ -1,0 +1,117 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Runtime.InteropServices;
+using System.Windows.Forms;
+using TypApplication.Controller;
+using TypApplication.Model;
+
+namespace TypApplication.View
+{
+    public partial class ExerciseView : UserControl
+    {
+        private MainForm parentForm;
+
+        private KeyData keyData = new KeyData();        
+        private DatabaseController DbController = new DatabaseController();
+        private TextInput input;
+        private ExerciseController ExController;
+        private WordExercise wordExercise;
+
+        public ExerciseView(MainForm parentForm)
+        {
+            DbController.DbConnect();
+            this.parentForm = parentForm;
+            input = new TextInput(DbController);
+            InitializeComponent();
+            keyBoard.Refresh();
+            KeystrokeTimer.Stop();
+            KeystrokeTimer.Interval = 1; //runs every millisecond
+            KeystrokeTimer.Tick += new EventHandler(Update); //every tick it will Update();
+            
+            ExController = new ExerciseController(ExerciseBox);
+
+            wordExercise = new WordExercise(parentForm.database.RetrieveRandomDbWords());
+            //NumberExercise numberExercise = new NumberExercise(-100, 100, 10);
+            ExController.ChangeExerciseTestBox(wordExercise);
+            Refresh();
+
+            wordExercise.ExerciseString = wordExercise.PrintExercise();
+        }
+
+        public void Update(object sender, EventArgs e)
+        {
+            ExController.UpdateKeystrokesPerMinute();
+            KeystrokesPerMinute.Text = KeyData.KeystrokesPerMinute.ToString(); //update the label
+            ExController.UpdateKeystrokesPerMinute();
+            ExController.CalculateAccuracy();
+            Accuracy.Text = KeyData.Accuracy.ToString();
+            //Console.WriteLine(KeyData.KeystrokeCounter);
+        }
+
+        private void ReturnMainmenuButton_Click(object sender, EventArgs e)
+        {
+            parentForm.ShowMainMenu();
+
+            // Reset values
+            KeyData.GoodKeyPresses = 0;
+            KeyData.KeystrokeCounter = 0;
+            KeystrokeTimer.Stop(); //stop the timer
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            
+            if(!input.Check(ExerciseBox, keyData))
+            {
+                ExController.UpdateExerciseToNextChar(wordExercise);
+                UpdateColorsRichTextbox(wordExercise);
+            }
+        }
+
+        private void richTextBox1_MouseClick(object sender, MouseEventArgs e)
+        {
+            KeystrokeTimer.Start(); //start the timer
+        }
+
+        private void richTextBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Back)
+            {
+                e.Handled = true;
+            }
+
+            input.Log(keyData, e);
+            keyData.CurrentKeyCode = e.KeyValue.ToString();
+            input.CalculateNextKey(ExerciseBox.Text, keyData);
+            keyBoard.ActKey(e.KeyValue, keyData.NextKeyValueUpper);
+            Invalidate();
+        }
+
+        private void richTextBox1_KeyUp(object sender, KeyEventArgs e)
+        {
+            keyBoard.ResetKeyColor(e.KeyValue);
+        }
+
+        private void UpdateColorsRichTextbox(Exercise exercise)
+        {
+            //Goede Richtextbox hier zetten
+            TestingBox.Clear();
+            TestingBox.AppendText(exercise.InputString, Color.Green);
+            TestingBox.AppendText(exercise.ExerciseString, Color.Black);
+        }
+    }
+
+    public static class RichTextBoxExtensions
+    {
+        public static void AppendText(this RichTextBox box, string text, Color color)
+        {
+            box.SelectionStart = box.TextLength;
+            box.SelectionLength = 0;
+
+            box.SelectionColor = color;
+            box.AppendText(text);
+            box.SelectionColor = box.ForeColor;
+        }
+    }
+}

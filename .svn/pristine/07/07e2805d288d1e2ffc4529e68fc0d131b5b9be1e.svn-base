@@ -1,0 +1,92 @@
+﻿using System;
+using System.Drawing;
+using System.Windows.Forms;
+using TypApplication.Properties;
+
+namespace TypApplication.View
+{
+    public partial class SettingsView : UserControl
+    {
+        public new MainForm ParentForm;
+
+        public SettingsView(MainForm parentForm)
+        {
+            InitializeComponent();
+
+            this.ParentForm = parentForm;
+            OffTrue.BackColor = Color.FromArgb(Settings.Default.colorblindOffTrue);
+            OffFalse.BackColor = Color.FromArgb(Settings.Default.colorblindOffFalse);
+
+            OnTrue.BackColor = Color.FromArgb(Settings.Default.colorblindOnTrue);
+            OnFalse.BackColor = Color.FromArgb(Settings.Default.colorblindOnFalse);
+
+            TextColorBtn.BackColor = Color.FromArgb(Settings.Default.TextColor);
+
+            NUMpad.Checked = Settings.Default.NUM;
+            colorblind.Checked = Settings.Default.colorblind;
+        }
+
+        private void OffTrue_Click(object sender, EventArgs e)
+        {
+            colorDialog1.Color = OffTrue.BackColor;
+            if (colorDialog1.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.colorblindOffTrue = colorDialog1.Color.ToArgb();
+                SaveProperties(colorDialog1.Color, OffTrue);
+            }
+        }
+
+        private void OffFalse_Click(object sender, EventArgs e)
+        {
+            colorDialog1.Color = OffFalse.BackColor;
+            if (colorDialog1.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.colorblindOffFalse = colorDialog1.Color.ToArgb();
+                SaveProperties(colorDialog1.Color, OffFalse);
+            }
+        }
+
+        private void OnTrue_Click(object sender, EventArgs e)
+        {
+            colorDialog1.Color = OnTrue.BackColor;
+            if (colorDialog1.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.colorblindOnTrue = colorDialog1.Color.ToArgb();
+                SaveProperties(colorDialog1.Color, OnTrue);
+            }
+        }
+
+        private void OnFalse_Click(object sender, EventArgs e)
+        {
+            colorDialog1.Color = OnFalse.BackColor;
+            if (colorDialog1.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.colorblindOnFalse = colorDialog1.Color.ToArgb();
+                SaveProperties(colorDialog1.Color, OnFalse);
+            }
+        }
+
+        private void SaveProperties(Color color, Button button)
+        {
+            button.BackColor = color;
+        }
+
+        private void TextColorBtn_Click(object sender, EventArgs e)
+        {
+            colorDialog1.Color = TextColorBtn.BackColor;
+            if (colorDialog1.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.TextColor = colorDialog1.Color.ToArgb();
+                SaveProperties(colorDialog1.Color, TextColorBtn);
+            }
+        }
+
+        private void BackButton_Click(object sender, EventArgs e)
+        {
+            Settings.Default.NUM = NUMpad.Checked;
+            Settings.Default.colorblind = colorblind.Checked;
+            Settings.Default.Save();
+            ParentForm.ShowMainMenu();
+        }
+    }
+}

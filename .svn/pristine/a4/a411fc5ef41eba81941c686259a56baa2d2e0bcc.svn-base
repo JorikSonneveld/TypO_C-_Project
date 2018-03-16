@@ -1,0 +1,47 @@
+﻿using System;
+using System.Windows;
+using System.Windows.Controls;
+using Typo.Controller;
+using Typo.Model;
+
+namespace Typo.View
+{
+    /// <summary>
+    ///     Interaction logic for PraticeCoursePicker.xaml
+    /// </summary>
+    public partial class PraticeCoursePicker : UserControl
+    {
+        private readonly DatabaseController databaseController = new DatabaseController();
+        private readonly MainWindow mainWindow;
+
+        public PraticeCoursePicker(MainWindow mainWindow)
+        {
+            this.mainWindow = mainWindow;
+            InitializeComponent();
+            CoursesGrid.ItemsSource = databaseController.RetrieveNonOfficialCourses();
+        }
+
+        private void StartPracticeCourse_Click(object sender, RoutedEventArgs e)
+        {
+            var course = (Course) CoursesGrid.SelectedItem;
+            try
+            {
+                mainWindow.ClearMainFrameContent();
+                mainWindow.MainFrame.Content =
+                    new ExerciseView(
+                        new CourseExercise(
+                            course)); // make a new courseExercise from the row and put it in the exerciseView
+            }
+            catch (NullReferenceException)
+            {
+                MessageBox.Show("You have to select a course first!", "Course", MessageBoxButton.OK);
+            }
+        }
+
+        private void Return_Click(object sender, RoutedEventArgs e)
+        {
+            mainWindow.ClearMainFrameContent();
+            mainWindow.MainFrame.Content = new MainMenu(mainWindow);
+        }
+    }
+}

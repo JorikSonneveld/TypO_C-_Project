@@ -1,0 +1,184 @@
+﻿namespace TypApplication.View
+{
+    partial class UserControl1
+    {
+        /// <summary> 
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary> 
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Component Designer generated code
+
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lblAmountCourses = new System.Windows.Forms.Label();
+            this.lblAmountLetterExercises = new System.Windows.Forms.Label();
+            this.lblAmountNumberExercises = new System.Windows.Forms.Label();
+            this.lblAmountWordExercises = new System.Windows.Forms.Label();
+            this.lblAverageAccuracy = new System.Windows.Forms.Label();
+            this.lblAverageSpeed = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.ResultsTable = new System.Windows.Forms.DataGridView();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ResultsTable)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Controls.Add(this.lblAmountCourses);
+            this.panel1.Controls.Add(this.lblAmountLetterExercises);
+            this.panel1.Controls.Add(this.lblAmountNumberExercises);
+            this.panel1.Controls.Add(this.lblAmountWordExercises);
+            this.panel1.Controls.Add(this.lblAverageAccuracy);
+            this.panel1.Controls.Add(this.lblAverageSpeed);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Location = new System.Drawing.Point(4, 4);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(660, 847);
+            this.panel1.TabIndex = 0;
+            // 
+            // lblAmountCourses
+            // 
+            this.lblAmountCourses.AutoSize = true;
+            this.lblAmountCourses.Location = new System.Drawing.Point(70, 531);
+            this.lblAmountCourses.Name = "lblAmountCourses";
+            this.lblAmountCourses.Size = new System.Drawing.Size(256, 25);
+            this.lblAmountCourses.TabIndex = 6;
+            this.lblAmountCourses.Text = "Amount of courses made:";
+            // 
+            // lblAmountLetterExercises
+            // 
+            this.lblAmountLetterExercises.AutoSize = true;
+            this.lblAmountLetterExercises.Location = new System.Drawing.Point(70, 467);
+            this.lblAmountLetterExercises.Name = "lblAmountLetterExercises";
+            this.lblAmountLetterExercises.Size = new System.Drawing.Size(320, 25);
+            this.lblAmountLetterExercises.TabIndex = 5;
+            this.lblAmountLetterExercises.Text = "Amount of letterexercises made:";
+            // 
+            // lblAmountNumberExercises
+            // 
+            this.lblAmountNumberExercises.AutoSize = true;
+            this.lblAmountNumberExercises.Location = new System.Drawing.Point(70, 403);
+            this.lblAmountNumberExercises.Name = "lblAmountNumberExercises";
+            this.lblAmountNumberExercises.Size = new System.Drawing.Size(344, 25);
+            this.lblAmountNumberExercises.TabIndex = 4;
+            this.lblAmountNumberExercises.Text = "Amount of numberexercises made:";
+            // 
+            // lblAmountWordExercises
+            // 
+            this.lblAmountWordExercises.AutoSize = true;
+            this.lblAmountWordExercises.Location = new System.Drawing.Point(70, 337);
+            this.lblAmountWordExercises.Name = "lblAmountWordExercises";
+            this.lblAmountWordExercises.Size = new System.Drawing.Size(318, 25);
+            this.lblAmountWordExercises.TabIndex = 3;
+            this.lblAmountWordExercises.Text = "Amount of wordexercises made:";
+            // 
+            // lblAverageAccuracy
+            // 
+            this.lblAverageAccuracy.AutoSize = true;
+            this.lblAverageAccuracy.Location = new System.Drawing.Point(70, 249);
+            this.lblAverageAccuracy.Name = "lblAverageAccuracy";
+            this.lblAverageAccuracy.Size = new System.Drawing.Size(191, 25);
+            this.lblAverageAccuracy.TabIndex = 2;
+            this.lblAverageAccuracy.Text = "Average accuracy:";
+            // 
+            // lblAverageSpeed
+            // 
+            this.lblAverageSpeed.AutoSize = true;
+            this.lblAverageSpeed.Location = new System.Drawing.Point(70, 154);
+            this.lblAverageSpeed.Name = "lblAverageSpeed";
+            this.lblAverageSpeed.Size = new System.Drawing.Size(223, 25);
+            this.lblAverageSpeed.TabIndex = 1;
+            this.lblAverageSpeed.Text = "Average speed (kpm):";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(258, 10);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(99, 25);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Statistics";
+            // 
+            // panel2
+            // 
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel2.Controls.Add(this.ResultsTable);
+            this.panel2.Controls.Add(this.label2);
+            this.panel2.Location = new System.Drawing.Point(670, 7);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1033, 844);
+            this.panel2.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(468, 7);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(84, 25);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Results";
+            // 
+            // ResultsTable
+            // 
+            this.ResultsTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ResultsTable.Location = new System.Drawing.Point(3, 57);
+            this.ResultsTable.Name = "ResultsTable";
+            this.ResultsTable.RowTemplate.Height = 33;
+            this.ResultsTable.Size = new System.Drawing.Size(1023, 780);
+            this.ResultsTable.TabIndex = 2;
+            // 
+            // UserControl1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
+            this.Name = "UserControl1";
+            this.Size = new System.Drawing.Size(1706, 854);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ResultsTable)).EndInit();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label lblAverageAccuracy;
+        private System.Windows.Forms.Label lblAverageSpeed;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblAmountCourses;
+        private System.Windows.Forms.Label lblAmountLetterExercises;
+        private System.Windows.Forms.Label lblAmountNumberExercises;
+        private System.Windows.Forms.Label lblAmountWordExercises;
+        private System.Windows.Forms.DataGridView ResultsTable;
+    }
+}

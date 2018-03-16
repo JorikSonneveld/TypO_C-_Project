@@ -1,0 +1,31 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using TypoTeacher.Controller;
+using TypoTeacher.Model.Database;
+
+namespace TypApplication.View
+{
+    public partial class UserControl1 : UserControl
+    {
+        private ResultsController resultsController; 
+        public UserControl1(Student student)
+        {
+            resultsController = new ResultsController(student);
+            InitializeComponent();
+            SetLabels();
+        }
+
+        public void SetLabels()
+        {
+            lblAverageSpeed.Text = String.Format("Average speed(kpm): {0}", resultsController.calculate = resultsController.Speed);
+            lblAverageAccuracy.Text = String.Format("Average accuracy: {0}", resultsController.calculate = resultsController.Accuracy);
+        }
+    }
+}

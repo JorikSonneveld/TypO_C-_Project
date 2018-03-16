@@ -1,0 +1,28 @@
+﻿using System;
+using System.Windows;
+using System.Windows.Controls;
+
+namespace Typo.View
+{
+    /// <summary>
+    ///     Interaction logic for StudentInformation.xaml
+    /// </summary>
+    public partial class StudentInformation : UserControl
+    {
+        private WrapPanel StudentOverview;
+
+        public StudentInformation(string FirstName, string Surname, string StudentID, WrapPanel StudentOverview)
+        {
+            InitializeComponent();
+            this.FirstName.Content = FirstName;
+            this.Surname.Content = Surname;
+            this.StudentID.Content = StudentID;
+            this.StudentOverview = StudentOverview;
+        }
+
+        private void BtnStudent_Click(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine(String.Format("Student {0} is clicked", StudentID.Content));
+        }
+    }
+}

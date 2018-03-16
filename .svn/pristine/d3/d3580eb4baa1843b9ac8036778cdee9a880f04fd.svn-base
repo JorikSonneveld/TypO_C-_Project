@@ -1,0 +1,25 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using TypApplication.Model;
+
+namespace TypApplication.Controller
+{
+    class ExerciseController
+    {
+        private RichTextBox exerciseTestBox;
+
+        public ExerciseController(RichTextBox exerciseTestBox)
+        {
+            this.exerciseTestBox = exerciseTestBox;
+        }
+
+        public void ChangeExerciseTestBox(Exercise exercise)
+        {
+            exerciseTestBox.Text = exercise.PrintExercise();
+        }
+    }
+}

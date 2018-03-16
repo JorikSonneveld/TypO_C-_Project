@@ -1,0 +1,69 @@
+﻿using System;
+using System.Activities;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Forms;
+using System.Windows.Input;
+using System.Windows.Interop;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using Typo.Controller;
+using Typo.Controller.RawInput;
+using KeyEventArgs = System.Windows.Input.KeyEventArgs;
+using UserControl = System.Windows.Controls.UserControl;
+using Typo.Model;
+
+namespace Typo.View
+{
+    /// <summary>
+    /// Interaction logic for Multiplayer.xaml
+    /// </summary>
+    public partial class Multiplayer : UserControl
+    {
+        private MainWindow mainWindow;
+        private IntPtr keyHandle;
+        private RawInput rawInput;
+        private bool externKeyboard;
+        public MultiplayerController MultiplayerController;
+
+        public Multiplayer(MainWindow mainWindow)
+        {
+            this.mainWindow = mainWindow;
+            InitializeComponent();
+            MultiplayerController = new MultiplayerController(this);
+            keyHandle = new WindowInteropHelper(this.mainWindow).Handle; //KeyEvent handler
+            rawInput = new RawInput(keyHandle, true); //RawInput reader
+            rawInput.KeyPressed += OnKeyPressed; //Void OnKeyPress when KeyPress
+            Focus();
+        }
+
+        //Detect if keypress is from external keyboard
+        private void OnKeyPressed(object sender, RawInputEventArg e)
+        {
+            externKeyboard = e.KeyPressEvent.Name.Equals("HID Keyboard Device");
+        }
+
+        private void OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (externKeyboard)
+                MultiplayerController.Player2_Handle_Key_Down(sender, e);
+            else
+                MultiplayerController.Player1_Handle_Key_Down(sender, e);
+        }
+
+        private void OnKeyUp(object sender, KeyEventArgs e)
+        {
+            if (externKeyboard)
+                MultiplayerController.upperCaseLetterPlayer2 = false;
+            else
+                MultiplayerController.upperCaseLetterPlayer1 = false;
+        }
+    }
+}

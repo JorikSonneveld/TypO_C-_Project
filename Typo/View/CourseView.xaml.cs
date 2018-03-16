@@ -1,0 +1,72 @@
+﻿using System;
+using System.Windows;
+using System.Windows.Forms;
+using System.Windows.Input;
+using Typo.Controller;
+using Typo.Model;
+using DataGrid = System.Windows.Controls.DataGrid;
+using MessageBox = System.Windows.Forms.MessageBox;
+using UserControl = System.Windows.Controls.UserControl;
+
+namespace Typo.View
+{
+    /// <summary>
+    ///     Interaction logic for CourseEnvironment.xaml
+    /// </summary>
+    public partial class CourseView : UserControl
+    {
+        private readonly DatabaseController databaseController = new DatabaseController();
+        private readonly MainWindow mainWindow;
+
+        public CourseView(MainWindow mainWindow)
+        {
+            this.mainWindow = mainWindow;
+            InitializeComponent();
+            CoursesGrid.ItemsSource = databaseController.RetrieveAllDbCourses();
+        }
+
+        //the update method is called when the button edit course is clicked
+        //this method will cause a window apears where a existing course can be edited
+        private void CreateCourse_Click(object sender, RoutedEventArgs e)
+        {
+            var dlg = new CourseEditor(databaseController);
+            dlg.ShowDialog();
+            dlg.Close();
+            CoursesGrid.ItemsSource = databaseController.RetrieveAllDbCourses();
+        }
+
+        // Open course editor with selected course
+        private void Update_Click(object sender, EventArgs e)
+        {
+            if (CoursesGrid.SelectedIndex.Equals(-1)) return;
+            var dlg = new CourseEditor((Course) CoursesGrid.SelectedItem, databaseController);
+            dlg.ShowDialog();
+            dlg.Close();
+            CoursesGrid.ItemsSource = databaseController.RetrieveAllDbCourses();
+        }
+
+        // Delete selected course and update grid
+        private void Delete_Click(object sender, EventArgs e)
+        {
+            var course = (Course) CoursesGrid.SelectedItem;
+            //If no selection return
+            if (CoursesGrid.SelectedIndex.Equals(-1)) return;
+            Delete((Course) CoursesGrid.SelectedItem, CoursesGrid);
+            CoursesGrid.ItemsSource = databaseController.RetrieveAllDbCourses();
+        }
+
+        //if a cell in the data grid is double clicked, this method will cause the update window to appear
+        private void CoursesGrid_CellDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Update_Click(sender, e);
+        }
+
+        private void Delete(Course course, DataGrid courseGrid)
+        {
+            var result = MessageBox.Show("Are you sure you want to delete \"" + course.Title + "\"", "Delete",
+                MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+                databaseController.DeleteCourse(course.CourseID);
+        }
+    }
+}

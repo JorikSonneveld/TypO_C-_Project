@@ -1,0 +1,116 @@
+﻿using System;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Threading;
+using Typo.Controller;
+using Typo.Model;
+
+namespace Typo.View
+{
+    /// <summary>
+    ///     Interaction logic for MainMenu.xaml
+    /// </summary>
+    public partial class MainMenu : UserControl
+    {
+        private readonly DatabaseController databaseController = new DatabaseController();
+        private readonly DispatcherTimer dialogTimer = new DispatcherTimer();
+        private readonly MainWindow mainWindow;
+        private bool DialogShown;
+
+
+        public MainMenu(MainWindow mainWindow)
+        {
+            this.mainWindow = mainWindow;
+            DialogShown = false;
+            dialogTimer.Tick += dialogTimer_Tick;
+            dialogTimer.Interval = new TimeSpan(0, 0, 0, 1);
+            dialogTimer.Start();
+            InitializeComponent();
+            var temp = new MenuStudentStatistics(mainWindow, (int)Application.Current.Properties["ActiveUserID"]);
+            temp.Statistics.Children.Remove(temp.Statistics);
+            SStatistics.Children.Add(temp);
+        }
+
+        private void Start_WordExercise_Click(object sender, RoutedEventArgs e)
+        {
+            mainWindow.ClearMainFrameContent();
+            mainWindow.MainFrame.Content = new ExerciseView(mainWindow, ExerciseType.Word);
+        }
+
+        private void Start_CharacterExercise_Click(object sender, RoutedEventArgs e)
+        {
+            mainWindow.ClearMainFrameContent();
+            mainWindow.MainFrame.Content = new CharcterPicker(mainWindow);
+        }
+
+        private void Start_NumberExercise_Click(object sender, RoutedEventArgs e)
+        {
+            mainWindow.ClearMainFrameContent();
+            mainWindow.MainFrame.Content = new ExerciseView(mainWindow, ExerciseType.Number);
+        }
+
+        private void Start_Course_Click(object sender, RoutedEventArgs e)
+        {
+            mainWindow.ClearMainFrameContent();
+            mainWindow.MainFrame.Content = new CourseView(mainWindow);
+        }
+
+        private void Settings_Click(object sender, RoutedEventArgs e)
+        {
+            mainWindow.ClearMainFrameContent();
+            mainWindow.MainFrame.Content = new SettingsView(mainWindow);
+        }
+
+        private void Quit_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void Practice_Courses_Click(object sender, RoutedEventArgs e)
+        {
+            mainWindow.ClearMainFrameContent();
+            mainWindow.MainFrame.Content = new PraticeCoursePicker(mainWindow);
+        }
+
+        private void Statistics_Click(object sender, RoutedEventArgs e)
+        {
+            mainWindow.ClearMainFrameContent();
+            mainWindow.MainFrame.Content = new StudentStatistics(mainWindow, (int)Application.Current.Properties["ActiveUserID"]);
+        }
+
+        private void Overview_Click(object sender, RoutedEventArgs e)
+        {
+            mainWindow.ClearMainFrameContent();
+            mainWindow.MainFrame.Content = new TeacherMenu(mainWindow);
+        }
+
+        private void ShowAvailableCourseDialog()
+        {
+            if (databaseController.RetrieveCourseCurrentlyAvailable(
+                    (int) Application.Current.Properties["ActiveUserID"]) != null &&
+                DialogShown == false
+            ) // check if there is a course that is now available and if the dialog has not been shown
+            {
+                DialogShown = true;
+                dialogTimer.Stop(); // stop the timer
+                var course =
+                    databaseController.RetrieveCourseCurrentlyAvailable(
+                        (int) Application.Current.Properties["ActiveUserID"]); // get the course from the db
+                var result = MessageBox.Show
+                ("Course '" + course.Title + "' is available, the course is will start up automaticly.", "Course",
+                    MessageBoxButton.OK); // make a popup message 
+                if (result == MessageBoxResult.OK)
+                    mainWindow.ClearMainFrameContent();
+                    mainWindow.MainFrame.Content =
+                        new ExerciseView(
+                            mainWindow, 
+                            new CourseExercise(course)); // make a new courseExercise and put it in the exerciseView
+            }
+        }
+
+        private void dialogTimer_Tick(object sender, EventArgs e)
+        {
+            ShowAvailableCourseDialog();
+        }
+    }
+}

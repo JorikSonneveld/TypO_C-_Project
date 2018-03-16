@@ -1,0 +1,27 @@
+﻿using System;
+using System.ComponentModel;
+
+namespace Typo.Model
+{
+    public abstract class Exercise: INotifyPropertyChanged
+    {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public enum ExerciseType { word, character, number, course };
+        public string _exerciseString;
+        public string ExerciseString
+        {
+            get { return _exerciseString; }
+            set
+            {
+                if (value != _exerciseString)
+                {
+                    _exerciseString = value;
+                    //PropertyChanged("exerciseString");
+                }
+            }
+        }
+        public string InputString { get; set; }
+        public abstract string CreateExerciseString();
+    }
+}

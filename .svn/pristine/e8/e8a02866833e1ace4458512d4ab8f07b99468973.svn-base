@@ -1,0 +1,96 @@
+﻿using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Windows.Forms;
+using TypApplication.Controller;
+
+namespace TypApplication.View
+{
+    public partial class MainForm : Form
+    {
+        public DatabaseController Database = new DatabaseController();
+        private MainMenu mainMenu;
+
+        public MainForm()
+        {
+            InitializeComponent();
+            ShowMainMenu();
+        }
+
+        public void ShowMainMenu()
+        {
+            ClearForm();
+            mainMenu = new MainMenu(this);
+            Controls.Add(mainMenu);
+            CenterView(mainMenu);
+        }
+
+        public void ShowTypingExplanation()
+        {
+            ClearForm();
+            TypingExplanation typingExplanation = new TypingExplanation(this);
+            Controls.Add(typingExplanation);
+            CenterView(typingExplanation);
+        }
+
+        public void NewExercise()
+        {
+            ClearForm();
+            var exerciseView = new ExerciseView(this);
+            Controls.Add(exerciseView);
+            CenterView(exerciseView);
+        }
+
+        public void NewGeneratedExcercise()
+        {
+            ClearForm();
+            var exerciseView = new ExerciseView(this);
+            Controls.Add(exerciseView);
+            CenterView(exerciseView);
+        }
+
+        public void ShowCourseFinished(int keyscore, int accscore, string title)
+        {
+            ClearForm();
+            var completedView = new CourseFinished(this, keyscore, accscore, title);
+            Controls.Add(completedView);
+            CenterView(completedView);
+        }
+
+        public void ShowCourses()
+        {
+            ClearForm();
+            var courses = new Courses(this);
+            Controls.Add(courses);
+            CenterView(courses);
+        }
+
+        public void ShowSettings()
+        {
+            ClearForm();
+            var settingsView = new SettingsView(this);
+            Controls.Add(settingsView);
+            CenterView(settingsView);
+        }
+
+        public void BeginCourse()
+        {
+            ClearForm();
+            var courseEnvironment = new CourseEnvironment(this);
+            Controls.Add(courseEnvironment);
+            CenterView(courseEnvironment);
+        }
+
+        private void ClearForm()
+        {
+            Controls.Clear();
+            mainMenu = null;
+        }
+
+        private void CenterView(Control control)
+        {
+            control.Left = (ClientSize.Width - control.Width) / 2;
+            control.Top = (ClientSize.Height - control.Height) / 2;
+            control.Anchor = AnchorStyles.None;
+        }
+    }
+}

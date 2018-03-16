@@ -1,0 +1,17 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace TypApplication.Model
+{
+    class KeyData
+    {
+        public string currentKeyCode;
+        public string currentkeyValue;
+        public string goodkey = "T";
+        public int goodkeypresses;
+        public int wrongkeypresses;
+    }
+}

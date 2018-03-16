@@ -1,0 +1,210 @@
+﻿namespace TypApplication.View
+{
+    partial class SettingsView
+    {
+        /// <summary> 
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary> 
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Component Designer generated code
+
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.BackButton = new System.Windows.Forms.Button();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.TextColorBtn = new System.Windows.Forms.Button();
+            this.TextColorLabel = new System.Windows.Forms.Label();
+            this.colorblind = new System.Windows.Forms.CheckBox();
+            this.OnFalse = new System.Windows.Forms.Button();
+            this.OnTrue = new System.Windows.Forms.Button();
+            this.OffFalse = new System.Windows.Forms.Button();
+            this.OffTrue = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.SuspendLayout();
+            // 
+            // BackButton
+            // 
+            this.BackButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(163)))), ((int)(((byte)(233)))));
+            this.BackButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.BackButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BackButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.BackButton.ForeColor = System.Drawing.Color.White;
+            this.BackButton.Location = new System.Drawing.Point(67, 273);
+            this.BackButton.Name = "BackButton";
+            this.BackButton.Size = new System.Drawing.Size(155, 60);
+            this.BackButton.TabIndex = 11;
+            this.BackButton.Text = "Back";
+            this.BackButton.UseVisualStyleBackColor = true;
+            this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
+            // 
+            // colorDialog1
+            // 
+            this.colorDialog1.AnyColor = true;
+            this.colorDialog1.SolidColorOnly = true;
+            // 
+            // TextColorBtn
+            // 
+            this.TextColorBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.TextColorBtn.Location = new System.Drawing.Point(42, 29);
+            this.TextColorBtn.Name = "TextColorBtn";
+            this.TextColorBtn.Size = new System.Drawing.Size(75, 31);
+            this.TextColorBtn.TabIndex = 20;
+            this.TextColorBtn.UseVisualStyleBackColor = true;
+            this.TextColorBtn.Click += new System.EventHandler(this.TextColorBtn_Click);
+            // 
+            // TextColorLabel
+            // 
+            this.TextColorLabel.AutoSize = true;
+            this.TextColorLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.TextColorLabel.ForeColor = System.Drawing.Color.White;
+            this.TextColorLabel.Location = new System.Drawing.Point(13, 0);
+            this.TextColorLabel.Name = "TextColorLabel";
+            this.TextColorLabel.Size = new System.Drawing.Size(87, 20);
+            this.TextColorLabel.TabIndex = 19;
+            this.TextColorLabel.Text = "Text color";
+            // 
+            // colorblind
+            // 
+            this.colorblind.AutoSize = true;
+            this.colorblind.Checked = global::TypApplication.Properties.Settings.Default.colorblind;
+            this.colorblind.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.colorblind.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.colorblind.ForeColor = System.Drawing.Color.White;
+            this.colorblind.Location = new System.Drawing.Point(88, 243);
+            this.colorblind.Name = "colorblind";
+            this.colorblind.Size = new System.Drawing.Size(108, 24);
+            this.colorblind.TabIndex = 18;
+            this.colorblind.Text = "Colorblind";
+            this.colorblind.UseVisualStyleBackColor = true;
+            this.colorblind.CheckedChanged += new System.EventHandler(this.Colorblind_CheckedChanged);
+            // 
+            // OnFalse
+            // 
+            this.OnFalse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.OnFalse.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+            this.OnFalse.ForeColor = System.Drawing.Color.White;
+            this.OnFalse.Location = new System.Drawing.Point(165, 199);
+            this.OnFalse.Name = "OnFalse";
+            this.OnFalse.Size = new System.Drawing.Size(75, 33);
+            this.OnFalse.TabIndex = 17;
+            this.OnFalse.Text = "Wrong";
+            this.OnFalse.UseVisualStyleBackColor = true;
+            this.OnFalse.Click += new System.EventHandler(this.OnFalse_Click);
+            // 
+            // OnTrue
+            // 
+            this.OnTrue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.OnTrue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+            this.OnTrue.ForeColor = System.Drawing.Color.White;
+            this.OnTrue.Location = new System.Drawing.Point(42, 199);
+            this.OnTrue.Name = "OnTrue";
+            this.OnTrue.Size = new System.Drawing.Size(75, 33);
+            this.OnTrue.TabIndex = 16;
+            this.OnTrue.Text = "Correct";
+            this.OnTrue.UseVisualStyleBackColor = true;
+            this.OnTrue.Click += new System.EventHandler(this.OnTrue_Click);
+            // 
+            // OffFalse
+            // 
+            this.OffFalse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.OffFalse.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+            this.OffFalse.ForeColor = System.Drawing.Color.White;
+            this.OffFalse.Location = new System.Drawing.Point(165, 103);
+            this.OffFalse.Name = "OffFalse";
+            this.OffFalse.Size = new System.Drawing.Size(75, 33);
+            this.OffFalse.TabIndex = 15;
+            this.OffFalse.Text = "Wrong";
+            this.OffFalse.UseVisualStyleBackColor = true;
+            this.OffFalse.Click += new System.EventHandler(this.OffFalse_Click);
+            // 
+            // OffTrue
+            // 
+            this.OffTrue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.OffTrue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+            this.OffTrue.ForeColor = System.Drawing.Color.White;
+            this.OffTrue.Location = new System.Drawing.Point(42, 103);
+            this.OffTrue.Name = "OffTrue";
+            this.OffTrue.Size = new System.Drawing.Size(75, 33);
+            this.OffTrue.TabIndex = 14;
+            this.OffTrue.Text = "Correct";
+            this.OffTrue.UseVisualStyleBackColor = true;
+            this.OffTrue.Click += new System.EventHandler(this.OffTrue_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(14, 158);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(173, 20);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "Colorblind On Colors";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(13, 70);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(175, 20);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "Colorblind Off Colors";
+            // 
+            // SettingsView
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Transparent;
+            this.Controls.Add(this.BackButton);
+            this.Controls.Add(this.TextColorBtn);
+            this.Controls.Add(this.TextColorLabel);
+            this.Controls.Add(this.colorblind);
+            this.Controls.Add(this.OnFalse);
+            this.Controls.Add(this.OnTrue);
+            this.Controls.Add(this.OffFalse);
+            this.Controls.Add(this.OffTrue);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Name = "SettingsView";
+            this.Size = new System.Drawing.Size(264, 364);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Button BackButton;
+        private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.Button TextColorBtn;
+        private System.Windows.Forms.Label TextColorLabel;
+        private System.Windows.Forms.CheckBox colorblind;
+        private System.Windows.Forms.Button OnFalse;
+        private System.Windows.Forms.Button OnTrue;
+        private System.Windows.Forms.Button OffFalse;
+        private System.Windows.Forms.Button OffTrue;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+    }
+}

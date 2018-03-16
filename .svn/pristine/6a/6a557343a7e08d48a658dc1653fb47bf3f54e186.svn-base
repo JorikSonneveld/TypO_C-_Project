@@ -1,0 +1,165 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using TypApplication.View;
+using TypApplication.Model;
+
+namespace TypApplication
+{
+    public partial class Form1 : Form
+    {
+        private KeyData keyData = new KeyData();
+        private List<Word> wordlist = new List<Word>();
+
+        public Form1()
+        {
+            InitializeComponent();
+            if (Properties.Settings.Default.colorblind == true)
+                colorToolStripMenuItem.Checked = true;
+            KeystrokeTimer.Interval = 1;
+            KeystrokeTimer.Tick += new EventHandler(Update);
+            KeystrokeTimer.Start();
+
+            //TODO: Temp. fix. Can be deleted after database link with word elements.
+            wordlist.Add(new Word { Characters = "kaas" });
+            wordlist.Add(new Word { Characters = "aap" });
+            wordlist.Add(new Word { Characters = "noot" });
+            wordlist.Add(new Word { Characters = "mies" });
+
+            ChangeExerciseTestBox(wordlist);
+        }
+
+        //Keylogger
+        private void RichTextBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            keyData.CurrentKeyCode = e.KeyValue.ToString();
+            KeyData.KeystrokeCounter++;
+        }
+
+        public void Update(object sender, EventArgs e)
+        {
+            keyData.UpdateTimer();
+        }
+
+        // TextBox changed
+        private void RichTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            // GoodKey is current position of string, position is defined by numbers of good presses
+            keyData.GoodKey = exerciseTestBox.Text[keyData.GoodKeyPresses].ToString();
+
+            // Set currentkey to last entered char in textbox
+            keyData.CurrentKeyValue = richTextBox1.Text.Substring(richTextBox1.Text.Length - 1);
+
+       
+
+            // if CurrentKey equals GoodKey, count up number of GoodKeyPresses
+            if (keyData.CurrentKeyValue.Equals(keyData.GoodKey))
+            {
+                Console.WriteLine(keyData.GoodKey + " is goed");
+                keyData.GoodKeyPresses++;
+
+            }
+
+            // If entered key is wrong
+            else if (!keyData.CurrentKeyValue.Equals(keyData.GoodKey))
+            {
+                Control test = keyBoard2.Controls["btn" + keyData.CurrentKeyValue];
+                test.BackColor = Color.Red;
+         
+                keyData.WrongKeyPresses++;
+                Console.WriteLine(keyData.CurrentKeyValue + " is fout haha vet dom");
+            }
+            else if (keyData.GoodKeyPresses.Equals(TestLabel.Text.Length - 1))
+            {
+                Console.WriteLine("klaar");
+            }
+            keyData.TotalKeyPresses++;
+        }
+
+        private void ColorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (KeyData.KeystrokeCounter != 0 && KeyData.KeystrokeTime / 60 != 0) // check if one of the values are 0 because you cant devide by zero
+                KeyData.KeystrokesPerMinute = KeyData.KeystrokeCounter / (KeyData.KeystrokeTime / 60); // devide the keystrokes by the time in seconds to get the keystrokes per minute
+            if (KeyData.KeystrokeCounter != 0 && KeyData.KeystrokeTime / 60 != 0) // check if one of the values are 0 because you cant devide by zero
+                KeyData.KeystrokesPerMinute = KeyData.KeystrokeCounter / (KeyData.KeystrokeTime / 60); // devide the keystrokes by the time in seconds to get the keystrokes per minute
+            Properties.Settings.Default.colorblind = !Properties.Settings.Default.colorblind;
+            Properties.Settings.Default.Save();
+            colorToolStripMenuItem.Checked = !colorToolStripMenuItem.Checked;
+        }
+
+        //private void ExampleText_Click(object sender, EventArgs e)
+        //{
+        //    //Reset the text of the ExampleText so there wont be infinite strings displayed after klicking the button again
+        //    ExampleText.Text = " ";
+
+        //    //Initialise a new DatabaseContext
+        //    var ApplicationDatabase = new ApplicationDatabase();
+
+        //    var Selection = (from s in ApplicationDatabase.Words select s);
+        //    Selection.ToList<Word>();
+
+        //    int Size = Selection.Count();
+        //    string temp = "";
+        //    int RandomSelect;
+        //    Random rnd = new Random();
+
+        //    for (int i = 0; i < 5; i++)
+        //    {
+        //        RandomSelect = SelectRandomNumber(rnd, Size);
+        //        Console.WriteLine(RandomSelect);
+        //        foreach (Word w in Selection)
+        //        {
+        //            if (w.ID == RandomSelect)
+        //            {
+        //                temp += w.Characters + " ";
+        //            }
+        //        }
+        //    }
+        //    KeyData.ExampleText.Text += temp;
+        //}
+
+
+        public int SelectRandomNumber(Random rnd, int MaxNumber)
+        {
+            return rnd.Next(1, MaxNumber);
+        }
+
+
+        private void ChangeExerciseTestBox(List<Word> list)
+        {
+            string totalstring = "";
+            bool capitalletter = true;
+
+            foreach(Word word in list)
+            {
+                if (capitalletter)
+                {
+                    word.Characters = FirstCharToUpper(word.Characters);
+                    capitalletter = false;
+                }
+                    
+                totalstring += word.Characters + " ";
+            }
+            totalstring = totalstring.TrimEnd(' ');
+            totalstring += ".";
+            Invalidate();
+            exerciseTestBox.Text = totalstring;
+        }
+
+        private string FirstCharToUpper(string input)
+        {
+            switch (input)
+            {
+                case null: throw new ArgumentNullException(nameof(input));
+                case "": throw new ArgumentException($"{nameof(input)} cannot be empty", nameof(input));
+                default: return input.First().ToString().ToUpper() + input.Substring(1);
+            }
+        }
+    }
+}

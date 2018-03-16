@@ -1,0 +1,37 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using TypoTeacher.View;
+using TypoTeacher.Model.Database;
+using TypoTeacher.Controller;
+
+namespace TypoTeacher
+{
+    public partial class StudentOverview : UserControl
+    {
+        //Declaring the ParentFrom and some attributes needed to fill the TableLayoutPanel
+        private readonly Overview ParentControl;
+        private OverviewController OverviewController = new OverviewController();
+
+        //Also the ParentForm is initialised with the Overview control.        
+        public StudentOverview(Overview ParentControl)
+        {
+            InitializeComponent();
+            this.ParentControl = ParentControl;
+            
+            OverviewController.FillStudentTable("4", StudentTable);
+        }
+        
+        //This method will cause the program return to the overview control
+        private void Return_Click(object sender, EventArgs e)
+        {
+            ParentControl.ShowOverview();
+        }
+    }
+}

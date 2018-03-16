@@ -1,0 +1,109 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using TypApplication.Model;
+using TypApplication.Controller;
+
+namespace TypApplication.View
+{
+    public partial class Courses : UserControl
+    {
+        private MainForm parentForm;
+        private DatabaseController db = new DatabaseController();
+
+        //this constructor will fill the datagridview and initialise the parentform when called
+        public Courses(MainForm parentForm)
+        {
+            this.parentForm = parentForm;
+            InitializeComponent();
+            FillDataGridView();
+        }
+
+        //this method actually fills the datagrid with all existing courses in the database.
+        public void FillDataGridView()
+        {
+            List<Course> Courses = new List<Course>();
+            Courses = db.RetrieveAllDbCourses();
+            if (Courses != null)
+            {
+                CoursesGrid.Rows.Clear();
+                foreach (Course course in Courses)
+                {
+                    CoursesGrid.Rows.Add(course.Characters);
+                }
+            }
+        }
+
+        //when the button cancel is clicked, this function will make the application returns to the main menu
+        private void Cancel_Click(object sender, EventArgs e)
+        {
+            parentForm.ShowMainMenu();
+        }
+
+        //the code inside this method will run when the create course button is clicked
+        //this method will cause a window apears where a new course can be added to the database
+        private void CreateCourse_Click(object sender, EventArgs e)
+        {
+            CourseEditor courseEditor = new CourseEditor();
+            courseEditor.ShowDialog();
+            courseEditor.FormClosed += Form_Closed;
+        }
+
+        //the update method 
+        private void Update_Click(object sender, EventArgs e)
+        {
+            try
+            {
+            DataGridViewCell Cell = CoursesGrid.CurrentCell;
+            CourseEditor courseEditor = new CourseEditor(Cell) { update = true };
+            courseEditor.ShowDialog();
+            courseEditor.FormClosed += Form_Closed;
+        }
+            catch (NullReferenceException)
+            {
+                return;
+            }
+        }
+
+        //Update grid if form closes
+        void Form_Closed(object sender, FormClosedEventArgs e)
+        {
+            FillDataGridView();
+        }
+
+        //Delete selected item
+        private void Delete_Click(object sender, EventArgs e)
+        {
+            try
+            {   
+                int index = db.GetCourseID(CoursesGrid.CurrentCell.Value.ToString());
+            DialogResult result = MessageBox.Show("Are you sure you want to delete this course?", "Delete", MessageBoxButtons.YesNo);
+
+            if (result == DialogResult.Yes)
+            {
+                    db.DeleteCourse(index);
+                FillDataGridView();
+            }
+            }
+            catch (NullReferenceException)
+            {
+                return;
+            }
+        }
+        
+        private void CoursesGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Console.WriteLine("Dubbel klik");
+            DataGridViewCell Cell = CoursesGrid.CurrentCell;
+            CourseEditor courseEditor = new CourseEditor(Cell) { update = true };
+            courseEditor.ShowDialog();
+            courseEditor.FormClosed += Form_Closed;
+        }
+    }
+}

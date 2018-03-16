@@ -1,0 +1,72 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using TypApplication.Model;
+
+namespace TypApplication.Controller
+{
+    public class ExerciseController
+    {
+        private KeyData keydata = new KeyData();
+        private RichTextBox exerciseTestBox;
+
+        public ExerciseController(RichTextBox exerciseTestBox)
+        {
+            this.exerciseTestBox = exerciseTestBox;
+            ResetValues();
+        }
+
+        public ExerciseController(KeyData keydata)
+        {
+            this.keydata = keydata;
+        }
+
+        public void ChangeExerciseTestBox(Exercise exercise)
+        {
+            exerciseTestBox.Text = exercise.PrintExercise();
+        }
+
+
+        private void ResetValues()
+        {
+            KeyData.GoodKeyPresses = 0;
+            KeyData.KeystrokeTime = 0;
+            KeyData.KeystrokesPerMinute = 0;
+            KeyData.Accuracy = 100;
+            KeyData.KeystrokeCounter = 0;
+        }
+
+        public void UpdateKeystrokesPerMinute()
+        {
+            KeyData.KeystrokeTime++; //add one to the timer per tick
+            if (KeyData.KeystrokeTime == 1) //if its the first time
+                keydata.StartMillisec = Convert.ToInt64((DateTime.Now - DateTime.MinValue).TotalMilliseconds); //a benchmark time in milliseconds where every time is calculated from
+            
+            keydata.CurrentMillisec = Convert.ToInt64((DateTime.Now - DateTime.MinValue).TotalMilliseconds); //the current time in milliseconds
+
+            if (keydata.CurrentMillisec - keydata.StartMillisec >= 0) //check if the current time is higher then the benchmarktime
+                keydata.Delay = keydata.CurrentMillisec - keydata.StartMillisec; //calculate the time difference in milliseconds
+
+            if (KeyData.KeystrokeTime % 60 == 0) //check if the count of ticks will be 0 if divided by zero
+                CalculateKeystrokesPerMinute();
+        }
+
+        public void CalculateKeystrokesPerMinute()
+        {
+            decimal temp = KeyData.KeystrokeCounter / (keydata.Delay / 60000m); // first make a time in minutes from the delay then calculate the stokes per minute
+            KeyData.KeystrokesPerMinute = Convert.ToInt32(temp);
+        }
+
+        public void CalculateAccuracy()
+        {
+            if (KeyData.KeystrokeCounter > 0 && KeyData.KeystrokeCounter >= KeyData.GoodKeyPresses)
+            {
+                decimal temp = KeyData.GoodKeyPresses / (KeyData.KeystrokeCounter * 1m) * 100;
+                KeyData.Accuracy = Convert.ToInt32(temp);
+            }
+        }
+    }
+}

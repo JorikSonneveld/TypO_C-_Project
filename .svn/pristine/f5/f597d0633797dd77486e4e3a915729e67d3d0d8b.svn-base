@@ -1,0 +1,69 @@
+﻿using System;
+using System.Windows.Forms;
+using TypoTeacher.Controller;
+
+namespace TypoTeacher.View
+{
+    public partial class CourseEditor : Form
+    {
+        public DataGridViewCell Cell;
+        private readonly CourseController courseController = new CourseController();
+        public bool update = false;
+        private DatabaseController parentForm;
+
+        public CourseEditor(DatabaseController parentForm) : this(null, parentForm) { }
+
+        public CourseEditor(DataGridViewCell cell, DatabaseController parentForm)
+        {
+            this.parentForm = parentForm;
+            InitializeComponent();
+            courseController.FillClassChoice(classChoice, parentForm);
+            courseController.UpdateDatePicker(startDateTimePicker, endDateTimePicker);
+            courseController.UpdateValues(cell, richTextBox1, titleTextBox, isVisible, classChoice);
+        }
+
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            // Update course
+            if (update)
+            {
+                if (courseController.db.EditCourse(
+                    courseController.db.GetCourseId(Cell.Value.ToString()),
+                    titleTextBox.Text,
+                    richTextBox1.Text,
+                    isVisible.Checked))
+                {
+                    if (courseController.CreateMessage(true, true))
+                        Close();
+                }
+                else
+                {
+                    courseController.CreateMessage(false, true);
+                }
+            }
+            // New course
+            else
+            {
+                if (courseController.db.AddCourse(richTextBox1.Text, titleTextBox.Text, isVisible.Checked, startDateTimePicker.Value, endDateTimePicker.Value, classChoice))
+                {
+                    int courseID = courseController.db.GetCourseId(titleTextBox.Text);
+                    Console.WriteLine("course " + courseID);
+                    Console.WriteLine("klas is " + classChoice.SelectedItem);
+                    courseController.db.AddCourse_Class(classChoice.SelectedItem.ToString(), courseID);
+                    if (courseController.CreateMessage(true, false))
+                        Close();
+                }
+                else
+                {
+                    courseController.CreateMessage(false, false);
+                }
+            }
+        }
+
+        private void ButtonCancel_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+    }
+}

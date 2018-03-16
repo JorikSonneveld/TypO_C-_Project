@@ -1,0 +1,29 @@
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Typo;
+using Typo.Controller;
+using Typo.View;
+
+namespace TypingApplicationTestEnvoirement.View
+{
+    [TestClass]
+    public class CourseEditorTest
+    {
+
+        DatabaseController db = new DatabaseController();
+
+
+        //[TestMethod]
+        //public void ShouldDeleteCourse_WhenPressDelete()
+        //{
+        //    db.AddCourse("test", "Test", true);
+        //    int delete = db.GetCourseId("test");
+
+
+        //    Assert.AreEqual(true, db.AddCourse("test", "title", true));
+        //    db.DeleteCourse(delete);
+
+        //    Assert.AreEqual(true, db.AddCourse("test", "Test", true));
+        //}
+    }
+}

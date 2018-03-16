@@ -1,0 +1,1364 @@
+﻿namespace TypApplication.View
+{
+    partial class KeyBoard
+    {
+        /// <summary> 
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary> 
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Component Designer generated code
+
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.btnOemtilde = new System.Windows.Forms.Button();
+            this.btnD1 = new System.Windows.Forms.Button();
+            this.btnD2 = new System.Windows.Forms.Button();
+            this.btnD3 = new System.Windows.Forms.Button();
+            this.btnD4 = new System.Windows.Forms.Button();
+            this.btnD5 = new System.Windows.Forms.Button();
+            this.btnD6 = new System.Windows.Forms.Button();
+            this.btnD7 = new System.Windows.Forms.Button();
+            this.btnD8 = new System.Windows.Forms.Button();
+            this.btnD9 = new System.Windows.Forms.Button();
+            this.btnD0 = new System.Windows.Forms.Button();
+            this.btnOemminus = new System.Windows.Forms.Button();
+            this.btnOemplus = new System.Windows.Forms.Button();
+            this.btnBack = new System.Windows.Forms.Button();
+            this.btnOem6 = new System.Windows.Forms.Button();
+            this.btnOemOpenBrackets = new System.Windows.Forms.Button();
+            this.btnP = new System.Windows.Forms.Button();
+            this.btnO = new System.Windows.Forms.Button();
+            this.btnI = new System.Windows.Forms.Button();
+            this.btnU = new System.Windows.Forms.Button();
+            this.btnY = new System.Windows.Forms.Button();
+            this.btnT = new System.Windows.Forms.Button();
+            this.btnR = new System.Windows.Forms.Button();
+            this.btnW = new System.Windows.Forms.Button();
+            this.btnQ = new System.Windows.Forms.Button();
+            this.btnTab = new System.Windows.Forms.Button();
+            this.btnEnter = new System.Windows.Forms.Button();
+            this.btnOem7 = new System.Windows.Forms.Button();
+            this.btnOem1 = new System.Windows.Forms.Button();
+            this.btnL = new System.Windows.Forms.Button();
+            this.btnK = new System.Windows.Forms.Button();
+            this.btnJ = new System.Windows.Forms.Button();
+            this.btnH = new System.Windows.Forms.Button();
+            this.btnG = new System.Windows.Forms.Button();
+            this.btnF = new System.Windows.Forms.Button();
+            this.btnD = new System.Windows.Forms.Button();
+            this.btnS = new System.Windows.Forms.Button();
+            this.btnA = new System.Windows.Forms.Button();
+            this.btnCapital = new System.Windows.Forms.Button();
+            this.btnShiftKeyR = new System.Windows.Forms.Button();
+            this.btnOemQuestion = new System.Windows.Forms.Button();
+            this.btnOemPeriod = new System.Windows.Forms.Button();
+            this.btnOemcomma = new System.Windows.Forms.Button();
+            this.btnM = new System.Windows.Forms.Button();
+            this.btnN = new System.Windows.Forms.Button();
+            this.btnB = new System.Windows.Forms.Button();
+            this.btnV = new System.Windows.Forms.Button();
+            this.btnC = new System.Windows.Forms.Button();
+            this.btnX = new System.Windows.Forms.Button();
+            this.btnZ = new System.Windows.Forms.Button();
+            this.btnShiftkey = new System.Windows.Forms.Button();
+            this.btnSpace = new System.Windows.Forms.Button();
+            this.btnMenu = new System.Windows.Forms.Button();
+            this.btnControlKey = new System.Windows.Forms.Button();
+            this.btnSlashOem5 = new System.Windows.Forms.Button();
+            this.btnE = new System.Windows.Forms.Button();
+            this.btn0 = new System.Windows.Forms.Button();
+            this.btnPeriod = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btn3 = new System.Windows.Forms.Button();
+            this.btn2 = new System.Windows.Forms.Button();
+            this.btn1 = new System.Windows.Forms.Button();
+            this.btn6 = new System.Windows.Forms.Button();
+            this.btn5 = new System.Windows.Forms.Button();
+            this.btn4 = new System.Windows.Forms.Button();
+            this.btnPlus = new System.Windows.Forms.Button();
+            this.btn9 = new System.Windows.Forms.Button();
+            this.btn8 = new System.Windows.Forms.Button();
+            this.btn7 = new System.Windows.Forms.Button();
+            this.btnMinus = new System.Windows.Forms.Button();
+            this.btnStar = new System.Windows.Forms.Button();
+            this.btnSlash = new System.Windows.Forms.Button();
+            this.btnNumLock = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // btnOemtilde
+            // 
+            this.btnOemtilde.BackColor = System.Drawing.Color.White;
+            this.btnOemtilde.FlatAppearance.BorderSize = 0;
+            this.btnOemtilde.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnOemtilde.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOemtilde.Location = new System.Drawing.Point(2, 2);
+            this.btnOemtilde.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnOemtilde.Name = "btnOemtilde";
+            this.btnOemtilde.Size = new System.Drawing.Size(40, 42);
+            this.btnOemtilde.TabIndex = 0;
+            this.btnOemtilde.TabStop = false;
+            this.btnOemtilde.Text = "~`";
+            this.btnOemtilde.UseVisualStyleBackColor = false;
+            // 
+            // btnD1
+            // 
+            this.btnD1.BackColor = System.Drawing.Color.White;
+            this.btnD1.FlatAppearance.BorderSize = 0;
+            this.btnD1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnD1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnD1.Location = new System.Drawing.Point(44, 2);
+            this.btnD1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnD1.Name = "btnD1";
+            this.btnD1.Size = new System.Drawing.Size(40, 42);
+            this.btnD1.TabIndex = 2;
+            this.btnD1.TabStop = false;
+            this.btnD1.Text = "!1";
+            this.btnD1.UseVisualStyleBackColor = false;
+            // 
+            // btnD2
+            // 
+            this.btnD2.BackColor = System.Drawing.Color.White;
+            this.btnD2.FlatAppearance.BorderSize = 0;
+            this.btnD2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnD2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnD2.Location = new System.Drawing.Point(88, 2);
+            this.btnD2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnD2.Name = "btnD2";
+            this.btnD2.Size = new System.Drawing.Size(40, 42);
+            this.btnD2.TabIndex = 3;
+            this.btnD2.TabStop = false;
+            this.btnD2.Text = "@2";
+            this.btnD2.UseVisualStyleBackColor = false;
+            // 
+            // btnD3
+            // 
+            this.btnD3.BackColor = System.Drawing.Color.White;
+            this.btnD3.FlatAppearance.BorderSize = 0;
+            this.btnD3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnD3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnD3.Location = new System.Drawing.Point(130, 2);
+            this.btnD3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnD3.Name = "btnD3";
+            this.btnD3.Size = new System.Drawing.Size(40, 42);
+            this.btnD3.TabIndex = 4;
+            this.btnD3.TabStop = false;
+            this.btnD3.Text = "#3";
+            this.btnD3.UseVisualStyleBackColor = false;
+            // 
+            // btnD4
+            // 
+            this.btnD4.BackColor = System.Drawing.Color.White;
+            this.btnD4.FlatAppearance.BorderSize = 0;
+            this.btnD4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnD4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnD4.Location = new System.Drawing.Point(173, 2);
+            this.btnD4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnD4.Name = "btnD4";
+            this.btnD4.Size = new System.Drawing.Size(40, 42);
+            this.btnD4.TabIndex = 5;
+            this.btnD4.TabStop = false;
+            this.btnD4.Text = "$4";
+            this.btnD4.UseVisualStyleBackColor = false;
+            // 
+            // btnD5
+            // 
+            this.btnD5.BackColor = System.Drawing.Color.White;
+            this.btnD5.FlatAppearance.BorderSize = 0;
+            this.btnD5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnD5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnD5.Location = new System.Drawing.Point(217, 2);
+            this.btnD5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnD5.Name = "btnD5";
+            this.btnD5.Size = new System.Drawing.Size(40, 42);
+            this.btnD5.TabIndex = 6;
+            this.btnD5.TabStop = false;
+            this.btnD5.Text = "%5";
+            this.btnD5.UseVisualStyleBackColor = false;
+            // 
+            // btnD6
+            // 
+            this.btnD6.BackColor = System.Drawing.Color.White;
+            this.btnD6.FlatAppearance.BorderSize = 0;
+            this.btnD6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnD6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnD6.Location = new System.Drawing.Point(260, 2);
+            this.btnD6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnD6.Name = "btnD6";
+            this.btnD6.Size = new System.Drawing.Size(40, 42);
+            this.btnD6.TabIndex = 7;
+            this.btnD6.TabStop = false;
+            this.btnD6.Text = "^6";
+            this.btnD6.UseVisualStyleBackColor = false;
+            // 
+            // btnD7
+            // 
+            this.btnD7.BackColor = System.Drawing.Color.White;
+            this.btnD7.FlatAppearance.BorderSize = 0;
+            this.btnD7.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnD7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnD7.Location = new System.Drawing.Point(302, 2);
+            this.btnD7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnD7.Name = "btnD7";
+            this.btnD7.Size = new System.Drawing.Size(40, 42);
+            this.btnD7.TabIndex = 8;
+            this.btnD7.TabStop = false;
+            this.btnD7.Text = "&7";
+            this.btnD7.UseVisualStyleBackColor = false;
+            // 
+            // btnD8
+            // 
+            this.btnD8.BackColor = System.Drawing.Color.White;
+            this.btnD8.FlatAppearance.BorderSize = 0;
+            this.btnD8.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnD8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnD8.Location = new System.Drawing.Point(346, 2);
+            this.btnD8.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnD8.Name = "btnD8";
+            this.btnD8.Size = new System.Drawing.Size(40, 42);
+            this.btnD8.TabIndex = 9;
+            this.btnD8.TabStop = false;
+            this.btnD8.Text = "*8";
+            this.btnD8.UseVisualStyleBackColor = false;
+            // 
+            // btnD9
+            // 
+            this.btnD9.BackColor = System.Drawing.Color.White;
+            this.btnD9.FlatAppearance.BorderSize = 0;
+            this.btnD9.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnD9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnD9.Location = new System.Drawing.Point(388, 2);
+            this.btnD9.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnD9.Name = "btnD9";
+            this.btnD9.Size = new System.Drawing.Size(40, 42);
+            this.btnD9.TabIndex = 10;
+            this.btnD9.TabStop = false;
+            this.btnD9.Text = "(9";
+            this.btnD9.UseVisualStyleBackColor = false;
+            // 
+            // btnD0
+            // 
+            this.btnD0.BackColor = System.Drawing.Color.White;
+            this.btnD0.FlatAppearance.BorderSize = 0;
+            this.btnD0.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnD0.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnD0.Location = new System.Drawing.Point(431, 2);
+            this.btnD0.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnD0.Name = "btnD0";
+            this.btnD0.Size = new System.Drawing.Size(40, 42);
+            this.btnD0.TabIndex = 11;
+            this.btnD0.TabStop = false;
+            this.btnD0.Text = ")0";
+            this.btnD0.UseVisualStyleBackColor = false;
+            // 
+            // btnOemminus
+            // 
+            this.btnOemminus.BackColor = System.Drawing.Color.White;
+            this.btnOemminus.FlatAppearance.BorderSize = 0;
+            this.btnOemminus.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnOemminus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOemminus.Location = new System.Drawing.Point(475, 2);
+            this.btnOemminus.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnOemminus.Name = "btnOemminus";
+            this.btnOemminus.Size = new System.Drawing.Size(40, 42);
+            this.btnOemminus.TabIndex = 12;
+            this.btnOemminus.TabStop = false;
+            this.btnOemminus.Text = "_-";
+            this.btnOemminus.UseVisualStyleBackColor = false;
+            // 
+            // btnOemplus
+            // 
+            this.btnOemplus.BackColor = System.Drawing.Color.White;
+            this.btnOemplus.FlatAppearance.BorderSize = 0;
+            this.btnOemplus.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnOemplus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOemplus.Location = new System.Drawing.Point(518, 2);
+            this.btnOemplus.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnOemplus.Name = "btnOemplus";
+            this.btnOemplus.Size = new System.Drawing.Size(40, 42);
+            this.btnOemplus.TabIndex = 13;
+            this.btnOemplus.TabStop = false;
+            this.btnOemplus.Text = "+=";
+            this.btnOemplus.UseVisualStyleBackColor = false;
+            // 
+            // btnBack
+            // 
+            this.btnBack.BackColor = System.Drawing.Color.White;
+            this.btnBack.FlatAppearance.BorderSize = 0;
+            this.btnBack.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBack.Location = new System.Drawing.Point(560, 2);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(60, 42);
+            this.btnBack.TabIndex = 14;
+            this.btnBack.TabStop = false;
+            this.btnBack.Text = "backspace";
+            this.btnBack.UseVisualStyleBackColor = false;
+            // 
+            // btnOem6
+            // 
+            this.btnOem6.BackColor = System.Drawing.Color.White;
+            this.btnOem6.FlatAppearance.BorderSize = 0;
+            this.btnOem6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnOem6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOem6.Location = new System.Drawing.Point(538, 46);
+            this.btnOem6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnOem6.Name = "btnOem6";
+            this.btnOem6.Size = new System.Drawing.Size(40, 42);
+            this.btnOem6.TabIndex = 28;
+            this.btnOem6.TabStop = false;
+            this.btnOem6.Text = "}]";
+            this.btnOem6.UseVisualStyleBackColor = false;
+            // 
+            // btnOemOpenBrackets
+            // 
+            this.btnOemOpenBrackets.BackColor = System.Drawing.Color.White;
+            this.btnOemOpenBrackets.FlatAppearance.BorderSize = 0;
+            this.btnOemOpenBrackets.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnOemOpenBrackets.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOemOpenBrackets.Location = new System.Drawing.Point(494, 46);
+            this.btnOemOpenBrackets.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnOemOpenBrackets.Name = "btnOemOpenBrackets";
+            this.btnOemOpenBrackets.Size = new System.Drawing.Size(40, 42);
+            this.btnOemOpenBrackets.TabIndex = 27;
+            this.btnOemOpenBrackets.TabStop = false;
+            this.btnOemOpenBrackets.Text = "{[";
+            this.btnOemOpenBrackets.UseVisualStyleBackColor = false;
+            // 
+            // btnP
+            // 
+            this.btnP.BackColor = System.Drawing.Color.White;
+            this.btnP.FlatAppearance.BorderSize = 0;
+            this.btnP.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnP.Location = new System.Drawing.Point(452, 46);
+            this.btnP.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnP.Name = "btnP";
+            this.btnP.Size = new System.Drawing.Size(40, 42);
+            this.btnP.TabIndex = 26;
+            this.btnP.TabStop = false;
+            this.btnP.Text = "P";
+            this.btnP.UseVisualStyleBackColor = false;
+            // 
+            // btnO
+            // 
+            this.btnO.BackColor = System.Drawing.Color.White;
+            this.btnO.FlatAppearance.BorderSize = 0;
+            this.btnO.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnO.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnO.Location = new System.Drawing.Point(409, 46);
+            this.btnO.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnO.Name = "btnO";
+            this.btnO.Size = new System.Drawing.Size(40, 42);
+            this.btnO.TabIndex = 25;
+            this.btnO.TabStop = false;
+            this.btnO.Text = "O";
+            this.btnO.UseVisualStyleBackColor = false;
+            // 
+            // btnI
+            // 
+            this.btnI.BackColor = System.Drawing.Color.White;
+            this.btnI.FlatAppearance.BorderSize = 0;
+            this.btnI.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnI.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnI.Location = new System.Drawing.Point(365, 46);
+            this.btnI.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnI.Name = "btnI";
+            this.btnI.Size = new System.Drawing.Size(40, 42);
+            this.btnI.TabIndex = 24;
+            this.btnI.TabStop = false;
+            this.btnI.Text = "I";
+            this.btnI.UseVisualStyleBackColor = false;
+            // 
+            // btnU
+            // 
+            this.btnU.BackColor = System.Drawing.Color.White;
+            this.btnU.FlatAppearance.BorderSize = 0;
+            this.btnU.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnU.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnU.Location = new System.Drawing.Point(322, 46);
+            this.btnU.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnU.Name = "btnU";
+            this.btnU.Size = new System.Drawing.Size(40, 42);
+            this.btnU.TabIndex = 23;
+            this.btnU.TabStop = false;
+            this.btnU.Text = "U";
+            this.btnU.UseVisualStyleBackColor = false;
+            // 
+            // btnY
+            // 
+            this.btnY.BackColor = System.Drawing.Color.White;
+            this.btnY.FlatAppearance.BorderSize = 0;
+            this.btnY.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnY.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnY.Location = new System.Drawing.Point(280, 46);
+            this.btnY.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnY.Name = "btnY";
+            this.btnY.Size = new System.Drawing.Size(40, 42);
+            this.btnY.TabIndex = 22;
+            this.btnY.TabStop = false;
+            this.btnY.Text = "Y";
+            this.btnY.UseVisualStyleBackColor = false;
+            // 
+            // btnT
+            // 
+            this.btnT.BackColor = System.Drawing.Color.White;
+            this.btnT.FlatAppearance.BorderSize = 0;
+            this.btnT.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnT.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnT.Location = new System.Drawing.Point(236, 46);
+            this.btnT.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnT.Name = "btnT";
+            this.btnT.Size = new System.Drawing.Size(40, 42);
+            this.btnT.TabIndex = 21;
+            this.btnT.TabStop = false;
+            this.btnT.Text = "T";
+            this.btnT.UseVisualStyleBackColor = false;
+            // 
+            // btnR
+            // 
+            this.btnR.BackColor = System.Drawing.Color.White;
+            this.btnR.FlatAppearance.BorderSize = 0;
+            this.btnR.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnR.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnR.Location = new System.Drawing.Point(194, 46);
+            this.btnR.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnR.Name = "btnR";
+            this.btnR.Size = new System.Drawing.Size(40, 42);
+            this.btnR.TabIndex = 20;
+            this.btnR.TabStop = false;
+            this.btnR.Text = "R";
+            this.btnR.UseVisualStyleBackColor = false;
+            // 
+            // btnW
+            // 
+            this.btnW.BackColor = System.Drawing.Color.White;
+            this.btnW.FlatAppearance.BorderSize = 0;
+            this.btnW.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnW.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnW.Location = new System.Drawing.Point(107, 46);
+            this.btnW.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnW.Name = "btnW";
+            this.btnW.Size = new System.Drawing.Size(40, 42);
+            this.btnW.TabIndex = 18;
+            this.btnW.TabStop = false;
+            this.btnW.Text = "W";
+            this.btnW.UseVisualStyleBackColor = false;
+            // 
+            // btnQ
+            // 
+            this.btnQ.BackColor = System.Drawing.Color.White;
+            this.btnQ.FlatAppearance.BorderSize = 0;
+            this.btnQ.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnQ.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnQ.Location = new System.Drawing.Point(64, 46);
+            this.btnQ.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnQ.Name = "btnQ";
+            this.btnQ.Size = new System.Drawing.Size(40, 42);
+            this.btnQ.TabIndex = 17;
+            this.btnQ.TabStop = false;
+            this.btnQ.Text = "Q";
+            this.btnQ.UseVisualStyleBackColor = false;
+            // 
+            // btnTab
+            // 
+            this.btnTab.BackColor = System.Drawing.Color.White;
+            this.btnTab.FlatAppearance.BorderSize = 0;
+            this.btnTab.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnTab.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTab.Location = new System.Drawing.Point(2, 46);
+            this.btnTab.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnTab.Name = "btnTab";
+            this.btnTab.Size = new System.Drawing.Size(60, 42);
+            this.btnTab.TabIndex = 15;
+            this.btnTab.TabStop = false;
+            this.btnTab.Text = "tab";
+            this.btnTab.UseVisualStyleBackColor = false;
+            // 
+            // btnEnter
+            // 
+            this.btnEnter.BackColor = System.Drawing.Color.White;
+            this.btnEnter.FlatAppearance.BorderSize = 0;
+            this.btnEnter.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnEnter.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEnter.Location = new System.Drawing.Point(550, 91);
+            this.btnEnter.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnEnter.Name = "btnEnter";
+            this.btnEnter.Size = new System.Drawing.Size(70, 42);
+            this.btnEnter.TabIndex = 42;
+            this.btnEnter.TabStop = false;
+            this.btnEnter.Text = "enter";
+            this.btnEnter.UseVisualStyleBackColor = false;
+            // 
+            // btnOem7
+            // 
+            this.btnOem7.BackColor = System.Drawing.Color.White;
+            this.btnOem7.FlatAppearance.BorderSize = 0;
+            this.btnOem7.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnOem7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOem7.Location = new System.Drawing.Point(508, 91);
+            this.btnOem7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnOem7.Name = "btnOem7";
+            this.btnOem7.Size = new System.Drawing.Size(40, 42);
+            this.btnOem7.TabIndex = 40;
+            this.btnOem7.TabStop = false;
+            this.btnOem7.Text = "\"\'";
+            this.btnOem7.UseVisualStyleBackColor = false;
+            // 
+            // btnOem1
+            // 
+            this.btnOem1.BackColor = System.Drawing.Color.White;
+            this.btnOem1.FlatAppearance.BorderSize = 0;
+            this.btnOem1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnOem1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOem1.Location = new System.Drawing.Point(464, 91);
+            this.btnOem1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnOem1.Name = "btnOem1";
+            this.btnOem1.Size = new System.Drawing.Size(40, 42);
+            this.btnOem1.TabIndex = 39;
+            this.btnOem1.TabStop = false;
+            this.btnOem1.Text = ":;";
+            this.btnOem1.UseVisualStyleBackColor = false;
+            // 
+            // btnL
+            // 
+            this.btnL.BackColor = System.Drawing.Color.White;
+            this.btnL.FlatAppearance.BorderSize = 0;
+            this.btnL.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnL.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnL.Location = new System.Drawing.Point(422, 91);
+            this.btnL.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnL.Name = "btnL";
+            this.btnL.Size = new System.Drawing.Size(40, 42);
+            this.btnL.TabIndex = 38;
+            this.btnL.TabStop = false;
+            this.btnL.Text = "L";
+            this.btnL.UseVisualStyleBackColor = false;
+            // 
+            // btnK
+            // 
+            this.btnK.BackColor = System.Drawing.Color.White;
+            this.btnK.FlatAppearance.BorderSize = 0;
+            this.btnK.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnK.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnK.Location = new System.Drawing.Point(379, 91);
+            this.btnK.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnK.Name = "btnK";
+            this.btnK.Size = new System.Drawing.Size(40, 42);
+            this.btnK.TabIndex = 37;
+            this.btnK.TabStop = false;
+            this.btnK.Text = "K";
+            this.btnK.UseVisualStyleBackColor = false;
+            // 
+            // btnJ
+            // 
+            this.btnJ.BackColor = System.Drawing.Color.White;
+            this.btnJ.FlatAppearance.BorderSize = 0;
+            this.btnJ.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnJ.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnJ.Location = new System.Drawing.Point(335, 91);
+            this.btnJ.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnJ.Name = "btnJ";
+            this.btnJ.Size = new System.Drawing.Size(40, 42);
+            this.btnJ.TabIndex = 36;
+            this.btnJ.TabStop = false;
+            this.btnJ.Text = "J";
+            this.btnJ.UseVisualStyleBackColor = false;
+            // 
+            // btnH
+            // 
+            this.btnH.BackColor = System.Drawing.Color.White;
+            this.btnH.FlatAppearance.BorderSize = 0;
+            this.btnH.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnH.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnH.Location = new System.Drawing.Point(292, 91);
+            this.btnH.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnH.Name = "btnH";
+            this.btnH.Size = new System.Drawing.Size(40, 42);
+            this.btnH.TabIndex = 35;
+            this.btnH.TabStop = false;
+            this.btnH.Text = "H";
+            this.btnH.UseVisualStyleBackColor = false;
+            // 
+            // btnG
+            // 
+            this.btnG.BackColor = System.Drawing.Color.White;
+            this.btnG.FlatAppearance.BorderSize = 0;
+            this.btnG.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnG.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnG.Location = new System.Drawing.Point(250, 91);
+            this.btnG.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnG.Name = "btnG";
+            this.btnG.Size = new System.Drawing.Size(40, 42);
+            this.btnG.TabIndex = 34;
+            this.btnG.TabStop = false;
+            this.btnG.Text = "G";
+            this.btnG.UseVisualStyleBackColor = false;
+            // 
+            // btnF
+            // 
+            this.btnF.BackColor = System.Drawing.Color.White;
+            this.btnF.FlatAppearance.BorderSize = 0;
+            this.btnF.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnF.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnF.Location = new System.Drawing.Point(206, 91);
+            this.btnF.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnF.Name = "btnF";
+            this.btnF.Size = new System.Drawing.Size(40, 42);
+            this.btnF.TabIndex = 33;
+            this.btnF.TabStop = false;
+            this.btnF.Text = "F";
+            this.btnF.UseVisualStyleBackColor = false;
+            // 
+            // btnD
+            // 
+            this.btnD.BackColor = System.Drawing.Color.White;
+            this.btnD.FlatAppearance.BorderSize = 0;
+            this.btnD.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnD.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnD.Location = new System.Drawing.Point(164, 91);
+            this.btnD.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnD.Name = "btnD";
+            this.btnD.Size = new System.Drawing.Size(40, 42);
+            this.btnD.TabIndex = 32;
+            this.btnD.TabStop = false;
+            this.btnD.Text = "D";
+            this.btnD.UseVisualStyleBackColor = false;
+            // 
+            // btnS
+            // 
+            this.btnS.BackColor = System.Drawing.Color.White;
+            this.btnS.FlatAppearance.BorderSize = 0;
+            this.btnS.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnS.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnS.Location = new System.Drawing.Point(120, 91);
+            this.btnS.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnS.Name = "btnS";
+            this.btnS.Size = new System.Drawing.Size(40, 42);
+            this.btnS.TabIndex = 31;
+            this.btnS.TabStop = false;
+            this.btnS.Text = "S";
+            this.btnS.UseVisualStyleBackColor = false;
+            // 
+            // btnA
+            // 
+            this.btnA.BackColor = System.Drawing.Color.White;
+            this.btnA.FlatAppearance.BorderSize = 0;
+            this.btnA.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnA.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnA.Location = new System.Drawing.Point(76, 91);
+            this.btnA.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnA.Name = "btnA";
+            this.btnA.Size = new System.Drawing.Size(40, 42);
+            this.btnA.TabIndex = 30;
+            this.btnA.TabStop = false;
+            this.btnA.Text = "A";
+            this.btnA.UseVisualStyleBackColor = false;
+            // 
+            // btnCapital
+            // 
+            this.btnCapital.BackColor = System.Drawing.Color.White;
+            this.btnCapital.FlatAppearance.BorderSize = 0;
+            this.btnCapital.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnCapital.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCapital.Location = new System.Drawing.Point(2, 91);
+            this.btnCapital.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCapital.Name = "btnCapital";
+            this.btnCapital.Size = new System.Drawing.Size(70, 42);
+            this.btnCapital.TabIndex = 29;
+            this.btnCapital.TabStop = false;
+            this.btnCapital.Text = "capslock";
+            this.btnCapital.UseVisualStyleBackColor = false;
+            // 
+            // btnShiftKeyR
+            // 
+            this.btnShiftKeyR.BackColor = System.Drawing.Color.White;
+            this.btnShiftKeyR.FlatAppearance.BorderSize = 0;
+            this.btnShiftKeyR.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnShiftKeyR.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnShiftKeyR.Location = new System.Drawing.Point(530, 136);
+            this.btnShiftKeyR.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnShiftKeyR.Name = "btnShiftKeyR";
+            this.btnShiftKeyR.Size = new System.Drawing.Size(90, 42);
+            this.btnShiftKeyR.TabIndex = 56;
+            this.btnShiftKeyR.TabStop = false;
+            this.btnShiftKeyR.Text = "shift";
+            this.btnShiftKeyR.UseVisualStyleBackColor = false;
+            // 
+            // btnOemQuestion
+            // 
+            this.btnOemQuestion.BackColor = System.Drawing.Color.White;
+            this.btnOemQuestion.FlatAppearance.BorderSize = 0;
+            this.btnOemQuestion.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnOemQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOemQuestion.Location = new System.Drawing.Point(488, 136);
+            this.btnOemQuestion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnOemQuestion.Name = "btnOemQuestion";
+            this.btnOemQuestion.Size = new System.Drawing.Size(40, 42);
+            this.btnOemQuestion.TabIndex = 54;
+            this.btnOemQuestion.TabStop = false;
+            this.btnOemQuestion.Text = "?/";
+            this.btnOemQuestion.UseVisualStyleBackColor = false;
+            // 
+            // btnOemPeriod
+            // 
+            this.btnOemPeriod.BackColor = System.Drawing.Color.White;
+            this.btnOemPeriod.FlatAppearance.BorderSize = 0;
+            this.btnOemPeriod.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnOemPeriod.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOemPeriod.Location = new System.Drawing.Point(445, 136);
+            this.btnOemPeriod.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnOemPeriod.Name = "btnOemPeriod";
+            this.btnOemPeriod.Size = new System.Drawing.Size(40, 42);
+            this.btnOemPeriod.TabIndex = 53;
+            this.btnOemPeriod.TabStop = false;
+            this.btnOemPeriod.Text = ">.";
+            this.btnOemPeriod.UseVisualStyleBackColor = false;
+            // 
+            // btnOemcomma
+            // 
+            this.btnOemcomma.BackColor = System.Drawing.Color.White;
+            this.btnOemcomma.FlatAppearance.BorderSize = 0;
+            this.btnOemcomma.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnOemcomma.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOemcomma.Location = new System.Drawing.Point(401, 136);
+            this.btnOemcomma.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnOemcomma.Name = "btnOemcomma";
+            this.btnOemcomma.Size = new System.Drawing.Size(40, 42);
+            this.btnOemcomma.TabIndex = 52;
+            this.btnOemcomma.TabStop = false;
+            this.btnOemcomma.Text = "<,";
+            this.btnOemcomma.UseVisualStyleBackColor = false;
+            // 
+            // btnM
+            // 
+            this.btnM.BackColor = System.Drawing.Color.White;
+            this.btnM.FlatAppearance.BorderSize = 0;
+            this.btnM.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnM.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnM.Location = new System.Drawing.Point(358, 136);
+            this.btnM.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnM.Name = "btnM";
+            this.btnM.Size = new System.Drawing.Size(40, 42);
+            this.btnM.TabIndex = 51;
+            this.btnM.TabStop = false;
+            this.btnM.Text = "M";
+            this.btnM.UseVisualStyleBackColor = false;
+            // 
+            // btnN
+            // 
+            this.btnN.BackColor = System.Drawing.Color.White;
+            this.btnN.FlatAppearance.BorderSize = 0;
+            this.btnN.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnN.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnN.Location = new System.Drawing.Point(316, 136);
+            this.btnN.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnN.Name = "btnN";
+            this.btnN.Size = new System.Drawing.Size(40, 42);
+            this.btnN.TabIndex = 50;
+            this.btnN.TabStop = false;
+            this.btnN.Text = "N";
+            this.btnN.UseVisualStyleBackColor = false;
+            // 
+            // btnB
+            // 
+            this.btnB.BackColor = System.Drawing.Color.White;
+            this.btnB.FlatAppearance.BorderSize = 0;
+            this.btnB.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnB.Location = new System.Drawing.Point(272, 136);
+            this.btnB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnB.Name = "btnB";
+            this.btnB.Size = new System.Drawing.Size(40, 42);
+            this.btnB.TabIndex = 49;
+            this.btnB.TabStop = false;
+            this.btnB.Text = "B";
+            this.btnB.UseVisualStyleBackColor = false;
+            // 
+            // btnV
+            // 
+            this.btnV.BackColor = System.Drawing.Color.White;
+            this.btnV.FlatAppearance.BorderSize = 0;
+            this.btnV.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnV.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnV.Location = new System.Drawing.Point(230, 136);
+            this.btnV.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnV.Name = "btnV";
+            this.btnV.Size = new System.Drawing.Size(40, 42);
+            this.btnV.TabIndex = 48;
+            this.btnV.TabStop = false;
+            this.btnV.Text = "V";
+            this.btnV.UseVisualStyleBackColor = false;
+            // 
+            // btnC
+            // 
+            this.btnC.BackColor = System.Drawing.Color.White;
+            this.btnC.FlatAppearance.BorderSize = 0;
+            this.btnC.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnC.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnC.Location = new System.Drawing.Point(187, 136);
+            this.btnC.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnC.Name = "btnC";
+            this.btnC.Size = new System.Drawing.Size(40, 42);
+            this.btnC.TabIndex = 47;
+            this.btnC.TabStop = false;
+            this.btnC.Text = "C";
+            this.btnC.UseVisualStyleBackColor = false;
+            // 
+            // btnX
+            // 
+            this.btnX.BackColor = System.Drawing.Color.White;
+            this.btnX.FlatAppearance.BorderSize = 0;
+            this.btnX.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnX.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnX.Location = new System.Drawing.Point(143, 136);
+            this.btnX.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnX.Name = "btnX";
+            this.btnX.Size = new System.Drawing.Size(40, 42);
+            this.btnX.TabIndex = 46;
+            this.btnX.TabStop = false;
+            this.btnX.Text = "X";
+            this.btnX.UseVisualStyleBackColor = false;
+            // 
+            // btnZ
+            // 
+            this.btnZ.BackColor = System.Drawing.Color.White;
+            this.btnZ.FlatAppearance.BorderSize = 0;
+            this.btnZ.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnZ.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnZ.Location = new System.Drawing.Point(96, 136);
+            this.btnZ.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnZ.Name = "btnZ";
+            this.btnZ.Size = new System.Drawing.Size(40, 42);
+            this.btnZ.TabIndex = 45;
+            this.btnZ.TabStop = false;
+            this.btnZ.Text = "Z";
+            this.btnZ.UseVisualStyleBackColor = false;
+            // 
+            // btnShiftkey
+            // 
+            this.btnShiftkey.BackColor = System.Drawing.Color.White;
+            this.btnShiftkey.FlatAppearance.BorderSize = 0;
+            this.btnShiftkey.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnShiftkey.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnShiftkey.Location = new System.Drawing.Point(2, 136);
+            this.btnShiftkey.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnShiftkey.Name = "btnShiftkey";
+            this.btnShiftkey.Size = new System.Drawing.Size(90, 42);
+            this.btnShiftkey.TabIndex = 43;
+            this.btnShiftkey.TabStop = false;
+            this.btnShiftkey.Text = "shift";
+            this.btnShiftkey.UseVisualStyleBackColor = false;
+            // 
+            // btnSpace
+            // 
+            this.btnSpace.BackColor = System.Drawing.Color.White;
+            this.btnSpace.FlatAppearance.BorderSize = 0;
+            this.btnSpace.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnSpace.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSpace.Location = new System.Drawing.Point(187, 180);
+            this.btnSpace.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSpace.Name = "btnSpace";
+            this.btnSpace.Size = new System.Drawing.Size(212, 41);
+            this.btnSpace.TabIndex = 59;
+            this.btnSpace.TabStop = false;
+            this.btnSpace.UseVisualStyleBackColor = false;
+            // 
+            // btnMenu
+            // 
+            this.btnMenu.BackColor = System.Drawing.Color.White;
+            this.btnMenu.FlatAppearance.BorderSize = 0;
+            this.btnMenu.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMenu.Location = new System.Drawing.Point(143, 180);
+            this.btnMenu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnMenu.Name = "btnMenu";
+            this.btnMenu.Size = new System.Drawing.Size(40, 42);
+            this.btnMenu.TabIndex = 58;
+            this.btnMenu.TabStop = false;
+            this.btnMenu.Text = "alt";
+            this.btnMenu.UseVisualStyleBackColor = false;
+            // 
+            // btnControlKey
+            // 
+            this.btnControlKey.BackColor = System.Drawing.Color.White;
+            this.btnControlKey.FlatAppearance.BorderSize = 0;
+            this.btnControlKey.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnControlKey.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnControlKey.Location = new System.Drawing.Point(2, 180);
+            this.btnControlKey.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnControlKey.Name = "btnControlKey";
+            this.btnControlKey.Size = new System.Drawing.Size(40, 42);
+            this.btnControlKey.TabIndex = 57;
+            this.btnControlKey.TabStop = false;
+            this.btnControlKey.Text = "ctrl";
+            this.btnControlKey.UseVisualStyleBackColor = false;
+            // 
+            // btnSlashOem5
+            // 
+            this.btnSlashOem5.BackColor = System.Drawing.Color.White;
+            this.btnSlashOem5.FlatAppearance.BorderSize = 0;
+            this.btnSlashOem5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnSlashOem5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSlashOem5.Location = new System.Drawing.Point(580, 46);
+            this.btnSlashOem5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSlashOem5.Name = "btnSlashOem5";
+            this.btnSlashOem5.Size = new System.Drawing.Size(40, 42);
+            this.btnSlashOem5.TabIndex = 71;
+            this.btnSlashOem5.TabStop = false;
+            this.btnSlashOem5.Text = "|\\";
+            this.btnSlashOem5.UseVisualStyleBackColor = false;
+            // 
+            // btnE
+            // 
+            this.btnE.BackColor = System.Drawing.Color.White;
+            this.btnE.FlatAppearance.BorderSize = 0;
+            this.btnE.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnE.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnE.Location = new System.Drawing.Point(151, 46);
+            this.btnE.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnE.Name = "btnE";
+            this.btnE.Size = new System.Drawing.Size(40, 42);
+            this.btnE.TabIndex = 72;
+            this.btnE.TabStop = false;
+            this.btnE.Text = "E";
+            this.btnE.UseVisualStyleBackColor = false;
+            // 
+            // btn0
+            // 
+            this.btn0.BackColor = System.Drawing.Color.White;
+            this.btn0.FlatAppearance.BorderSize = 0;
+            this.btn0.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btn0.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn0.Location = new System.Drawing.Point(625, 179);
+            this.btn0.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn0.Name = "btn0";
+            this.btn0.Size = new System.Drawing.Size(84, 42);
+            this.btn0.TabIndex = 106;
+            this.btn0.TabStop = false;
+            this.btn0.Text = "0";
+            this.btn0.UseVisualStyleBackColor = false;
+            this.btn0.Click += new System.EventHandler(this.Btn0_Click);
+            // 
+            // btnPeriod
+            // 
+            this.btnPeriod.BackColor = System.Drawing.Color.White;
+            this.btnPeriod.FlatAppearance.BorderSize = 0;
+            this.btnPeriod.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnPeriod.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPeriod.Location = new System.Drawing.Point(713, 179);
+            this.btnPeriod.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnPeriod.Name = "btnPeriod";
+            this.btnPeriod.Size = new System.Drawing.Size(40, 42);
+            this.btnPeriod.TabIndex = 105;
+            this.btnPeriod.TabStop = false;
+            this.btnPeriod.Text = ".";
+            this.btnPeriod.UseVisualStyleBackColor = false;
+            this.btnPeriod.Click += new System.EventHandler(this.BtnPeriod_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.White;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(756, 136);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(40, 85);
+            this.button1.TabIndex = 104;
+            this.button1.TabStop = false;
+            this.button1.Text = "Enter";
+            this.button1.UseVisualStyleBackColor = false;
+            // 
+            // btn3
+            // 
+            this.btn3.BackColor = System.Drawing.Color.White;
+            this.btn3.FlatAppearance.BorderSize = 0;
+            this.btn3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btn3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn3.Location = new System.Drawing.Point(713, 136);
+            this.btn3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn3.Name = "btn3";
+            this.btn3.Size = new System.Drawing.Size(40, 42);
+            this.btn3.TabIndex = 103;
+            this.btn3.TabStop = false;
+            this.btn3.Text = "3";
+            this.btn3.UseVisualStyleBackColor = false;
+            // 
+            // btn2
+            // 
+            this.btn2.BackColor = System.Drawing.Color.White;
+            this.btn2.FlatAppearance.BorderSize = 0;
+            this.btn2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btn2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn2.Location = new System.Drawing.Point(669, 136);
+            this.btn2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn2.Name = "btn2";
+            this.btn2.Size = new System.Drawing.Size(40, 42);
+            this.btn2.TabIndex = 102;
+            this.btn2.TabStop = false;
+            this.btn2.Text = "2";
+            this.btn2.UseVisualStyleBackColor = false;
+            // 
+            // btn1
+            // 
+            this.btn1.BackColor = System.Drawing.Color.White;
+            this.btn1.FlatAppearance.BorderSize = 0;
+            this.btn1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btn1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn1.Location = new System.Drawing.Point(625, 136);
+            this.btn1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn1.Name = "btn1";
+            this.btn1.Size = new System.Drawing.Size(40, 42);
+            this.btn1.TabIndex = 101;
+            this.btn1.TabStop = false;
+            this.btn1.Text = "1";
+            this.btn1.UseVisualStyleBackColor = false;
+            // 
+            // btn6
+            // 
+            this.btn6.BackColor = System.Drawing.Color.White;
+            this.btn6.FlatAppearance.BorderSize = 0;
+            this.btn6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btn6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn6.Location = new System.Drawing.Point(712, 91);
+            this.btn6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn6.Name = "btn6";
+            this.btn6.Size = new System.Drawing.Size(40, 42);
+            this.btn6.TabIndex = 100;
+            this.btn6.TabStop = false;
+            this.btn6.Text = "6";
+            this.btn6.UseVisualStyleBackColor = false;
+            // 
+            // btn5
+            // 
+            this.btn5.BackColor = System.Drawing.Color.White;
+            this.btn5.FlatAppearance.BorderSize = 0;
+            this.btn5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btn5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn5.Location = new System.Drawing.Point(668, 91);
+            this.btn5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn5.Name = "btn5";
+            this.btn5.Size = new System.Drawing.Size(40, 42);
+            this.btn5.TabIndex = 99;
+            this.btn5.TabStop = false;
+            this.btn5.Text = "5";
+            this.btn5.UseVisualStyleBackColor = false;
+            // 
+            // btn4
+            // 
+            this.btn4.BackColor = System.Drawing.Color.White;
+            this.btn4.FlatAppearance.BorderSize = 0;
+            this.btn4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btn4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn4.Location = new System.Drawing.Point(624, 91);
+            this.btn4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn4.Name = "btn4";
+            this.btn4.Size = new System.Drawing.Size(40, 42);
+            this.btn4.TabIndex = 98;
+            this.btn4.TabStop = false;
+            this.btn4.Text = "4";
+            this.btn4.UseVisualStyleBackColor = false;
+            // 
+            // btnPlus
+            // 
+            this.btnPlus.BackColor = System.Drawing.Color.White;
+            this.btnPlus.FlatAppearance.BorderSize = 0;
+            this.btnPlus.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnPlus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPlus.Location = new System.Drawing.Point(756, 46);
+            this.btnPlus.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnPlus.Name = "btnPlus";
+            this.btnPlus.Size = new System.Drawing.Size(40, 87);
+            this.btnPlus.TabIndex = 97;
+            this.btnPlus.TabStop = false;
+            this.btnPlus.Text = "+";
+            this.btnPlus.UseVisualStyleBackColor = false;
+            // 
+            // btn9
+            // 
+            this.btn9.BackColor = System.Drawing.Color.White;
+            this.btn9.FlatAppearance.BorderSize = 0;
+            this.btn9.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btn9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn9.Location = new System.Drawing.Point(712, 46);
+            this.btn9.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn9.Name = "btn9";
+            this.btn9.Size = new System.Drawing.Size(40, 42);
+            this.btn9.TabIndex = 96;
+            this.btn9.TabStop = false;
+            this.btn9.Text = "9";
+            this.btn9.UseVisualStyleBackColor = false;
+            // 
+            // btn8
+            // 
+            this.btn8.BackColor = System.Drawing.Color.White;
+            this.btn8.FlatAppearance.BorderSize = 0;
+            this.btn8.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btn8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn8.Location = new System.Drawing.Point(668, 46);
+            this.btn8.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn8.Name = "btn8";
+            this.btn8.Size = new System.Drawing.Size(40, 42);
+            this.btn8.TabIndex = 95;
+            this.btn8.TabStop = false;
+            this.btn8.Text = "8";
+            this.btn8.UseVisualStyleBackColor = false;
+            // 
+            // btn7
+            // 
+            this.btn7.BackColor = System.Drawing.Color.White;
+            this.btn7.FlatAppearance.BorderSize = 0;
+            this.btn7.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btn7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn7.Location = new System.Drawing.Point(624, 46);
+            this.btn7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn7.Name = "btn7";
+            this.btn7.Size = new System.Drawing.Size(40, 42);
+            this.btn7.TabIndex = 94;
+            this.btn7.TabStop = false;
+            this.btn7.Text = "7";
+            this.btn7.UseVisualStyleBackColor = false;
+            // 
+            // btnMinus
+            // 
+            this.btnMinus.BackColor = System.Drawing.Color.White;
+            this.btnMinus.FlatAppearance.BorderSize = 0;
+            this.btnMinus.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnMinus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMinus.Location = new System.Drawing.Point(756, 2);
+            this.btnMinus.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnMinus.Name = "btnMinus";
+            this.btnMinus.Size = new System.Drawing.Size(40, 42);
+            this.btnMinus.TabIndex = 93;
+            this.btnMinus.TabStop = false;
+            this.btnMinus.Text = "-";
+            this.btnMinus.UseVisualStyleBackColor = false;
+            // 
+            // btnStar
+            // 
+            this.btnStar.BackColor = System.Drawing.Color.White;
+            this.btnStar.FlatAppearance.BorderSize = 0;
+            this.btnStar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnStar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStar.Location = new System.Drawing.Point(712, 2);
+            this.btnStar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnStar.Name = "btnStar";
+            this.btnStar.Size = new System.Drawing.Size(40, 42);
+            this.btnStar.TabIndex = 92;
+            this.btnStar.TabStop = false;
+            this.btnStar.Text = "*";
+            this.btnStar.UseVisualStyleBackColor = false;
+            // 
+            // btnSlash
+            // 
+            this.btnSlash.BackColor = System.Drawing.Color.White;
+            this.btnSlash.FlatAppearance.BorderSize = 0;
+            this.btnSlash.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnSlash.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSlash.Location = new System.Drawing.Point(668, 2);
+            this.btnSlash.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSlash.Name = "btnSlash";
+            this.btnSlash.Size = new System.Drawing.Size(40, 42);
+            this.btnSlash.TabIndex = 91;
+            this.btnSlash.TabStop = false;
+            this.btnSlash.Text = "/";
+            this.btnSlash.UseVisualStyleBackColor = false;
+            // 
+            // btnNumLock
+            // 
+            this.btnNumLock.BackColor = System.Drawing.Color.White;
+            this.btnNumLock.FlatAppearance.BorderSize = 0;
+            this.btnNumLock.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnNumLock.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNumLock.Location = new System.Drawing.Point(624, 2);
+            this.btnNumLock.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnNumLock.Name = "btnNumLock";
+            this.btnNumLock.Size = new System.Drawing.Size(40, 42);
+            this.btnNumLock.TabIndex = 90;
+            this.btnNumLock.TabStop = false;
+            this.btnNumLock.Text = "NumLock";
+            this.btnNumLock.UseVisualStyleBackColor = false;
+            // 
+            // KeyBoard
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
+            this.Controls.Add(this.btn0);
+            this.Controls.Add(this.btnPeriod);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btn3);
+            this.Controls.Add(this.btn2);
+            this.Controls.Add(this.btn1);
+            this.Controls.Add(this.btn6);
+            this.Controls.Add(this.btn5);
+            this.Controls.Add(this.btn4);
+            this.Controls.Add(this.btnPlus);
+            this.Controls.Add(this.btn9);
+            this.Controls.Add(this.btn8);
+            this.Controls.Add(this.btn7);
+            this.Controls.Add(this.btnMinus);
+            this.Controls.Add(this.btnStar);
+            this.Controls.Add(this.btnSlash);
+            this.Controls.Add(this.btnNumLock);
+            this.Controls.Add(this.btnE);
+            this.Controls.Add(this.btnSlashOem5);
+            this.Controls.Add(this.btnSpace);
+            this.Controls.Add(this.btnMenu);
+            this.Controls.Add(this.btnControlKey);
+            this.Controls.Add(this.btnShiftKeyR);
+            this.Controls.Add(this.btnOemQuestion);
+            this.Controls.Add(this.btnOemPeriod);
+            this.Controls.Add(this.btnOemcomma);
+            this.Controls.Add(this.btnM);
+            this.Controls.Add(this.btnN);
+            this.Controls.Add(this.btnB);
+            this.Controls.Add(this.btnV);
+            this.Controls.Add(this.btnC);
+            this.Controls.Add(this.btnX);
+            this.Controls.Add(this.btnZ);
+            this.Controls.Add(this.btnShiftkey);
+            this.Controls.Add(this.btnEnter);
+            this.Controls.Add(this.btnOem7);
+            this.Controls.Add(this.btnOem1);
+            this.Controls.Add(this.btnL);
+            this.Controls.Add(this.btnK);
+            this.Controls.Add(this.btnJ);
+            this.Controls.Add(this.btnH);
+            this.Controls.Add(this.btnG);
+            this.Controls.Add(this.btnF);
+            this.Controls.Add(this.btnD);
+            this.Controls.Add(this.btnS);
+            this.Controls.Add(this.btnA);
+            this.Controls.Add(this.btnCapital);
+            this.Controls.Add(this.btnOem6);
+            this.Controls.Add(this.btnOemOpenBrackets);
+            this.Controls.Add(this.btnP);
+            this.Controls.Add(this.btnO);
+            this.Controls.Add(this.btnI);
+            this.Controls.Add(this.btnU);
+            this.Controls.Add(this.btnY);
+            this.Controls.Add(this.btnT);
+            this.Controls.Add(this.btnR);
+            this.Controls.Add(this.btnW);
+            this.Controls.Add(this.btnQ);
+            this.Controls.Add(this.btnTab);
+            this.Controls.Add(this.btnBack);
+            this.Controls.Add(this.btnOemplus);
+            this.Controls.Add(this.btnOemminus);
+            this.Controls.Add(this.btnD0);
+            this.Controls.Add(this.btnD9);
+            this.Controls.Add(this.btnD8);
+            this.Controls.Add(this.btnD7);
+            this.Controls.Add(this.btnD6);
+            this.Controls.Add(this.btnD5);
+            this.Controls.Add(this.btnD4);
+            this.Controls.Add(this.btnD3);
+            this.Controls.Add(this.btnD2);
+            this.Controls.Add(this.btnD1);
+            this.Controls.Add(this.btnOemtilde);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Name = "KeyBoard";
+            this.Size = new System.Drawing.Size(800, 224);
+            this.Load += new System.EventHandler(this.KeyBoard_Load);
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        public System.Windows.Forms.Button btnOemtilde;
+        public System.Windows.Forms.Button btnD1;
+        public System.Windows.Forms.Button btnD2;
+        public System.Windows.Forms.Button btnD3;
+        public System.Windows.Forms.Button btnD4;
+        public System.Windows.Forms.Button btnD5;
+        public System.Windows.Forms.Button btnD6;
+        public System.Windows.Forms.Button btnD7;
+        public System.Windows.Forms.Button btnD8;
+        public System.Windows.Forms.Button btnD9;
+        public System.Windows.Forms.Button btnD0;
+        public System.Windows.Forms.Button btnOemminus;
+        public System.Windows.Forms.Button btnOemplus;
+        public System.Windows.Forms.Button btnBack;
+        public System.Windows.Forms.Button btnOem6;
+        public System.Windows.Forms.Button btnOemOpenBrackets;
+        public System.Windows.Forms.Button btnP;
+        public System.Windows.Forms.Button btnO;
+        public System.Windows.Forms.Button btnI;
+        public System.Windows.Forms.Button btnU;
+        public System.Windows.Forms.Button btnY;
+        public System.Windows.Forms.Button btnT;
+        public System.Windows.Forms.Button btnR;
+        public System.Windows.Forms.Button btnW;
+        public System.Windows.Forms.Button btnQ;
+        public System.Windows.Forms.Button btnTab;
+        public System.Windows.Forms.Button btnEnter;
+        public System.Windows.Forms.Button btnOem7;
+        public System.Windows.Forms.Button btnOem1;
+        public System.Windows.Forms.Button btnL;
+        public System.Windows.Forms.Button btnK;
+        public System.Windows.Forms.Button btnJ;
+        public System.Windows.Forms.Button btnH;
+        public System.Windows.Forms.Button btnG;
+        public System.Windows.Forms.Button btnF;
+        public System.Windows.Forms.Button btnD;
+        public System.Windows.Forms.Button btnS;
+        public System.Windows.Forms.Button btnA;
+        public System.Windows.Forms.Button btnCapital;
+        public System.Windows.Forms.Button btnOemQuestion;
+        public System.Windows.Forms.Button btnOemPeriod;
+        public System.Windows.Forms.Button btnM;
+        public System.Windows.Forms.Button btnN;
+        public System.Windows.Forms.Button btnB;
+        public System.Windows.Forms.Button btnV;
+        public System.Windows.Forms.Button btnC;
+        public System.Windows.Forms.Button btnX;
+        public System.Windows.Forms.Button btnZ;
+        public System.Windows.Forms.Button btnShiftkey;
+        public System.Windows.Forms.Button btnSpace;
+        public System.Windows.Forms.Button btnMenu;
+        public System.Windows.Forms.Button btnControlKey;
+        public System.Windows.Forms.Button btnSlashOem5;
+        public System.Windows.Forms.Button btnShiftKeyR;
+        public System.Windows.Forms.Button btnOemcomma;
+        public System.Windows.Forms.Button btnE;
+        public System.Windows.Forms.Button btn0;
+        public System.Windows.Forms.Button btnPeriod;
+        public System.Windows.Forms.Button button1;
+        public System.Windows.Forms.Button btn3;
+        public System.Windows.Forms.Button btn2;
+        public System.Windows.Forms.Button btn1;
+        public System.Windows.Forms.Button btn6;
+        public System.Windows.Forms.Button btn5;
+        public System.Windows.Forms.Button btn4;
+        public System.Windows.Forms.Button btnPlus;
+        public System.Windows.Forms.Button btn9;
+        public System.Windows.Forms.Button btn8;
+        public System.Windows.Forms.Button btn7;
+        public System.Windows.Forms.Button btnMinus;
+        public System.Windows.Forms.Button btnStar;
+        public System.Windows.Forms.Button btnSlash;
+        public System.Windows.Forms.Button btnNumLock;
+    }
+}

@@ -1,0 +1,31 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace TypApplication.View
+{
+    public partial class CourseFinished : UserControl
+    {
+        private MainForm parentForm;
+
+        public CourseFinished(MainForm parentForm, int KeyScore, int AccScore)
+        {
+            InitializeComponent();
+            this.parentForm = parentForm;
+            this.labelKeyScore.Text = KeyScore+"";
+            this.labelAccScore.Text = AccScore+"";
+            
+        }
+
+        private void buttonToMain_Click(object sender, EventArgs e)
+        {
+            parentForm.ShowMainMenu();
+        }
+    }
+}

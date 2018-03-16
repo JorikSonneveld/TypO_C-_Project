@@ -1,0 +1,130 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using TypApplication.Model;
+using TypApplication.View;
+
+namespace TypApplication.Controller
+{
+    public class TextInput
+    {
+        private DatabaseController databaseController = new DatabaseController();
+        private List<string> Mistakes = new List<string>();
+
+        public TextInput() { }
+
+        public TextInput(DatabaseController databaseController)
+        {
+            this.databaseController = databaseController;
+        }
+        //Keylogger
+        public void Log(KeyData data, KeyEventArgs e)
+        {
+            data.CurrentKeyCode = e.KeyValue.ToString();
+            if (e.KeyCode != Keys.ShiftKey)
+                KeyData.KeystrokeCounter++;
+        }
+
+        //Calculate next key in string
+        public void CalculateNextKey(String Text, KeyData data)
+        {
+            if (Text.Length - KeyData.GoodKeyPresses > 1)
+            {
+                data.NextKeyValueUpper = Text.ToUpper()[KeyData.GoodKeyPresses];
+            }
+        }
+
+        private void Done(KeyBoard keyboard, KeyData keyData, RichTextBox InputBox)
+        {
+            InputBox.ReadOnly = true;
+            keyboard.ResetKeyColor(keyData.NextKeyValueUpper);
+        }
+
+        private void UpdateKeys(String TestBox, String InputBox, KeyData keyData)
+        {
+            keyData.GoodKey = TestBox[KeyData.GoodKeyPresses].ToString();
+            keyData.CurrentKeyValue = InputBox.Substring(InputBox.Length - 1);
+        }
+
+        //Check if pressed key is good, wrong or max reached
+        public bool Check(RichTextBox InputBox, RichTextBox TestBox, KeyBoard keyboard, KeyData keyData)
+        {
+
+
+            // max reached
+            if (TestBox.TextLength - KeyData.GoodKeyPresses <= 1)
+            {
+                TestBox.SelectionStart = InputBox.Text.Length;
+                Console.WriteLine("je bent klaar");
+                Done(keyboard, keyData, InputBox);
+                databaseController.AddMistakeToDd(Mistakes);
+                return true;
+            }
+
+            // if dot reached
+            else if (TestBox.TextLength - KeyData.GoodKeyPresses == 1)
+            {
+                // Update Goodkey and currentkey
+                UpdateKeys(TestBox.Text, InputBox.Text, keyData);
+
+                // If current key is dot
+                if (keyData.CurrentKeyValue.Equals("."))
+                {
+                    Done(keyboard, keyData, InputBox);
+                    KeyData.GoodKeyPresses++;
+                }
+
+                // If entered key not .
+                else
+                {
+                    // Remove wrong char
+                    InputBox.Text = InputBox.Text.Substring(0, InputBox.TextLength - 1);
+                    // Move input position to end
+                    InputBox.SelectionStart = InputBox.Text.Length;
+
+                    // Count up wrong key presses
+                    keyData.WrongKeyPresses++;
+                    Mistakes.Add(keyData.GoodKey.ToString().ToLower());
+                }
+                return false;
+            }
+
+
+            // else
+            else
+            {
+
+                // Update Goodkey and currentkey
+                UpdateKeys(TestBox.Text, InputBox.Text, keyData);
+
+                {
+                    // if CurrentKey equals GoodKey, count up number of GoodKeyPresses
+                    if (keyData.CurrentKeyValue.Equals(keyData.GoodKey))
+                    {
+                        KeyData.GoodKeyPresses++;
+                    }
+
+                    // If entered key is wrong
+                    else
+                    {
+                        // Remove wrong char
+                        InputBox.Text = InputBox.Text.Substring(0, InputBox.TextLength - 1);
+                        // Move input position to end
+                        InputBox.SelectionStart = InputBox.Text.Length;
+
+                        // Count up wrong key presses
+                        keyData.WrongKeyPresses++;
+                        Mistakes.Add(keyData.GoodKey.ToString().ToLower());  //adds the letter of the mistake in a list to be saved later                    
+                    }
+                }
+                return false;
+            }
+        }
+    }
+
+}

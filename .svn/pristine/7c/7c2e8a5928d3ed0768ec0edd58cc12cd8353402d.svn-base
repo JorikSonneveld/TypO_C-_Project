@@ -1,0 +1,27 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace TypApplication.Model
+{
+    public class Key
+    {
+        public int KeyCode { get; set; }
+        public Button Button { get; set; }
+
+
+        public Key(int keyCode, Button button)
+        {
+            this.KeyCode = keyCode;
+            this.Button = button;
+        }
+
+        public override string ToString()
+        {
+            return String.Format("{0} {1}", KeyCode, Button.Name);
+        }
+    }
+}

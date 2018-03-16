@@ -1,0 +1,42 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Windows.Media;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using Typo.View;
+using System.Windows.Controls;
+
+namespace Typo.Controller
+{
+    public class KeyboardController
+    {
+        public ExerciseController ExerciseController { get; set; }
+
+        public ExerciseView ExerciseView { get; set; }
+
+        public KeyboardController(ExerciseView exerciseView, ExerciseController exerciseController)
+        { 
+            ExerciseView = exerciseView;
+            ExerciseController = exerciseController;
+        }
+
+        //act on key
+        public void HandleKey_Down(object sender, KeyEventArgs e)
+        {
+            if(e.Key.ToString() == ExerciseController.GetExpectedKey())
+            {
+                ExerciseView.keyBoard.btnA.Background = Brushes.AliceBlue;
+            }
+            else
+                ExerciseView.keyBoard.btnA.Background = Brushes.Red;
+        }
+
+        //reset key
+        public void HandleKey_Up(object sender, KeyEventArgs e)
+        {
+            ExerciseView.keyBoard.btnA.Background = Brushes.White;
+        }
+    }
+}

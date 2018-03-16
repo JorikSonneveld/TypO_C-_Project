@@ -1,0 +1,23 @@
+﻿using System.Collections.Generic;
+using System.Windows.Controls;
+using static System.String;
+
+namespace Typo.Model
+{
+    public class Key
+    {
+        public Key(int keyCode, Button button)
+        {
+            KeyCode = keyCode;
+            Button = button;
+        }
+
+        public int KeyCode { get; set; }
+        public Button Button { get; set; }
+
+        public override string ToString()
+        {
+            return $"{KeyCode} {Button.Name}";
+        }        
+    }
+}

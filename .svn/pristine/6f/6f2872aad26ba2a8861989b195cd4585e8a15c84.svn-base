@@ -1,0 +1,80 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace TypApplication
+{
+    public partial class Form1 : Form
+    {
+        private string currentkey;
+        private string goodkey = "T";
+        private int goodKeyPresses;
+        private int wrongKeyPresses;
+        private int KeystrokeTime = 0;
+        private int KeystrokesPerMinute = 0;
+        private int KeystrokeCounter = 0;
+
+        public Form1()
+        {
+            InitializeComponent();
+            KeystrokeTimer.Interval = 1;
+            KeystrokeTimer.Tick += new EventHandler(Update);
+            KeystrokeTimer.Start();
+        }
+
+        //Keylogger
+        private void RichTextBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            currentkey = e.KeyCode.ToString();
+            //Console.WriteLine(currentkey);
+            KeystrokeCounter++;
+        }
+    
+        public void Update(object sender, EventArgs e)
+        {
+            KeystrokeTime++;
+            if (KeystrokeTime % 1 == 0)
+            {
+                CalculateKeystrokesPerMinute();
+                Console.WriteLine(KeystrokesPerMinute);
+            }
+        }
+     
+        //TextBox changed
+        private void RichTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (currentkey.Equals(goodkey))
+            {
+                button1.BackColor = Color.Green;
+                goodKeyPresses++;
+
+            }
+            else
+            {
+                button1.BackColor = Color.Red;
+                wrongKeyPresses++;
+                //Console.WriteLine(richTextBox1.Text.Length);
+            }
+        }
+
+        public void CalculateKeystrokesPerMinute()
+        {
+            if (KeystrokeCounter != 0)// check if one of the values are 0 because you cant devide by zero
+            {
+                decimal temp = KeystrokeCounter / (KeystrokeTime/60000m);
+                KeystrokesPerMinute = Convert.ToInt32(temp); 
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+    }
+}

@@ -1,0 +1,44 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace TypApplicatie
+{
+    public partial class Form1 : Form
+    {
+        public static int KeystrokeCounter = 0;
+        public static int KeystrokeTime = 0;
+        public Form1()
+        {
+            InitializeComponent();
+            KeystrokeTimer.Interval = 1;
+            KeystrokeTimer.Tick += new EventHandler(Update);
+            KeystrokeTimer.Start();
+        }
+
+        public void Update(object sender, EventArgs e)
+        {
+            KeystrokeTime++;
+            KeystrokesPerMinute();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        public void KeystrokesPerMinute()
+        {
+            if (KeystrokeCounter != 0 && KeystrokeTime/60 != 0)
+            {
+                Console.WriteLine(KeystrokeCounter / (KeystrokeTime / 60));
+            }
+        }
+    }
+}

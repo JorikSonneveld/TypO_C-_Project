@@ -1,0 +1,55 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using TypApplication.View;
+
+namespace TypApplication.Model
+{
+    class KeyData
+    {
+        public string CurrentKeyCode;
+        public string CurrentKeyValue;
+        public string GoodKey;
+        public static int GoodKeyPresses = 0;
+        public int WrongKeyPresses = 0;
+        public char NextKeyValueUpper;
+        public static int KeystrokeTime = 0;
+        public static int KeystrokesPerMinute = 0;
+        public static int KeystrokeCounter = 0;
+        private long CurrentMillisec;
+        private long StartMillisec;
+        private long Delay;
+
+        public void UpdateWordsPerMinute()
+        {
+            KeystrokeTime++;
+            if (KeystrokeTime == 1)
+            {
+                StartMillisec = Convert.ToInt64(Convert.ToInt64((DateTime.Now - DateTime.MinValue).TotalMilliseconds));
+            }
+
+            CurrentMillisec = Convert.ToInt64(Convert.ToInt64((DateTime.Now - DateTime.MinValue).TotalMilliseconds));
+
+            if (CurrentMillisec - StartMillisec >= 0)
+            {
+                Delay = CurrentMillisec - StartMillisec;
+            }
+
+            if (KeystrokeTime % 60 == 0)
+            {
+                CalculateKeystrokesPerMinute();
+            }
+        }
+
+        public void CalculateKeystrokesPerMinute()
+        {
+            //Console.WriteLine(KeystrokeCounter);
+            decimal temp = KeystrokeCounter / (Delay / 60000m);
+            KeystrokesPerMinute = Convert.ToInt32(temp);
+        }
+    }
+}

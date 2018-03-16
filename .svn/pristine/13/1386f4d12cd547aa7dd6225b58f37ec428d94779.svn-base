@@ -1,0 +1,124 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using TypApplication.Model;
+
+namespace TypApplication.Controller
+{
+    public class DatabaseController
+    {
+        //Initialise a new DatabaseContext
+        private ApplicationDatabase ApplicationDatabase;
+        public static bool IsNew;
+
+        //Connect to the ApplicationDatabase
+        public void DbConnect() { ApplicationDatabase = new ApplicationDatabase(); }
+
+        private void SaveDb() { ApplicationDatabase.SaveChanges(); }
+
+        public void AddMistakeToDd(List<string> mistakes)
+        {
+            foreach (string letter in mistakes) //goes through every mistake made in the exercise 
+            {
+                if (ApplicationDatabase.KeyMistakes.Where(c => c.Character == letter).Any()) //checks is the mistake is already made
+                {
+                    var selection = ApplicationDatabase.KeyMistakes.Where(c => c.Character == letter).Single(); //gets the mistake with the same letter from the database
+                    selection.Count++; //adds one to the count
+                }
+                else
+                {
+                    KeyMistake mistake = new KeyMistake { Character = letter, Count = 1 };//makes a new mistake
+                    ApplicationDatabase.KeyMistakes.Add(mistake);//adds the new mistake to the database
+                }
+                SaveDb(); //saves the database after every letter
+            }            
+            
+        }
+
+        public bool AddCourse(string input)
+        {
+            DbConnect();
+            Course data = new Course() { Characters = input };
+
+            //If already excists
+            if (ApplicationDatabase.Courses.Any(c => c.Characters.Equals(input)))
+            {
+                return false;
+            }
+            // Add course
+            else
+            {
+                ApplicationDatabase.Courses.Add(data);
+                SaveDb();
+                return true;
+            }
+
+        }
+
+        //Delete course from Courses database table
+        public void DeleteCourse(int courseid)
+        {
+            DbConnect();
+            if (!ApplicationDatabase.Courses.Any(x => x.CourseID == courseid))
+                return;
+            var course = ApplicationDatabase.Courses.Single(x => x.CourseID == courseid);
+            ApplicationDatabase.Courses.Remove(course);
+            ApplicationDatabase.SaveChanges();
+        }
+
+        //function to retrieve random words from the database
+        public List<Word> RetrieveRandomDbWords()
+        {
+            //Select the ApplicationDatabase
+            DbConnect();
+
+            //Make a linq query to select all words from the database
+            var Selection = (from s in ApplicationDatabase.Words select s);
+            //Selection.ToList<Word>();
+
+            //Generate a Random object, a List of Words and a few integers to make the loops work properly
+            Random rnd = new Random();
+            List<Word> words = new List<Word>();
+            //int Size = Selection.Count();
+            int Size = 10;
+            int RandomSelect;
+            int RandomCounter = SelectRandomNumber(rnd, 1, Size);
+
+            //The 'for' loop ensures that there is a random amount of words selected
+            for (int i = 0; i < RandomCounter; i++)
+            {
+                RandomSelect = SelectRandomNumber(rnd, 1, Size);
+                //The 'foreach' loop ensures that each word is random selected from the database
+                foreach (Word w in Selection)
+                {
+                    if (w.WordID == RandomSelect)
+                    {
+                        words.Add(w);
+                    }
+                }
+            }
+            return words;
+        }
+
+        //Function to retrieve all Courses from the database
+        //public List<Word> RetrieveAllDbCourses() {
+
+        //    //Select the ApplicationDatabase
+        //    DbConnect();
+
+
+
+        //    return courses;
+        //}
+
+        //Function for generating a random number, given a MaxNumber
+        private int SelectRandomNumber(Random rnd, int MinNumber, int MaxNumber)
+        {
+            return rnd.Next(MinNumber, MaxNumber);
+        }
+    }
+}

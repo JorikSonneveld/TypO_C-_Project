@@ -1,0 +1,61 @@
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Windows.Forms;
+using Typo.Model;
+
+namespace Typo.Controller
+{
+    public class CourseController
+    {
+        public DatabaseController db = new DatabaseController();
+
+        public bool CreateMessage(bool succes, bool update)
+        {
+            if (succes == true && update == false)
+            {
+                var result = MessageBox.Show("Course successfully added", "Succes", MessageBoxButtons.OK);
+                if (result == DialogResult.OK) return true;
+            }
+            if (succes == false && update == false)
+            {
+                MessageBox.Show("This course does already excist, Please change the text", "Error", MessageBoxButtons.OK);
+            }
+            if (succes == true && update == true)
+            {
+                var result = MessageBox.Show("Course successfully updated", "Succes", MessageBoxButtons.OK);
+                if (result == DialogResult.OK) return true;
+            }
+            if (succes == false && update == true)
+            {
+                MessageBox.Show("A course with this title already exists", "Error", MessageBoxButtons.OK);
+            }
+            return false;
+        }
+        
+        public void FillDataGridViewWithVisibleCourses(DataGridView CourseGrid)
+        {
+            var courses = new List<Course>();
+            courses = db.RetrieveAllDbCourses(); //get all the courses
+            if (courses != null) // check if any courses are returned
+            {
+                foreach (var c in courses)
+                    if (c.Official) // if the course may be visible 
+                        CourseGrid.Rows.Add(c.Title); // it will be added in the datagridview
+            }
+        }
+
+        public void Delete(Course course, System.Windows.Controls.DataGrid courseGrid)
+        {
+            var result = MessageBox.Show("Are you sure you want to delete \"" + course.Title + "\"", "Delete",
+                MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+                db.DeleteCourse(course.CourseID);
+        }
+
+        public void UpdateGrid(System.Windows.Controls.DataGrid courseGrid)
+        {
+            var courses = new ObservableCollection<Course>(db.RetrieveAllDbCourses());
+            courseGrid.ItemsSource = courses;
+        }
+    }
+}

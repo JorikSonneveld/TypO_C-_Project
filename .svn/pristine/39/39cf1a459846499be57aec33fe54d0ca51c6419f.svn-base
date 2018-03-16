@@ -1,0 +1,23 @@
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Typo.Model.Database
+{
+    public class Course_Class
+    {
+        [Key]
+        [Column(Order = 1)]
+        public string ClassCode { get; set; }
+
+        [Key]
+        [Column(Order = 2)]
+        public int CourseID { get; set; }
+
+
+        [ForeignKey("ClassCode")]
+        public virtual Class Class { get; set; }
+
+        [ForeignKey("CourseID")]
+        public virtual Course Course { get; set; }
+    }
+}

@@ -1,0 +1,82 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace TypApplication.View
+{
+    public partial class CharacterPicker : UserControl
+    {
+        public List<char> charlist = new List<char>();
+        public int maxWordLength = 3;
+        private MainForm parentForm;
+        private bool isVisible;
+        public CharacterPicker(MainForm parentForm)
+        {
+            this.parentForm = parentForm;
+            this.Focus();
+            InitializeComponent();
+            WordLengthUpDown.Minimum = 3;
+            WordLengthUpDown.Value = 3;
+            WordLengthUpDown.Maximum = 10;
+            isVisible = true;
+        }
+
+        //every key that's pressed
+        public void CharacterPicker_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //create button
+            Button button = keyBoard.ConvertKeyCodeToButton(keyBoard.ConvertCharacterToKeyCode(char.ToUpper(e.KeyChar)));
+            //if button does not exist, stop
+            if (button == null)
+                return;
+            //if character isn't in the list
+            if (!charlist.Contains(e.KeyChar))
+            {
+                //add character and colour key
+                charlist.Add(e.KeyChar);
+                keyBoard.SetKeyColor(button, Color.Yellow);
+            }
+            else
+            {
+                //remove key and colour the key white
+                charlist.Remove(e.KeyChar);
+                this.keyBoard.ResetKeyColor(keyBoard.ConvertCharacterToKeyCode(char.ToUpper(e.KeyChar)));
+            }
+            UpdateLabel();
+        }
+
+
+        //updates the label so the user sees what characters are selected for the exercise
+        public void UpdateLabel()
+        {
+            string chars = "";
+            foreach (char character in charlist)
+                chars += character + " ";
+            LabelExerciseCharacters.Text = String.Format("Exercise with: {0}", chars);
+            Refresh();
+        }
+
+        private void StartExerciseButton_Click(object sender, EventArgs e)
+        {
+            if (charlist.Any())
+            {
+                isVisible = false;
+                parentForm.NewCharacterExcersise(charlist, maxWordLength);
+            }
+        }
+
+        //sets wordlength to selected value
+        private void WordLengthUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            maxWordLength = (int)WordLengthUpDown.Value;
+        }
+
+        public bool IsVisible() { return isVisible; } // returns if the screen is visible
+    }
+}

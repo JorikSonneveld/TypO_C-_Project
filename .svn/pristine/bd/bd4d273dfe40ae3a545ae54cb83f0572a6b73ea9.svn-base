@@ -1,0 +1,21 @@
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace TypApplication.Model
+{
+    public class Result
+    {
+        public Result(string title, int keyScore, int accScore, string username)
+        {
+            Title = title;
+            AccScore = accScore;
+            KeyScore = keyScore;
+            Username = username;
+        }
+
+        public int ResultId { get; set; }
+        public string Title { get; set; }
+        public int KeyScore { get; set; }
+        public int AccScore { get; set; }
+        public string Username { get; set; }
+    }
+}

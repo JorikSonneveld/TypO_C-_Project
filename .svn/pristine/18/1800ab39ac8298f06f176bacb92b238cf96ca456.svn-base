@@ -1,0 +1,32 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Windows.Controls;
+using Typo.Model.Database;
+using Typo.View;
+
+namespace Typo.Controller
+{
+    internal class OverviewController
+    {
+        //declaration of the DataBaseController and a list of student objects
+        private readonly DatabaseController DataBaseController;
+        private readonly List<Student> List;
+
+        //the contstructor initialises the DataBaseController
+        public OverviewController()
+        {
+            DataBaseController = new DatabaseController();
+            //initialise the list with all student objects in the database
+            List = DataBaseController.GetAllStudents();
+        }
+
+        //method for filling the student grid with student information panels
+        public void FillStudentGrid(MainWindow mainWindow, WrapPanel StudentPanel)
+        {
+            foreach (Student student in List) {
+                StudentInformation studentInformation = new StudentInformation(mainWindow, student.Name, student.Surname, student.ID, StudentPanel);
+                StudentPanel.Children.Add(studentInformation);
+            }
+        }
+    }
+}

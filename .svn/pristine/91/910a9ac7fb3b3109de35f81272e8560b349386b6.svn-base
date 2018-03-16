@@ -1,0 +1,37 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using TypApplication.Model;
+
+namespace TypApplication.View
+{
+    public interface IInput
+    {
+        //Makes an act on a key/multiple keys
+        void ActKey(int pressedKey, char expectedKey);
+
+        //sets a key to a colour
+        void SetKeyColor(Button key, Color color);
+
+        //resets the key colour
+        void ResetKeyColor(int key);
+
+        //Switch and Setcolorblind
+        void InitColorblindSettings();
+
+        //convert a keycode to a char
+        char ConvertKeyCodeToChar(int KeyCode);
+
+        //convert a char to a keycode
+        int ConvertCharacterToKeyCode(char Character);
+
+        //convert a keycode to a button
+        Button ConvertKeyCodeToButton(int Code);
+    }
+}

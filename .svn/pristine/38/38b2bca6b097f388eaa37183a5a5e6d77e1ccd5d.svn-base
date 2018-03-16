@@ -1,0 +1,73 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using TypApplication.Model;
+using TypApplication.Controller;
+
+namespace TypApplication.View
+{
+    public partial class Courses : UserControl
+    {
+        private MainForm parentForm;
+        private DatabaseController db = new DatabaseController();
+
+        public Courses(MainForm parentForm)
+        {
+            this.parentForm = parentForm;
+            InitializeComponent();
+            FillDataGridView();
+        }
+
+        private void FillDataGridView()
+        {
+            List<Course> Courses = new List<Course>();
+            Courses = db.RetrieveAllDbCourses();
+            if (Courses != null)
+            {
+                CoursesGrid.Rows.Clear();
+                foreach (Course course in Courses)
+                {
+                  
+                    CoursesGrid.Rows.Add(course.Characters);
+                }
+            }
+        }
+
+        private void Cancel_Click(object sender, EventArgs e)
+        {
+            parentForm.ShowMainMenu();
+        }
+
+        private void CreateCourse_Click(object sender, EventArgs e)
+        {
+            CourseEditor courseEditor = new CourseEditor();
+            courseEditor.Show();
+        }
+
+        private void Update_Click(object sender, EventArgs e)
+        {
+            DataGridViewCell Cell = CoursesGrid.CurrentCell;
+            CourseEditor courseEditor = new CourseEditor(Cell);
+            courseEditor.Show();
+        }
+
+        public void RefreshList()
+        {
+           
+            InitializeComponent();
+        }
+
+        //Delete selected item
+        private void Delete_Click(object sender, EventArgs e)
+        {
+            db.DeleteCourse(db.GetCourseId(CoursesGrid.CurrentCell.Value.ToString()));
+            FillDataGridView();
+        }
+    }
+}

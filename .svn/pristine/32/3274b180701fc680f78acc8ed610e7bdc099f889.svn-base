@@ -1,0 +1,58 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using TypApplication.Model;
+
+namespace TypApplication.Controller
+{
+    public class DatabaseController
+    {
+        //Initialise a new DatabaseContext
+        public ApplicationDatabase ApplicationDatabase;
+
+        //Connect to the ApplicationDatabase
+        public void DbConnect()
+        {
+            ApplicationDatabase = new ApplicationDatabase();
+        }
+
+        public List<Word> RetrieveRandomDbWords() {
+            //Select the ApplicationDatabase
+            DbConnect();
+
+            //Make a linq query to select all words from the database
+            var Selection = (from s in ApplicationDatabase.Words select s);
+            Selection.ToList<Word>();
+
+            //Generate a Random object, a List of Words and a few integers to make the loops work properly
+            Random rnd = new Random();
+            List<Word> words = new List<Word>();
+            int Size = Selection.Count();
+            int RandomSelect;
+            int RandomCounter = SelectRandomNumber(rnd, Size);
+
+            //The 'for' loop ensures that there is a random amount of words selected
+            for (int i = 0; i < RandomCounter; i++)
+            {
+                RandomSelect = SelectRandomNumber(rnd, Size);
+                //The 'foreach' loop ensures that each word to be chosen is random selected from the database
+                foreach (Word w in Selection)
+                {
+                    if (w.ID == RandomSelect)
+                    {
+                        words.Add(w);
+                    }
+                }
+            }
+            return words;
+        }
+
+        public int SelectRandomNumber(Random rnd, int MaxNumber)
+        {
+            return rnd.Next(1, MaxNumber);
+        }
+
+    }
+}

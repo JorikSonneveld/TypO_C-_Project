@@ -1,0 +1,83 @@
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
+using System.Linq;
+using TypApplication.Controller;
+using TypApplication.Model;
+
+namespace TypingApplicationTestEnvoirement.Controller
+{
+    [TestClass]
+    public class DatabaseControllerTest
+    {
+        DatabaseController dbController = new DatabaseController();
+
+
+        [TestMethod]
+        public void RetrieveRandomDbWords_ShouldRetrieveAtLeastOneRandomWordFromDatabase_WhenCalled()
+        {
+            //Arrange
+            //int expected = 15;
+            //Act
+            //var countWords = dbController.RetrieveRandomDbWords().Split().Length;
+
+            //Assert
+            //Assert.AreEqual(expected, countWords);
+        }
+        
+        [TestMethod]
+        public void DeleteCourse_ShouldDeleteCourse_WhenGivenCourseID()
+        {
+            //Arrange
+
+            //Act
+            dbController.AddCourse("THISISATESTCOURSE", "TITLE", true);
+            dbController.DeleteCourse(dbController.GetCourseId("TITLE"));
+
+            //Assert
+            Assert.AreEqual(dbController.ApplicationDatabase.Courses.Any(c => c.Title == "TITLE"), false);
+        }
+
+        [TestMethod]
+        public void RetrieveRandomDbWords_ShouldNotRetrieveEmptyListFromDatabase_WhenCalled()
+        {
+            //arrange
+            int expected = 15;
+            //Act
+            List<Word> randomWords = dbController.RetrieveRandomDbWords();
+            var newCount = randomWords.Count;
+            //Assert
+            Assert.AreEqual(expected, newCount);
+        }
+
+        [TestMethod]
+        public void ShouldRegisterMistake_WhenMistakeMade()
+        {
+            //Arrange
+            var mistake = "A";
+            var testList = new List<string> { mistake };
+
+            //Act
+            //dbController.AddMistakesToDb(testList);
+            var hasMistakes = dbController.HasMistakes();
+
+            //Assert
+            Assert.AreEqual(true, hasMistakes);
+        }
+
+
+        [TestMethod]
+        public void ShouldAddCourse_WhenNotExcisted()
+        {
+            //Arrange
+            var title = "Title";
+            string input = "Test input";
+            //Act
+            var result = dbController.AddCourse(input, title, true);
+
+            //Assert
+            Assert.AreEqual(true, result);
+            dbController.DeleteCourse(dbController.GetCourseId("UnitTest"));
+        }
+    }
+}

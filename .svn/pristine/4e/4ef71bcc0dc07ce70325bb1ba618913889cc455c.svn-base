@@ -1,0 +1,104 @@
+﻿using System;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Forms;
+using Typo.Controller;
+using Typo.Model;
+using DataGrid = System.Windows.Controls.DataGrid;
+using MessageBox = System.Windows.Forms.MessageBox;
+
+namespace Typo.View
+{
+    /// <summary>
+    ///     Interaction logic for CourseEditor.xaml
+    /// </summary>
+    public partial class CourseEditor : Window
+    {
+        //private readonly CourseController courseController = new CourseController();
+        private readonly int courseId;
+        public DataGridCellInfo cell;
+        public bool update;
+        private DatabaseController databaseController;
+
+        public CourseEditor(DatabaseController database)
+        {
+            this.databaseController = database;
+            InitializeComponent();
+        }
+
+        public CourseEditor(Course course, DatabaseController database)
+        {
+            this.databaseController = database;
+            InitializeComponent();
+            if (course == null) return;
+            Title = "Edit Course";
+            //Set View Values
+            courseId = course.CourseID;
+            CourseTitle.Text = course.Title;
+            VisibleCheck.IsChecked = course.Official;
+            StartDate.Value = course.StartDate;
+            EndDate.Value = course.EndDate;
+            CourseContent.Text = course.Text;
+            update = true;
+        }
+
+      
+
+        private void Update_Click(object sender, EventArgs e)
+        {
+            if (update)
+            {
+                var course = new Course
+                {
+                    CourseID = courseId,
+                    Title = CourseTitle.Text,
+                    Text = CourseContent.Text,
+                    StartDate = StartDate.Value,
+                    EndDate = EndDate.Value,
+                    Official = VisibleCheck.IsChecked.Value
+                };
+                CreateMessage(databaseController.EditCourse(course), true);
+            }
+            else
+            {
+                var course = new Course
+                {
+                    Title = CourseTitle.Text,
+                    Text = CourseContent.Text,
+                    StartDate = StartDate.Value,
+                    EndDate = EndDate.Value,
+                    Official = VisibleCheck.IsChecked.Value
+                };
+                if (!databaseController.AddCourse(course) || CourseTitle.Text.Equals(""))
+                {
+                    //If title already excists or is empty, add (1) to title
+                    course.Title += "(1)";
+                    databaseController.AddCourse(course);
+                    CreateMessage(false, false);
+                }
+                CreateMessage(true, false);
+            }
+            Close();
+        }
+
+        private bool CreateMessage(bool succes, bool update)
+        {
+            if (succes && update == false)
+            {
+                var result = System.Windows.Forms.MessageBox.Show("Course successfully added", "Succes", MessageBoxButtons.OK);
+                if (result == System.Windows.Forms.DialogResult.OK) return true;
+            }
+            if (succes == false && update == false)
+                System.Windows.Forms.MessageBox.Show("This title does already excist or is empty, title is automatically updated", "Error",
+                    MessageBoxButtons.OK);
+            if (succes && update)
+            {
+                var result = System.Windows.Forms.MessageBox.Show("Course successfully updated", "Succes", MessageBoxButtons.OK);
+                if (result == System.Windows.Forms.DialogResult.OK) return true;
+            }
+            if (succes == false && update)
+                MessageBox.Show("A course with this title already exists", "Error", MessageBoxButtons.OK);
+            return false;
+        }
+    }
+}

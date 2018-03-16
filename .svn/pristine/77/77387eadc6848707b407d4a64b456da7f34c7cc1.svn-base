@@ -1,0 +1,23 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace Typo.Model
+{
+    internal class CharacterExercise : Exercise
+    {
+        private readonly List<char> charList;
+        private readonly int maxWordLength;
+
+        public CharacterExercise(List<char> charList, int maxWordLength)
+        {
+            this.charList = charList;
+            this.maxWordLength = maxWordLength;
+            ExerciseString = CreateExerciseString();
+        }
+
+        public override string CreateExerciseString()
+        {
+            throw new NotImplementedException();
+        }
+    }
+}

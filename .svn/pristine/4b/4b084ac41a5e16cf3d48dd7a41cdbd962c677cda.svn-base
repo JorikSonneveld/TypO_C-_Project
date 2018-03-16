@@ -1,0 +1,44 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace TypApplication.View
+{
+    public partial class Courses : UserControl
+    {
+        private MainForm parentForm;
+
+        public Courses(MainForm parentForm)
+        {
+            this.parentForm = parentForm;
+            FillDataGridView();
+            InitializeComponent();
+        }
+
+        private void FillDataGridView() {
+
+
+            /*
+            DataGridView d = (DataGridView) CoursesGrid.Rows[]
+            CoursesGrid.
+            */
+        }
+
+        private void Cancel_Click(object sender, EventArgs e)
+        {
+            parentForm.ShowMainMenu();
+        }
+
+        private void CreateCourse_Click(object sender, EventArgs e)
+        {
+            CourseEditor courseEditor = new CourseEditor();
+            courseEditor.Show();
+        }
+    }
+}

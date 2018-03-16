@@ -1,0 +1,128 @@
+﻿namespace TypApplication.View
+{
+    partial class Courses
+    {
+        /// <summary> 
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary> 
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Component Designer generated code
+
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.CoursesGrid = new System.Windows.Forms.DataGridView();
+            this.Characters = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CreateCourse = new System.Windows.Forms.Button();
+            this.Cancel = new System.Windows.Forms.Button();
+            this.Update = new System.Windows.Forms.Button();
+            this.Delete = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.CoursesGrid)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // CoursesGrid
+            // 
+            this.CoursesGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.CoursesGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Characters});
+            this.CoursesGrid.Location = new System.Drawing.Point(579, 122);
+            this.CoursesGrid.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CoursesGrid.Name = "CoursesGrid";
+            this.CoursesGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.CoursesGrid.Size = new System.Drawing.Size(300, 436);
+            this.CoursesGrid.TabIndex = 4;
+            // 
+            // Characters
+            // 
+            this.Characters.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Characters.HeaderText = "Characters";
+            this.Characters.Name = "Characters";
+            this.Characters.ReadOnly = true;
+            // 
+            // CreateCourse
+            // 
+            this.CreateCourse.Location = new System.Drawing.Point(409, 122);
+            this.CreateCourse.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CreateCourse.Name = "CreateCourse";
+            this.CreateCourse.Size = new System.Drawing.Size(133, 28);
+            this.CreateCourse.TabIndex = 3;
+            this.CreateCourse.Text = "Create course";
+            this.CreateCourse.UseVisualStyleBackColor = true;
+            this.CreateCourse.Click += new System.EventHandler(this.CreateCourse_Click);
+            // 
+            // Cancel
+            // 
+            this.Cancel.Location = new System.Drawing.Point(409, 629);
+            this.Cancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Cancel.Name = "Cancel";
+            this.Cancel.Size = new System.Drawing.Size(133, 28);
+            this.Cancel.TabIndex = 5;
+            this.Cancel.Text = "Cancel";
+            this.Cancel.UseVisualStyleBackColor = true;
+            this.Cancel.Click += new System.EventHandler(this.Cancel_Click);
+            // 
+            // Update
+            // 
+            this.Update.Location = new System.Drawing.Point(409, 159);
+            this.Update.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Update.Name = "Update";
+            this.Update.Size = new System.Drawing.Size(133, 28);
+            this.Update.TabIndex = 6;
+            this.Update.Text = "Update";
+            this.Update.UseVisualStyleBackColor = true;
+            this.Update.Click += new System.EventHandler(this.Update_Click);
+            // 
+            // Delete
+            // 
+            this.Delete.Location = new System.Drawing.Point(409, 196);
+            this.Delete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Delete.Name = "Delete";
+            this.Delete.Size = new System.Drawing.Size(133, 28);
+            this.Delete.TabIndex = 7;
+            this.Delete.Text = "Delete";
+            this.Delete.UseVisualStyleBackColor = true;
+            this.Delete.Click += new System.EventHandler(this.Delete_Click);
+            // 
+            // Courses
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.Delete);
+            this.Controls.Add(this.Update);
+            this.Controls.Add(this.Cancel);
+            this.Controls.Add(this.CoursesGrid);
+            this.Controls.Add(this.CreateCourse);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Name = "Courses";
+            this.Size = new System.Drawing.Size(1557, 834);
+            ((System.ComponentModel.ISupportInitialize)(this.CoursesGrid)).EndInit();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+        private System.Windows.Forms.DataGridView CoursesGrid;
+        private System.Windows.Forms.Button CreateCourse;
+        private System.Windows.Forms.Button Cancel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Characters;
+        private new System.Windows.Forms.Button Update;
+        private System.Windows.Forms.Button Delete;
+    }
+}

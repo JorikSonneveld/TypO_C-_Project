@@ -1,0 +1,31 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace TypApplication.View
+{
+    using System.Data.Entity;
+    using System.Threading;
+
+    using TypApplication.Controller;
+    using TypApplication.Model;
+
+    public partial class LoadingScreen : UserControl
+    {
+
+        private LoadingController loadingController = new LoadingController();
+
+        public LoadingScreen(MainForm parentForm, string next, int time)
+        {
+            this.InitializeComponent();
+            this.timer1.Tick += delegate { loadingController.Update(progressBar, timer1, parentForm, next); };
+            this.loadingController.Animate(time, progressBar, timer1);
+        }
+    }
+}

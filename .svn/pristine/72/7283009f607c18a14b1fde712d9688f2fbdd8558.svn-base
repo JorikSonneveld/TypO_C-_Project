@@ -1,0 +1,84 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
+using System.Windows.Forms;
+using TypApplication.Controller;
+using TypApplication.Model;
+
+namespace TypApplication.View
+{
+    public partial class ExerciseView : UserControl
+    {
+        private MainForm parentForm;
+
+        private KeyData keyData = new KeyData();
+        private TextInput input = new TextInput();
+        private List<Word> wordlist = new List<Word>();
+        private DatabaseController DbController = new DatabaseController();
+        private ExerciseController ExController;
+        private WordExercise wordExercise;
+
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true, CallingConvention = CallingConvention.Winapi)]
+        public static extern short GetKeyState(int keyCode);
+
+        public ExerciseView(MainForm parentForm)
+        {
+            this.parentForm = parentForm;
+
+            InitializeComponent();
+
+            KeystrokeTimer.Interval = 1; //runs every millisecond
+            KeystrokeTimer.Tick += new EventHandler(Update); //every tick it will Update();
+            KeystrokeTimer.Start(); //start the timer
+
+            ExController = new ExerciseController(exerciseTestBox);
+
+            wordExercise = new WordExercise(DbController.RetrieveRandomDbWords());
+            ExController.ChangeExerciseTestBox(wordExercise);
+            
+            NumPad.EnableNumPad((((ushort)GetKeyState(0x90)) & 0xffff) != 0);
+
+
+        }
+
+        private void RichTextBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            input.Log(keyData, e);
+            keyData.CurrentKeyCode = e.KeyValue.ToString();
+            input.CalculateNextKey(exerciseTestBox.Text, keyData);
+            keyBoard.ActKey(e.KeyValue, keyData.NextKeyValueUpper);
+            NumPad.ActKey(e.KeyValue, keyData.NextKeyValueUpper);
+            Invalidate();
+        }
+
+        private void RichTextBox1_KeyUp(object sender, KeyEventArgs e)
+        {
+            keyBoard.ResetKeyColor(e.KeyValue);
+            NumPad.ResetKeyColor(e.KeyValue);
+        }
+
+        public void Update(object sender, EventArgs e)
+        {
+            keyData.UpdateWordsPerMinute();
+            KeystrokesPerMinute.Text = KeyData.KeystrokesPerMinute.ToString(); //update the label
+            input.CaluculateAccuracy();
+            Accuracy.Text = KeyData.Accuracy.ToString();
+        }
+
+        // TextBox changed
+        private void RichTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            input.Check(richTextBox1, exerciseTestBox, keyBoard, keyData);
+        }
+
+        private void ReturnMainmenuButton_Click(object sender, EventArgs e)
+        {
+            parentForm.ShowMainMenu();
+
+            // Reset values
+            KeyData.GoodKeyPresses = 0;
+            KeyData.KeystrokeCounter = 0;
+        }
+    }
+}

@@ -1,0 +1,34 @@
+﻿using System.Windows;
+using System.Windows.Controls;
+
+namespace Typo.View
+{
+    /// <summary>
+    ///     Interaction logic for TeacherMenu.xaml
+    /// </summary>
+    public partial class TeacherMenu : UserControl
+    {
+        private readonly MainWindow mainWindow;
+
+        public TeacherMenu(MainWindow mainWindow)
+        {
+            InitializeComponent();
+            this.mainWindow = mainWindow;
+        }
+
+        private void Manage_Courses_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Not implemented yet.");
+        }
+
+        private void Student_Overview_Click(object sender, RoutedEventArgs e)
+        {
+            mainWindow.Content = new StudentOverview(mainWindow);
+        }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            mainWindow.Content = new MainMenu(mainWindow);
+        }
+    }
+}

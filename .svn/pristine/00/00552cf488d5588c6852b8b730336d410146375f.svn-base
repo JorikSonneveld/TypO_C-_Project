@@ -1,0 +1,39 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using Typo.Model.Database;
+
+namespace Typo.Controller
+{
+    class LoginController
+    {
+        private DatabaseController databaseController = new DatabaseController();
+
+        public bool CheckCredentials(string Username, string Password)
+        {
+            User user = databaseController.CheckLogin(Username, Password);
+            if(user != null)
+            {   
+                Application.Current.Properties["ActiveUserID"] = user.ID;
+                Application.Current.Properties["UserType"] = user.Type;
+                return true;
+            }
+            return false;
+        }
+
+        public static string Hash(string password)
+        {
+            var bytes = new UTF8Encoding().GetBytes(password);
+            byte[] hashBytes;
+            using (var algorithm = new System.Security.Cryptography.SHA512Managed())
+            {
+                hashBytes = algorithm.ComputeHash(bytes);
+            }
+            Console.WriteLine(Convert.ToBase64String(hashBytes));
+            return Convert.ToBase64String(hashBytes);
+        }
+    }
+}

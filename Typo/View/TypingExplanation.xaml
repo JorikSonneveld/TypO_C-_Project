@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="Typo.View.TypingExplanation"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Typo.View"
+             mc:Ignorable="d"
+             d:DesignHeight="620" d:DesignWidth="1080">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".23*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- back -->
+        <Grid Grid.Row="0">
+            <RichTextBox VerticalAlignment="Top" HorizontalContentAlignment="Center" x:Name="Explanation"
+                         Focusable="False" HorizontalAlignment="Stretch" FontSize="20" Background="Transparent">
+                <FlowDocument>
+                    <Paragraph LineHeight="1">
+                        <Run
+                            Text="Whenever you type, place your indexfingers on the 'F' and 'J'. These keys are marked by little bars or small dents on most keyboards. The other fingers on your right hand go on 'K' and 'L', the rest of your left hand go on 'A', 'S' and 'D'. " />
+                    </Paragraph>
+                    <Paragraph LineHeight="1">
+                        <Run
+                            Text="After some time, your fingers will seek this position themselves. The thumb (choose one) is responsible for operating the space bar. The colors in the picture indicate which key should be pressed by which finger. " />
+                    </Paragraph>
+                </FlowDocument>
+            </RichTextBox>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Image Height="250" Width="680" Source="../Resources/colour coded keyboard.png" />
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Image Grid.Column="0" Height="350" Width="180" Source="pack://siteoforigin:,,,/Resources/left.png" />
+                </Grid>
+                <Image Grid.Column="1" Height="350" Width="180" Source="pack://siteoforigin:,,,/Resources/right.png" />
+            </Grid>
+        </Grid>
+
+    </Grid>
+</UserControl>

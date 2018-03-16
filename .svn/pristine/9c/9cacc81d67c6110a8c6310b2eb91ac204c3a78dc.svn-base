@@ -1,0 +1,194 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+
+using System.Windows.Forms;
+using TypApplication.Model;
+
+namespace TypApplication.View
+{
+    public partial class KeyBoard : UserControl
+    {
+        public List<Key> Keys = new List<Key>();
+        public int correctKeyColor;
+        public int wrongKeyColor;
+
+        public KeyBoard()
+        {
+            InitializeComponent();
+            AddKeys();
+            InitColorblindSettings();
+        }
+
+        //Makes an act on a key/multiple keys
+        public void ActKey(int pressedKey, char expectedKey)
+        {
+            //if the pressed key is a key we're listening to
+            if (ConvertKeyCodeToButton(pressedKey) != null)
+            {
+                //if the pressed key equals the expected key
+                Button correctKey = ConvertKeyCodeToButton(pressedKey);
+                if ((ConvertKeyCodeToChar(pressedKey)) == expectedKey)
+                    //make that key grey to reprisent a keypress
+                    SetKeyColor(correctKey, Color.Gray);
+                //if you press a wrong key
+                else
+                {
+                    //make the pressed button red, and colour the expected key green
+                    Button wrongKey = ConvertKeyCodeToButton(ConvertCharacterToKeyCode(expectedKey));
+                    SetKeyColor(correctKey, Color.FromArgb(correctKeyColor));
+                    SetKeyColor(wrongKey, Color.FromArgb(wrongKeyColor));
+                }
+            }
+        }
+
+        //sets a key to a colour
+        public void SetKeyColor(Button key, Color color)
+        {
+            key.BackColor = color;
+        }
+
+        //resets the key colour
+        public void ResetKeyColor(int key)
+        {
+            if (ConvertKeyCodeToButton(key) != null)
+                ConvertKeyCodeToButton(key).BackColor = Color.White;
+        }
+        //Switch and Setcolorblind
+        public void InitColorblindSettings()
+        {
+            if (Properties.Settings.Default.colorblind)
+            {
+                correctKeyColor = Properties.Settings.Default.colorblindOnTrue;
+                wrongKeyColor = Properties.Settings.Default.colorblindOnFalse;
+            }
+            else
+            {
+                correctKeyColor = Properties.Settings.Default.colorblindOffFalse;
+                wrongKeyColor = Properties.Settings.Default.colorblindOffTrue;
+            }
+        }
+        //convert a keycode to a char
+        public char ConvertKeyCodeToChar(int KeyCode)
+        {
+            return (char)KeyCode;
+        }
+
+        //convert a char to a keycode
+        public int ConvertCharacterToKeyCode(char Character)
+        {
+            return Character;
+        }
+
+
+        //convert a keycode to a button
+        public Button ConvertKeyCodeToButton(int Code)
+        {
+            foreach (Key key in Keys)
+                if (key.KeyCode == Code)
+                    return key.Button;
+            return null;
+        }
+
+        //add keys we're listening to
+        private void AddKeys()
+        {
+            Keys = new List<Key>
+            {
+                new Key(192, btnOemtilde),
+                new Key(49, btnD1),
+                new Key(50, btnD2),
+                new Key(51, btnD3),
+                new Key(52, btnD4),
+                new Key(53, btnD5),
+                new Key(54, btnD6),
+                new Key(55, btnD7),
+                new Key(56, btnD8),
+                new Key(57, btnD9),
+                new Key(48, btnD0),
+                new Key(189, btnOemminus),
+                new Key(187, btnOemplus),
+                new Key(8, btnBack),
+                new Key(9, btnTab),
+                new Key(81, btnQ),
+                new Key(87, btnW),
+                new Key(69, btnE),
+                new Key(82, btnR),
+                new Key(84, btnT),
+                new Key(89, btnY),
+                new Key(85, btnU),
+                new Key(73, btnI),
+                new Key(79, btnO),
+                new Key(80, btnP),
+                new Key(65, btnA),
+                new Key(83, btnS),
+                new Key(68, btnD),
+                new Key(70, btnF),
+                new Key(71, btnG),
+                new Key(72, btnH),
+                new Key(74, btnJ),
+                new Key(75, btnK),
+                new Key(76, btnL),
+                new Key(90, btnZ),
+                new Key(88, btnX),
+                new Key(67, btnC),
+                new Key(86, btnV),
+                new Key(66, btnB),
+                new Key(78, btnN),
+                new Key(77, btnM),
+                new Key(20, btnCapital),
+                new Key(16, btnShiftkey),
+                new Key(17, btnControlKey),
+                new Key(18, btnMenu),
+                new Key(219, btnOemOpenBrackets),
+                new Key(212, btnOem6),
+                new Key(220, btnSlashOem5),
+                new Key(186, btnOem1),
+                new Key(222, btnOem7),
+                new Key(188, btnOemcomma),
+                new Key(190, btnOemPeriod),
+                new Key(191, btnOemQuestion),
+                new Key(32, btnSpace),
+                new Key(96, btn0),
+                new Key(97, btn1),
+                new Key(98, btn2),
+                new Key(99, btn3),
+                new Key(100, btn4),
+                new Key(101, btn5),
+                new Key(102, btn6),
+                new Key(103, btn7),
+                new Key(104, btn8),
+                new Key(105, btn9),
+                new Key(110, btnPeriod),
+                new Key(144, btnNumLock),
+                new Key(111, btnSlash),
+                new Key(106, btnStar),
+                new Key(109, btnMinus),
+                new Key(107, btnPlus)
+            };
+        }
+
+        public void EnableNumPad(bool enabled)
+        {
+            if(enabled)
+                Size = new Size(1245, 430);
+            else
+                Size = new Size(1600, 430);
+        }
+
+        private void KeyBoard_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn0_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnPeriod_Click(object sender, EventArgs e)
+        {
+
+        }
+    }
+}

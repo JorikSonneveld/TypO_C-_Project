@@ -1,0 +1,102 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using System.Windows.Threading;
+using Typo.Controller;
+using Typo.Model;
+
+namespace Typo.View
+{
+
+    /// <summary>
+    /// Interaction logic for MainMenu.xaml
+    /// </summary>
+    public partial class MainMenu : UserControl
+    {
+        private MainWindow mainWindow;
+        private DatabaseController databaseController = new DatabaseController();
+        private bool DialogShown = false;
+        private DispatcherTimer dialogTimer = new DispatcherTimer();
+
+
+        public MainMenu(MainWindow mainWindow)
+        {
+            this.mainWindow = mainWindow;
+            DialogShown = false;
+            dialogTimer.Tick += new EventHandler(dialogTimer_Tick);
+            dialogTimer.Interval = new TimeSpan(0,0,0,500);
+            dialogTimer.Start();
+            InitializeComponent();
+        }
+
+        private void Start_WordExercise_Click(object sender, RoutedEventArgs e)
+        {
+            mainWindow.Content = new ExerciseView(ExerciseType.Word);
+        }
+
+        private void Start_CharacterExercise_Click(object sender, RoutedEventArgs e)
+        {
+            mainWindow.Content = new CharcterPicker(mainWindow);
+        }
+
+        private void Start_NumberExercise_Click(object sender, RoutedEventArgs e)
+        {
+            mainWindow.Content = new ExerciseView(ExerciseType.Number);
+        }
+
+        private void Start_Course_Click(object sender, RoutedEventArgs e)
+        {
+            mainWindow.Content = new CourseView(mainWindow);
+        }
+
+        private void Settings_Click(object sender, RoutedEventArgs e)
+        {
+            mainWindow.Content = new SettingsView(mainWindow);
+        }
+
+        private void Quit_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void Statistics_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Not implemented yet.");
+        }
+
+        private void Overview_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ShowAvailableCourseDialog()
+        {
+            if (databaseController.RetrieveCourseCurrentlyAvailable() != null && DialogShown == false) // check if there is a course that is now available and if the dialog has not been shown
+            {
+                DialogShown = true;
+                dialogTimer.Stop(); // stop the timer
+                Course course = databaseController.RetrieveCourseCurrentlyAvailable(); // get the course from the db
+                var result = MessageBox.Show
+                    ("Course '" + course.Title + "' is available, the course is will start up automaticly.", "Course", MessageBoxButton.OK); // make a popup message 
+                if (result == MessageBoxResult.OK)
+                    mainWindow.Content = new ExerciseView(new CourseExercise(course)); // make a new courseExercise and put it in the exerciseView
+            }
+        }
+
+        private void dialogTimer_Tick(object sender, EventArgs e)
+        {
+            ShowAvailableCourseDialog();
+        }
+    }
+}

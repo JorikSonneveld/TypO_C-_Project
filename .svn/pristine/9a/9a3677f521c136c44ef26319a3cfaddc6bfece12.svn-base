@@ -1,0 +1,19 @@
+﻿using System.Collections.Generic;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+using static System.String;
+
+namespace Typo.Model
+{
+    public class MyButton
+    {
+        //public static readonly DependencyProperty KeysProperty = DependencyProperty.Register("Keys", typeof(Key), typeof(MyButton));
+
+        //public MyButton Keys
+        //{
+        //    get { return (Keys)GetValue(KeysProperty); }
+        //    set { SetValue(KeysProperty, value); }
+        //}
+    }
+}

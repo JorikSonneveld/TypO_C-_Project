@@ -1,0 +1,131 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using TypApplication.Model;
+
+namespace TypApplication.View
+{
+    public partial class NumPad : UserControl, IInput
+    {
+        private bool enabled;
+        public List<Key> Keys = new List<Key>();
+        public int correctKeyColor;
+        public int wrongKeyColor;
+
+        public NumPad()
+        {
+            InitializeComponent();
+            AddKeys();
+            InitColorblindSettings();
+        }
+
+        //Makes an act on a key/multiple keys
+        public void ActKey(int pressedKey, char expectedKey)
+        {
+            if (!enabled)
+                return;
+            //if the pressed key is a key we're listening to
+            if (ConvertKeyCodeToButton(pressedKey) != null)
+            {
+                //if the pressed key equals the expected key
+                Button correctKey = ConvertKeyCodeToButton(pressedKey);
+                if ((ConvertKeyCodeToChar(pressedKey)) == expectedKey)
+                    //make that key grey to reprisent a keypress
+                    SetKeyColor(correctKey, Color.Gray);
+                //if you press a wrong key
+                else
+                {
+                    //make the pressed button red, and colour the expected key green
+                    Button wrongKey = ConvertKeyCodeToButton(ConvertCharacterToKeyCode(expectedKey));
+                    SetKeyColor(correctKey, Color.FromArgb(correctKeyColor));
+                    SetKeyColor(wrongKey, Color.FromArgb(wrongKeyColor));
+                }
+            }
+        }
+
+        //sets a key to a colour
+        public void SetKeyColor(Button key, Color color)
+        {
+            key.BackColor = color;
+        }
+
+        //resets the key colour
+        public void ResetKeyColor(int key)
+        {
+            if (ConvertKeyCodeToButton(key) != null)
+                ConvertKeyCodeToButton(key).BackColor = Color.White;
+        }
+        //Switch and Setcolorblind
+        public void InitColorblindSettings()
+        {
+            if (Properties.Settings.Default.colorblind)
+            {
+                correctKeyColor = Properties.Settings.Default.colorblindOnFalse;
+                wrongKeyColor = Properties.Settings.Default.colorblindOnTrue;
+            }
+            else
+            {
+                correctKeyColor = Properties.Settings.Default.colorblindOffTrue;
+                wrongKeyColor = Properties.Settings.Default.colorblindOffFalse;
+            }
+        }
+        //convert a keycode to a char
+        public char ConvertKeyCodeToChar(int KeyCode)
+        {
+            return (char)KeyCode;
+        }
+
+        //convert a char to a keycode
+        public int ConvertCharacterToKeyCode(char Character)
+        {
+            return Character;
+        }
+
+
+        //convert a keycode to a button
+        public Button ConvertKeyCodeToButton(int Code)
+        {
+            foreach (Key key in Keys)
+                if (key.KeyCode == Code)
+                    return key.Button;
+            return null;
+        }
+
+        //add keys we're listening to
+        private void AddKeys()
+        {
+            Keys = new List<Key>
+            {
+                new Key(96, btn0),
+                new Key(97, btn1),
+                new Key(98, btn2),
+                new Key(99, btn3),
+                new Key(100, btn4),
+                new Key(101, btn5),
+                new Key(102, btn6),
+                new Key(103, btn7),
+                new Key(104, btn8),
+                new Key(105, btn9),
+                new Key(110, btnPeriod),
+                new Key(144, btnNumLock),
+                new Key(111, btnSlash),
+                new Key(106, btnStar),
+                new Key(109, btnMinus),
+                new Key(107, btnPlus),
+                new Key(13, btnEnter),
+            };
+        }
+
+        public void EnableNumPad(bool enabled)
+        {
+            Visible = enabled;
+            Enabled = enabled;
+        }
+    }
+}

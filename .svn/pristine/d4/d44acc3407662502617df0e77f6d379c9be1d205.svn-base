@@ -1,0 +1,75 @@
+﻿using System;
+using System.Windows.Forms;
+using TypApplication.Controller;
+
+namespace TypApplication.View
+{
+    public partial class CourseEditor : Form
+    {
+        private readonly DatabaseController data = new DatabaseController();
+        public DataGridViewCell Cell;
+        public bool update = false;
+
+        public CourseEditor() : this(null)
+        {
+        }
+
+        public CourseEditor(DataGridViewCell Cell)
+        {
+            InitializeComponent();
+            this.Cell = Cell;
+            if (Cell != null)
+                richTextBox1.Text = Cell.Value.ToString();
+        }
+
+        public void CreateMessage(string message, string caption, bool succes)
+        {
+            var result = MessageBox.Show(message, caption, MessageBoxButtons.OK);
+
+            //Close form when OK
+            if (succes)
+                if (result == DialogResult.OK)
+                    Close();
+        }
+
+        private void Form_Closed(object sender, FormClosedEventArgs e)
+        {
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            // Update course
+            Console.WriteLine(update);
+            if (update)
+            {
+                if (data.EditCourse(data.GetCourseID(Cell.Value.ToString()), richTextBox1.Text) == false)
+                {
+                    CreateMessage("This course does already excist, Please change the text", "Error", false);
+                }
+                else
+                {
+                    CreateMessage("Course successfully updated", "Succes", true);
+                    Cell = null;
+                }
+            }
+            // New course
+            else
+            {
+                if (data.AddCourse(richTextBox1.Text) == false)
+                {
+                    CreateMessage("This course does already excist, Please change the text", "Error", false);
+                }
+                else
+                {
+                    CreateMessage("Course successfully added", "Succes", true);
+                    Cell = null;
+                }
+            }
+        }
+
+        private void ButtonCancel_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+    }
+}

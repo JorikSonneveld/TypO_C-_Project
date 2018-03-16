@@ -1,0 +1,15 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
+
+namespace TypApplication.Model
+{
+    public abstract class Excersice
+    {
+        public enum ExcersiceType { Course, Numbers, Words, Letters, Mix }
+    
+        public Excersice(ExcersiceType type){}
+        public abstract string PrintExcersice();
+
+    }
+}

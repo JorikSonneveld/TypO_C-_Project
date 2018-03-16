@@ -1,0 +1,78 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using TypApplication.View;
+using TypApplication.Model;
+using TypApplication.Controller;
+
+namespace TypApplication
+{
+    public partial class Form1 : Form
+    {
+        private KeyData keyData = new KeyData();
+        private TextInput input = new TextInput();
+        private List<Word> wordlist = new List<Word>();
+        private DatabaseController DbController = new DatabaseController();
+        private ExerciseController ExController;
+
+        public Form1()
+        {
+            InitializeComponent();
+            if (Properties.Settings.Default.colorblind == true)
+                colorToolStripMenuItem.Checked = true;
+            KeystrokeTimer.Interval = 1; //runs every millisecond
+            KeystrokeTimer.Tick += new EventHandler(Update); //every tick it will Update();
+            KeystrokeTimer.Start(); //start the timer
+
+            ExController = new ExerciseController(exerciseTestBox);
+            ExController.ChangeExerciseTestBox(DbController.RetrieveRandomDbWords());
+        }
+
+        private void RichTextBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            input.Log(keyData, e, keyBoard2);
+            keyData.CurrentKeyCode = e.KeyValue.ToString();
+            input.CalculateNextKey(exerciseTestBox.Text, keyData);
+            this.keyBoard2.ActKey(e.KeyValue, keyData.NextKeyValueUpper);
+            Invalidate();
+        }
+
+        private void RichTextBox1_KeyUp(object sender, KeyEventArgs e)
+        {
+            keyBoard2.ResetKeyColor(e.KeyValue);
+        }
+
+        public void Update(object sender, EventArgs e)
+        {
+            keyData.UpdateWordsPerMinute();
+            KeystrokesPerMinute.Text = KeyData.KeystrokesPerMinute.ToString(); //update the label
+        }
+
+        // TextBox changed
+        private void RichTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            input.Check(richTextBox1, exerciseTestBox, keyBoard2, keyData);
+
+        }
+
+        private void ColorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.colorblind = !Properties.Settings.Default.colorblind;
+            Properties.Settings.Default.Save();
+            colorToolStripMenuItem.Checked = !colorToolStripMenuItem.Checked;
+        }
+
+        private void changeColorsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ColorPopup colorPopup = new ColorPopup();
+            DialogResult Dialogresult = colorPopup.ShowDialog();
+            
+        }
+    }
+}

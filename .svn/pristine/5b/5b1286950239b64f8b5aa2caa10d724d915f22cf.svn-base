@@ -1,0 +1,97 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace TypApplication.Controller
+{
+    using System.Windows.Forms;
+
+    using TypApplication.Model;
+    using TypApplication.Model.Database;
+    using TypApplication.View;
+
+    public class LoadingController
+    {
+        private MainForm parentForm;
+        private string next;
+
+        public void Animate(int time, ProgressBar progressBar1, Timer timer1)
+        {
+            if (!timer1.Enabled)
+            {
+                progressBar1.Value = 0;
+                timer1.Interval = time * 10;
+                timer1.Enabled = true;
+            }
+
+        }
+
+        public void Update(ProgressBar progressBar1, Timer timer1, MainForm parentForm, string next)
+        {
+
+            if (progressBar1.Value < 100)
+            {
+                progressBar1.Value += 10;
+                progressBar1.Refresh();
+
+                //Dbconnect
+                if (progressBar1.Value == 60)
+                    parentForm.Database.HasMistakes();
+
+            }
+            else
+            {
+                this.parentForm = parentForm;
+                timer1.Enabled = false;
+                this.next = next;
+                this.OpenNext();
+            }
+        }
+
+        private void OpenNext()
+        {
+            this.parentForm.ClearForm();
+
+            switch (this.next)
+            {
+                case "ShowCourses":
+                    var showCourses = new Courses(parentForm);
+                    this.parentForm.Controls.Add(showCourses);
+                    this.parentForm.CenterView(showCourses);
+                    break;
+                case "CourseEnvironment":
+                    var courseEnvironment = new CourseEnvironment(parentForm);
+                    this.parentForm.Controls.Add(courseEnvironment);
+                    this.parentForm.CenterView(courseEnvironment);
+                    break;
+                case "NumberExercise":
+                    var numberView = new ExerciseView(this.parentForm, new NumberExercise(0, 100, 15));
+                    this.parentForm.Controls.Add(numberView);
+                    this.parentForm.CenterView(numberView);
+                    break;
+                case "GeneratedExercise":
+                    var wordList = new List<Word>();
+                    if (this.parentForm.Database.HasMistakes())
+                        wordList = this.parentForm.Database.GenerateWords(5, 3);
+                    else
+                        wordList = this.parentForm.Database.RetrieveRandomDbWords();
+                    Exercise genExercise = new WordExercise(wordList);
+                    var exerciseView = new ExerciseView(this.parentForm, genExercise);
+                    this.parentForm.Controls.Add(exerciseView);
+                    this.parentForm.CenterView(exerciseView);
+                    break;
+                case "WordExercise":
+                    var list = parentForm.Database.RetrieveRandomDbWords();
+                    Exercise exercise = new WordExercise(list);
+                    var wordExercise = new ExerciseView(this.parentForm, exercise);
+                    this.parentForm.Controls.Add(wordExercise);
+                    this.parentForm.CenterView(wordExercise);
+                    break;
+            }
+
+        }
+    }
+
+}

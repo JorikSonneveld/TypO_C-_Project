@@ -1,0 +1,158 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace TypApplication.View
+{
+    public partial class KeyBoard : UserControl
+    {
+        public List<Key> Keys = new List<Key>();
+
+        public KeyBoard()
+        {
+            InitializeComponent();
+            AddKeys();
+        }
+
+        //Makes an act on a key/multiple keys
+        public void ActKey(int pressedKey, char expectedKey)
+        {
+            //if the pressed key is a key we're listening to
+            if (ConvertKeyCodeToButton(pressedKey) != null)
+            {
+                //if the pressed key equals the expected key
+                Button correctKey = ConvertKeyCodeToButton(pressedKey);
+                if ((ConvertKeyCodeToChar(pressedKey)) == expectedKey)
+                    //make that key grey to reprisent a keypress
+                    SetKeyColor(correctKey, Color.Gray);
+                //if you press a wrong key
+                else
+                {
+                    //make the pressed button red, and colour the expected key green
+                    Button wrongKey = ConvertKeyCodeToButton(ConvertCharacterToKeyCode(expectedKey));
+                    SetKeyColor(correctKey, Color.Red);
+                    SetKeyColor(wrongKey, Color.Green);
+                }
+            }
+        }
+
+        //sets a key to a colour
+        public void SetKeyColor(Button key, Color color)
+        {
+            key.BackColor = color;
+        }
+
+        //resets the key colour
+        public void ResetKeyColor(int key)
+        {
+            if(ConvertKeyCodeToButton(key) != null)
+                ConvertKeyCodeToButton(key).BackColor = Color.White;
+        }
+
+        //convert a keycode to a char
+        public char ConvertKeyCodeToChar(int KeyCode)
+        {
+            return (char) KeyCode;
+        }
+
+        //convert a char to a keycode
+        public int ConvertCharacterToKeyCode(char Character)
+        {
+            return Character;
+        }
+
+
+        //convert a keycode to a button
+        public Button ConvertKeyCodeToButton(int Code)
+        {
+            foreach (Key key in Keys)
+                if (key.KeyCode == Code)
+                    return key.Button;
+            return null;
+        }
+
+        //add keys we're listening to
+        private void AddKeys()
+        {
+            Keys.Add(new Key(192, btnOemtilde));
+            Keys.Add(new Key(49, btnD1));
+            Keys.Add(new Key(50, btnD2));
+            Keys.Add(new Key(51, btnD3));
+            Keys.Add(new Key(52, btnD4));
+            Keys.Add(new Key(53, btnD5));
+            Keys.Add(new Key(54, btnD6));
+            Keys.Add(new Key(55, btnD7));
+            Keys.Add(new Key(56, btnD8));
+            Keys.Add(new Key(57, btnD9));
+            Keys.Add(new Key(48, btnD0));
+            Keys.Add(new Key(189, btnOemminus));
+            Keys.Add(new Key(187, btnOemplus));
+            Keys.Add(new Key(8, btnBack));
+            Keys.Add(new Key(9, btnTab));
+            Keys.Add(new Key(81, btnQ));
+            Keys.Add(new Key(87, btnW));
+            Keys.Add(new Key(69, btnE));
+            Keys.Add(new Key(82, btnR));
+            Keys.Add(new Key(84, btnT));
+            Keys.Add(new Key(89, btnY));
+            Keys.Add(new Key(85, btnU));
+            Keys.Add(new Key(73, btnI));
+            Keys.Add(new Key(79, btnO));
+            Keys.Add(new Key(80, btnP));
+            Keys.Add(new Key(65, btnA));
+            Keys.Add(new Key(83, btnS));
+            Keys.Add(new Key(68, btnD));
+            Keys.Add(new Key(70, btnF));
+            Keys.Add(new Key(71, btnG));
+            Keys.Add(new Key(72, btnH));
+            Keys.Add(new Key(74, btnJ));
+            Keys.Add(new Key(75, btnK));
+            Keys.Add(new Key(76, btnL));
+            Keys.Add(new Key(90, btnZ));
+            Keys.Add(new Key(88, btnX));
+            Keys.Add(new Key(67, btnC));
+            Keys.Add(new Key(86, btnV));
+            Keys.Add(new Key(66, btnB));
+            Keys.Add(new Key(78, btnN));
+            Keys.Add(new Key(77, btnM));
+            Keys.Add(new Key(20, btnCapital));
+            Keys.Add(new Key(16, btnShiftkey));
+            Keys.Add(new Key(17, btnControlKey));
+            Keys.Add(new Key(18, btnMenu));
+            Keys.Add(new Key(219, btnOemOpenBrackets));
+            Keys.Add(new Key(212, btnOem6));
+            Keys.Add(new Key(220, btnSlashOem5));
+            Keys.Add(new Key(186, btnOem1));
+            Keys.Add(new Key(222, btnOem7));
+            Keys.Add(new Key(188, btnOemcomma));
+            Keys.Add(new Key(190, btnOemPeriod));
+            Keys.Add(new Key(191, btnOemQuestion));
+            Keys.Add(new Key(32, btnSpace));
+        }
+    }
+
+    //key
+    public class Key
+    {
+        public int KeyCode { get; }
+        public Button Button { get; }
+
+
+        public Key(int KeyCode, Button Button)
+        {
+            this.KeyCode = KeyCode;
+            this.Button = Button;
+        }
+
+        public override string ToString()
+        {
+            return String.Format("{0} {1}", KeyCode, Button.Name);
+        }
+    }
+}

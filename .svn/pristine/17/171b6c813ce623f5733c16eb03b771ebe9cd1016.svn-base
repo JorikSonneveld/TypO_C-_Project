@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="Typo.View.Multiplayer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Typo.View"
+             mc:Ignorable="d" 
+             KeyDown="Multiplayer_OnKeyDown"
+             KeyUp="Multiplayer_OnKeyUp"
+             Focusable="True"
+             d:DesignHeight="620" d:DesignWidth="1280">
+    <Grid Name="GridName">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <local:PlayerView x:Name="Player1" Grid.Column="0"/>
+        <local:PlayerView x:Name="Player2" Grid.Column="1"/>
+    </Grid>
+</UserControl>

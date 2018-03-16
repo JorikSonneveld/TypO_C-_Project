@@ -1,0 +1,20 @@
+﻿using System.Data.Entity;
+using TypoTeacher.Model.Database;
+
+namespace TypoTeacher.Model
+{
+    public class ApplicationDatabase : DbContext
+    {
+        //Initializing database
+        public ApplicationDatabase() : base("TypApplicationDB"){}
+
+        public virtual DbSet<Word> Words { get; set; }
+        public virtual DbSet<Course> Courses { get; set; }
+        public virtual DbSet<KeyMistake> KeyMistakes { get; set; }
+        public virtual DbSet<Result> Results { get; set; }
+        public virtual DbSet<Teacher> Teachers { get; set; }
+        public virtual DbSet<Class> Classes { get; set; }
+        public virtual DbSet<Student> Students { get; set; }
+        public virtual DbSet<Course_Class> Course_Class { get; set; }
+    }
+}

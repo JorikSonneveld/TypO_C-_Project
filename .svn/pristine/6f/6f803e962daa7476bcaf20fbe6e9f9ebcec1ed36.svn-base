@@ -1,0 +1,17 @@
+﻿using System.Windows.Controls;
+
+namespace Typo.View
+{
+    /// <summary>
+    ///     Interaction logic for CourseFisnished.xaml
+    /// </summary>
+    public partial class CourseFisnished : UserControl
+    {
+        public CourseFisnished(int KPM, int Acc)
+        {
+            InitializeComponent();
+            Accuracy.Content = Acc;
+            Keystrokes.Content = KPM;
+        }
+    }
+}

@@ -1,0 +1,68 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Data.Entity;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using TypApplication.Controller;
+using TypApplication.Model;
+
+namespace TypApplication.View
+{
+    public partial class CourseEditor : Form
+    {
+        DatabaseController data = new DatabaseController();
+        public DataGridViewCell Cell;
+
+        public CourseEditor()
+        {
+            InitializeComponent();
+            this.Cell = null;
+        }
+
+        public CourseEditor(DataGridViewCell Cell)
+        {
+            InitializeComponent();
+            this.Cell = Cell;
+            richTextBox1.Text = Cell.Value.ToString();
+
+        }
+
+        public void CreateMessage(string message, string caption, bool succes)
+        {
+            DialogResult result = MessageBox.Show(message, caption, MessageBoxButtons.OK);
+
+            //Close form when OK
+            if (succes == true)
+                if (result == System.Windows.Forms.DialogResult.OK)
+                    Close();
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            /*if (data.AddCourse(this.richTextBox1.Text) == false)
+            {
+                CreateMessage("This course does already excist, Please change the text", "Error", false);
+            }
+            else
+            {
+                CreateMessage("Course successfully added", "Succes", true);
+            }*/
+            if (data.EditCourse(Cell.RowIndex + 1, this.richTextBox1.Text) == false && Cell != null)
+            {
+                CreateMessage("This course does already excist, Please change the text", "Error", false);
+            }
+            else
+            {
+                CreateMessage("Course successfully updated", "Succes", true);
+            }
+
+
+            Cell = null;
+        }
+    }
+}

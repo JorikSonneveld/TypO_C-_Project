@@ -1,0 +1,62 @@
+﻿using System;
+using System.Windows.Forms;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using TypApplication.Controller;
+using TypApplication.Model;
+
+namespace TypingApplicationTestEnvoirement.Controller
+{
+    [TestClass]
+    public class ExerciseControllerTest
+    {
+
+        [TestMethod]
+        public void CaluculateAccuracy_AccuracyShouldUpdate_WhenCalculateAccuracyIsCalled()
+        {
+            //Arrange
+            RichTextBox RichTextbox = new RichTextBox();
+            ExerciseController exerciseController = new ExerciseController(RichTextbox);
+            KeyData.GoodKeyPresses = 612;
+            KeyData.KeystrokeCounter = 1094;
+
+            //Act
+            exerciseController.CaluculateAccuracy();
+
+            //Assert
+            Assert.AreEqual(56, KeyData.Accuracy);
+        }
+
+        [TestMethod]
+        public void CaluculateAccuracy_AccuracyShouldNotUpdate_WhenCalculateAccuracyIsCalledAndKeystrokecounterIsZero()
+        {
+            //Arrange
+            RichTextBox RichTextbox = new RichTextBox();
+            ExerciseController exerciseController = new ExerciseController(RichTextbox);
+            KeyData.Accuracy = 50;
+            KeyData.KeystrokeCounter = 0;
+
+            //Act
+            exerciseController.CaluculateAccuracy();
+
+            //Assert
+            Assert.AreEqual(50, KeyData.Accuracy);
+        }
+
+        [TestMethod]
+        public void CaluculateAccuracy_AccuracyShouldNotUpdate_WhenCalculateAccuracyIsCalledAndGoodKeyPressesIsGreaterThanKeystrokeCounter()
+        {
+            //Arrange
+            RichTextBox RichTextbox = new RichTextBox();
+            ExerciseController exerciseController = new ExerciseController(RichTextbox);
+            KeyData.Accuracy = 50;
+            KeyData.GoodKeyPresses = 1094;
+            KeyData.KeystrokeCounter = 612;
+
+            //Act
+            exerciseController.CaluculateAccuracy();
+
+            //Assert
+            Assert.AreEqual(50, KeyData.Accuracy);
+        }
+    }
+}

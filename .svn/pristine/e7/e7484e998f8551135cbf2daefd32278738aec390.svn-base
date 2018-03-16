@@ -1,0 +1,108 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using TypApplication.Model;
+
+namespace TypApplication
+{
+    public partial class Form1 : Form
+    {
+        private KeyData keyData = new KeyData();
+        private List<Word> wordlist = new List<Word>();
+
+        public Form1()
+        {
+            InitializeComponent();
+            if (Properties.Settings.Default.colorblind == true)
+                colorToolStripMenuItem.Checked = true;
+            KeystrokeTimer.Interval = 1;
+            KeystrokeTimer.Tick += new EventHandler(Update);
+            KeystrokeTimer.Start();
+
+            //TODO: Temp. fix. Can be deleted after database link with word elements.
+            wordlist.Add(new Word { Characters = "kaas" });
+            wordlist.Add(new Word { Characters = "aap" });
+            wordlist.Add(new Word { Characters = "noot" });
+            wordlist.Add(new Word { Characters = "mies" });
+
+            ChangeExerciseTestBox(wordlist);
+        }
+
+        //Keylogger
+        private void RichTextBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            keyData.currentKeyCode = e.KeyValue.ToString();
+            KeyData.KeystrokeCounter++;
+        }
+    
+        public void Update(object sender, EventArgs e)
+        {
+            keyData.UpdateTimer();
+        }
+     
+        // TextBox changed
+        private void RichTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            keyData.currentkeyValue = richTextBox1.Text.Substring(richTextBox1.Text.Length - 1);
+            Console.WriteLine(keyData.currentKeyCode);
+            // Set currenkey to last entered char in textbox
+                 
+            Console.WriteLine(keyData.currentkeyValue + " test");
+            if (keyData.currentkeyValue.Equals(keyData.goodkey))
+            {
+                button1.BackColor = Color.Green;
+                keyData.goodkeypresses++;
+            }
+            else
+            {
+                button1.BackColor = Color.Red;
+                keyData.wrongkeypresses++;
+                Console.WriteLine(richTextBox1.Text.Length);
+            }
+        }
+
+        private void colorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.colorblind = !Properties.Settings.Default.colorblind;
+            Properties.Settings.Default.Save();
+            colorToolStripMenuItem.Checked = !colorToolStripMenuItem.Checked;
+        }
+
+        private void ChangeExerciseTestBox(List<Word> list)
+        {
+            string totalstring = "";
+            bool capitalletter = true;
+
+            foreach(Word word in list)
+            {
+                if (capitalletter)
+                {
+                    word.Characters = FirstCharToUpper(word.Characters);
+                    capitalletter = false;
+                }
+                    
+                totalstring += word.Characters + " ";
+            }
+            totalstring = totalstring.TrimEnd(' ');
+            totalstring += ".";
+            Invalidate();
+            exerciseTestBox.Text = totalstring;
+        }
+
+        private string FirstCharToUpper(string input)
+        {
+            switch (input)
+            {
+                case null: throw new ArgumentNullException(nameof(input));
+                case "": throw new ArgumentException($"{nameof(input)} cannot be empty", nameof(input));
+                default: return input.First().ToString().ToUpper() + input.Substring(1);
+            }
+        }
+    }
+}

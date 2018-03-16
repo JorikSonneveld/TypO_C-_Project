@@ -1,0 +1,70 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Typo.Controller;
+
+namespace Typo.Model
+{
+    internal class CharacterExercise : Exercise
+    {
+        private readonly DatabaseController databaseController = new DatabaseController();
+        private readonly List<char> charList;
+        private readonly int maxWordLength;
+
+        public CharacterExercise(List<char> charList, int maxWordLength)
+        {
+            this.charList = charList;
+            this.maxWordLength = maxWordLength;
+            ExerciseString = CreateExerciseString();
+        }
+
+        public override string CreateExerciseString()
+        {
+            if (!charList.Any() || maxWordLength < 3) // check if the list is empty 
+                return "";
+             
+            var dbWords = databaseController.RetrieveAllWords(); // get all the words from the db
+            var ExerciseWords = new List<string>();
+            var ExerciseLength = 5; // this is how long the exercise will be
+            var rnd = new Random();
+            for (var i = 0; i < dbWords.Count; i++) // go through every word from the db
+                if (ExerciseWords.Count >= ExerciseLength) // check if the exercise is long enough
+                    break;
+                else
+                {
+                    var word = dbWords[i].ToString(); // set the word to a string
+                    var Chars = word.ToCharArray(); // set the string to a char array
+                    if (!Chars.Except(charList).Any() && word.Length <= maxWordLength
+                    ) // check if all the letters in the char array are in the given list of chars
+                        ExerciseWords.Add(word);
+                }
+            if (ExerciseWords.Count < ExerciseLength) // check if any more words are needed
+            {
+                var CountRandomChars =
+                    ExerciseLength -
+                    ExerciseWords.Count; // calculate how many words are needed to get the good exercise length
+                for (var i = 0; i < CountRandomChars; i++) // loop as many times as words are needed
+                {
+                    var CharLength = rnd.Next(3, maxWordLength + 1); // get a random number for the length of the word
+                    var RandomWord = "";
+                    for (var c = 0; c < CharLength; c++) // loop as many times as letters are needed in the word
+                    {
+                        var charNumber = rnd.Next(0, charList.Count); // get a random number for what char it will be
+                        RandomWord += charList[charNumber]; // add the letter to the existing word
+                    }
+                    ExerciseWords.Add(RandomWord); // add the word to the word list
+                }
+            }
+            var OrderedExerciseWords = ExerciseWords.OrderBy(item => rnd.Next()); // shuffle the words in the list
+            var EndExerciseWords = "";
+
+            foreach (var word in OrderedExerciseWords)
+            {
+                EndExerciseWords += word; // set all the words in a string
+                EndExerciseWords += " ";
+            }
+            EndExerciseWords = EndExerciseWords.TrimEnd(' '); // trim the last space
+            return EndExerciseWords;
+        }
+    }
+}

@@ -1,0 +1,85 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using TypoTeacher.Model.Database;
+using System.Windows.Forms;
+using System.Drawing;
+
+namespace TypoTeacher.Controller
+{
+    class OverviewController
+    {
+        private List<Student> List;
+        private DatabaseController DataBaseController;
+
+        //The contstructor initialises the DataBaseController
+        public OverviewController() {
+            DataBaseController = new DatabaseController();
+        }
+
+        //this method fills the TableLayoutPanel StudentTable with studentsaccounts
+        //The studentaccounts are retrieved from the database
+        public void FillStudentTable(string Class, TableLayoutPanel StudentTable)
+        {
+            List = (List<Student>)DataBaseController.GetStudents(Class);
+            StudentTable.Controls.Clear();
+            int counter = 0;
+            //for every row in the StudentTable
+            for (int row = 0; row < StudentTable.RowCount; row++)
+            {
+                //for every colum in the StudentTable
+                for (int colum = 0; colum < StudentTable.ColumnCount; colum++)
+                {
+                    //Add a new panel to the current cell of the StudentTable
+                    Panel Container = new Panel();
+                    Container.Margin = new Padding(3);
+                    Container.BackColor = Color.Gray;
+                    Container.Click += new EventHandler(Container_Click);
+
+                    //Initialise the data of the students in labels to be shown in the panel
+                    Label StudentId = new Label();
+                    StudentId.Dock = DockStyle.Top;
+
+                    Label StudentName = new Label();
+                    StudentName.Dock = DockStyle.Top;
+
+                    Label StudentSurName = new Label();
+                    StudentSurName.Dock = DockStyle.Top;
+
+                    Container.Controls.Add(StudentId);
+                    Container.Controls.Add(StudentName);
+                    Container.Controls.Add(StudentSurName);
+                    //Try to retrieve the studentaccount data from the database and assign it to the labels
+                    try
+                    {
+                        StudentId.Text = Convert.ToString((List[counter].studentID));
+                        StudentName.Text = List[counter].name;
+                        StudentSurName.Text = List[counter].surname;
+                        StudentTable.Controls.Add(Container);
+                    }
+                    catch (ArgumentOutOfRangeException)
+                    {
+                        break;
+                    }
+                    //Increase the counter with 1 so the next student in the database will be retrieved
+                    counter++;
+                    //If there are not sufficient rows in the StudentTable, then this block of code will add a new row
+                    if (counter >= (StudentTable.ColumnCount * StudentTable.RowCount))
+                    {
+                        StudentTable.RowStyles.Add(new RowStyle(SizeType.Percent, 50));
+                        StudentTable.RowCount++;
+                    }
+                }
+            }
+        }
+
+        public void Container_Click(object sender, EventArgs e)
+        {
+            //TODO:
+            //get student id
+            //call function to show popup results student
+        }
+    }
+}

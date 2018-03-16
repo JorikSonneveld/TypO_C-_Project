@@ -1,0 +1,99 @@
+﻿namespace TypoTeacher.View
+{
+    partial class Overview
+    {
+        /// <summary> 
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary> 
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Component Designer generated code
+
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.StudentPanel = new System.Windows.Forms.Panel();
+            this.StudentOverview = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.StudentPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // StudentPanel
+            // 
+            this.StudentPanel.Controls.Add(this.StudentOverview);
+            this.StudentPanel.Location = new System.Drawing.Point(0, 116);
+            this.StudentPanel.Margin = new System.Windows.Forms.Padding(2);
+            this.StudentPanel.Name = "StudentPanel";
+            this.StudentPanel.Size = new System.Drawing.Size(700, 309);
+            this.StudentPanel.TabIndex = 16;
+            // 
+            // StudentOverview
+            // 
+            this.StudentOverview.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(100)))), ((int)(((byte)(189)))));
+            this.StudentOverview.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(237)))), ((int)(((byte)(225)))));
+            this.StudentOverview.FlatAppearance.BorderSize = 2;
+            this.StudentOverview.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.StudentOverview.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StudentOverview.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(236)))), ((int)(((byte)(64)))));
+            this.StudentOverview.Location = new System.Drawing.Point(35, 23);
+            this.StudentOverview.Margin = new System.Windows.Forms.Padding(2);
+            this.StudentOverview.Name = "StudentOverview";
+            this.StudentOverview.Size = new System.Drawing.Size(155, 60);
+            this.StudentOverview.TabIndex = 17;
+            this.StudentOverview.Text = "Student overview";
+            this.StudentOverview.UseVisualStyleBackColor = false;
+            this.StudentOverview.Click += new System.EventHandler(this.StudentOverview_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Image = global::TypoTeacher.Properties.Resources.TypOLogo;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(1);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(148, 106);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 13;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // Overview
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Transparent;
+            this.Controls.Add(this.StudentPanel);
+            this.Controls.Add(this.pictureBox1);
+            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Name = "Overview";
+            this.Size = new System.Drawing.Size(700, 437);
+            this.StudentPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Panel StudentPanel;
+        private System.Windows.Forms.Button StudentOverview;
+    }
+}

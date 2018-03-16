@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="Typo.View.CourseFinished"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Typo.View"
+             mc:Ignorable="d"
+             d:DesignHeight="620" d:DesignWidth="1280">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- buttons -->
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Label FontSize="25" Content="Completed!" Grid.Row="0" HorizontalAlignment="Center" />
+            <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
+                <Label FontSize="25" Content="Keystrokes per muinute:" Grid.Row="1" />
+                <Label x:Name="Keystrokes" FontSize="25" Grid.Row="1" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center">
+                <Label FontSize="25" Content="Accuracy:" Grid.Row="1" />
+                <Label x:Name="Accuracy" FontSize="25" Grid.Row="1" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

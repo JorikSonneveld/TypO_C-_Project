@@ -1,0 +1,159 @@
+﻿namespace TypApplication.View
+{
+    partial class ColorPopup
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.button2 = new System.Windows.Forms.Button();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.OffTrue = new System.Windows.Forms.Button();
+            this.OffFalse = new System.Windows.Forms.Button();
+            this.OnTrue = new System.Windows.Forms.Button();
+            this.OnFalse = new System.Windows.Forms.Button();
+            this.colorblind = new System.Windows.Forms.CheckBox();
+            this.SuspendLayout();
+            // 
+            // button2
+            // 
+            this.button2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.button2.Location = new System.Drawing.Point(100, 226);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "Terug";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // colorDialog1
+            // 
+            this.colorDialog1.AnyColor = true;
+            this.colorDialog1.SolidColorOnly = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 13);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(81, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Kleurenblind Uit";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(13, 102);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(87, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Kleurenblind Aan";
+            // 
+            // OffTrue
+            // 
+            this.OffTrue.Location = new System.Drawing.Point(41, 53);
+            this.OffTrue.Name = "OffTrue";
+            this.OffTrue.Size = new System.Drawing.Size(75, 23);
+            this.OffTrue.TabIndex = 4;
+            this.OffTrue.Text = "Goed";
+            this.OffTrue.UseVisualStyleBackColor = true;
+            this.OffTrue.Click += new System.EventHandler(this.OffTrue_Click);
+            // 
+            // OffFalse
+            // 
+            this.OffFalse.Location = new System.Drawing.Point(164, 53);
+            this.OffFalse.Name = "OffFalse";
+            this.OffFalse.Size = new System.Drawing.Size(75, 23);
+            this.OffFalse.TabIndex = 5;
+            this.OffFalse.Text = "Fout";
+            this.OffFalse.UseVisualStyleBackColor = true;
+            this.OffFalse.Click += new System.EventHandler(this.OffFalse_Click);
+            // 
+            // OnTrue
+            // 
+            this.OnTrue.Location = new System.Drawing.Point(41, 149);
+            this.OnTrue.Name = "OnTrue";
+            this.OnTrue.Size = new System.Drawing.Size(75, 23);
+            this.OnTrue.TabIndex = 6;
+            this.OnTrue.Text = "Goed";
+            this.OnTrue.UseVisualStyleBackColor = true;
+            this.OnTrue.Click += new System.EventHandler(this.OnTrue_Click);
+            // 
+            // OnFalse
+            // 
+            this.OnFalse.Location = new System.Drawing.Point(164, 149);
+            this.OnFalse.Name = "OnFalse";
+            this.OnFalse.Size = new System.Drawing.Size(75, 23);
+            this.OnFalse.TabIndex = 7;
+            this.OnFalse.Text = "Fout";
+            this.OnFalse.UseVisualStyleBackColor = true;
+            this.OnFalse.Click += new System.EventHandler(this.OnFalse_Click);
+            // 
+            // colorblind
+            // 
+            this.colorblind.AutoSize = true;
+            this.colorblind.Location = new System.Drawing.Point(100, 191);
+            this.colorblind.Name = "colorblind";
+            this.colorblind.Size = new System.Drawing.Size(84, 17);
+            this.colorblind.TabIndex = 8;
+            this.colorblind.Text = "Kleurenblind";
+            this.colorblind.UseVisualStyleBackColor = true;
+            this.colorblind.Checked = Properties.Settings.Default.colorblind;
+            this.colorblind.CheckedChanged += new System.EventHandler(this.Colorblind_CheckedChanged);
+            // 
+            // ColorPopup
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Controls.Add(this.colorblind);
+            this.Controls.Add(this.OnFalse);
+            this.Controls.Add(this.OnTrue);
+            this.Controls.Add(this.OffFalse);
+            this.Controls.Add(this.OffTrue);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.button2);
+            this.Name = "ColorPopup";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "ColorPopup";
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button OffTrue;
+        private System.Windows.Forms.Button OffFalse;
+        private System.Windows.Forms.Button OnTrue;
+        private System.Windows.Forms.Button OnFalse;
+        private System.Windows.Forms.CheckBox colorblind;
+    }
+}

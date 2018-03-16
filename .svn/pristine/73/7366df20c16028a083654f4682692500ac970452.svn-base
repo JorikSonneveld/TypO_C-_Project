@@ -1,0 +1,66 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Windows.Media;
+using System.Linq;
+using System.Windows.Input;
+using Typo.View;
+using System.Windows.Controls;
+using Typo.Model;
+
+namespace Typo.Controller
+{
+    public class KeyboardController
+    {
+        public List<KeyboardKey> keys;
+
+        public ExerciseView ExerciseView { get; set; }
+
+        public CharcterPicker charcterPicker;
+
+        public KeyboardController(CharcterPicker charcterPicker)
+        {
+            this.charcterPicker = charcterPicker;
+            keys = charcterPicker.keyBoard.MakeKeyList();
+        }
+
+        public KeyboardController(ExerciseView exerciseView, ExerciseController exerciseController)
+        {
+            ExerciseView = exerciseView;
+            keys = exerciseView.keyBoard.MakeKeyList();
+        }
+
+        //act on key
+        public void HandleKey_Down(KeyEventArgs e, Brush brush)
+        {
+            Button[] bs = FindButtons(e.Key);
+            if (bs == null)
+                return;
+
+            HighightButton(bs, brush);
+        }
+
+        //reset key
+        public void HandleKey_Up(KeyEventArgs e, Brush brush)
+        {
+            Button[] bs = FindButtons(e.Key);
+            if (bs == null)
+                return;
+
+            HighightButton(bs, brush);
+        }
+
+        //return all buttons linked to a key
+        public Button[] FindButtons(Key key)
+        {
+            return keys.Where(x => x.Keys.Contains(key)).Select(x => x.Buttons).FirstOrDefault();
+        }
+
+        //highlight buttons
+        public void HighightButton(Button[] buttons, Brush brush)
+        {
+            foreach(Button b in buttons)
+                b.Background = brush;
+        }
+
+    }
+}

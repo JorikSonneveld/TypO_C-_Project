@@ -1,0 +1,59 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using TypApplication.Model;
+
+namespace TypApplication
+{
+    public partial class Form1 : Form
+    {
+        private KeyData keyData = new KeyData();
+
+        public Form1()
+        {
+            InitializeComponent();
+            KeystrokeTimer.Interval = 1;
+            KeystrokeTimer.Tick += new EventHandler(Update);
+            KeystrokeTimer.Start();
+        }
+
+        //Keylogger
+        private void RichTextBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            keyData.currentKeyCode = e.KeyValue.ToString();
+            KeyData.KeystrokeCounter++;
+        }
+    
+        public void Update(object sender, EventArgs e)
+        {
+            keyData.UpdateTimer();
+        }
+     
+        // TextBox changed
+        private void RichTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            keyData.currentkeyValue = richTextBox1.Text.Substring(richTextBox1.Text.Length - 1);
+            Console.WriteLine(keyData.currentKeyCode);
+            // Set currenkey to last entered char in textbox
+                 
+            Console.WriteLine(keyData.currentkeyValue + " test");
+            if (keyData.currentkeyValue.Equals(keyData.goodkey))
+            {
+                button1.BackColor = Color.Green;
+                keyData.goodkeypresses++;
+            }
+            else
+            {
+                button1.BackColor = Color.Red;
+                keyData.wrongkeypresses++;
+                Console.WriteLine(richTextBox1.Text.Length);
+            }
+        } 
+    }
+}

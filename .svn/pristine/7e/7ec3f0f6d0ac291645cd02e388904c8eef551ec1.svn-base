@@ -1,0 +1,77 @@
+﻿using System;
+using System.Windows.Forms;
+using TypoTeacher.Controller;
+
+namespace TypoTeacher.View
+{
+    public partial class CourseEditor : Form
+    {
+        public DataGridViewCell Cell;
+        private readonly CourseController courseController = new CourseController();
+        public bool update = false;
+        public bool hasClass;
+        private string oldClassCode;
+        private DatabaseController parentForm;
+
+        public CourseEditor(DatabaseController parentForm, bool hasClass, string oldClassCode) : this(null, parentForm, hasClass, oldClassCode) { }
+
+        public CourseEditor(DataGridViewCell cell, DatabaseController parentForm, bool hasClass, string oldClassCode)
+        {
+            this.parentForm = parentForm;
+            InitializeComponent();
+            Cell = cell;
+            this.hasClass = hasClass;
+            this.oldClassCode = oldClassCode;
+            courseController.FillClassChoice(classChoice, parentForm);
+            courseController.UpdateDatePicker(startDateTimePicker, endDateTimePicker);
+            courseController.UpdateValues(cell, richTextBox1, titleTextBox, isVisible, classChoice, startDateTimePicker, endDateTimePicker);
+        }
+
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            // Update course
+            if (update)
+            {
+                if (courseController.db.EditCourse(courseController.db.GetCourseId(
+                    Cell.Value.ToString()),
+                    titleTextBox.Text,
+                    richTextBox1.Text,
+                    isVisible.Checked,
+                    startDateTimePicker.Value,
+                    endDateTimePicker.Value,
+                    classChoice.SelectedItem.ToString(),
+                    oldClassCode,
+                    hasClass))
+                {
+                    if (courseController.CreateMessage(true, true))
+                        Close();
+                }
+                else
+                {
+                    courseController.CreateMessage(false, true);
+                }
+            }
+            // New course
+            else
+            {
+                if (courseController.db.AddCourse(richTextBox1.Text, titleTextBox.Text, isVisible.Checked, startDateTimePicker.Value, endDateTimePicker.Value, classChoice))
+                {
+                    var courseID = courseController.db.GetCourseId(titleTextBox.Text);
+                    courseController.db.AddCourse_Class(classChoice.SelectedItem.ToString(), courseID);
+                    if (courseController.CreateMessage(true, false))
+                        Close();
+                }
+                else
+                {
+                    courseController.CreateMessage(false, false);
+                }
+            }
+        }
+
+        private void ButtonCancel_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+    }
+}

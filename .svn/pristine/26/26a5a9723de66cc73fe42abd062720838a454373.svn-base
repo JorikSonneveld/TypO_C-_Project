@@ -1,0 +1,65 @@
+﻿using System;
+using System.Windows;
+using System.Windows.Controls;
+using Typo.Controller;
+using Typo.Model;
+
+namespace Typo.View
+{
+    /// <summary>
+    /// Interaction logic for CourseEditor.xaml
+    /// </summary>
+    public partial class CourseEditor : Window
+    {
+        public DataGridCellInfo cell;
+        public bool update = false;
+        private int courseId;
+        private string oldClasscode;
+
+        private DatabaseController database;
+
+        public CourseEditor(DatabaseController database)
+        {
+            this.database = database;
+            InitializeComponent();
+            ClassName.ItemsSource = database.GetClasses();
+        }
+
+        public CourseEditor(Course course, DatabaseController database)
+        {
+            this.database = database;
+            InitializeComponent();
+            ClassName.ItemsSource = database.GetClasses();
+
+            if (course != null)
+            {
+                //Set View Values
+                //Old title
+                courseId = course.CourseID;
+                //OldClasscode
+                oldClasscode = database.GetCourseClass(course.CourseID);
+                CourseTitle.Text = course.Title;
+                VisibleCheck.IsChecked = course.Official;
+                StartDate.SelectedDate = course.StartDate;
+                EndDate.SelectedDate = course.EndDate;
+                CourseContent.Text = course.Text;
+                update = true;
+            }
+        }
+
+        private void Update_Click(object sender, EventArgs e)
+        {
+            if (update)
+            {
+                Course course = new Course { CourseID = courseId, Title = CourseTitle.Text, Text = CourseContent.Text, StartDate = StartDate.SelectedDate.Value, EndDate = StartDate.SelectedDate.Value, Official = VisibleCheck.IsChecked.Value };
+                database.EditCourse(course, ClassName.SelectedValue.ToString(), oldClasscode, false);
+            }
+            else
+            {
+                Course course = new Course { Title = CourseTitle.Text, Text = CourseContent.Text, StartDate = StartDate.SelectedDate.Value, EndDate = EndDate.SelectedDate.Value, Official = VisibleCheck.IsChecked.Value };
+                database.AddCourse(course);
+            }
+            Close();
+        }
+    }
+}

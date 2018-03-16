@@ -1,0 +1,16 @@
+﻿using System.Data.Entity;
+
+namespace TypApplication.Model
+{
+    public class ApplicationDatabase : DbContext
+    {
+        //Initializing database
+        public ApplicationDatabase() : base("TypApplicationDB")
+        {
+        }
+
+        public virtual DbSet<Word> Words { get; set; }
+        public virtual DbSet<Course> Courses { get; set; }
+        public virtual DbSet<KeyMistake> KeyMistakes { get; set; }
+    }
+}

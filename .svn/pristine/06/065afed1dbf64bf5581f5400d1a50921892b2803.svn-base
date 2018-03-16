@@ -1,0 +1,71 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using TypApplication.Model;
+using TypApplication.View;
+
+namespace TypApplication.Controller
+{
+    class TextInput
+    {
+
+        //Keylogger
+        public void Log(KeyData data, KeyEventArgs e, KeyBoard keyBoard)
+        {
+            data.CurrentKeyCode = e.KeyValue.ToString();
+            KeyData.KeystrokeCounter++;
+            //Console.WriteLine(e.KeyData.ToString());
+        }
+
+        public void CalculateNextKey(String Text, KeyData data)
+        {
+            data.NextKeyValueUpper = Text.ToUpper()[KeyData.GoodKeyPresses];
+        }
+
+        public void Check(RichTextBox InputBox, RichTextBox TestBox, KeyBoard keyboard, KeyData keyData)
+        {
+            // max reached
+            if (KeyData.GoodKeyPresses.Equals(TestBox.TextLength - 1))
+            {
+                Console.WriteLine("je bent klaar");
+                //TestBox(DbController.RetrieveRandomDbWords());
+                InputBox.ReadOnly = true;
+            }
+            else
+            {
+                // GoodKey is current position of string, position is defined by numbers of good presses
+                keyData.GoodKey = TestBox.Text[KeyData.GoodKeyPresses].ToString();
+
+                // Set currentkey to last entered char in textbox
+                keyData.CurrentKeyValue = InputBox.Text.Substring(InputBox.Text.Length - 1);
+
+
+                {
+                    // if CurrentKey equals GoodKey, count up number of GoodKeyPresses
+                    if (keyData.CurrentKeyValue.Equals(keyData.GoodKey))
+                    {
+                        KeyData.GoodKeyPresses++;
+                    }
+
+                    // If entered key is wrong
+                    else if (!keyData.CurrentKeyValue.Equals(keyData.GoodKey))
+                    {
+                        // Remove wrong char
+                        InputBox.Text = InputBox.Text.Substring(0, InputBox.TextLength - 1);
+                        // Move input position to end
+                        InputBox.SelectionStart = InputBox.Text.Length;
+
+                        // Count up wrong key presses
+                        keyData.WrongKeyPresses++;
+                    }
+                }
+            }
+            KeyData.KeystrokeCounter++;
+        }
+    }
+
+}

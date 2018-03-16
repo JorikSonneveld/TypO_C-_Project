@@ -1,0 +1,35 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace TypApplication.Model
+{
+    public class NumberExercise : Exercise
+    {
+        private int minimalNumber;
+        private int maximalNumber;
+        private int quantNumbers;
+        Random rnd = new Random();
+
+        public NumberExercise(int minimalNumber, int maximalNumber, int quantNumbers) : base (ExerciseType.Numbers)
+        {
+            this.minimalNumber = minimalNumber;
+            this.maximalNumber = maximalNumber;
+            this.quantNumbers = quantNumbers;
+        }
+
+        public override string PrintExercise()
+        {
+            string totalstring = "";
+            for (int i = 0; i < quantNumbers; i++)
+            {
+                int number = rnd.Next(minimalNumber, maximalNumber);
+                totalstring += number + " ";
+            }
+            totalstring = totalstring.TrimEnd(' ');
+            return totalstring;
+        }
+    }
+}

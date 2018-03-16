@@ -1,0 +1,75 @@
+﻿using System;
+using System.Drawing;
+using System.Windows.Forms;
+
+namespace TypApplication.View
+{
+    public partial class ColorPopup : Form
+    {
+        public ColorPopup()
+        {
+            InitializeComponent();
+
+            OffTrue.BackColor = Color.FromArgb(Properties.Settings.Default.colorblindOffTrue);
+            OffFalse.BackColor = Color.FromArgb(Properties.Settings.Default.colorblindOffFalse);
+
+            OnTrue.BackColor = Color.FromArgb(Properties.Settings.Default.colorblindOnTrue);
+            OnFalse.BackColor = Color.FromArgb(Properties.Settings.Default.colorblindOnFalse);
+
+        }
+
+        private void OffTrue_Click(object sender, EventArgs e)
+        {
+            colorDialog1.Color = OffTrue.BackColor;
+            if (colorDialog1.ShowDialog() == DialogResult.OK)
+            {
+                Properties.Settings.Default.colorblindOffTrue = colorDialog1.Color.ToArgb();
+                SaveProperties(colorDialog1.Color, OffTrue);
+            }
+        }
+
+        private void OffFalse_Click(object sender, EventArgs e)
+        {
+            colorDialog1.Color = OffFalse.BackColor;
+            if (colorDialog1.ShowDialog() == DialogResult.OK)
+            {
+                Properties.Settings.Default.colorblindOffFalse = colorDialog1.Color.ToArgb();
+                SaveProperties(colorDialog1.Color, OffFalse);
+            }
+        }
+
+        private void OnTrue_Click(object sender, EventArgs e)
+        {
+            colorDialog1.Color = OnTrue.BackColor;
+            if (colorDialog1.ShowDialog() == DialogResult.OK)
+            {
+                Properties.Settings.Default.colorblindOnTrue = colorDialog1.Color.ToArgb();
+                SaveProperties(colorDialog1.Color, OnTrue);
+            }
+        }
+
+        private void OnFalse_Click(object sender, EventArgs e)
+        {
+            colorDialog1.Color = OnFalse.BackColor;
+            if (colorDialog1.ShowDialog() == DialogResult.OK)
+            {
+                Properties.Settings.Default.colorblindOnFalse = colorDialog1.Color.ToArgb();
+                SaveProperties(colorDialog1.Color, OnFalse);
+            }
+               
+        }
+
+        private void SaveProperties(Color color, Button button)
+        {
+            button.BackColor = color;
+            Properties.Settings.Default.Save();
+        }
+
+        private void Colorblind_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.colorblind = !Properties.Settings.Default.colorblind;
+            Properties.Settings.Default.Save();
+            colorblind.Checked = Properties.Settings.Default.colorblind;
+        }
+    }
+}

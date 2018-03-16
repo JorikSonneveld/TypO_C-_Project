@@ -1,0 +1,57 @@
+﻿using System;
+using System.Collections.Generic;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using TypApplication.Model;
+
+namespace TypingApplicationTestEnvoirement.View
+{
+    [TestClass]
+    public class WordExerciseTest
+    {
+        [TestMethod]
+        public void PrintExercise_ShouldReturnCorrectSentence_WhenWordListIsFilled()
+        {
+            //Arrange
+            List<Word> wordlist = new List<Word>();
+            wordlist.Add(new Word { Characters = "test" });
+            wordlist.Add(new Word { Characters = "scentence" });
+            WordExercise word = new WordExercise(wordlist);
+            string expected = "Test scentence.";
+            //Act
+
+            string result = word.PrintExercise();
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void PrintExercise_ShouldReturnEmptyString_WordListIsEmpty()
+        {
+            //Arrange
+            List<Word> wordlist = new List<Word>();
+            WordExercise word = new WordExercise(wordlist);
+            string expected = "";
+            //Act
+
+            string result = word.PrintExercise();
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void PrintExercise_ShouldReturnDot_WhenWordListIsSpace()
+        {
+            //Arrange
+            List<Word> wordlist = new List<Word>();
+            wordlist.Add(new Word { Characters = " " });
+            WordExercise word = new WordExercise(wordlist);
+            string expected = ".";
+            //Act
+
+            string result = word.PrintExercise();
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
+
+    }
+}

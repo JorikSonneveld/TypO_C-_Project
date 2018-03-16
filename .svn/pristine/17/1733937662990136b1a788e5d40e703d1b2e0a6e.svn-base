@@ -1,0 +1,86 @@
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media.Imaging;
+using Typo.Controller;
+using Typo.Model;
+
+namespace Typo.View
+{
+    /// <summary>
+    /// Interaction logic for CourseEnvironment.xaml
+    /// </summary>
+    public partial class CourseView : UserControl
+    {
+        private readonly MainWindow mainWindow;
+        private DatabaseController database = new DatabaseController();
+        private ObservableCollection<Course> courses;
+
+        public CourseView(MainWindow mainWindow)
+        {
+            this.mainWindow = mainWindow;
+            InitializeComponent();
+
+            courses = new ObservableCollection<Course>(database.RetrieveAllDbCourses());
+            CoursesGrid.ItemsSource = courses;
+        }
+
+
+        //the update method is called when the button edit course is clicked
+        //this method will cause a window apears where a existing course can be edited
+        private void CreateCourse_Click(object sender, RoutedEventArgs e)
+        {
+            CourseEditor dlg = new CourseEditor(database);
+            dlg.ShowDialog();
+
+            courses = new ObservableCollection<Course>(database.RetrieveAllDbCourses());
+            CoursesGrid.ItemsSource = courses;
+        }
+
+        private void Update_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Course course = (Course)CoursesGrid.SelectedItem;
+                CourseEditor dlg = new CourseEditor(course, database);
+                dlg.ShowDialog();
+                
+                courses = new ObservableCollection<Course>(database.RetrieveAllDbCourses());
+                CoursesGrid.ItemsSource = courses;
+            }
+            catch (NullReferenceException)
+            {
+
+            }
+        }
+
+        //Delete selected item
+        private void Delete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //courseController.CreateDeleteMessage(CoursesGrid.CurrentCell.Value.ToString());
+                //courseController.FillDataGridView(CoursesGrid);
+            }
+            catch (NullReferenceException)
+            {
+            }
+        }
+
+        private void BackButton_Click(object sender, EventArgs e)
+        {
+            mainWindow.Content = new MainMenu(mainWindow);
+        }
+        
+
+        //if a cell in the data grid is double clicked, this method will cause the update window to appear
+        private void CoursesGrid_CellDoubleClick(object sender, DataGrid e)
+        {
+            //if (e.SelectedIndex == 0)
+            //    Update_Click(sender, e);
+        }
+
+        
+    }
+}
